@@ -1,14 +1,22 @@
-# bounswe2018group9's CMPE352 & CMPE 451 Project
-
-This is our project repository for the courses CMPE352 and CMPE451 in Boğaziçi University. For more information please visit our [Wiki](https://github.com/bounswe/bounswe2018group9/wiki) page.
+# Actopus
 
 ## Description 
 
-![under_maintenance_dribbble_1x](https://user-images.githubusercontent.com/23294453/35938631-beb142f2-0c5a-11e8-8d34-5ab862637a64.png)
+This project aims to create a social platform for people who like to attend
+cultural activities. It lets people control, share, and follow cultural
+activities, namely going to theater plays, musicals, exhibitions, museums,
+and traveling abroad or home, in a single platform (note that you are welcome
+to add other cultural activities to the project). It will be an interactive
+platform that allows users to share their experiences, get recommendations
+and notifications.
+
+For more information please visit our [Wiki](https://github.com/bounswe/bounswe2018group9/wiki) page.
 
 ## Contributing
 
 ## Credits
+
+This is our project repository for the courses CMPE352 and CMPE451 in Boğaziçi University. 
 
 ### Authors
 
