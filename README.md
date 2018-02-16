@@ -15,7 +15,7 @@ This is our project repository for the courses CMPE352 and CMPE451 in Boğaziçi
 * [Gökhan Tekel](https://github.com/bounswe/bounswe2018group9/wiki/G%C3%B6khan-Tekel)
 * [Didem Öngü](https://github.com/bounswe/bounswe2018group9/wiki/Didem-%C3%96ng%C3%BC)
 * [Hamdi Özgür Akaoğlu](https://github.com/bounswe/bounswe2018group9/wiki/Hamdi-%C3%96zg%C3%BCr-Akao%C4%9Flu)
-* [Nazmican Çalık](https://github.com/bounswe/bounswe2018group9/wiki/Nazmican-%C3%87al%C4%B1k)
+* [Nazmican Çalık](https://github.com/bounswe/bounswe2018group9/wiki/Nazmican-%C3%87al%C4%B1k) (Communicator)
 * [İlyas Demirkıran](https://github.com/bounswe/bounswe2018group9/wiki/%C4%B0lyas-Demirk%C4%B1ran)
 * [Yusuf Kalaycı](https://github.com/bounswe/bounswe2018group9/wiki/Yusuf-Kalayc%C4%B1)
 * [Serkan Özel](https://github.com/bounswe/bounswe2018group9/wiki/Serkan-%C3%96zel)
