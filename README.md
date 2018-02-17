@@ -1,6 +1,6 @@
 # Actopus
 
-<img src="https://github.com/dkilyas/cmpe352/blob/master/resources/images/actopus.png" width="450px" height="300px" />
+<img src="wiki/images/logo.png" width="450px" height="300px" />
 
 ## Description 
 
