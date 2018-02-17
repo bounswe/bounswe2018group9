@@ -1,4 +1,4 @@
-## Details
+## 1. Details
 
 * Location: Place
 * Date: Day Month Year
@@ -9,24 +9,24 @@
 * Person 1
 * Person 2
 
-## Agenda
+## 2. Agenda
 
-* Goal 1
-* Goal 2
+* **2.1.** Goal 1
+* **2.2.** Goal 2
 
-## Discussion
+## 3. Discussion
 
-* Discussion 1
-* Discussion 2
+* **3.1.** Discussion 1
+* **3.2.** Discussion 2
 
-## Actions
+## 4. Actions
 
-| Who | What | Deadline |
-| :-: | :--: | :------: |
-| --- | ---- | -------- |
-| --- | ---- | -------- |
+|    ID    | Who | What | Deadline |
+| :------: | :-: | :--: | :------: |
+| **4.1.** | --- | ---- | -------- |
+| **4.2.** | --- | ---- | -------- |
 
-## Resources
+## 5. Resources
 
-* Link 1
-* Link 2
+* **5.1.** Link 1
+* **5.2.** Link 2
