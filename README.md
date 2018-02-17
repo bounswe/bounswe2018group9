@@ -1,4 +1,5 @@
 # Actopus
+<img src="https://raw.githubusercontent.com/dkilyas/cmpe352/master/resources/images/actopus.png" width="500">
 
 ## Description 
 
