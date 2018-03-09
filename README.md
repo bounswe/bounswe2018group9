@@ -31,7 +31,7 @@
         <img src="https://img.shields.io/badge/PROJECT-Project%20Plan-ff69b4.svg"
              alt="Project plan">
    </a>
-    <a href="https://github.com/bounswe/bounswe2018group9/wiki/Web-Mockups">
+    <a href="https://github.com/bounswe/bounswe2018group9/wiki/Mockups(Both)">
         <img src="https://img.shields.io/badge/PROJECT-Mockups-ff69b4.svg"
              alt="Mockups">
  
