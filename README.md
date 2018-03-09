@@ -34,6 +34,9 @@
     <a href="https://github.com/bounswe/bounswe2018group9/wiki/Web-Mockups">
         <img src="https://img.shields.io/badge/PROJECT-Mockups-ff69b4.svg"
              alt="Mockups">
+ 
+  
+  
   
   
 
@@ -47,7 +50,7 @@ to add other cultural activities to the project). It will be an interactive
 platform that allows users to share their experiences, get recommendations
 and notifications.
 
-### For more information: [Wiki](https://github.com/bounswe/bounswe2018group9/wiki) page.
+### [Wiki](https://github.com/bounswe/bounswe2018group9/wiki) page.
 
   
 ## Contributing
@@ -56,10 +59,6 @@ and notifications.
 
 This is our project repository for the courses CMPE352 and CMPE451 in Boğaziçi University. 
 
-<p align="center">
-<a href = "https://dribbble.com/shots/3341064-Octopus"><img 
-<img src="file:///home/byklyci/Downloads/octopus.gif" ></a>
-</p>
 
 ### Authors
 
