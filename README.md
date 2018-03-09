@@ -1,8 +1,34 @@
-# Actopus ![awesome](https://camo.githubusercontent.com/13c4e50d88df7178ae1882a203ed57b641674f94/68747470733a2f2f63646e2e7261776769742e636f6d2f73696e647265736f726875732f617765736f6d652f643733303566333864323966656437386661383536353265336136336531353464643865383832392f6d656469612f62616467652e737667)
+# :octopus: Actopus ![awesome](https://camo.githubusercontent.com/13c4e50d88df7178ae1882a203ed57b641674f94/68747470733a2f2f63646e2e7261776769742e636f6d2f73696e647265736f726875732f617765736f6d652f643733303566333864323966656437386661383536353265336136336531353464643865383832392f6d656469612f62616467652e737667)
 
-<img src="wiki/images/logo.png" width="450px" height="300px" />
+<p align="center">
+  <a href = "https://github.com/bounswe/bounswe2018group9/blob/master/wiki/images/logo.png">
+    <img src="wiki/images/logo.png" width="450px" height="300px">
+  </a>
+</p>
 
-## Description 
+<a href="https://github.com/bounswe/bounswe2018group9/wiki">
+  <img src="https://img.shields.io/badge/HOME-Wiki-ff69b4.svg" alt="Home">
+</a>
+<a href="https://github.com/bounswe/bounswe2018group9/pulls">
+  <img src="https://img.shields.io/badge/BUILD-Pull%20Request-ff69b4.svg" alt="Pull requests">
+</a>
+<a href="https://github.com/bounswe/bounswe2018group9/issues">
+  <img src="https://img.shields.io/badge/OPEN-Issues-ff69b4.svg" alt="Issues">
+</a>
+<a href="https://github.com/bounswe/bounswe2018group9/wiki/Meeting-%235-(05.03.2018)">
+  <img src="https://img.shields.io/badge/ACTOPUS-Meetings-ff69b4.svg" alt="Meetings">
+</a>
+<a href="https://github.com/bounswe/bounswe2018group9/wiki/Requirements-Analysis">
+  <img src="https://img.shields.io/badge/PROJECT-Requirements-ff69b4.svg" alt="Requrinments">
+</a>
+<a href="https://github.com/bounswe/bounswe2018group9/wiki/Project-Plan">
+  <img src="https://img.shields.io/badge/PROJECT-Project%20Plan-ff69b4.svg" alt="Project plan">
+</a>
+<a href="https://github.com/bounswe/bounswe2018group9/wiki/Mockups(Both)">
+  <img src="https://img.shields.io/badge/PROJECT-Mockups-ff69b4.svg" alt="Mockups">
+</a>
+
+## Description
 
 This project aims to create a social platform for people who like to attend
 cultural activities. It lets people control, share, and follow cultural
@@ -12,13 +38,14 @@ to add other cultural activities to the project). It will be an interactive
 platform that allows users to share their experiences, get recommendations
 and notifications.
 
-For more information please visit our [Wiki](https://github.com/bounswe/bounswe2018group9/wiki) page.
+### [Wiki](https://github.com/bounswe/bounswe2018group9/wiki) page.
 
 ## Contributing
 
 ## Credits
 
 This is our project repository for the courses CMPE352 and CMPE451 in Boğaziçi University. 
+
 
 ### Authors
 
