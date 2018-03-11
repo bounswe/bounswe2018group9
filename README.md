@@ -55,6 +55,8 @@ and notifications.
   
 ## Contributing
 
+![Active Actopus](https://cdn.dribbble.com/users/566817/screenshots/3341064/octopus.gif)
+
 ## Credits
 
 This is our project repository for the courses CMPE352 and CMPE451 in Boğaziçi University. 
