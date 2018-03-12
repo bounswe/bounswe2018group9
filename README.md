@@ -55,9 +55,7 @@ and notifications.
   
 ## Contributing
 
-![Active Actopus](https://cdn.dribbble.com/users/566817/screenshots/3341064/octopus.gif)
 
-by James Curran (https://dribbble.com/shots/3341064-Octopus)
 
 ## Credits
 
