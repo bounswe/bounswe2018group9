@@ -57,6 +57,8 @@ and notifications.
 
 ![Active Actopus](https://cdn.dribbble.com/users/566817/screenshots/3341064/octopus.gif)
 
+by James Curran (https://dribbble.com/shots/3341064-Octopus)
+
 ## Credits
 
 This is our project repository for the courses CMPE352 and CMPE451 in Boğaziçi University. 
