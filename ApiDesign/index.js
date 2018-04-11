@@ -21,6 +21,23 @@ app.get('/getTweets', (request, response) => {
     });
 });
 
+app.get('/getTrends/:id',(request,response) => {
+    console.log(request);
+    twitterAPI.trends.getTrendsForCity(id,(error,data,twitterRes)=>{
+        if(data != null){
+            const tweets = data.statuses;
+            const responseArray = [];
+            for(let tweet of tweets){
+                console.log(tweet.text);
+                responseArray.push(tweet.text);
+            }
+            response.end(JSON.stringify(responseArray));
+        }else{
+            response.end('No trend is retrieved');
+        }
+    });
+});
+
 app.listen(port, () =>{
     console.log('Server is running on ' + port);
 });
