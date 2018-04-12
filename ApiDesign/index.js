@@ -1,3 +1,4 @@
+"use strict";
 const express = require('express');
 const bodyParser = require('body-parser');
 const twitterAPI = require('./twitter');
@@ -81,6 +82,13 @@ app.get('/getTrends/:countryName', (request, response) => {
     });
 });
 
+app.get('/getGeoLocation',(request, response) => {
+
+console.log(request);
+response.send({
+    response:" Geo location will be uptaded"
+});    
+});
 
 app.listen(port, () => {
     console.log('Server is running on ' + port);
