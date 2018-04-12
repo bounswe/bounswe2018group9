@@ -1,4 +1,6 @@
 module.exports = {
     basics: require('./basics'),
-    tweets: require('./tweets')
+    tweets: require('./tweets'),
+    trends: require('./trends')
 }
+
