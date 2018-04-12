@@ -52,6 +52,9 @@ app.get('/getHome', (request, response) => {
         }
         else {
             response.json('No tweet is retrieved');
+        }
+    });
+});
 
 app.get('/getTrends/:countryName', (request, response) => {
     console.log(request);
