@@ -3,7 +3,9 @@ const bodyParser = require('body-parser');
 const twitterAPI = require('./twitter');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+
+app.use(express.static('static'));
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -12,8 +14,9 @@ app.use(bodyParser.json());
 
 app.get('/getTweets/:contains', (request, response) => {
     console.log(request);
-    let contains = request.params.contains; 
-    twitterAPI.basics.getTweetsContaining(contains, 3, (error, data, twitterRes) => {
+    const keyword = request.query.keyword;
+    const count = request.query.count;
+    twitterAPI.basics.getTweetsContaining(keyword, count, (error, data, twitterRes) => {
         if (data != null) {
             const tweets = data.statuses;
             const responseArray = [];
@@ -21,8 +24,8 @@ app.get('/getTweets/:contains', (request, response) => {
                 console.log(tweets[i].text);
                 responseArray.push(tweets[i].text);
             }
-            response.end(JSON.stringify(responseArray));
-        } else {
+            response.send(responseArray);
+        }else {
             response.end('No tweet is retrieved');
         }
     });
