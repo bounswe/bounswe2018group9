@@ -10,7 +10,9 @@
   "author": "BOUNSWE_GROUP9",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.3",
-    "twit": "^2.2.9"
+    "twit": "^2.2.9",
+    "twitter": "^1.7.1"
   }
 }
