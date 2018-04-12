@@ -31,6 +31,7 @@ function printTweets(error, data, response) {
     }
 }
 
+
 // The object with some parameters needed by the API
 const params = {q: 'zeytindalı', count: 2};
 
@@ -59,7 +60,3 @@ module.exports = {
     twitter: twitter,
     getTweetsContaining: getTweetsContaining
 }
-
-
-
-
