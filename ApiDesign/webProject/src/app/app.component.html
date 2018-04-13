@@ -1,0 +1,31 @@
+<div class="main-container">
+  <form  #f="ngForm" (ngSubmit)="onSubmit(f)" class="get-tweets">
+  <mat-form-field>
+    <input type="text" matInput placeholder="Keyword for tweet" ngModel name="keyword"  required #keywordInput="ngModel">
+    <mat-error *ngIf="keywordInput.hasError('required')">Field must not be empty.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="How many tweets?" ngModel name="count">
+      <mat-option *ngFor="let counter of tweetCounters" [value]="counter">
+        {{ counter }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+    <br>
+  <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+  </form>
+</div>
+
+<div class="tweets">
+  <mat-card class="example-card" *ngFor="let tweet of tweets; let i = index">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Tweet {{i+1}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{tweet}}
+      </p>
+    </mat-card-content>
+  </mat-card></div>

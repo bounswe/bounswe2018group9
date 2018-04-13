@@ -1,0 +1,18 @@
+{
+  "name": "apidesign",
+  "version": "1.0.0",
+  "description": "Design a new API using Twitter API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BOUNSWE_GROUP9",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "twit": "^2.2.9",
+    "twitter": "^1.7.1"
+  }
+}
