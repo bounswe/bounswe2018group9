@@ -5,7 +5,7 @@ const Trends = require('./trends');
 const Tweets = require('./tweets');
 
 // Tweets module router
-router.get('/tweets/:contains', Tweets.getTweetsContaining);
+router.get('/tweets', Tweets.getTweetsContaining);
 router.post('/tweets', Tweets.postTweet);
 router.get('/home', Tweets.getHome);
 
