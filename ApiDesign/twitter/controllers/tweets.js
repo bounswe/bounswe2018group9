@@ -23,7 +23,7 @@ function postTweet(request, response) {
     console.log(request.body);
     var tweet = request.body['tweetText'];
     twitter.tweets.postTweet(tweet);
-    request.end('Success');
+    response.end('Success');
 }
 
 function getHome(request, response) {
