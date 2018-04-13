@@ -31,16 +31,10 @@ function getHome(twitCount,callback){
     twitter.get("statuses/home_timeline",params,callback);
 }
 
-function retweet(id){
-    twitter.post('statuses/retweet/:id', { id: id }, function result(error, data, response) {
-        if(!error){
-            
-            console.log("success");
-            
-        } else {
-            console.log('error');
-        }
-    });
+// id ; extracted tweet id from request parameters.
+function retweet(id,callback){
+    // output of callback is transferred to caller of this function.
+    twitter.post('statuses/retweet/:id', { id: id }, callback);
     }
 
 module.exports = {
