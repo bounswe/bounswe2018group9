@@ -6,13 +6,13 @@ const Trends = require('./trends');
 const Tweets = require('./tweets');
 
 // Basics module router
-router.get('/getTweets/:contains', Basics.getTweetsContaining);
+router.get('/tweets/:contains', Basics.getTweetsContaining);
 
 // Trends module router
-router.get('/getTrends/:countryName', Trends.getTrendsForCountry);
+router.get('/trends/:countryName', Trends.getTrendsForCountry);
 
 // Tweets module router
-router.post('/postTweet', Tweets.postTweet);
-router.get('/getHome', Tweets.getHome);
+router.post('/tweets', Tweets.postTweet);
+router.get('/home', Tweets.getHome);
 
 module.exports = router;
