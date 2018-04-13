@@ -27,7 +27,7 @@ function postTweet(request, response) {
 }
 
 function getHome(request, response) {
-    var numOfTweets = request.params.count;
+    var numOfTweets = request.query.count;
     twitter.tweets.getHome(numOfTweets,(error,data,twitRes) =>{
         if (data != null) {
             const responseArray = [];

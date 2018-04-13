@@ -1,9 +1,7 @@
 const twitter = require('./twitter');
 
-function getFollowers(screen_name){
-    twitter.get('followers/ids', { screen_name: screen_name },  function (err, data, response) {
-        console.log(data)
-      })
+function getFollowers(screenName, callback){
+    twitter.get('followers/list', { screen_name: screenName }, callback);
 }
 
 module.exports = {

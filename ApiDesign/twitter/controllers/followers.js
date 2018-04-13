@@ -1,9 +1,17 @@
 const twitter = require('../modules');
 
 function getFollowers(request, response) {
-    var screenName = request.params.screenName;
-    var result = twitter.followers.getFollowers(screenName);
-    response.json(result);
+    var screenName = request.query.screenName;
+    twitter.followers.getFollowers(screenName, (error, data, twitterResponse) => {
+        if(error) {
+            console.log(error);
+        }
+        //console.log(twitterResponse);
+        console.log(data);
+
+        response.json(data);
+    });
+
 }
 
 module.exports = {
