@@ -1,4 +1,4 @@
-const twitter = require('../').modules;
+const twitter = require('../modules');
 
 function getTweetsContaining(request, response) {
     console.log(request);
