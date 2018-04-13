@@ -1,6 +1,4 @@
-const Twit = require('twit');
-const config = require('./config');
-const twitter = new Twit(config);
+const twitter = require('./twitter');
 
 function getTrendsForCountry(countryName, callback) {
     // Make the first letter capital. 

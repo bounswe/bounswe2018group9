@@ -1,6 +1,4 @@
-const Twit = require('twit');
-const config = require('./config');
-const twitter = new Twit(config);
+const twitter = require('./twitter');
 
 function postTweet(tweetText) {
     var tweet = {
@@ -25,7 +23,6 @@ function getHome(twitCount,callback){
 
 
 module.exports = {
-    twitter: twitter,
     getHome: getHome,
     postTweet: postTweet
 }
