@@ -23,10 +23,11 @@ function postTweet(request, response) {
     console.log(request.body);
     var tweet = request.body['tweetText'];
     twitter.tweets.postTweet(tweet);
+    request.end('Success');
 }
 
 function getHome(request, response) {
-    var numOfTweets = request.url.split('=')[1];
+    var numOfTweets = request.params.count;
     twitter.tweets.getHome(numOfTweets,(error,data,twitRes) =>{
         if (data != null) {
             const responseArray = [];
@@ -37,7 +38,7 @@ function getHome(request, response) {
                 tweet['time'] = data[i].created_at;
                 responseArray.push(tweet);
             }
-            response.json(JSON.stringify(responseArray));
+            response.json(responseArray);
         }
         else {
             response.json('No tweet is retrieved');

@@ -1,0 +1,62 @@
+.hero{
+  background-color: darkblue;
+  color: white;
+  width: 100%;
+  padding: 30px 10px;
+}
+
+.image-container img{
+  width: 90%;
+  margin: 5px 5%;
+}
+
+.api-container{
+  padding: 20px;
+}
+
+.output-container{
+  border: 4px solid #99baef;
+  margin-top: 20px;
+  min-width: 20px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.output-container h4{
+  color: gray;
+  margin: 4px;
+}
+
+@media screen and (min-width: 767px){
+  .hero{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .hero h1{
+    font-size: 2em;
+  }
+
+  .hero h2{
+    font-size: 1.4em;
+  }
+
+  .hero p {
+    font-size: 1em;
+  }
+
+  .image-container{
+    width: 50%;
+  }
+
+  .title-container{
+    width: 40%;
+  }
+
+  .api-container{
+    width: 767px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

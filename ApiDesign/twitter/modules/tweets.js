@@ -24,11 +24,11 @@ function postTweet(tweetText) {
     });
 }
 
-function getHome(twitCount,callback){
-    params = {
-    count:twitCount
-    }
-    twitter.get("statuses/home_timeline",params,callback);
+function getHome(twitCount, callback){
+    const params = {
+        count:twitCount
+    };
+    twitter.get("statuses/home_timeline", params, callback);
 }
 
 
