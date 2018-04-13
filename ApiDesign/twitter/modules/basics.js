@@ -1,11 +1,5 @@
-const Twit = require('twit');
-
-// Get authentication keys
-const config = require('./config');
-
-// Twit is a NPM package for Twitter API
-// Documentation of the package is here: https://www.npmjs.com/package/twit
-const twitter = new Twit(config);
+// require pre-initialized twitter object from twitter.js
+const twitter = require('./twitter');
 
 /* AN EXAMPLE CALL*/
 
@@ -57,6 +51,5 @@ function getTweetsContaining(contains, count, callback) {
 
 // Export everything you desire to be available from outside
 module.exports = {
-    twitter: twitter,
     getTweetsContaining: getTweetsContaining
 }
