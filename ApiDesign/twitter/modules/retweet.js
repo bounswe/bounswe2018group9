@@ -1,23 +1,20 @@
 const twitter = require('./twitter');
 
-function retweet(iden){
-    twitter.retweet('statuses/retweet/:id',{id: iden},function(err,req,res){
-        if(!err){
 
-            console.log("Retweet done!");
-        }
-        else{
-
-            console.log("Something gone terribly wrong there");
-        }
-
-    });
+function retweet(id){
+twitter.post('statuses/retweet/:id', { id: id }, function result(error, data, response) {
+    if(!error){
+        
+        console.log("success");
+        
+    } else {
+        console.log('error');
+    }
+});
 }
 
 
 module.exports = {
+
     retweet : retweet
 }
-
-
-
