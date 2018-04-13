@@ -45,8 +45,14 @@ function getHome(request, response) {
     });
 }
 
+function retweet(request, response) {
+    var id = request.params.id;
+    twitter.retweet.retweet(id);
+}
+
 module.exports = {
     getTweetsContaining: getTweetsContaining,
     postTweet: postTweet,
-    getHome: getHome
+    getHome: getHome,
+    retweet : retweet
 };
