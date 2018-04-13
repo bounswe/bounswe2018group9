@@ -1,4 +1,5 @@
 const twitter = require('./twitter');
+const twitter = require('../modules');
 
 function getTrendsForCountry(countryName, callback) {
     // Make the first letter capital. 
