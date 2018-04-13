@@ -1,5 +1,15 @@
 const twitter = require('./twitter');
 
+/*
+    Wrapper function for twitter API getting tweets containing some string
+    contains: the string tweets must include
+    count: number of tweets to be retrieved
+    callback : the function in which we specify what will be done with the response of the twitter
+*/
+function getTweetsContaining(contains, count, callback) {
+    twitter.get('search/tweets', {q: contains, count: count }, callback);
+}
+
 function postTweet(tweetText) {
     var tweet = {
         status: tweetText
@@ -23,6 +33,7 @@ function getHome(twitCount,callback){
 
 
 module.exports = {
+    getTweetsContaining, getTweetsContaining,
     getHome: getHome,
     postTweet: postTweet
 }
