@@ -1,4 +1,6 @@
 module.exports = {
-  modules: require('./modules')
-  router: require(.'/controllers')
+    basics: require('./basics'),
+    tweets: require('./tweets'),
+    trends: require('./trends')
 }
+
