@@ -2,57 +2,30 @@ const Twit = require('twit');
 const config = require('./config');
 const twitter = new Twit(config);
 
-//console.log("hello media");
-var exec =require ('child_process').exec;
-var fs = require('fs');
-/*
-var Twitter = require('twitter'),
- requestP = require('request-promise-native');
+//for multiple image 
+/*   
+var img1 = 'abc1.jpg';
+var img2 = 'abc2.jpg';
+var img3 = 'abc3.jpg';
 
- var twitterConfig = config.twitter;
-    twitterConfig.access_token_key = tweet.accessToken;
-    twitterConfig.access_token_secret = tweet.accessTokenSecret;
-    var twitter;
+var image = img1+','+img2+','+img3;
+*/
 
-    // first get the image data
-    var promise = requestP(tweet.imageURL)
-      .then(imageData => {
-        //then the image first
-        twitter = new Twitter(twitterConfig);
-        return twitter.post("media/upload", {
-          media: imageData
-        }, function (error, tweets, response) {
-          if (!error) {
-            console.log(tweets);
-          }
-        });
-      });*/
-processing();
-      
-function processing(){
-    var filename = 'media_pic/actopus.png';
-    var params = {
-        encoding: 'base64'
-    }
-    var b64content = fs.readFileSync(filename,params);
+//take an image 
+var image = fs.readFileSync('media_pic/actopus.png', {encoding: 'base64'});
 
+twitter.post('media/upload', {media: image}, 
 
-twitter.post('media/upload', { media_data: b64content }, uploaded); 
+  function(err, data, res) {
+      if (err) console.log(err);
+      console.log(data);
 
-    function uploaded(err, data, response) {
-     var id = data.media_id_string;
-     var tweet ={
-        status: '#actopus Actopus -- Culture, adrenalin and friendship project for web and android',
-        media_ids: [id]
-     }
-    twitter.post('status/update',tweet,tweeted); 
-}
-}
+twitter.post('statuses/update', {status: 'test picture', media_ids: data.media_id_string}, 
 
-function tweeted(err,data,response) {
-    if (err) {
-        console.log("something wrong!!!!")
-    } else{
-        console.log("it worked!!!!!")
-    }
- }
+  function(err, params, res) {
+      if (err) console.log(err);
+      console.log(params);
+
+});
+
+});
