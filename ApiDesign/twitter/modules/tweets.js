@@ -33,7 +33,7 @@ function getHome(twitCount,callback){
 
 
 module.exports = {
-    getTweetsContaining, getTweetsContaining,
+    getTweetsContaining: getTweetsContaining,
     getHome: getHome,
     postTweet: postTweet
 }
