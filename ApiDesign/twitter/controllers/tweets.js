@@ -4,7 +4,7 @@ function getTweetsContaining(request, response) {
     console.log(request);
     const keyword = request.query.keyword;
     const count = request.query.count;
-    twitter.basics.getTweetsContaining(keyword, count, (error, data, twitterRes) => {
+    twitter.tweets.getTweetsContaining(keyword, count, (error, data, twitterRes) => {
         if (data != null) {
             const tweets = data.statuses;
             const responseArray = [];
