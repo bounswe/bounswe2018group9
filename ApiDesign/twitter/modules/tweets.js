@@ -31,9 +31,21 @@ function getHome(twitCount,callback){
     twitter.get("statuses/home_timeline",params,callback);
 }
 
+function retweet(id){
+    twitter.post('statuses/retweet/:id', { id: id }, function result(error, data, response) {
+        if(!error){
+            
+            console.log("success");
+            
+        } else {
+            console.log('error');
+        }
+    });
+    }
 
 module.exports = {
     getTweetsContaining: getTweetsContaining,
     getHome: getHome,
-    postTweet: postTweet
+    postTweet: postTweet,
+    retweet :retweet
 }

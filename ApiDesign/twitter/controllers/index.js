@@ -3,18 +3,14 @@ const router = express.Router();
 
 const Trends = require('./trends');
 const Tweets = require('./tweets');
-const Retweet = require('./retweet');
 
 // Tweets module router
 router.get('/tweets', Tweets.getTweetsContaining);
 router.post('/tweets', Tweets.postTweet);
 router.get('/home', Tweets.getHome);
-
+router.post('/retweet/:id',Tweets.retweet);
 // Trends module router
 router.get('/trends/:countryName', Trends.getTrendsForCountry);
 
-
-// Retweet
-router.post('/retweet/:id', Retweet.retweet);
 
 module.exports = router;
