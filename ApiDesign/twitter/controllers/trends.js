@@ -1,4 +1,4 @@
-const twitter = require('../').modules;
+const twitter = require('../modules');
 
 function getTrendsForCountry(request, response) {
     console.log(request);
