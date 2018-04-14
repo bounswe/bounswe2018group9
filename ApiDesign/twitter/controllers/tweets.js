@@ -23,10 +23,11 @@ function postTweet(request, response) {
     console.log(request.body);
     var tweet = request.body['tweetText'];
     twitter.tweets.postTweet(tweet);
+    response.end('Success');
 }
 
 function getHome(request, response) {
-    var numOfTweets = request.url.split('=')[1];
+    var numOfTweets = request.params.count;
     twitter.tweets.getHome(numOfTweets,(error,data,twitRes) =>{
         if (data != null) {
             const responseArray = [];
@@ -37,16 +38,34 @@ function getHome(request, response) {
                 tweet['time'] = data[i].created_at;
                 responseArray.push(tweet);
             }
-            response.json(JSON.stringify(responseArray));
+            response.json(responseArray);
         }
         else {
             response.json('No tweet is retrieved');
         }
     });
 }
+// Router calls this function if the URL is /retweet/:id
+function retweet(request, response) {
+    // /retweet/:id causes id to be a parameter. Extract id from parameters of the request.
+    var id = request.params.id;
+    
+    twitter.retweet.retweet(id,(error,data,response) => {
+        // If there is an error show it with its status code.
+        if(error){
+            response.status(error.statusCode).send(error.message);
+        }else{
+            // If there is not, show the text with the response's status code.
+            response.status(response.statusCode).send("Retweeted requested tweet");
+        }
+    });
+}
+
+
 
 module.exports = {
     getTweetsContaining: getTweetsContaining,
     postTweet: postTweet,
-    getHome: getHome
+    getHome: getHome,
+    retweet : retweet
 };

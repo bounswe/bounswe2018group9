@@ -24,16 +24,22 @@ function postTweet(tweetText) {
     });
 }
 
-function getHome(twitCount,callback){
-    params = {
-    count:twitCount
-    }
-    twitter.get("statuses/home_timeline",params,callback);
+function getHome(twitCount, callback){
+    const params = {
+        count:twitCount
+    };
+    twitter.get("statuses/home_timeline", params, callback);
 }
 
+// id ; extracted tweet id from request parameters.
+function retweet(id,callback){
+    // output of callback is transferred to caller of this function.
+    twitter.post('statuses/retweet/:id', { id: id }, callback);
+    }
 
 module.exports = {
     getTweetsContaining: getTweetsContaining,
     getHome: getHome,
-    postTweet: postTweet
+    postTweet: postTweet,
+    retweet :retweet
 }
