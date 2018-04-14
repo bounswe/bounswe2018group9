@@ -40,6 +40,7 @@ and notifications.
 
 ### [Wiki](https://github.com/bounswe/bounswe2018group9/wiki) page.
 
+### [Actopus API for Twitter](http://bounswegroup9api-env.2xbnu7imzw.eu-west-1.elasticbeanstalk.com/)
 ## Contributing
 
 ## Credits
