@@ -10,18 +10,11 @@ function getTweetsContaining(contains, count, callback) {
     twitter.get('search/tweets', {q: contains, count: count }, callback);
 }
 
-function postTweet(tweetText) {
+function postTweet(tweetText , callback) {
     var tweet = {
         status: tweetText
     };
-    twitter.post('statuses/update',tweet,function(err,req,res){
-        if(!err){
-        console.log("Tweet has been posted!");
-      }
-      else{
-        console.log("Something went wrong.");
-      }
-    });
+    twitter.post('statuses/update',tweet, callback);
 }
 
 function getHome(twitCount, callback){

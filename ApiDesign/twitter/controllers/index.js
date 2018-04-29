@@ -7,7 +7,7 @@ const Followers = require('./followers');
 const Account = require('./account');
 
 
-const Geo = require('./geo');
+// const Geo = require('./geo');
 
 // Tweets module router
 router.get('/tweets', Tweets.getTweetsContaining);
@@ -19,7 +19,7 @@ router.post('/retweet/:id',Tweets.retweet);
 router.get('/trends/:countryName', Trends.getTrendsForCountry);
 
 // Geo module router
-router.get('geo/search',Geo.getInfoAboutPlace)
+// router.get('geo/search',Geo.getInfoAboutPlace)
 
 //Accounts module router
 router.get('/account/description', Account.getDescription);

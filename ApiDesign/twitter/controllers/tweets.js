@@ -1,20 +1,45 @@
 const twitter = require('../modules');
 
 function getTweetsContaining(request, response) {
-    console.log(request);
     const keyword = request.query.keyword;
     const count = request.query.count;
     twitter.tweets.getTweetsContaining(keyword, count, (error, data, twitterRes) => {
-        if (data != null) {
+        if (error) {
+            response.json({
+                status: "ERROR",
+                data: error
+            });
+        } else if(!keyword || !count){
+            response.json({
+                status: "ERROR",
+                data: "Please provide query parameters keyword and count!"
+            });
+        } else if (data != null) {
             const tweets = data.statuses;
             const responseArray = [];
             for (let i = 0; i < tweets.length; i++) {
-                console.log(tweets[i].text);
-                responseArray.push(tweets[i].text);
+                console.log(tweets[i]);
+                const tweet = {
+                    text: tweets[i].text,
+                    id: tweets[i].id,
+                    user: {
+                        id: tweets[i].user.id,
+                        name: tweets[i].user.name,
+                        screenName: tweets[i].user.screen_name,
+                        location: tweets[i].user.location
+                    }
+                };
+                responseArray.push(tweet);
             }
-            response.send(responseArray);
+            response.json({
+                status: "SUCCESS",
+                data: responseArray
+            });
         }else {
-            response.end('No tweet is retrieved');
+            response.json({
+                status: "EMPTY",
+                data: []
+            });
         }
     });
 }
@@ -22,8 +47,22 @@ function getTweetsContaining(request, response) {
 function postTweet(request, response) {
     console.log(request.body);
     var tweet = request.body['tweetText'];
-    twitter.tweets.postTweet(tweet);
-    response.end('Success');
+    twitter.tweets.postTweet(tweet, (error, data, twitRes) => {
+        if(error){
+            response.json({
+                status: "ERROR",
+                data: error
+            });
+        } else {
+            response.json({
+                status: "SUCCESS",
+                data: {
+                    id: data.id
+                }
+            });
+        }
+    });
+
 }
 
 function getHome(request, response) {
