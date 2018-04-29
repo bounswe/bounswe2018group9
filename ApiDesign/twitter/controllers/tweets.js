@@ -45,9 +45,27 @@ function getHome(request, response) {
         }
     });
 }
+// Router calls this function if the URL is /retweet/:id
+function retweet(request, response) {
+    // /retweet/:id causes id to be a parameter. Extract id from parameters of the request.
+    var id = request.params.id;
+    
+    twitter.retweet.retweet(id,(error,data,response) => {
+        // If there is an error show it with its status code.
+        if(error){
+            response.status(error.statusCode).send(error.message);
+        }else{
+            // If there is not, show the text with the response's status code.
+            response.status(response.statusCode).send("Retweeted requested tweet");
+        }
+    });
+}
+
+
 
 module.exports = {
     getTweetsContaining: getTweetsContaining,
     postTweet: postTweet,
-    getHome: getHome
+    getHome: getHome,
+    retweet : retweet
 };
