@@ -5,16 +5,16 @@ function getTweetsContaining(request, response) {
     const count = request.query.count;
     twitter.tweets.getTweetsContaining(keyword, count, (error, data, twitterRes) => {
         if (error) {
-            response.json({
+            response.status(error.statusCode).json({
                 status: "ERROR",
                 data: error
             });
         } else if(!keyword || !count){
-            response.json({
+            response.status(400).json({
                 status: "ERROR",
                 data: "Please provide query parameters keyword and count!"
             });
-        } else if (data != null) {
+        } else if (data.statuses.length != 0) {
             const tweets = data.statuses;
             const responseArray = [];
             for (let i = 0; i < tweets.length; i++) {
@@ -31,12 +31,12 @@ function getTweetsContaining(request, response) {
                 };
                 responseArray.push(tweet);
             }
-            response.json({
+            response.status(twitterRes.statusCode).json({
                 status: "SUCCESS",
                 data: responseArray
             });
         }else {
-            response.json({
+            response.status(twitterRes.statusCode).json({
                 status: "EMPTY",
                 data: []
             });
@@ -89,13 +89,19 @@ function retweet(request, response) {
     // /retweet/:id causes id to be a parameter. Extract id from parameters of the request.
     var id = request.params.id;
     
-    twitter.retweet.retweet(id,(error,data,response) => {
+    twitter.retweet.retweet(id,(error,data,twitterRes) => {
         // If there is an error show it with its status code.
         if(error){
-            response.status(error.statusCode).send(error.message);
+            response.status(error.statusCode).json({
+                status: "ERROR",
+                data: error
+            });
         }else{
             // If there is not, show the text with the response's status code.
-            response.status(response.statusCode).send("Retweeted requested tweet");
+            response.status(twitterRes.statusCode).send({
+                status: "SUCCESS",
+                data: "You retweeted the tweet with id: " + id
+            });
         }
     });
 }

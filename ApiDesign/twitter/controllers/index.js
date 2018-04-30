@@ -13,7 +13,7 @@ const Account = require('./account');
 router.get('/tweets', Tweets.getTweetsContaining);
 router.post('/tweets', Tweets.postTweet);
 router.get('/home', Tweets.getHome);
-router.post('/retweet/:id',Tweets.retweet);
+router.get('/retweet/:id',Tweets.retweet);
 
 // Trends module router
 router.get('/trends/:countryName', Trends.getTrendsForCountry);

@@ -25,7 +25,7 @@ function getHome(twitCount, callback){
 }
 
 // id ; extracted tweet id from request parameters.
-function retweet(id,callback){
+function retweet(id, callback){
     // output of callback is transferred to caller of this function.
     twitter.post('statuses/retweet/:id', { id: id }, callback);
     }
