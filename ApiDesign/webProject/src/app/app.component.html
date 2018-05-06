@@ -1,31 +1,240 @@
 <div class="main-container">
-  <form  #f="ngForm" (ngSubmit)="onSubmit(f)" class="get-tweets">
-  <mat-form-field>
-    <input type="text" matInput placeholder="Keyword for tweet" ngModel name="keyword"  required #keywordInput="ngModel">
-    <mat-error *ngIf="keywordInput.hasError('required')">Field must not be empty.</mat-error>
-  </mat-form-field>
 
-  <mat-form-field>
-    <mat-select placeholder="How many tweets?" ngModel name="count">
-      <mat-option *ngFor="let counter of tweetCounters" [value]="counter">
-        {{ counter }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-    <br>
-  <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
-  </form>
+  <div class="hero">
+    <div class="image-container">
+      <img src="../assets/logo.png" alt="Actopus - an Activity octopus">
+    </div>
+
+    <div class="title-container">
+      <h1>Actopus</h1>
+      <h2>An activity Octopus</h2>
+
+      <p>Discover Actopus API. Engage with the world of events.</p>
+
+      <p>Follow us on <a class="link" href="https://github.com/bounswe/bounswe2018group9">GitHub</a></p>
+
+    </div>
+  </div>
+
+  <div class="api-container">
+    <h3> <strong>GET</strong> /api/twitter/tweets</h3>
+    <form  #getTweets="ngForm" (ngSubmit)="onGetTweetsSubmit(getTweets)" class="api-form">
+      <p>You can search for tweets with keywords, hashtags or mentions. For hashtags use #, for mentions use @</p>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Keyword for tweet" ngModel name="keyword"  required #keywordInput="ngModel">
+        <mat-error *ngIf="keywordInput.hasError('required')">Field must not be empty.</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-select placeholder="How many tweets?" ngModel required name="count">
+          <mat-option *ngFor="let counter of tweetCounters" [value]="counter">
+            {{ counter }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+      <button type="submit" mat-raised-button color="primary" [disabled]="getTweets.invalid">Submit</button>
+    </form>
+    <div class="output-container">
+      <h4>Output:</h4>
+      <mat-card class="example-card" *ngFor="let tweet of tweets; let i = index">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>Tweet ID:{{tweet.id}} from {{tweet.user.screenName}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{tweet.text}}
+          </p>
+          <ul>
+            <li>User Name: {{tweet.user.name}}</li>
+            <li>User Screen Name: {{tweet.user.screenName}}</li>
+            <li *ngIf="tweet.user.location">User Location: {{tweet.user.location}}</li>
+          </ul>
+        </mat-card-content>
+      </mat-card></div>
+
+  </div>
+
+
+  <div class="api-container">
+    <h3> <strong>POST</strong> /api/twitter/tweets</h3>
+    <form  #postTweets="ngForm" (ngSubmit)="onPostTweetsSubmit(postTweets)" class="api-form">
+      <p>Tweet from Actopus Account</p>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Enter the text of tweet" ngModel name="tweetText" required #keywordInput="ngModel">
+        <mat-error *ngIf="keywordInput.hasError('required')">Field must not be empty.</mat-error>
+      </mat-form-field>
+
+      <br>
+      <button type="submit" mat-raised-button color="primary" [disabled]="postTweets.invalid">Submit</button>
+    </form>
+    <div class="output-container">
+      <h4>Output:</h4>
+      {{postTweetMessage}}
+  </div>
+  </div>
+
+  <div class="api-container">
+    <h3> <strong>GET</strong> /api/twitter/retweet</h3>
+    <form  #reTweets="ngForm" (ngSubmit)="onRetweet(reTweets)" class="api-form">
+      <p>Retweet the tweets with Actopus account</p>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Enter the id of the tweet" ngModel name="tweetId" required #idInput="ngModel">
+        <mat-error *ngIf="idInput.hasError('required')">Field must not be empty.</mat-error>
+      </mat-form-field>
+
+      <br>
+      <button type="submit" mat-raised-button color="primary" [disabled]="reTweets.invalid">Submit</button>
+    </form>
+    <div class="output-container">
+      <h4>Output:</h4>
+      {{retweetMessage}}
+    </div>
+  </div>
+
+    <div class="api-container">
+      <h3> <strong>GET</strong> /api/twitter/home</h3>
+      <form  #getHome="ngForm" (ngSubmit)="onGetHomeSubmit(getHome)" class="api-form">
+        <p>Get the tweets of Actopus account</p>
+        <mat-form-field>
+          <mat-select placeholder="How many tweets you want to retrieve?" ngModel name="count" required>
+            <mat-option *ngFor="let counter of tweetCounters" [value]="counter">
+              {{ counter }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <br>
+        <button type="submit" mat-raised-button color="primary" [disabled]="getHome.invalid">Submit</button>
+      </form>
+      <div class="output-container">
+        <h4>Output:</h4>
+        <mat-card class="example-card" *ngFor="let tweet of homeTweets; let i = index">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Tweet of {{tweet.user}} at {{tweet.time}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              {{tweet.text}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+    </div>
+    <div class="api-container">
+      <h3> <strong>GET</strong> /api/twitter/trends/:countryName</h3>
+      <form  #getTrends="ngForm" (ngSubmit)="onGetTrendsForCountrySubmit(getTrends)" class="api-form">
+        <p>Get the trends for a country</p>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Enter the text of tweet" ngModel name="countryName" required #countryInput="ngModel">
+          <mat-error *ngIf="countryInput.hasError('required')">Field must not be empty.</mat-error>
+        </mat-form-field>
+        <br>
+        <button type="submit" mat-raised-button color="primary" [disabled]="getTrends.invalid">Submit</button>
+      </form>
+      <div class="output-container">
+        <h4>Output:</h4>
+        <mat-card class="example-card" *ngFor="let trend of countryTrends; let i = index">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Trend {{i+1}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              {{trend.name}} <a href="{{trend.url}}">Click Here!</a>
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+
+  <div class="api-container">
+    <h3> <strong>GET</strong> /api/twitter/account/description</h3>
+    <p>Get the description of Actopus account</p>
+    <form class="api-form" (ngSubmit)="onGetAccountDescription()">
+      <button mat-raised-button type="submit">Submit</button>
+    </form>
+    <div class="output-container">
+      <h4>Output:</h4>
+        {{descriptionText}}
+    </div>
+  </div>
+
+  <div class="api-container">
+    <h3> <strong>POST</strong> /api/twitter/account/description</h3>
+    <p>Change the description of Actopus account</p>
+    <form class="api-form" #setDesc="ngForm" (ngSubmit)="onSetAccountDescription(setDesc)">
+      <mat-form-field>
+        <input type="text" matInput placeholder="Enter the new description" ngModel name="description" required #description="ngModel">
+        <mat-error *ngIf="description.hasError('required')">Field must not be empty.</mat-error>
+      </mat-form-field>
+      <button mat-raised-button type="submit" [disabled]="setDesc.invalid">Submit</button>
+    </form>
+    <div class="output-container">
+      <h4>Output:</h4>
+      <span *ngIf="newDescription">
+        Description is set as {{newDescription}}
+      </span>
+    </div>
+  </div>
+
+  <div class="api-container">
+    <h3> <strong>POST</strong> api/twitter/account/url</h3>
+    <p>Change the URL of Actopus account</p>
+    <form class="api-form" #setUrl="ngForm" (ngSubmit)="onSetAccountUrl(setUrl)">
+      <mat-form-field>
+        <input type="text" matInput placeholder="Enter the new url for Actopus account" ngModel name="url" required #url="ngModel">
+        <mat-error *ngIf="url.hasError('required')">Field must not be empty.</mat-error>
+      </mat-form-field>
+      <button mat-raised-button type="submit" [disabled]="setUrl.invalid">Submit</button>
+    </form>
+    <div class="output-container">
+      <h4>Output:</h4>
+      <span *ngIf="newAccountUrl">
+        URL is set as {{newAccountUrl}}
+      </span>
+    </div>
+  </div>
+
+  <div class="api-container">
+    <h3> <strong>GET</strong> api/twitter/followers?screen_name=<strong>screenName</strong></h3>
+    <p>Change the URL of Actopus account</p>
+    <form class="api-form" #getFollowers="ngForm" (ngSubmit)="onGetFollowers(getFollowers)">
+      <mat-form-field>
+        <input type="text" matInput placeholder="Enter the screen name of the account" ngModel name="screenName" required #screenName="ngModel">
+        <mat-error *ngIf="screenName.hasError('required')">Field must not be empty.</mat-error>
+      </mat-form-field>
+      <button mat-raised-button type="submit" [disabled]="getFollowers.invalid">Submit</button>
+    </form>
+    <div class="output-container">
+      <h4>Output:</h4>
+      <mat-card class="example-card" *ngFor="let follower of followers">
+        <mat-card-header>
+          <div mat-card-avatar class="card-image">
+            <img class="card-image" src="{{follower.profileImageUrl}}" alt="{{follower.name}}">
+          </div>
+          <mat-card-title>{{follower.name}}</mat-card-title>
+          <mat-card-subtitle>{{follower.screenName}}</mat-card-subtitle>
+        </mat-card-header>
+        <!--<img mat-card-image src="" alt="{{follower.name}}">-->
+        <mat-card-content>
+          <p>
+            {{follower.description}}
+          </p>
+        </mat-card-content>
+        <!--
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions> -->
+      </mat-card>
+    </div>
+  </div>
+
+
 </div>
-
-<div class="tweets">
-  <mat-card class="example-card" *ngFor="let tweet of tweets; let i = index">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Tweet {{i+1}}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        {{tweet}}
-      </p>
-    </mat-card-content>
-  </mat-card></div>
