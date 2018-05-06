@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BackendService } from "./services/backend-service.service";
+import MakeThisAwesomeCommand from "@angular/cli/commands/easter-egg";
 
 @Component({
   selector: 'app-root',
@@ -33,6 +34,9 @@ export class AppComponent {
   descriptionText: string;
   newDescription: string;
   newAccountUrl: string;
+  mediaUploadMessage: string;
+  file: File;
+  fileName: string;
 
 
   constructor(private backendService: BackendService){}
@@ -103,7 +107,7 @@ export class AppComponent {
 
   onRetweet(form){
     const tweetId = form.value['tweetId'];
-    this.backendService.getTrendsForCountry(tweetId)
+    this.backendService.retweet(tweetId)
       .subscribe(
         (dataReceived: {
           status: string,
@@ -111,9 +115,9 @@ export class AppComponent {
         }) => {
           this.retweetMessage = dataReceived.data;
         },
-        (error) => {
+        (error:any) => {
           console.log(error);
-          this.retweetMessage = error
+          this.retweetMessage = error.error.data.message;
         }
       )
   }
@@ -176,6 +180,37 @@ export class AppComponent {
           }>
         }) => {
           this.followers = response.data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+  }
+
+  onFileChange(event){
+    this.file = event.target.files[0];
+    console.log(this.file);
+  }
+  onTweetMedia(form){
+    const tweetText = form.value['tweetTextMed'];
+    this.backendService.uploadImage(this.file)
+      .subscribe(
+        (response: {
+          status: string,
+          data: any
+        }) => {
+          const fileName = response.data.filename;
+
+          this.backendService.tweetWithImage(tweetText, fileName)
+            .subscribe(
+              (response: {
+                status: string,
+                data: string
+              }) => {
+                this.mediaUploadMessage = response.data;
+              },
+              err => console.log(err)
+            );
         },
         (error) => {
           console.log(error);

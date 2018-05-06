@@ -54,4 +54,19 @@ export class BackendService {
     })
   }
 
+  uploadImage(imageFile: File){
+    const uploadData = new FormData();
+    uploadData.append('image', imageFile, imageFile.name);
+    return this.httpClient.post('/api/twitter/media/upload', uploadData);
+  }
+
+  tweetWithImage(tweetText: string, fileName: string){
+    const body = {
+      tweetText: tweetText,
+      imagePath: fileName
+    };
+
+    return this.httpClient.post('/api/twitter/tweetWithMedia', body);
+  }
+
 }
