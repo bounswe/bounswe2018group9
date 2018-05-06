@@ -19,18 +19,34 @@ export class AppComponent {
     name: string,
     url: string
   }>;
-  postTweetMessage;
+
+  followers: Array<{
+    id: string,
+    name: string,
+    screenName: string,
+    description: string,
+    profileImageUrl: string
+  }>;
+
+  postTweetMessage: string;
+  retweetMessage: string;
+  descriptionText: string;
+  newDescription: string;
+  newAccountUrl: string;
+
 
   constructor(private backendService: BackendService){}
 
   onGetTweetsSubmit(form){
-    console.log(form);
     let keyword: string = form.value['keyword'];
     let count: number = form.value['count'];
     this.backendService.getTweetsIncluding(keyword, count)
       .subscribe(
-        (data: Array<string>) => {
-          this.tweets = data;
+        (dataReceived: {
+          status: string,
+          data: Array<string>
+        }) => {
+          this.tweets = dataReceived.data;
           },
           error => {
           console.log(error);
@@ -45,8 +61,9 @@ export class AppComponent {
       (data) => {
         this.postTweetMessage = 'Your tweet is successfully posted!';
       },
-      error => {
-        console.log(error)
+       error => {
+        console.log(error);
+        this.postTweetMessage = 'An error occurred posting your tweet!'
       },
       () => {
         this.postTweetMessage = 'Your tweet is successfully posted!';
@@ -82,5 +99,87 @@ export class AppComponent {
         this.countryTrends = dataReceived;
       }
     )
+  }
+
+  onRetweet(form){
+    const tweetId = form.value['tweetId'];
+    this.backendService.getTrendsForCountry(tweetId)
+      .subscribe(
+        (dataReceived: {
+          status: string,
+          data: string
+        }) => {
+          this.retweetMessage = dataReceived.data;
+        },
+        (error) => {
+          console.log(error);
+          this.retweetMessage = error
+        }
+      )
+  }
+
+  onGetAccountDescription(){
+    this.backendService.getAccountDescription()
+      .subscribe((response: {
+        status: string,
+        data: string
+      }) => {
+        console.log(response);
+        this.descriptionText = response.data;
+      }, (error) => {
+        console.log(error);
+      });
+  }
+
+  onSetAccountDescription(form){
+    const newDesc: string = form.value['description'];
+    this.backendService.setAccountDescription(newDesc)
+      .subscribe((response: {
+        status: string,
+        data: string
+      }) => {
+        console.log(response);
+        this.newDescription = response.data;
+      }, (error) => {
+        console.log(error);
+      });
+  }
+
+  onSetAccountUrl(form){
+    const url: string = form.value['url'];
+    this.backendService.setAccountUrl(url)
+      .subscribe(
+        (response: {
+          status: string,
+          data: string
+        }) => {
+          this.newAccountUrl = response.data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+  }
+
+  onGetFollowers(form){
+    const screenName: string = form.value['screenName'];
+    this.backendService.getFollowers(screenName)
+      .subscribe(
+        (response: {
+          status: string,
+          data: Array<{
+            id: string,
+            name: string,
+            screenName: string,
+            description: string,
+            profileImageUrl: string
+          }>
+        }) => {
+          this.followers = response.data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
   }
 }

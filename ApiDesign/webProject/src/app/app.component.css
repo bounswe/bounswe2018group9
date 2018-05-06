@@ -27,6 +27,17 @@
   margin: 4px;
 }
 
+.example-card {
+  max-width: 400px;
+}
+
+.card-image {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
 @media screen and (min-width: 767px){
   .hero{
     display: flex;

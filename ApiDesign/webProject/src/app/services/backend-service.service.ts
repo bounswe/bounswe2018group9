@@ -17,6 +17,10 @@ export class BackendService {
     return this.httpClient.post('/api/twitter/tweets', body);
   }
 
+  retweet(id: string){
+    return this.httpClient.get('api/twitter/retweet/' + id);
+  }
+
   getHomeTimeline(numOfTweets: number){
     let params = new HttpParams().append('count', numOfTweets.toString());
     return this.httpClient.get('/api/twitter/home', {params: params});
@@ -25,4 +29,29 @@ export class BackendService {
   getTrendsForCountry(countryName:string){
     return this.httpClient.get('/api/twitter/trends/' + countryName);
   }
+
+  getAccountDescription(){
+    return this.httpClient.get('api/twitter/account/description');
+  }
+
+  setAccountDescription(desc: string){
+    const body = {
+      newDesc: desc
+    }
+    return this.httpClient.post('api/twitter/account/description', body);
+  }
+
+  setAccountUrl(url: string){
+    const body = {
+      url: url
+    };
+    return this.httpClient.post('api/twitter/account/url', body);
+  }
+
+  getFollowers(screenName: string){
+    return this.httpClient.get('api/twitter/followers', {
+      params: new HttpParams().append('screen_name', screenName)
+    })
+  }
+
 }
