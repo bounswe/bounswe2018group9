@@ -236,6 +236,7 @@
     <p>Tweet with an image using two endpoints in combination</p>
     <form class="api-form" #tweetMedia="ngForm" (ngSubmit)="onTweetMedia(tweetMedia)" enctype="multipart/form-data">
       <input type="file" placeholder="Path to image" ngModel name="file" required (change)="onFileChange($event)">
+      <br>
       <mat-form-field>
         <input type="text" matInput placeholder="Enter the text of tweet" ngModel name="tweetTextMed" required #tweetInput="ngModel">
         <mat-error *ngIf="tweetInput.hasError('required')">Field must not be empty.</mat-error>
@@ -247,6 +248,33 @@
       <span *ngIf="mediaUploadMessage">
         {{mediaUploadMessage}}
       </span>
+    </div>
+  </div>
+
+  <div class="api-container">
+    <h3> <strong>GET</strong> api/twitter/geo/search</h3>
+    <p>Get info about a location giving its coordinates</p>
+    <form class="api-form" #geoSearch="ngForm" (ngSubmit)="onGeoSearch(geoSearch)">
+      <mat-form-field>
+        <input type="number" min="-90" max="90" step="0.01" matInput placeholder="Enter the latitude of the location" ngModel name="lat" required #lat="ngModel">
+        <mat-error *ngIf="lat.hasError('required')">Field must not be empty.</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="number" min="-180" max="180" step="0.01" matInput placeholder="Enter the longitude of the location" ngModel name="long" required #long="ngModel">
+        <mat-error *ngIf="long.hasError('required')">Field must not be empty.</mat-error>
+      </mat-form-field>
+      <br>
+      <button mat-raised-button type="submit" [disabled]="geoSearch.invalid">Submit</button>
+    </form>
+    <div class="output-container">
+      <h4>Output:</h4>
+      <mat-card class="example-card" *ngFor="let location of geoLocations">
+        <mat-card-header>
+          <mat-card-title>{{location.name}}</mat-card-title>
+          <mat-card-subtitle>{{location.country}}</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
     </div>
   </div>
 
