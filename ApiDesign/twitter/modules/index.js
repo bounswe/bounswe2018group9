@@ -3,6 +3,7 @@ module.exports = {
     trends: require('./trends'),
     followers: require('./followers'),
 	account: require('./account'),
-    media: require('./media')
+    media: require('./media'),
+    geo: require('./geo')
 };
 
