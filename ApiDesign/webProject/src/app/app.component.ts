@@ -37,6 +37,7 @@ export class AppComponent {
   mediaUploadMessage: string;
   file: File;
   fileName: string;
+  geoLocations: Array<any>;
 
 
   constructor(private backendService: BackendService){}
@@ -216,5 +217,22 @@ export class AppComponent {
           console.log(error);
         }
       )
+  }
+
+  onGeoSearch(form){
+    const lat = form.value['lat'];
+    const long = form.value['long'];
+    this.backendService.searchForLocation(lat, long)
+      .subscribe(
+        (response:{
+          status:string,
+          data: Array<any>
+         }) => {
+          this.geoLocations = response.data;
+        }
+      ),
+      (error) => {
+        console.log(error);
+      }
   }
 }

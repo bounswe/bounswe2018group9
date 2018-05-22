@@ -69,4 +69,8 @@ export class BackendService {
     return this.httpClient.post('/api/twitter/tweetWithMedia', body);
   }
 
+  searchForLocation(lat, long){
+    let params = new HttpParams().append('lat', lat.toString()).append('long', long.toString());
+    return this.httpClient.get('api/twitter/geo/search', {params: params});
+  }
 }
