@@ -8,7 +8,7 @@ function uploadImageToServer(){
 }
 
 function retweetImageToTwitter(imageName, callback) {
-    const imagePath = __dirname + '/../../static/uploads/' + imageName;
+    const imagePath = __dirname + '/../../uploads/' + imageName;
     const image = fs.readFileSync(imagePath, {encoding: 'base64'});
 
     twitter.post('media/upload', {media: image}, callback);

@@ -89,7 +89,7 @@ function retweet(request, response) {
     // /retweet/:id causes id to be a parameter. Extract id from parameters of the request.
     var id = request.params.id;
     
-    twitter.retweet.retweet(id,(error,data,twitterRes) => {
+    twitter.tweets.retweet(id,(error,data,twitterRes) => {
         // If there is an error show it with its status code.
         if(error){
             response.status(error.statusCode).json({
@@ -98,7 +98,7 @@ function retweet(request, response) {
             });
         }else{
             // If there is not, show the text with the response's status code.
-            response.status(twitterRes.statusCode).send({
+            response.status(twitterRes.statusCode).json({
                 status: "SUCCESS",
                 data: "You retweeted the tweet with id: " + id
             });

@@ -1,7 +1,10 @@
 const twitter = require('../modules');
 
 function uploadMediaToServer(request, response){
-
+    response.json({
+        status: "SUCCESS",
+        data: request.file
+    });
 }
 
 function uploadMediaToTwitter(request, response) {
@@ -32,5 +35,6 @@ function uploadMediaToTwitter(request, response) {
 }
 
 module.exports = {
-    uploadMediaToTwitter: uploadMediaToTwitter
+    uploadMediaToTwitter: uploadMediaToTwitter,
+    uploadMediaToServer: uploadMediaToServer
 };
