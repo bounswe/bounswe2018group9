@@ -1,0 +1,13 @@
+ branch-defaults:
+   default:
+     environment: Bounswegroup9api-env
+     group_suffix: null
+   master:
+     environment: Bounswegroup9api-env
+ global:
+   application_name: bounswegroup9API
+   default_ec2_keyname: phil-singapore
+   default_platform: Node.js
+   default_region: ap-southeast-1
+   profile: null
+   sc: null
