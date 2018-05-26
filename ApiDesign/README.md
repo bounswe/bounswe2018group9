@@ -8,6 +8,9 @@ After installation, you can check on the terminal:
 
 `
 npm -v
+`
+
+`
 node -v
 `
 
@@ -15,6 +18,9 @@ If these two commands run properly, you can continue with:
 
 `
 cd ApiDesign
+`
+
+`
 npm install
 `
 
