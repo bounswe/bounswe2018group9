@@ -43,6 +43,8 @@ and notifications.
 ### [Actopus API for Twitter](http://bounswegroup9api-env.2xbnu7imzw.eu-west-1.elasticbeanstalk.com/)
 ## Contributing
 
+### [You can check here:](https://github.com/bounswe/bounswe2018group9/blob/master/CONTRIBUTING.md)
+
 ## Credits
 
 This is our project repository for the courses CMPE352 and CMPE451 in Boğaziçi University. 
