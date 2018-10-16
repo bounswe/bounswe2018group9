@@ -9,6 +9,7 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
+    "lodash": "^4.17.11",
     "mongoose": "^5.3.2",
     "nodemon": "^1.18.4"
   }
