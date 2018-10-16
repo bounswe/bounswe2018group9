@@ -5,6 +5,7 @@ var path = require('path');
 // Import routers. 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var authRouter = require('./routes/auth');
 
 var app = express();
 
@@ -18,6 +19,7 @@ app.use('/', indexRouter);
 
 // Register API routers.
 app.use('/api/users', usersRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
