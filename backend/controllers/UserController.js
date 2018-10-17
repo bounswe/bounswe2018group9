@@ -19,6 +19,8 @@ exports.addUser = function(req,res,next) {
         }
     });
 };
+
+
 //When user sign in it controls email and password true or not 
 exports.signUser = function(req,res,next){
     console.log('body', req.body);
