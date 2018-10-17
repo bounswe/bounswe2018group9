@@ -5,8 +5,9 @@ var mongoose = require('mongoose');
 
 // Import routers. 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
+var eventsRouter = require('./routes/events');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use('/', indexRouter);
 
 // Register API routers.
 app.use('/auth', authRouter);
+app.use('/api/events', eventsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
