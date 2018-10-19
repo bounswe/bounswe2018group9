@@ -1,4 +1,5 @@
 .idea
-ApiDesign/
+ApiDesign/node_modules
 CulturalActivitiesProjectDescription.pdf
+npm.debug.log
 wiki/
