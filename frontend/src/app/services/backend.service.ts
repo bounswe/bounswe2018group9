@@ -9,6 +9,6 @@ export class BackendService {
   constructor() { }
 
   getEvents():Array<Event>{
-
+      return [];
   }
 }
