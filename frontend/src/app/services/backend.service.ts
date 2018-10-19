@@ -8,7 +8,8 @@ export class BackendService {
 
   constructor() { }
 
-  getEvents(): Array<Event> {
-    return [];
+
+  getEvents():Array<Event>{
+      return [];
   }
 }

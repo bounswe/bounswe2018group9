@@ -1,0 +1,12 @@
+[
+    {
+        "name" : "e-Founder Zirvesi",
+        "description": "e-Founder Dijital Girişimcilik Zirvesi ve Yarışması",
+        "user": {
+            "email": "a@a.com",
+            "firstname": "aaa",
+            "lastname": "bbb"
+        },
+        "mainImage": "http://efounder.org/assets/bg_main.jpg"
+    }
+]
