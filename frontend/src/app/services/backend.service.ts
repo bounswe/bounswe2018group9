@@ -10,5 +10,6 @@ export class BackendService {
 
   getEvents(): Array<Event> {
     return [];
+
   }
 }
