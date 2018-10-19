@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../models/user.interface';
+import { BackendService } from '../services/backend.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+  activeUser: User;
 
-  constructor() { }
+  constructor(private backend: BackendService) { }
 
   ngOnInit() {
+    this.activeUser = this.backend.getUser();
   }
 
 }
