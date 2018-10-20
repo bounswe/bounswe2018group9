@@ -36,6 +36,7 @@ exports.signUser = function(req,res,next){
              if(!user){
                  return res.status(404).send();
              }
+
              req.session.user = user;
              return res.status(200).send();
          })
@@ -55,3 +56,8 @@ exports.logOut = function(req,res,next){
     req.session.destroy();
     return res.status(200).send();
 } 
+
+             return res.status(200).send();
+         })
+};
+
