@@ -25,28 +25,33 @@ var EventSchema = new Schema({
         required: true    
     },
 
+    owner: {//id of the associated User object
+        type: String, 
+        required: true
+    },
+
     willAttendUser: {
-        type: [UserModel.User],
+        type: [mongoose.Schema.Types.ObjectId],
         required: false
     },
 
     maybeAttendUser: {
-        type: [UserModel.User],
+        type: [mongoose.Schema.Types.ObjectId],
         required: false
     },
 
     notAttendUser: {
-        type: [UserModel.User],
+        type: [mongoose.Schema.Types.ObjectId],
         required: false
     },
     
     attendedUsers: {
-        type: [UserModel.User],
+        type: [mongoose.Schema.Types.ObjectId],
         required: false
     },
 
     blockedUsers: {
-        type: [UserModel.User],
+        type: [mongoose.Schema.Types.ObjectId],
         required: false
     },
 

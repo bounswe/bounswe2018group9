@@ -6,6 +6,7 @@ exports.addEvent = function(req,res,next){
   var event = new Event({
     name: req.body.name,
     price: req.body.price,
+    owner: req.body.owner,
     description: req.body.description,
     date: req.body.date
   });
@@ -21,4 +22,25 @@ exports.addEvent = function(req,res,next){
          console.log('Error: '+err.message);
       }
   });
+
+
+
+}
+
+exports.getEvent = function(req, res, next)
+{
+  search_id = req.params.id;
+  console.log(search_id);
+  Event.findById(search_id, function(err, ev)
+  {
+    if(!err)
+    {
+      res.send(ev);
+    }
+    else
+    {
+      res.send("No event found with id: " + search_id);
+    }
+  }
+  );
 }

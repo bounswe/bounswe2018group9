@@ -8,14 +8,18 @@ exports.addUser = function(req,res,next) {
         lastName: req.body.lastName,
         password: req.body.password
     });
+    console.log('request: '+JSON.stringify(req.body,null,2));
 
     // Before save salt the password
     
     user.save(function(err,user){
-        console.log('Error var');
         if(!err){
             console.log('Error yok');
             res.send(user);
+        }
+        else
+        {
+            console.log('Error: '+err.message);
         }
     });
 };

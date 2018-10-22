@@ -23,6 +23,7 @@ var UserSchema = new Schema({
         type: String,
         required: true
     }
+    //ADDITIONAL USER FIELDS TO BE ADDED
 });
 
 var User = mongoose.model('User',UserSchema);
