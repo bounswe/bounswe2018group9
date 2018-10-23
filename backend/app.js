@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
+var session = require('express-session');
 
 // Import routers. 
 var indexRouter = require('./routes/index');
@@ -24,6 +25,9 @@ var db = mongoose.connection;
 
 // Register static angular files endpoint.
 app.use('/', indexRouter);
+
+//Express-session 
+app.use(session({secret:"asbfadadhfnasdfm2342asfda",resave:false,saveUninitialized:true}));
 
 // Register API routers.
 app.use('/auth', authRouter);
