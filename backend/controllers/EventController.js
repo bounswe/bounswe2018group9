@@ -27,7 +27,7 @@ exports.addEvent = function(req,res,next){
 
 }
 
-exports.getEvent = function(req, res, next)
+exports.getEventbyId = function(req, res, next)
 {
   search_id = req.params.id;
   console.log(search_id);
@@ -43,4 +43,34 @@ exports.getEvent = function(req, res, next)
     }
   }
   );
+}
+exports.getEventbyOwner = function(req,res,next)
+{
+  console.log("Searching owner : " + req.params.id);
+    Event.find({'owner' : req.params.id}, function(err, docs)
+    {
+      if(err || !docs)
+      {
+        res.send("No event found with creator id: "+ req.params.id);
+      }
+      else
+      {
+        res.send(docs);
+      }
+    });
+}
+
+exports.getAllEvents = function(req,res,next)
+{
+    Event.find({}, function(err, docs)
+    {
+      if(err || !docs)
+      {
+        res.send("No events found");
+      }
+      else
+      {
+        res.send(docs);
+      }
+    });
 }

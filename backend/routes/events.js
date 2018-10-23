@@ -8,6 +8,8 @@ var EventController = require('../controllers/EventController');
 var Event= require('../models/Event');
 
 router.post('/addEvent', EventController.addEvent);
-router.get('/:id', EventController.getEvent);
 
+router.get('/allEvents',EventController.getAllEvents);
+router.get('/getEventbyOwner/:id',EventController.getEventbyOwner)
+router.get('/:id', EventController.getEventbyId);//this should be last in code
 module.exports=router;
