@@ -14,15 +14,26 @@
     </ion-toolbar>
   </ion-header>
   <ion-menu>
-    <ion-item [href]="'/event'" >
-      Event
-    </ion-item>
-    <ion-item [href]="'/profile'" >
-      Profile
-    </ion-item>
-    <ion-item [href]="'/home'" >
-      Feed
-    </ion-item>
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Navigate in Actopus</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <ion-button  expand ="full"[href]="'/home'"  >
+          Home
+        </ion-button>
+        <ion-button  expand ="full" [href]="'/event'" >
+          Event
+        </ion-button>
+        <ion-button expand ="full" [href]="'/profile'" >
+          Profile
+        </ion-button>
+      </ion-list>
+    </ion-content>
   </ion-menu>
   <ion-content main padding>
     <ion-router-outlet></ion-router-outlet>
