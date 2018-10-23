@@ -8,12 +8,8 @@ exports.addUser = function(req,res,next) {
         lastName: req.body.lastName,
         password: req.body.password
     });
-<<<<<<< HEAD
     console.log('request: '+JSON.stringify(req.body,null,2));
 
-=======
-    console.log(JSON.stringify(req.body,null,2));
->>>>>>> 1af0ab6ab7fcb4362e01fadc201847ee04b2bcd7
     // Before save salt the password
     
     user.save(function(err,user){
@@ -64,8 +60,4 @@ exports.logOut = function(req,res,next){
     req.session.destroy();
     return res.status(200).send();
 } 
-
-             return res.status(200).send();
-         })
-};
 
