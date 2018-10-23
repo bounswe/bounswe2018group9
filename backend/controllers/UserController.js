@@ -36,6 +36,28 @@ exports.signUser = function(req,res,next){
              if(!user){
                  return res.status(404).send();
              }
+
+             req.session.user = user;
              return res.status(200).send();
          })
 };
+
+//User signed in and see its dashboard after loggedIn
+exports.loggedIn = function(req,res,next){
+    if(!req.session.user){
+        return res.status(404).send();
+    }
+    
+    return res.status(200).send("Welcome Actopus social platform!");
+};
+
+//User log out part with destroying session
+exports.logOut = function(req,res,next){
+    req.session.destroy();
+    return res.status(200).send();
+} 
+
+             return res.status(200).send();
+         })
+};
+
