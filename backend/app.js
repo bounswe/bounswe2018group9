@@ -28,7 +28,11 @@ var db = mongoose.connection;
 app.use('/', indexRouter);
 
 //Express-session 
-app.use(session({secret:"asbfadadhfnasdfm2342asfda",resave:false,saveUninitialized:true}));
+
+app.use(session({secret:"asbfadadhfnasdfm2342asfda",
+                resave:false,
+                saveUninitialized:true}));
+
 
 // Register API routers.
 app.use('/auth', authRouter);
