@@ -37,6 +37,7 @@ exports.signUser = function(req,res,next){
                  return res.status(404).send();
              }
 
+
              user.comparePassword(password,function(err,isMatch){
                  if(isMatch && isMatch == true){
                     req.session.user = user;
