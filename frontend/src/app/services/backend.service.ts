@@ -6,6 +6,7 @@ import {Event} from "../../models/event.interface";
 import {Observable} from "rxjs/internal/Observable";
 import { User } from '../../models/user.interface';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,5 +26,9 @@ export class BackendService {
         "lastName": "Ege",
         "profileImage": "https://picsum.photos/200/300"
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> c4c7f405d542dccba7b1981e4ec9d379f9ac356e
   }
 }
