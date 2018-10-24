@@ -28,7 +28,7 @@ exports.signUser = function(req,res,next){
          var password = req.body.password;
          console.log('email', email);
          console.log('pass', password);
-         User.findOne({email:email,password:password}, function(err,user){
+         User.findOne({email:email}, function(err,user){
              if(err){
                  console.log(err);
                  return res.status(500).send();
@@ -37,8 +37,15 @@ exports.signUser = function(req,res,next){
                  return res.status(404).send();
              }
 
-             req.session.user = user;
-             return res.status(200).send();
+
+             user.comparePassword(password,function(err,isMatch){
+                 if(isMatch && isMatch == true){
+                    req.session.user = user;
+                    return res.status(200).send();
+                 }else{
+                     return res.status(401).send();
+                 }
+             });
          })
 };
 
@@ -55,9 +62,7 @@ exports.loggedIn = function(req,res,next){
 exports.logOut = function(req,res,next){
     req.session.destroy();
     return res.status(200).send();
-} 
+}; 
 
-             return res.status(200).send();
-         })
-};
+
 
