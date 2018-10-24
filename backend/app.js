@@ -7,6 +7,7 @@ var session = require('express-session');
 // Import routers. 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
+var eventsRouter = require('./routes/events');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use(session({secret:"asbfadadhfnasdfm2342asfda",
 
 // Register API routers.
 app.use('/auth', authRouter);
+app.use('/api/events', eventsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

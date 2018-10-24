@@ -27,6 +27,7 @@ var UserSchema = new Schema({
         type: String,
         required: true
     }
+    //ADDITIONAL USER FIELDS TO BE ADDED
 });
 
 //Password hashing part
