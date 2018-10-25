@@ -35,7 +35,6 @@ UserSchema.pre('save',function(next){
     var user = this;
     //hash the password if it has been modified (or is new) 
     if(!user.isModified('password')) return next();
-    git
     //generate a salt
     bcrypt.genSalt(SALT_WORK_FACTOR,function(err,salt){
         if (err) return next(err);

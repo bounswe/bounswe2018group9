@@ -14,12 +14,15 @@ exports.addUser = function(req,res,next) {
     
     user.save(function(err,user){
         if(!err){
-            console.log('Error yok');
+            // console.log('Error yok');
             res.send(user);
         }
         else
         {
-            console.log('Error: '+err.message);
+            res.status(500);
+            res.send(err);
+            // next(err);
+            // console.log('Error: '+err.message);
         }
     });
 };

@@ -1,0 +1,23 @@
+{
+  "name": "bounswe2018group9",
+  "version": "1.0.0",
+  "description": "Actopus",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./backend/bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bounswe/bounswe2018group9.git"
+  },
+  "author": "gray",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bounswe/bounswe2018group9/issues"
+  },
+  "engines": {
+    "node": "10.12.0"
+  },
+  "homepage": "https://github.com/bounswe/bounswe2018group9#readme"
+}
