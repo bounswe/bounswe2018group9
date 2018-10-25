@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // DB Setup
-var mongoDB = 'mongodb://127.0.0.1/actopus';
+var mongoDB = 'mongodb://admin:actopus2018@ds141813.mlab.com:41813/actopus2018';
 mongoose.connect(mongoDB);
 
 // Get Mongoose to use the global promise library
