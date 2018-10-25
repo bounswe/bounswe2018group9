@@ -46,12 +46,33 @@ exports.getEventbyId = function(req, res, next)
 }
 
 
-// needs params: id(owner id as string), page(integer), limit(integer)
-// will return array of event objects with <limit> elements starting from (<page>-1)*<limit>th object in the db  
+// needs params: id(owner id as string), skip(integer, default 0), limit(integer, default 10)
+// will return array of event objects with <limit> elements starting from object number <skip> in the db 
 exports.getEventbyOwner = function(req,res,next)
 {
   console.log("Searching owner : " + req.params.id);
-    Event.paginate({'owner' : req.params.id}, {page:Number(req.query.page), limit: Number(req.query.limit)},function(err, result)
+  var skipVar, limitVar;
+  if(!req.query.id)
+  {
+    res.send("Please provide owner id");
+  }
+  if(!req.query.skip)
+  {
+    skipVar=0;
+  }
+  else
+  {
+    skipVar=Number(req.query.skip);
+  }
+  if(!req.query.limit)
+  {
+    limitVar=10;
+  }
+  else
+  {
+    limitVar=Number(req.query.limit);
+  }
+  Event.paginate({'owner' : req.params.id}, {offset: skipVar, limit: limitVar},function(err, result)
     {
       if(err || !result.docs)
       {
@@ -64,20 +85,36 @@ exports.getEventbyOwner = function(req,res,next)
     });
 }
 
-// needs params: page(integer), limit(integer)
-// will return array of event objects with <limit> elements starting from (<page>-1)*<limit>th object in the db 
+// needs params: skip(integer, default 0), limit(integer, default 10)
+// will return array of event objects with <limit> elements starting from object number <skip> in the db 
 exports.getAllEvents = function(req,res,next)
 {
-  Event.paginate({}, {page: Number(req.query.page), limit: Number(req.query.limit)},function(err, result)
+  var skipVar, limitVar;
+  if(!req.query.skip)
   {
-    console.log("err : "+err);
-    if(err || !result.docs)
+    skipVar=0;
+  }
+  else
+  {
+    skipVar=Number(req.query.skip);
+  }
+  if(!req.query.limit)
+  {
+    limitVar=10;
+  }
+  else
+  {
+    limitVar=Number(req.query.limit);
+  }
+  Event.paginate({}, {offset: skipVar, limit: limitVar},function(err, result)
     {
-      res.send("No event found with creator id: " + req.query.id);
-    }
-    else
-    {
-      res.send(result.docs);
-    }
-  });
+      if(err || !result.docs)
+      {
+        res.send("No events found");
+      }
+      else
+      {
+        res.send(result.docs);
+      }
+    });
 }
