@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/user.interface';
-import { BackendService } from '../services/backend.service';
+import { User } from '../../interfaces/user.interface';
+import { BackendService } from '../../services/backend/backend.service';
 
 @Component({
   selector: 'app-profile',
