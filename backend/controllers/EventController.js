@@ -2,6 +2,10 @@ var mongoose = require("mongoose");
 var Event = require("../models/Event");
 
 
+
+
+
+
 exports.addEvent = function(req,res,next){
   var event = new Event({
     name: req.body.name,
@@ -44,33 +48,40 @@ exports.getEventbyId = function(req, res, next)
   }
   );
 }
+
+
+// needs params: id(owner id as string), page(integer), limit(integer)
+// will return array of event objects with <limit> elements starting from (<page>-1)*<limit>th object in the db  
 exports.getEventbyOwner = function(req,res,next)
 {
-  console.log("Searching owner : " + req.params.id);
-    Event.find({'owner' : req.params.id}, function(err, docs)
+  console.log("Searching owner : " + req.query.id);
+    Event.paginate({'owner' : req.query.id}, {page:Number(req.query.page), limit: Number(req.query.limit)},function(err, result)
     {
-      if(err || !docs)
+      if(err || !result.docs)
       {
-        res.send("No event found with creator id: "+ req.params.id);
+        res.send("No event found with creator id: " + req.query.id);
       }
       else
       {
-        res.send(docs);
+        res.send(result.docs);
       }
     });
 }
 
+// needs params: page(integer), limit(integer)
+// will return array of event objects with <limit> elements starting from (<page>-1)*<limit>th object in the db 
 exports.getAllEvents = function(req,res,next)
 {
-    Event.find({}, function(err, docs)
+  Event.paginate({}, {page: Number(req.query.page), limit: Number(req.query.limit)},function(err, result)
+  {
+    console.log("err : "+err);
+    if(err || !result.docs)
     {
-      if(err || !docs)
-      {
-        res.send("No events found");
-      }
-      else
-      {
-        res.send(docs);
-      }
-    });
+      res.send("No event found with creator id: " + req.query.id);
+    }
+    else
+    {
+      res.send(result.docs);
+    }
+  });
 }

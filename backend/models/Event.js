@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require("mongoose-paginate");
 var Schema = mongoose.Schema;
 
 //Import Models
@@ -70,6 +71,7 @@ var EventSchema = new Schema({
     }
     */
 });
+EventSchema.plugin(mongoosePaginate);
 
 var Event = mongoose.model('Event',EventSchema);
 
