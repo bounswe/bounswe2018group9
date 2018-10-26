@@ -1,6 +1,9 @@
 var mongoose = require("mongoose");
 var User = require("../models/User");
 
+var jwt = require("jsonwebtoken");
+var secretkey = 'gjkNLnkjBKADJnaldkNADEJMLsmellycat';
+
 exports.addUser = function(req,res,next) {
     var user = new User({
         email: req.body.email,
@@ -14,15 +17,12 @@ exports.addUser = function(req,res,next) {
     
     user.save(function(err,user){
         if(!err){
-            // console.log('Error yok');
             res.send(user);
         }
         else
         {
             res.status(500);
             res.send(err);
-            // next(err);
-            // console.log('Error: '+err.message);
         }
     });
 };
@@ -31,29 +31,29 @@ exports.addUser = function(req,res,next) {
 //When user sign in it controls email and password true or not 
 exports.signUser = function(req,res,next){
     console.log('body', req.body);
-         var email = req.body.email;
-         var password = req.body.password;
-         console.log('email', email);
-         console.log('pass', password);
-         User.findOne({email:email}, function(err,user){
-             if(err){
-                 console.log(err);
-                 return res.status(500).send();
-             }
-             if(!user){
-                 return res.status(404).send();
-             }
+    var email = req.body.email;
+    var password = req.body.password;
 
+    User.findOne({email:email}, function(err,user){
+        if(err){
+            console.log(err);
+            return res.status(500).send();
+        }
+        if(!user){
+            return res.status(404).send();
+        }
 
-             user.comparePassword(password,function(err,isMatch){
-                 if(isMatch && isMatch == true){
-                    req.session.user = user;
-                    return res.status(200).send();
-                 }else{
-                     return res.status(401).send();
-                 }
-             });
-         })
+        user.comparePassword(password, function(error,isMatch){
+            if(isMatch && isMatch === true){
+            jwt.sign({ user: user}, secretkey, (err, token) => {
+                res.status(200);
+                return res.json({ token: token});
+            });
+            } else {
+                return res.status(401).send();
+            }
+        });
+    })
 };
 
 //User signed in and see its dashboard after loggedIn
