@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {BackendService} from "../../services/backend/backend.service";
+
 import { Event } from "../../interfaces";
+import { EventService } from '../../services';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +12,14 @@ export class HomePage implements OnInit{
 
   events: Array<Event>;
 
-  constructor(private backend: BackendService){
+  constructor(private eventService: EventService){
     
   }
 
   ngOnInit(){
-    this.backend.getEvents()
+    this.eventService.get()
       .subscribe(
-        (data) => {
+        (data: Event[]) => {
           console.log(data);
           this.events = data;
         },
