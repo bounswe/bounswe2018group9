@@ -5,48 +5,48 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
+  <form>
 
     <ion-item>
       <ion-label fixed>Email</ion-label>
       <ion-input type="email" placeholder="Email" value=""></ion-input>
     </ion-item>
-  
+
     <ion-item>
       <ion-label fixed>Password</ion-label>
       <ion-input type="password" placeholder="Password"></ion-input>
     </ion-item>
 
     <button ion-button>Sign in</button>
-  
-  </ion-list>
-  
 
-  <ion-list>
+  </form>
+
+
+  <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
 
     <ion-item>
       <ion-label fixed>Name</ion-label>
-      <ion-input type="text" placeholder="Name" value=""></ion-input>
+      <ion-input type="text" placeholder="Name" formControlName="name" value=""></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed>Lastame</ion-label>
-      <ion-input type="text" placeholder="Lastname" value=""></ion-input>
+      <ion-input type="text" placeholder="Lastname" formControlName="lastname" value=""></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed>Email</ion-label>
-      <ion-input type="email" placeholder="Email" value=""></ion-input>
+      <ion-input type="email" placeholder="Email" formControlName="email" value=""></ion-input>
     </ion-item>
-  
+
     <ion-item>
       <ion-label fixed>Password</ion-label>
-      <ion-input type="password" placeholder="Password"></ion-input>
+      <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
     </ion-item>
-  
-    <button ion-button>Sign up</button>
-    
-  </ion-list>
+
+    <button ion-button type="submit" [disabled]="!signUpForm.valid">Sign up</button>
+
+  </form>
 
 
 </ion-content>
