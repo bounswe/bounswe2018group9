@@ -13,7 +13,7 @@ export class HomePage implements OnInit{
   events: Array<Event>;
 
   constructor(private eventService: EventService){
-    
+
   }
 
   ngOnInit(){
