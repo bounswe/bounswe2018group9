@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-import { AuthService } from '../../services';
+import { NavController } from '@ionic/angular';
+
+import { AuthService } from '../../providers/auth/auth.service';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.page.html',
-  styleUrls: ['./signin.page.scss'],
+  selector: 'app-signup',
+  templateUrl: './signup.page.html',
+  styleUrls: ['./signup.page.scss'],
 })
-export class SigninPage implements OnInit {
+export class SignupPage implements OnInit {
   private form: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService) {
     this.form = this.formBuilder.group(
       {
+        name: ['', Validators.required],
+        lastname: ['', Validators.required],
         email: ['', Validators.required],
         password: ['', Validators.required]
       }
@@ -23,7 +27,7 @@ export class SigninPage implements OnInit {
   ngOnInit() {
   }
 
-  login() {
-    this.authService.login(this.form.value);
+  register() {
+    this.authService.register(this.form.value);
   }
 }
