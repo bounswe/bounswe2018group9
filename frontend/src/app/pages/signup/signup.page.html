@@ -1,0 +1,29 @@
+<ion-content padding>
+  <form [formGroup]="form" (ngSubmit)="register()">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Name</ion-label>
+        <ion-input type="text" placeholder="Name" formControlName="name" value=""></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Lastame</ion-label>
+        <ion-input type="text" placeholder="Lastname" formControlName="lastname" value=""></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Email</ion-label>
+        <ion-input type="email" placeholder="Email" formControlName="email" value=""></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Password</ion-label>
+        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+      </ion-item>
+    </ion-list>
+
+
+    <ion-button type="submit" [disabled]="!form.valid">Sign up</ion-button>
+    <ion-button color="secondary" [href]="'/signin'">Sign in</ion-button>
+  </form>
+</ion-content>
