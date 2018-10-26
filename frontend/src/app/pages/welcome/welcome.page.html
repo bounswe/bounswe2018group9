@@ -5,19 +5,19 @@
 </ion-header>
 
 <ion-content padding>
-  <form>
+  <form [formGroup]="signInForm" (ngSubmit)="signIn()">
 
     <ion-item>
       <ion-label fixed>Email</ion-label>
-      <ion-input type="email" placeholder="Email" value=""></ion-input>
+      <ion-input type="email" placeholder="Email" formControlName="email" value=""></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed>Password</ion-label>
-      <ion-input type="password" placeholder="Password"></ion-input>
+      <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
     </ion-item>
 
-    <button ion-button>Sign in</button>
+    <button ion-button type="submit" [disabled]="!signInForm.valid">Sign in</button>
 
   </form>
 
