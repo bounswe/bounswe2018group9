@@ -38,7 +38,7 @@ export class AuthService {
     this.http
       .post('https://' + this.endpoint + '/api/users', data, AuthService.options)
       .subscribe(response => {
-        this.router.navigate(['/sign-in']);
+        this.router.navigate(['/signin']);
       });
   }
 
@@ -53,6 +53,6 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['/sign-in']);
+    this.router.navigate(['/signin']);
   }
 }
