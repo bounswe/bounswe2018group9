@@ -2,9 +2,6 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
 export abstract class DataService<T> {
   protected options = {
     headers: new HttpHeaders({
