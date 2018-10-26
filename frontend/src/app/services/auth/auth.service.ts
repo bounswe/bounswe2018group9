@@ -5,6 +5,10 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../../interfaces';
 
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
+
 @Injectable({
   providedIn: 'root'
 })
