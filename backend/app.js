@@ -54,4 +54,16 @@ app.use(function(err, req, res, next) {
   res.send(err.message);
 });
 
+// Use this function to lock the api routes.
+var verifyJWT = function(req,res,next) {
+  var bearerHeader = req.headers['authorization'];
+
+  if (typeof bearerHeader !== 'undefined') {
+
+  } else {
+      res.status(401);
+      res.send();
+  }
+}
+
 module.exports = app;
