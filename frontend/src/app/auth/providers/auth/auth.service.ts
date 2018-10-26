@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { User } from '../../interfaces';
+import { User } from '../../../interfaces';
 
 export function tokenGetter() {
   return localStorage.getItem('token');

@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'signin', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
   { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
   { path: 'event', loadChildren: './pages/event/event.module#EventPageModule' },
-  { path: 'signin', loadChildren: './pages/signin/signin.module#SigninPageModule' },
+  { path: 'auth', loadChildren: './auth.module#AuthModule' },
   { path: 'signup', loadChildren: './pages/signup/signup.module#SignupPageModule' }
   ];
 
