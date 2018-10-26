@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  endpoint: ''
+  endpoint: 'boun-actopus.herokuapp.com'
 };
