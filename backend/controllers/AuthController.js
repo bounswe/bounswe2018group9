@@ -9,7 +9,8 @@ function signIn(req,res,next) {
         if (err || !user) {
             return res.status(400).json({
                 message: 'Something is not right',
-                user: user
+                user: user,
+                info: info
             });
         }
 
@@ -19,7 +20,7 @@ function signIn(req,res,next) {
             }
 
             // Generate the jsonwebtoken
-            const token = jwt.sign(user, secretkey);
+            const token = jwt.sign(user.toJSON(), secretkey);
             return res.json({user,token});
         });
     })(req,res);

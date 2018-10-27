@@ -4,7 +4,29 @@ var User = require("../models/User");
 var jwt = require("jsonwebtoken");
 var secretkey = 'gjkNLnkjBKADJnaldkNADEJMLsmellycat';
 
-exports.addUser = function(req,res,next) {
+function getUser(email,password) {
+    return new Promise((resolve,reject) => {
+        
+        User.findOne({email:email}, function(err,user){
+            if(err){
+                return reject(err);
+            }
+            if(!user){
+                return reject(err);
+            }
+    
+            user.comparePassword(password, function(error,isMatch){
+                if(isMatch && isMatch === true){
+                    return resolve(user);
+                } else {
+                    return reject(error);
+                }
+            });
+        })
+    });
+}
+
+function addUser(req,res,next) {
     var user = new User({
         email: req.body.email,
         firstName: req.body.firstName,
@@ -52,11 +74,11 @@ exports.signUser = function(req,res,next){
                 return res.status(401).send();
             }
         });
-    })
+    });
 };
 
 //User signed in and see its dashboard after loggedIn
-exports.loggedIn = function(req,res,next){
+function loggedIn(req,res,next){
     if(!req.session.user){
         return res.status(404).send();
     }
@@ -65,7 +87,14 @@ exports.loggedIn = function(req,res,next){
 };
 
 //User log out part with destroying session
-exports.logOut = function(req,res,next){
+function logOut(req,res,next){
     req.session.destroy();
     return res.status(200).send();
 }; 
+
+module.exports = {
+    loggedIn,
+    addUser,
+    getUser,
+    logOut
+}
