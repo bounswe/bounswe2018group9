@@ -47,7 +47,7 @@ export class AuthService {
       .post('https://' + this.endpoint + '/api/auth/login', data, AuthService.options)
       .subscribe(response => {
         localStorage.setItem('token', response['token']);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/feed']);
       });
   }
 
