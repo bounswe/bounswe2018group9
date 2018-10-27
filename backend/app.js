@@ -16,7 +16,7 @@ var app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 // DB Setup
 var mongoDB = 'mongodb://admin:actopus2018@ds141813.mlab.com:41813/actopus2018';
@@ -28,7 +28,7 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 
 // Register static angular files endpoint.
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 
 // Register API routers.
 app.use('/auth', authRouter);
