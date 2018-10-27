@@ -10,7 +10,7 @@ exports.addEvent = function(req,res,next){
     description: req.body.description,
     date: req.body.date
   });
-  console.log('request: '+JSON.stringify(req.body,null,2));
+  console.log('request: ' + JSON.stringify(req.body,null,2));
   event.save(function(err,event)
   {
       if(!err){
@@ -19,12 +19,9 @@ exports.addEvent = function(req,res,next){
       }
       else
       {
-         console.log('Error: '+err.message);
+        console.log('Error: ' + err.message);
       }
   });
-
-
-
 }
 
 exports.getEventbyId = function(req, res, next)
@@ -41,9 +38,9 @@ exports.getEventbyId = function(req, res, next)
     {
       res.send("No event found with id: " + search_id);
     }
-  }
-  );
+  });
 }
+
 exports.getEventbyOwner = function(req,res,next)
 {
   console.log("Searching owner : " + req.params.id);

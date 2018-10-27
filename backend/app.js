@@ -2,7 +2,10 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
-var session = require('express-session');
+const passport = require("passport");
+
+// Passport
+require("./utils/passport");
 
 // Import routers. 
 var indexRouter = require('./routes/index');
@@ -27,16 +30,9 @@ var db = mongoose.connection;
 // Register static angular files endpoint.
 app.use('/', indexRouter);
 
-//Express-session 
-/*
-app.use(session({secret:"asbfadadhfnasdfm2342asfda",
-                resave:false,
-                saveUninitialized:true}));*/
-
-
 // Register API routers.
 app.use('/auth', authRouter);
-app.use('/api/events', eventsRouter);
+app.use('/api/events', passport.authenticate('jwt', {session: false}), eventsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
