@@ -1,11 +1,6 @@
 var mongoose = require("mongoose");
 var Event = require("../models/Event");
 
-
-
-
-
-
 exports.addEvent = function(req,res,next){
   var event = new Event({
     name: req.body.name,
@@ -14,17 +9,17 @@ exports.addEvent = function(req,res,next){
     description: req.body.description,
     date: req.body.date
   });
-  console.log('request: ' + JSON.stringify(req.body,null,2));
+
   event.save(function(err,event)
   {
-      if(!err){
-        console.log('Error yok');
-        res.send(event);
-      }
-      else
-      {
-        console.log('Error: ' + err.message);
-      }
+    if(!err){
+      console.log('Error yok');
+      res.send(event);
+    }
+    else
+    {
+       console.log('Error: '+err.message);
+    }
   });
 }
 
@@ -50,12 +45,12 @@ exports.getEventbyId = function(req, res, next)
 // will return array of event objects with <limit> elements starting from object number <skip> in the db 
 exports.getEventbyOwner = function(req,res,next)
 {
-  console.log("Searching owner : " + req.params.id);
   var skipVar, limitVar;
   if(!req.query.id)
   {
     res.send("Please provide owner id");
   }
+ 
   if(!req.query.skip)
   {
     skipVar=0;
@@ -64,6 +59,7 @@ exports.getEventbyOwner = function(req,res,next)
   {
     skipVar=Number(req.query.skip);
   }
+ 
   if(!req.query.limit)
   {
     limitVar=10;
@@ -82,7 +78,7 @@ exports.getEventbyOwner = function(req,res,next)
       {
         res.send(result.docs);
       }
-    });
+  });
 }
 
 // needs params: skip(integer, default 0), limit(integer, default 10)
@@ -98,6 +94,7 @@ exports.getAllEvents = function(req,res,next)
   {
     skipVar=Number(req.query.skip);
   }
+  
   if(!req.query.limit)
   {
     limitVar=10;
@@ -106,15 +103,15 @@ exports.getAllEvents = function(req,res,next)
   {
     limitVar=Number(req.query.limit);
   }
-  Event.paginate({}, {offset: skipVar, limit: limitVar},function(err, result)
+  
+  Event.paginate({}, {offset: skipVar, limit: limitVar},function(err, result){
+    if(err || !result.docs)
     {
-      if(err || !result.docs)
-      {
-        res.send("No events found");
-      }
-      else
-      {
-        res.send(result.docs);
-      }
-    });
+      res.send("No events found");
+    }
+    else
+    {
+      res.send(result.docs);
+    }
+  });
 }
