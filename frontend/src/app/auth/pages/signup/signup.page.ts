@@ -16,8 +16,8 @@ export class SignupPage implements OnInit {
   constructor(private formBuilder: FormBuilder, private authService: AuthService) {
     this.form = this.formBuilder.group(
       {
-        name: ['', Validators.required],
-        lastname: ['', Validators.required],
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
         email: ['', Validators.required],
         password: ['', Validators.required]
       }

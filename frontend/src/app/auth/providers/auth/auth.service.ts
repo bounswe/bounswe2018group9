@@ -34,7 +34,7 @@ export class AuthService {
     return { _id: decoded._id };
   }
 
-  register(data: { firstname: string, lastname: string, email: string, password: string }) {
+  register(data: { firstName: string, lastName: string, email: string, password: string }) {
     this.http
       .post('https://' + this.endpoint + '/auth/signup', data, AuthService.options)
       .subscribe(response => {
