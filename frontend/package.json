@@ -9,9 +9,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku": "ng build --aot --prod"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/common": "~6.1.1",
     "@angular/core": "~6.1.1",
