@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
-import { DataModule } from '../data/data.module';
 import { EventRoutingModule } from './event-routing.module';
 
 import { EventPage } from './pages/event/event.page';
@@ -16,8 +15,7 @@ import { EventCardComponent } from './components/event-card/event-card.component
     CommonModule,
     IonicModule,
     ReactiveFormsModule,
-    DataModule,
-    EventRoutingModule,
+    EventRoutingModule
   ],
   declarations: [
     EventPage,
