@@ -36,7 +36,7 @@ export class AuthService {
 
   register(data: { firstname: string, lastname: string, email: string, password: string }) {
     this.http
-      .post('https://' + this.endpoint + '/api/users', data, AuthService.options)
+      .post('https://' + this.endpoint + '/auth/signup', data, AuthService.options)
       .subscribe(response => {
         this.router.navigate(['/signin']);
       });
@@ -44,7 +44,7 @@ export class AuthService {
 
   login(data: { email: string, password: string }) {
     this.http
-      .post('https://' + this.endpoint + '/api/auth/login', data, AuthService.options)
+      .post('https://' + this.endpoint + '/auth/signin', data, AuthService.options)
       .subscribe(response => {
         localStorage.setItem('token', response['token']);
         this.router.navigate(['/feed']);
