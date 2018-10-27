@@ -1,4 +1,21 @@
-<ion-content>
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button color="tertiary" slot="primary"></ion-menu-button>
+    <ion-title>
+      Actopus
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-menu>
+  <ion-item [href]="'/feed'" >
+    Feed
+  </ion-item>
+  <ion-item color="danger" (click)="logout()">
+    Sign out
+  </ion-item>
+</ion-menu>
+
+<ion-content main padding>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button [href]="'/feed/create'">
       <ion-icon name="add"></ion-icon>
