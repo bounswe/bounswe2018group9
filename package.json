@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "npm install --prefix backend && npm install --prefix frontend",
-    "start": "npm build --prefix frontend && npm start --prefix backend"
+    "candidatestart": "npm run heroku --prefix frontend && npm start --prefix backend",    
+    "start": "npm start --prefix backend"
   },
   "repository": {
     "type": "git",
