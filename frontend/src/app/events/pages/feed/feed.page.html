@@ -1,3 +1,10 @@
-<ion-list>
-  <app-event-card *ngFor="let event of events" [event]="event"></app-event-card>
-</ion-list>
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [href]="'/feed/create'">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-list>
+    <app-event-card *ngFor="let event of events" [event]="event" [routerLink]="'/feed/' + event._id"></app-event-card>
+  </ion-list>
+</ion-content>
