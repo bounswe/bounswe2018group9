@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Event } from '../../../interfaces';
+
+import { AuthService } from '../../../auth/providers/auth/auth.service';
 import { EventService } from '../../../data/providers/event/event.service';
 
 @Component({
@@ -11,7 +13,7 @@ import { EventService } from '../../../data/providers/event/event.service';
 export class FeedPage implements OnInit {
   private events: Event[];
 
-  constructor(private eventService: EventService) { }
+  constructor(private authService: AuthService, private eventService: EventService) { }
 
   ngOnInit() {
     this.eventService.get()
@@ -22,4 +24,7 @@ export class FeedPage implements OnInit {
       });
   }
 
+  logout() {
+    this.authService.logout();
+  }
 }
