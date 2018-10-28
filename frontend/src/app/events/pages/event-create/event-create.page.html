@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/feed" ></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-family: 'Garamond'; font-weight: bold;">
+      Event
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list class="createList">
+
+    <ion-item>
+      <ion-label> Event Title : </ion-label>
+      <ion-input type="text" value="" max="150" class="inputStyle"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label> Description : </ion-label>
+      <ion-textarea placeholder="Enter a description" style="height : auto;" class="inputStyle"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label> Artists : </ion-label>
+      <ion-input type="text" value="" class="inputStyle"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label> Date : </ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" class="inputStyle"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label> Price : </ion-label>
+      <ion-input type="number" placeholder="₺₺" class="inputStyle"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-item>
+    <ion-button full outline color="dark">
+      <ion-icon name="share" small></ion-icon>
+      Share
+    </ion-button>
+  </ion-item>
+</ion-content>

@@ -7,7 +7,8 @@ import { FeedPage } from './pages/feed/feed.page';
 const routes: Routes = [
   { path: '', component: FeedPage },
   { path: 'create', component: EventPage },
-  { path: ':id', component: EventPage }
+  { path: ':id', component: EventPage },
+  { path: 'event-create', loadChildren: './pages/event-create/event-create.module#EventCreatePageModule' }
 ];
 
 @NgModule({
