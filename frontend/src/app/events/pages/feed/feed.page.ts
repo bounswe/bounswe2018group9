@@ -11,7 +11,7 @@ import { EventService } from '../../../data/providers/event/event.service';
   styleUrls: ['./feed.page.scss'],
 })
 export class FeedPage implements OnInit {
-  private events: Event[];
+  events: Event[];
 
   constructor(private authService: AuthService, private eventService: EventService) { }
 
