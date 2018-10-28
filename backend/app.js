@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
 const passport = require("passport");
+var http = require('http');
 
 // Passport
 require("./utils/passport");
@@ -14,9 +15,12 @@ var eventsRouter = require('./routes/events');
 
 var app = express();
 
+var httpServer = http.Server(app);
+httpServer.listen(80);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, '../frontend/www')));
+app.use(express.static(path.join(__dirname, '/www')));
 
 // DB Setup
 var mongoDB = 'mongodb://admin:actopus2018@ds141813.mlab.com:41813/actopus2018';
@@ -33,6 +37,9 @@ var db = mongoose.connection;
 // Register API routers.
 app.use('/api/auth', authRouter);
 app.use('/api/events', passport.authenticate('jwt', {session: false}), eventsRouter);
+app.get('/*', function(req, res) {
+  res.sendFile(__dirname + '/www/index.html');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
