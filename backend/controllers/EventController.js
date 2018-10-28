@@ -1,10 +1,9 @@
-var mongoose = require("mongoose");
-var Event = require("../models/Event");
+const mongoose = require("mongoose");
+const Event = require("../models/Event");
 
 const _ = require('lodash');
 
 function addEvent(req, res, next) {
-  
   var event = new Event({
     name: req.body.name,
     price: req.body.price,
@@ -165,6 +164,25 @@ function getAllEvents(req,res,next) {
     });
 };
 
+// This function deletes the event according to given id and returns the deleted event.
+// If it doesn't exist, it returns 500 response and error message.
+function deleteEvent(req,res,next) {
+  let eventId = req.params.id;
+
+  Event.findByIdAndRemove(eventId, (err,event) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    const response = {
+      message: "Event is succesfully deleted.",
+      event: event
+    }
+
+    return res.status(200).send(response);
+  });
+}
+
+
 function addAttendance(req,res,next){
   const eventId = req.params.id;
   const options = {new: true};
@@ -307,6 +325,7 @@ module.exports = {
   getEventbyId,
   getEventbyCreator,
   getAllEvents,
+  deleteEvent,
   addAttendance,
   getAttendance,
   updateAttendance,
