@@ -3,7 +3,6 @@ var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
 const passport = require("passport");
-var http = require('http');
 
 // Passport
 require("./utils/passport");
@@ -14,9 +13,6 @@ var authRouter = require('./routes/auth');
 var eventsRouter = require('./routes/events');
 
 var app = express();
-
-var httpServer = http.Server(app);
-httpServer.listen(80);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
