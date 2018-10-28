@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "heroku": "ng build --aot --prod"
+    "heroku": "ng build --aot --prod --output-path='../backend/www'"
   },
   "private": false,
   "dependencies": {
