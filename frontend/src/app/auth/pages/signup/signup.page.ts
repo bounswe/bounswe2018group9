@@ -11,7 +11,7 @@ import { AuthService } from '../../providers/auth/auth.service';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
-  private form: FormGroup;
+  form: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService) {
     this.form = this.formBuilder.group(
