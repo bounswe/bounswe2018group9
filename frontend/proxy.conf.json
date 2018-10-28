@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://boun-actopus.herokuapp.com",
+    "changeOrigin": true,
+    "secure": true,
+    "logLevel": "debug"
+  }
+}

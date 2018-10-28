@@ -13,7 +13,7 @@ export abstract class DataService<T> {
   constructor(@Inject('ENDPOINT') protected endpoint: string,  protected http: HttpClient) { }
 
   private path(id: string = '') {
-    return 'https://' + this.endpoint + '/api/' + this.api + '/' + id;
+    return '/api/' + this.api + '/' + id;
   }
 
   get(id: string = '', params: { limit?: number, skip?: number, search?: string } = {}): Observable<T | T[]> {
