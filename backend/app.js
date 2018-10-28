@@ -16,7 +16,7 @@ var app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+app.use(express.static(path.join(__dirname, '../frontend/www')));
 
 // DB Setup
 var mongoDB = 'mongodb://admin:actopus2018@ds141813.mlab.com:41813/actopus2018';
