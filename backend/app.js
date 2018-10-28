@@ -31,7 +31,7 @@ var db = mongoose.connection;
 // app.use('/', indexRouter);
 
 // Register API routers.
-app.use('/auth', authRouter);
+app.use('/api/auth', authRouter);
 app.use('/api/events', passport.authenticate('jwt', {session: false}), eventsRouter);
 
 // catch 404 and forward to error handler
