@@ -1,0 +1,23 @@
+$mainStyling : (
+    'font' : 
+    (
+        'family' : 'Garamond',
+        'size' : 25px,
+        'weight': bold
+    ),
+    'colors': (
+        title : rgb(26, 37, 57),
+        text : rgb(105, 146 ,46)
+    ) 
+);
+
+ion-label
+{
+    font-family: map-get(map-get($mainStyling, 'font'), 'family');
+    font-size: map-get(map-get($mainStyling, 'font'), 'size');
+    color: map-get(map-get($mainStyling, 'colors'), 'title');
+}
+.inputStyle
+{
+    color: map-get(map-get($mainStyling, 'colors'), 'title');
+}
