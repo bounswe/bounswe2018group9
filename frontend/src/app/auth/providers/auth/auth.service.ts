@@ -15,7 +15,7 @@ export function tokenGetter() {
 export class AuthService {
   static readonly options = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     })
   };
 
@@ -23,7 +23,9 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
-    if (token === null) return false;
+    if (token === null){
+      return false;
+    }
     return !this.jwtHelper.isTokenExpired(token);
   }
 
@@ -36,7 +38,7 @@ export class AuthService {
 
   register(data: { firstName: string, lastName: string, email: string, password: string }) {
     this.http
-      .post('/api/auth/signup', data, AuthService.options)
+      .post('http://'+'boun-actopus.herokuapp.com'+'/api/auth/signup', data, AuthService.options)
       .subscribe(response => {
         this.router.navigate(['/signin']);
       });
@@ -44,7 +46,7 @@ export class AuthService {
 
   login(data: { email: string, password: string }) {
     this.http
-      .post('/api/auth/signin', data, AuthService.options)
+      .post('http://'+'boun-actopus.herokuapp.com'+ '/api/auth/signin', data, AuthService.options)
       .subscribe(response => {
         localStorage.setItem('token', response['token']);
         this.router.navigate(['/feed']);
