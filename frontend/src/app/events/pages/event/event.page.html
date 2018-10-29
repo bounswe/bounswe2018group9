@@ -10,10 +10,51 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list *ngIf="isDataAvailable">
-    <h2>{{(this.event | async).name }}</h2>
-    <img src="https://picsum.photos/200/300/?random"/>
-    <p>Created by {{(this.event| async).owner}}</p>
-    <p>The description is {{(this.event | async).description}}</p>
+  <ion-list *ngIf="event | async; let e">
+    <ion-card>
+      <ion-card-header>
+        <h1>
+          {{e.name}}
+        </h1>
+      </ion-card-header>
+      <img src="https://picsum.photos/600/300/?random" alt="{{e.name}}">
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <h2>Description</h2>
+      </ion-card-header>
+      <ion-card-content>
+        {{e.description}}
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <h2>Price</h2>
+      </ion-card-header>
+      <ion-card-content>
+        {{e.price}}
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <h2>Organized By:</h2>
+      </ion-card-header>
+      <ion-card-content>
+        {{e.owner}}
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <h2>Date:</h2>
+      </ion-card-header>
+      <ion-card-content>
+        {{prettyDate(e.date)}}
+      </ion-card-content>
+    </ion-card>
   </ion-list>
+
+  <button ion-button color="secondary" outline>Attend</button>
+
+
+
 </ion-content>
