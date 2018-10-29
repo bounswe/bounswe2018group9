@@ -6,6 +6,6 @@ export interface Event extends Object {
   name?: string;
   description?: string;
   artists?: string;
-  date?: number;
+  date?: string;
   price?: number;
 }

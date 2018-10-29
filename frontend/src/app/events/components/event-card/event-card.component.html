@@ -1,9 +1,41 @@
 <ion-card>
-  <ion-card-header>
-    {{event.name}}
-  </ion-card-header>
-  <img src="https://picsum.photos/200/300/?random" alt="{{event.name}}">
+
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="{{randomProfileImage}}">
+    </ion-avatar>
+    <h2>{{event.owner}}</h2>
+    <p>{{date_str}}</p>
+  </ion-item>
+
+  <img src="https://picsum.photos/300/300/?image={{likes}}">
+
   <ion-card-content>
-    {{event.description}}
+    <h2>{{event.name}}</h2>
+    <p>
+      {{event.description}}
+    </p>
   </ion-card-content>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button icon-start clear small>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>{{likes}} Likes</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-start clear small>
+        <ion-icon name="text"></ion-icon>
+        <div>{{comments}} Comments</div>
+      </button>
+    </ion-col>
+    <ion-col center text-center>
+      <ion-note>
+        {{hours}}h ago
+      </ion-note>
+    </ion-col>
+  </ion-row>
+
 </ion-card>
+
