@@ -42,9 +42,9 @@
   </ion-list>
 
   <ion-item>
-    <ion-button full outline color="dark">
+    <ion-button full outline color="dark" type="submit" [disabled]="!form.valid">
       <ion-icon name="share" small></ion-icon>
-      Share
+      Share your experience
     </ion-button>
   </ion-item>
 

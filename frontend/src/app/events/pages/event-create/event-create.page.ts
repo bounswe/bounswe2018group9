@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { EventService } from '../../../data/providers/event/event.service';
 
 @Component({
   selector: 'app-event-create',
@@ -7,9 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./event-create.page.scss'],
 })
 export class EventCreatePage implements OnInit {
- form: FormGroup;
+  form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -23,6 +26,15 @@ export class EventCreatePage implements OnInit {
   }
 
   createEvent() {
-
+    this.eventService
+      .post(this.form.value)
+      .subscribe(
+        message => {
+          this.router.navigate(['feed']);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 }
