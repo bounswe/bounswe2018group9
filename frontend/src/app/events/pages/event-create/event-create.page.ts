@@ -15,10 +15,10 @@ export class EventCreatePage implements OnInit {
   constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
+      price: ['', Validators.required],
+      owner: ['', Validators.required],
       description: ['', Validators.required],
-      artists: ['', Validators.required],
-      date: ['', Validators.required],
-      price: ['', Validators.required]
+      date: ['', Validators.required]
     });
   }
 
@@ -26,6 +26,8 @@ export class EventCreatePage implements OnInit {
   }
 
   createEvent() {
+    console.log(this.form.value);
+    console.log(localStorage.getItem('token'));
     this.eventService
       .post(this.form.value)
       .subscribe(
