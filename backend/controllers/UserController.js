@@ -26,6 +26,20 @@ function getUser(email,password) {
     });
 }
 
+function getUserById(req,res,next) {
+    const id = req.params.id;
+
+    User.findById({id: id}, (err,user) => {
+        if(err || !user) {
+            res.status(500);
+            res.send(err);
+        } else {
+            res.status(200);
+            res.send(user);
+        }
+    });
+}
+
 function addUser(req,res,next) {
     var user = new User({
         email: req.body.email,
