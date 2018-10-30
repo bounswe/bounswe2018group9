@@ -12,6 +12,7 @@ require("./utils/passport");
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var eventsRouter = require('./routes/events');
+const usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -35,6 +36,7 @@ var db = mongoose.connection;
 // Register API routers.
 app.use('/api/auth', authRouter);
 app.use('/api/events', passport.authenticate('jwt', {session: false}), eventsRouter);
+app.use('/api/users', passport.authenticate('jwt', {session: false}), usersRouter);
 app.get('/*', function(req, res) {
   res.sendFile(__dirname + '/www/index.html');
 });
