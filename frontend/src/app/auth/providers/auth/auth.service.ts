@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../../../interfaces';
+import { LoadingComponent } from "../../../general/components/loading/loading.component";
+import { LoadingController } from "@ionic/angular";
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -18,8 +20,11 @@ export class AuthService {
       'Content-Type': 'application/json',
     })
   };
+  loadingController : LoadingComponent = new LoadingComponent(new LoadingController());
 
-  constructor(@Inject('ENDPOINT') private endpoint: string, private http: HttpClient, private router: Router, private jwtHelper: JwtHelperService) { }
+
+  constructor(@Inject('ENDPOINT') private endpoint: string, private http: HttpClient, private router: Router,
+              private jwtHelper: JwtHelperService) { }
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
@@ -37,19 +42,30 @@ export class AuthService {
   }
 
   register(data: { firstName: string, lastName: string, email: string, password: string }) {
+    this.loadingController.presentLoading(10000);
     this.http
       .post('http://'+'boun-actopus.herokuapp.com'+'/api/auth/signup', data, AuthService.options)
       .subscribe(response => {
         this.router.navigate(['/signin']);
+      },(err) => {
+        console.log(err);
+      },() => {
+        this.loadingController.loadingController.dismiss();
       });
   }
 
   login(data: { email: string, password: string }) {
+    this.loadingController.presentLoading(10000);
     this.http
       .post('http://'+'boun-actopus.herokuapp.com'+ '/api/auth/signin', data, AuthService.options)
       .subscribe(response => {
         localStorage.setItem('token', response['token']);
         this.router.navigate(['/feed']);
+      },(err) => {
+        console.log(err);
+      },
+        () => {
+        this.loadingController.loadingController.dismiss();
       });
   }
 

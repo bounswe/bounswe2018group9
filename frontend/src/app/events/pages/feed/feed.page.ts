@@ -4,6 +4,11 @@ import { Event } from '../../../interfaces';
 
 import { AuthService } from '../../../auth/providers/auth/auth.service';
 import { EventService } from '../../../data/providers/event/event.service';
+import {LoadingComponent} from "../../../general/components/loading/loading.component";
+import {LoadingController} from "@ionic/angular";
+import {reject} from "q";
+import {resolve} from "@angular-devkit/core";
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-feed',
@@ -12,16 +17,24 @@ import { EventService } from '../../../data/providers/event/event.service';
 })
 export class FeedPage implements OnInit {
   events: Event[];
+  loadingComponent : LoadingComponent = new LoadingComponent(new LoadingController());
+  private eventSub : any;
 
   constructor(private authService: AuthService, private eventService: EventService) { }
 
   ngOnInit() {
-    this.eventService.get()
+    this.loadingComponent.presentLoading(10000);
+    this.eventSub = this.eventService.get()
       .subscribe((data: Event[]) => {
         this.events = data;
       }, error => {
         alert(error);
+      },()=>{
+        this.loadingComponent.loadingController.dismiss();
       });
+  }
+  ngOnDestroy(){
+    this.eventSub.unsubscribe();
   }
 
   logout() {
