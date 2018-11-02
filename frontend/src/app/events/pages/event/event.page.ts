@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Event } from '../../../interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../../../data/providers/event/event.service';
-import {Observable} from "rxjs/internal/Observable";
+
+import {LoadingComponent} from "../../../general/components/loading/loading.component";
+import {LoadingController} from "@ionic/angular";
 
 @Component({
   selector: 'app-event',
@@ -11,20 +13,29 @@ import {Observable} from "rxjs/internal/Observable";
 })
 export class EventPage implements OnInit, OnDestroy{
 
-  event: Observable<Event | Event[]>;
+  event: Event | null = null;
   private sub: any;
   event_id: string;
-
+  loadingComponent : LoadingComponent = new LoadingComponent(new LoadingController());
 
   constructor(private route: ActivatedRoute, private eventService: EventService) {
 
   }
 
   ngOnInit() {
+    this.loadingComponent.presentLoading(10000);
     this.sub = this.route.params.subscribe(params => {
       if(params){
         this.event_id = params['id'];
-        this.event = this.eventService.get(this.event_id);
+        this.eventService.get(this.event_id).subscribe(
+          (next : Event) =>{
+            this.event = next;
+          },(err)=>{
+            console.log(err);
+          },()=>{
+            this.loadingComponent.loadingController.dismiss();
+          }
+        );
       }
     });
 

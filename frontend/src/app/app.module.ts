@@ -13,6 +13,8 @@ import { DataModule } from './data/data.module';
 
 import { AppConfigModule } from './app-config.module';
 import { AppRoutingModule } from './app-routing.module';
+import { EventsModule } from "./events/events.module";
+import { GeneralModule } from "./general/general.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +25,9 @@ import { AppRoutingModule } from './app-routing.module';
     AuthModule.forRoot(),
     DataModule.forRoot(),
     AppConfigModule,
-    AppRoutingModule
+    AppRoutingModule,
+    EventsModule,
+    GeneralModule
   ],
   providers: [
     StatusBar,

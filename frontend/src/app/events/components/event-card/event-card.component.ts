@@ -36,8 +36,8 @@ export class EventCardComponent implements OnInit {
 
     this.date_str = this.date.getDate() + ' ' + months[this.date.getMonth()] + ' ' + this.date.getFullYear();
 
-    console.log(this.event);
-    console.log(this.date);
+    /*console.log(this.event);
+    console.log(this.date);*/
 
   }
 

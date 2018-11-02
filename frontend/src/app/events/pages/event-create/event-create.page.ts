@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 
 import { EventService } from '../../../data/providers/event/event.service';
 
+import {LoadingComponent} from "../../../general/components/loading/loading.component";
+import {LoadingController} from "@ionic/angular";
+
 @Component({
   selector: 'app-event-create',
   templateUrl: './event-create.page.html',
@@ -11,6 +14,7 @@ import { EventService } from '../../../data/providers/event/event.service';
 })
 export class EventCreatePage implements OnInit {
   form: FormGroup;
+  loadingComponent : LoadingComponent = new LoadingComponent(new LoadingController());
 
   constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router) {
     this.form = this.formBuilder.group({
@@ -26,8 +30,10 @@ export class EventCreatePage implements OnInit {
   }
 
   createEvent() {
-    console.log(this.form.value);
-    console.log(localStorage.getItem('token'));
+    /*console.log(this.form.value);
+    console.log(localStorage.getItem('token'));*/
+
+    this.loadingComponent.presentLoading(10000);
     this.eventService
       .post(this.form.value)
       .subscribe(
@@ -36,6 +42,8 @@ export class EventCreatePage implements OnInit {
         },
         error => {
           console.log(error);
+        },() => {
+          this.loadingComponent.loadingController.dismiss();
         }
       );
   }
