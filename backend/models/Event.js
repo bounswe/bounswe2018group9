@@ -31,6 +31,11 @@ var EventSchema = new Schema({
         required: true
     },
 
+    artists: {
+        type: [String],
+        required: false
+    },
+    
     willAttendUser: {
         type: [mongoose.Schema.Types.ObjectId],
         required: false

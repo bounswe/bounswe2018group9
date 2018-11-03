@@ -23,6 +23,32 @@ exports.addEvent = function(req,res,next){
   });
 }
 
+exports.updateEventbyId = function(req, res, next)
+{
+  Event.findByIdAndUpdate(
+    //Object Id
+    req.params.id,
+    
+    //Changes to be made
+    req.body,
+    
+    //Ask mongoose to return the new version of the object
+    {new: true},
+
+    //Callback
+    (err, newEvent) => {
+      if(err)
+      {
+        res.status(500).send();
+      }
+      else if(!newEvent)
+      {
+        res.status(404).send();
+      }
+    }
+    
+    );
+}
 exports.getEventbyId = function(req, res, next)
 {
   search_id = req.params.id;
