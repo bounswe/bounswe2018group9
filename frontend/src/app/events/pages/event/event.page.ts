@@ -3,7 +3,6 @@ import { Event } from '../../../interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../../../data/providers/event/event.service';
 
-import {LoadingComponent} from "../../../general/components/loading/loading.component";
 import {LoadingController} from "@ionic/angular";
 
 @Component({
@@ -16,14 +15,13 @@ export class EventPage implements OnInit, OnDestroy{
   event: Event | null = null;
   private sub: any;
   event_id: string;
-  loadingComponent : LoadingComponent = new LoadingComponent(new LoadingController());
 
-  constructor(private route: ActivatedRoute, private eventService: EventService) {
+  constructor(private route: ActivatedRoute, private eventService: EventService,private loadingController : LoadingController) {
 
   }
 
   ngOnInit() {
-    this.loadingComponent.presentLoading(10000);
+    this.presentLoading();
     this.sub = this.route.params.subscribe(params => {
       if(params){
         this.event_id = params['id'];
@@ -33,7 +31,7 @@ export class EventPage implements OnInit, OnDestroy{
           },(err)=>{
             console.log(err);
           },()=>{
-            this.loadingComponent.loadingController.dismiss();
+            this.loadingController.dismiss();
           }
         );
       }
@@ -48,6 +46,13 @@ export class EventPage implements OnInit, OnDestroy{
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     let date = new Date(date_str);
     return date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
+  }
+  async presentLoading(){
+    const loading = await this.loadingController.create({
+      message: 'Loading...',
+      duration: 10000
+    });
+    return await loading.present();
   }
 
 }

@@ -5,8 +5,6 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../../../interfaces';
 
-import { LoadingComponent } from "../../../general/components/loading/loading.component";
-import { LoadingController } from "@ionic/angular";
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -17,7 +15,6 @@ export function tokenGetter() {
   providedIn: 'root'
 })
 export class AuthService {
-  loadingController : LoadingComponent = new LoadingComponent(new LoadingController());
 
   static readonly options = {
     headers: new HttpHeaders({
@@ -42,21 +39,19 @@ export class AuthService {
     return { _id: decoded._id };
   }
 
-  register(data: { firstName: string, lastName: string, email: string, password: string }) {
-    this.loadingController.presentLoading(10000);
+  register(data: { firstName: string, lastName: string, email: string, password: string }, callback : Function) {
     this.http
       .post('http://'+'boun-actopus.herokuapp.com'+'/api/auth/signup', data, AuthService.options)
       .subscribe(response => {
         this.router.navigate(['/signin']);
       },(err) => {
         console.log(err);
-      },() => {
-        this.loadingController.loadingController.dismiss();
+      },()=>{
+        callback();
       });
   }
 
-  login(data: { email: string, password: string }) {
-    this.loadingController.presentLoading(10000);
+  login(data: { email: string, password: string },callback) {
     this.http
       .post('http://'+'boun-actopus.herokuapp.com'+ '/api/auth/signin', data, AuthService.options)
       .subscribe(response => {
@@ -64,9 +59,8 @@ export class AuthService {
         this.router.navigate(['/feed']);
         },(err) => {
           console.log(err);
-        },
-        () => {
-          this.loadingController.loadingController.dismiss();
+        },()=>{
+        callback();
       });
   }
 

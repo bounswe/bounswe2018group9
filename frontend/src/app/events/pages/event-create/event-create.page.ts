@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 import { EventService } from '../../../data/providers/event/event.service';
 
-import {LoadingComponent} from "../../../general/components/loading/loading.component";
 import {LoadingController} from "@ionic/angular";
 
 @Component({
@@ -14,9 +13,7 @@ import {LoadingController} from "@ionic/angular";
 })
 export class EventCreatePage implements OnInit {
   form: FormGroup;
-  loadingComponent : LoadingComponent = new LoadingComponent(new LoadingController());
-
-  constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router,private loadingController :LoadingController) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       price: ['', Validators.required],
@@ -33,7 +30,7 @@ export class EventCreatePage implements OnInit {
     /*console.log(this.form.value);
     console.log(localStorage.getItem('token'));*/
 
-    this.loadingComponent.presentLoading(10000);
+    this.presentLoading()
     this.eventService
       .post(this.form.value)
       .subscribe(
@@ -43,8 +40,16 @@ export class EventCreatePage implements OnInit {
         error => {
           console.log(error);
         },() => {
-          this.loadingComponent.loadingController.dismiss();
+          this.loadingController.dismiss();
         }
       );
+  }
+
+  async presentLoading(){
+    const loading = await this.loadingController.create({
+      message: 'Loading...',
+      duration: 10000
+    });
+    return await loading.present();
   }
 }

@@ -4,8 +4,8 @@ import { Event } from '../../../interfaces';
 
 import { AuthService } from '../../../auth/providers/auth/auth.service';
 import { EventService } from '../../../data/providers/event/event.service';
-import {LoadingComponent} from "../../../general/components/loading/loading.component";
 import {LoadingController} from "@ionic/angular";
+import {async} from "@angular/core/testing";
 
 @Component({
   selector: 'app-feed',
@@ -14,21 +14,28 @@ import {LoadingController} from "@ionic/angular";
 })
 export class FeedPage implements OnInit {
   events: Event[];
-  loadingComponent : LoadingComponent = new LoadingComponent(new LoadingController());
   private eventSub : any;
 
-  constructor(private authService: AuthService, private eventService: EventService) { }
+  constructor(private authService: AuthService, private eventService: EventService,public loadingController: LoadingController) { }
 
   ngOnInit() {
-    this.loadingComponent.presentLoading(10000);
+    this.presentLoading();
     this.eventSub = this.eventService.get()
       .subscribe((data: Event[]) => {
         this.events = data;
       }, error => {
         alert(error);
       },()=>{
-        this.loadingComponent.loadingController.dismiss();
+        this.loadingController.dismiss();
       });
+  }
+
+  async presentLoading(){
+    const loading = await this.loadingController.create({
+      message: 'Loading...',
+      duration: 10000
+    });
+    return await loading.present();
   }
 
   ngOnDestroy(){

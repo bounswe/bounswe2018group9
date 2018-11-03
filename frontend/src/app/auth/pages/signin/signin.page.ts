@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { AuthService } from '../../providers/auth/auth.service';
+import {LoadingController} from "@ionic/angular";
 
 @Component({
   selector: 'app-signin',
@@ -11,7 +12,7 @@ import { AuthService } from '../../providers/auth/auth.service';
 export class SigninPage implements OnInit {
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService,private loadingController : LoadingController) {
     this.form = this.formBuilder.group(
       {
         email: ['', Validators.required],
@@ -24,6 +25,15 @@ export class SigninPage implements OnInit {
   }
 
   login() {
-    this.authService.login(this.form.value);
+    this.presentLoading();
+    this.authService.login(this.form.value,()=> this.loadingController.dismiss());
   }
+  async presentLoading(){
+    const loading = await this.loadingController.create({
+      message: 'Loading...',
+      duration: 10000
+    });
+    return await loading.present();
+  }
+
 }
