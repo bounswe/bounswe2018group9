@@ -1,6 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/internal/operators';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../../../interfaces';
@@ -39,37 +41,24 @@ export class AuthService {
     return { _id: decoded._id };
   }
 
-  register(data: { firstName: string, lastName: string, email: string, password: string }, callback : Function) {
-    this.http
-      .post('/api/auth/signup', data, AuthService.options)
-      .subscribe(response => {
-        this.router.navigate(['/signin']);
-      },(err) => {
-        console.log(err);
-      },()=>{
-        callback();
-      });
+
+  register(data: { firstName: string, lastName: string, email: string, password: string }): Observable<any> {
+    return this.http
+      .post('/api/auth/signup', data, AuthService.options);
   }
 
-  login(data: { email: string, password: string },callback) {
-    this.http
+  login(data: { email: string, password: string }): Observable<any> {
+    return this.http
       .post('/api/auth/signin', data, AuthService.options)
-      .subscribe(response => {
-        localStorage.setItem('token', response['token']);
-        this.route.queryParams
-          .subscribe(params => {
-            this.router.navigate([ params['return'] || '/feed' ]);
-          });
-      }, (err) => {
-        console.log(err);
-      }, ()=>{
-        callback();
-      });
+      .pipe(
+        tap(response => {
+          localStorage.setItem('token', response['token']);
+        })
+      );
   }
 
-  logout() {
+  logout(): Observable<any> {
     localStorage.removeItem('token');
-    this.router.navigate(['/signin']);
-
+    return of(true);
   }
 }

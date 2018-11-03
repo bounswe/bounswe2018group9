@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Event } from '../../../interfaces';
 
@@ -16,7 +17,7 @@ export class FeedPage implements OnInit {
   events: Event[];
   private eventSub : any;
 
-  constructor(private authService: AuthService, private eventService: EventService,public loadingController: LoadingController) { }
+  constructor(private router: Router, private authService: AuthService, private eventService: EventService, public loadingController: LoadingController) { }
 
   ngOnInit() {
     this.presentLoading();
@@ -42,6 +43,10 @@ export class FeedPage implements OnInit {
     this.eventSub.unsubscribe();
   }
   logout() {
-    this.authService.logout();
+    this.authService
+      .logout()
+      .subscribe(response => {
+        this.router.navigate(['signin']);
+      })
   }
 }

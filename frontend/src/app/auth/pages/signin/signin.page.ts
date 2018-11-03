@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthService } from '../../providers/auth/auth.service';
 import {LoadingController} from "@ionic/angular";
@@ -12,7 +13,7 @@ import {LoadingController} from "@ionic/angular";
 export class SigninPage implements OnInit {
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService,private loadingController : LoadingController) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private authService: AuthService, private loadingController : LoadingController) {
     this.form = this.formBuilder.group(
       {
         email: ['', Validators.required],
@@ -26,8 +27,21 @@ export class SigninPage implements OnInit {
 
   login() {
     this.presentLoading();
-    this.authService.login(this.form.value,()=> this.loadingController.dismiss());
+
+    this.authService
+      .login(this.form.value)
+      .subscribe(response => {
+        this.route.queryParams
+          .subscribe(params => {
+            this.loadingController.dismiss();
+            this.router.navigate([ ( params['return'], '/feed' ) ]);
+          });
+      }, error => {
+        this.loadingController.dismiss();
+        // TODO: Handle error
+      });
   }
+
   async presentLoading(){
     const loading = await this.loadingController.create({
       message: 'Loading...',

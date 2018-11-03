@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import {LoadingController, NavController} from '@ionic/angular';
 
@@ -13,7 +14,8 @@ import { AuthService } from '../../providers/auth/auth.service';
 export class SignupPage implements OnInit {
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private loadingController :LoadingController) {
+
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private loadingController :LoadingController) {
     this.form = this.formBuilder.group(
       {
         firstName: ['', Validators.required],
@@ -29,8 +31,18 @@ export class SignupPage implements OnInit {
 
   register() {
     this.presentLoading();
-    this.authService.register(this.form.value,()=> this.loadingController.dismiss());
+
+    this.authService
+      .register(this.form.value)
+      .subscribe(response => {
+        this.loadingController.dismiss();
+        this.router.navigate(['/signin']);
+      }, error => {
+        this.loadingController.dismiss();
+        // TODO: Handle error
+      });
   }
+
   async presentLoading(){
     const loading = await this.loadingController.create({
       message: 'Loading...',
