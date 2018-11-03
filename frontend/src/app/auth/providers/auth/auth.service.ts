@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../../../interfaces';
@@ -22,7 +22,7 @@ export class AuthService {
     })
   };
 
-  constructor(private http: HttpClient, private router: Router, private jwtHelper: JwtHelperService) { }
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private jwtHelper: JwtHelperService) { }
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
@@ -56,10 +56,13 @@ export class AuthService {
       .post('/api/auth/signin', data, AuthService.options)
       .subscribe(response => {
         localStorage.setItem('token', response['token']);
-        this.router.navigate(['/feed']);
-        },(err) => {
-          console.log(err);
-        },()=>{
+        this.route.queryParams
+          .subscribe(params => {
+            this.router.navigate([ params['return'] || '/feed' ]);
+          });
+      }, (err) => {
+        console.log(err);
+      }, ()=>{
         callback();
       });
   }
