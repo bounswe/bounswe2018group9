@@ -49,7 +49,6 @@ exports.updateEventbyId = function(req, res, next)
   {
     res.status(500).send("Blocked users field missing.");
   }
-  else 
 
   Event.findByIdAndUpdate(
     //Object Id
