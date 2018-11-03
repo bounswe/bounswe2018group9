@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/internal/operators';
 
@@ -24,7 +23,7 @@ export class AuthService {
     })
   };
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private jwtHelper: JwtHelperService) { }
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
