@@ -12,6 +12,9 @@ import { SigninPage } from './pages/signin/signin.page';
 import { SignupPage } from './pages/signup/signup.page'
 
 import { AuthService, tokenGetter } from './providers/auth/auth.service';
+import { AuthGuard } from './guards/auth/auth.guard';
+import { NoAuthGuard } from './guards/no-auth/no-auth.guard';
+
 import { environment } from '../../environments/environment';
 
 @NgModule({
@@ -28,6 +31,8 @@ import { environment } from '../../environments/environment';
   ],
   providers: [
     AuthService,
+    AuthGuard,
+    NoAuthGuard,
     // JWT Providers
     {
       provide: HTTP_INTERCEPTORS,
@@ -50,6 +55,8 @@ export class AuthModule {
       ngModule: AuthModule,
       providers: [
         AuthService,
+        AuthGuard,
+        NoAuthGuard,
         // JWT Interceptor
         {
           provide: HTTP_INTERCEPTORS,
