@@ -29,10 +29,10 @@ function getUser(email,password) {
 function getUserById(req,res,next) {
     const id = req.params.id;
 
-    User.findById({id: id}, (err,user) => {
+    User.findById(id, (err,user) => {
         if(err || !user) {
             res.status(500);
-            res.send(err);
+            res.send("Cannot find user with id : "+id);//res.send(err) returned empty response in case the user is not found
         } else {
             res.status(200);
             res.send(user);
@@ -110,5 +110,6 @@ module.exports = {
     loggedIn,
     addUser,
     getUser,
-    logOut
+    logOut,
+    getUserById
 }
