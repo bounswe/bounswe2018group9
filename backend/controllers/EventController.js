@@ -6,6 +6,7 @@ exports.addEvent = function(req,res,next){
     name: req.body.name,
     price: req.body.price,
     owner: req.body.owner,
+    artists: req.body.artists,
     description: req.body.description,
     date: req.body.date
   });
@@ -74,7 +75,6 @@ exports.updateEventbyId = function(req, res, next)
 
     //Callback
     (err, newEvent) => {
-      console.log('New:'+newEvent);
       if(err)
       {
         res.status(500).send();
