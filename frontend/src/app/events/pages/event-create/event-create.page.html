@@ -21,7 +21,7 @@
 
     <ion-item>
       <ion-label> Description : </ion-label>
-      <ion-textarea placeholder="Enter a description" style="height : auto;" formControlName="description" class="inputStyle"></ion-textarea>
+      <ion-textarea style="height : auto;" formControlName="description" class="inputStyle"></ion-textarea>
     </ion-item>
 
     <ion-item>
@@ -31,13 +31,21 @@
 
     <ion-item>
       <ion-label> Date : </ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY" formControlName="date" class="inputStyle"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date" class="inputStyle"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label> Price : </ion-label>
-      <ion-input type="number" placeholder="₺₺" formControlName="price" class="inputStyle"></ion-input>
+      <ion-input align='right' type="number" formControlName="price" class="inputStyle"> {{currency.value}}</ion-input>
     </ion-item>
+
+   <ion-item>
+     <ion-select mode="md" #currency placeholder="Select currency">
+       <ion-select-option value ='₺' >Turkish Lira</ion-select-option>
+       <ion-select-option value ='$' >Dollars</ion-select-option>
+       <ion-select-option value ='€' >Euro</ion-select-option>
+     </ion-select>
+   </ion-item>
 
   </ion-list>
 

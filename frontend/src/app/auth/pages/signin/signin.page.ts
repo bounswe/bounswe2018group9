@@ -16,8 +16,8 @@ export class SigninPage implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private authService: AuthService, private loadingController : LoadingController) {
     this.form = this.formBuilder.group(
       {
-        email: ['', Validators.required],
-        password: ['', Validators.required]
+        email: ['',  [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(8)]]
       }
     );
   }
