@@ -18,9 +18,9 @@ export class SignupPage implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private loadingController :LoadingController) {
     this.form = this.formBuilder.group(
       {
-        name: ['', Validators.required],
-        email: ['', Validators.required],
-        password: ['', Validators.required]
+        name: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required,Validators.minLength(8)]]
       }
     );
   }

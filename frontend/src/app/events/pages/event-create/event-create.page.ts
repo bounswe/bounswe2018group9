@@ -15,10 +15,10 @@ export class EventCreatePage implements OnInit {
   form: FormGroup;
   constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router,private loadingController :LoadingController) {
     this.form = this.formBuilder.group({
-      name: ['', Validators.required],
-      price: ['', Validators.required],
-      owner: ['', Validators.required],
-      description: ['', Validators.required],
+      name: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+      price: ['', [Validators.required,Validators.pattern('[0-9]*')]],
+      owner: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+      description: ['', [Validators.required,Validators.minLength(20)]],
       date: ['', Validators.required]
     });
   }
