@@ -25,18 +25,57 @@ exports.addEvent = function(req,res,next){
 
 exports.updateEventbyId = function(req, res, next)
 {
+  if(!(req.body.name))
+  {
+    res.status(500).send("Name field missing.");
+  }
+  else if(!(req.body.price))
+  {
+    res.status(500).send("Price field missing.");
+  }
+  else if(!(req.body.description))
+  {
+    res.status(500).send("Description field missing.");
+  }
+  else if(!(req.body.date))
+  {
+    res.status(500).send("Date field missing.");
+  }
+  else if(!(req.body.artists))
+  {
+    res.status(500).send("Artists field missing.");
+  }
+  else if(!(req.body.blockedUsers))
+  {
+    res.status(500).send("Blocked users field missing.");
+  }
+  else 
+
   Event.findByIdAndUpdate(
     //Object Id
     req.params.id,
     
     //Changes to be made
-    req.body,
+    {
+      "name": req.body.name,
     
+      "price": req.body.price,
+  
+      "description": req.body.description,
+  
+      "date": req.body.date,
+  
+      "artists": req.body.artists,
+  
+      "blockedUsers": req.body.blockedUsers
+    },
+
     //Ask mongoose to return the new version of the object
     {new: true},
 
     //Callback
     (err, newEvent) => {
+      console.log('New:'+newEvent);
       if(err)
       {
         res.status(500).send();
@@ -44,6 +83,10 @@ exports.updateEventbyId = function(req, res, next)
       else if(!newEvent)
       {
         res.status(404).send();
+      }
+      else
+      {
+        res.status(200).send(newEvent);
       }
     }
     
