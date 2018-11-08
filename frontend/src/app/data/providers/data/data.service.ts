@@ -22,7 +22,7 @@ export abstract class DataService<T> {
       params: new HttpParams()
     };
     for (let param in params) options.params = options.params.set(param, params[param]);
-    this.options.headers = this.options.headers.append('Authorization' , localStorage.getItem('token'));
+
     return this.http.get<T | T[]>(this.path(id), Object.assign(options, this.options));
   }
 
