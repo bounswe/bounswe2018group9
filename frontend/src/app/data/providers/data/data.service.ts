@@ -9,10 +9,10 @@ export abstract class DataService<T> {
   };
   protected api = '';
 
-  constructor(@Inject('ENDPOINT') protected endpoint: string,  protected http: HttpClient) { }
+  constructor(protected http: HttpClient) { }
 
   private path(id: string = '') {
-    return 'http://'+'boun-actopus.herokuapp.com'+ '/api/' + this.api + '/' + id;
+    return '/api/' + this.api + '/' + id;
   }
 
   get(id: string = '', params: { limit?: number, skip?: number, search?: string } = {}): Observable<T | T[]> {

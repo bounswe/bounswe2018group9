@@ -22,7 +22,7 @@ export class AuthService {
     })
   };
 
-  constructor(@Inject('ENDPOINT') private endpoint: string, private http: HttpClient, private router: Router, private jwtHelper: JwtHelperService) { }
+  constructor(private http: HttpClient, private router: Router, private jwtHelper: JwtHelperService) { }
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
@@ -41,7 +41,7 @@ export class AuthService {
 
   register(data: { firstName: string, lastName: string, email: string, password: string }, callback : Function) {
     this.http
-      .post('http://'+'boun-actopus.herokuapp.com'+'/api/auth/signup', data, AuthService.options)
+      .post('/api/auth/signup', data, AuthService.options)
       .subscribe(response => {
         this.router.navigate(['/signin']);
       },(err) => {
@@ -53,7 +53,7 @@ export class AuthService {
 
   login(data: { email: string, password: string },callback) {
     this.http
-      .post('http://'+'boun-actopus.herokuapp.com'+ '/api/auth/signin', data, AuthService.options)
+      .post('/api/auth/signin', data, AuthService.options)
       .subscribe(response => {
         localStorage.setItem('token', response['token']);
         this.router.navigate(['/feed']);
