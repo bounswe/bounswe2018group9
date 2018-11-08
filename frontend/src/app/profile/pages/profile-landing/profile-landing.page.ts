@@ -14,14 +14,14 @@ export class ProfileLandingPage implements OnInit {
   constructor(private auth : AuthService) { }
 
   ngOnInit() {
-    if(this.auth.isAuthenticated()){
-      this.this.auth.getUser()
-    }
+    this.getUser();
 
   }
 
 
   getUser(){
-
+    if(this.auth.isAuthenticated()){
+      this.user = this.auth.getUser();
+    }
   }
 }
