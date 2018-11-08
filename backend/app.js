@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
 const passport = require("passport");
+const cors = require('cors');
 
 // Passport
 require("./utils/passport");
@@ -14,6 +15,7 @@ var eventsRouter = require('./routes/events');
 
 var app = express();
 
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '/www')));
