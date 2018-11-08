@@ -4,8 +4,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <img src='{{user.profileImage}}'/>
-  <p>My name is: {{user.firstName +' ' + user.lastName}}</p>
-  <p>My email: {{user.email}}</p>
+<ion-content padding *ngIf="user; let u">
+  <img src='{{u.profileImage}}'/>
+  <p>My name is: {{u.firstName +' ' + u.lastName}}</p>
+  <p>My email: {{u.email}}</p>
 </ion-content>
