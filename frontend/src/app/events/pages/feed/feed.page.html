@@ -21,7 +21,14 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-list>
-    <app-event-card *ngFor="let event of events" [event]="event" [routerLink]="'/feed/' + event._id"></app-event-card>
-  </ion-list>
+
+  <ion-grid>
+    <ion-row *ngFor="let event of events" justify-content-center no-padding>
+      <ion-col size-xs="12">
+        <div class="feed-card">
+          <app-event-card [event]="event" [routerLink]="'/feed/' + event._id"></app-event-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
