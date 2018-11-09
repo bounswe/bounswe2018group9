@@ -20,8 +20,9 @@ function signIn(req,res,next) {
             }
 
             // Generate the jsonwebtoken
-            const token = jwt.sign(user.toJSON(), secretkey, { expiresIn: '1w' });
-            return res.json({user,token});
+            // The expiresIn token valid for 2 weeks 
+            const token = jwt.sign(user.toJSON(), secretkey, { expiresIn: '2w' });
+            return res.json({token}); // the user json object is removed 
         });
     })(req,res);
 }
