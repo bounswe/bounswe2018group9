@@ -18,7 +18,7 @@ export class EventCreatePage implements OnInit {
               private loadingController :LoadingController, private alertController: AlertController) {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
-      price: ['', [Validators.required,Validators.pattern('[0-9]*')]],
+      price: ['', [Validators.required,Validators.pattern('[0-9₺$€]*')]],
       owner: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
       description: ['', [Validators.required,Validators.minLength(20)]],
       date: ['', Validators.required]
