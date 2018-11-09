@@ -20,7 +20,7 @@ function signIn(req,res,next) {
             }
 
             // Generate the jsonwebtoken
-            const token = jwt.sign(user.toJSON(), secretkey);
+            const token = jwt.sign(user.toJSON(), secretkey, { expiresIn: '1w' });
             return res.json({user,token});
         });
     })(req,res);
