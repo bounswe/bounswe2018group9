@@ -6,19 +6,22 @@
 
     <div class="form-container" margin padding>
       <form [formGroup]="form" (ngSubmit)="login()" (keyup.enter)="form.valid && login()">
-
         <ion-list>
           <ion-item>
             <ion-label position="stacked"><b>Email</b></ion-label>
             <ion-input type="email" placeholder="Email" formControlName="email" value=""></ion-input>
           </ion-item>
+          <ion-label floating class="notify" *ngIf="!this.form.get('email').valid">Your e-mail should include a name, @ sign, and a domain afterwards.</ion-label>
+
+
           <ion-item>
             <ion-label position="stacked">
               <b>Password</b>
               <a [href]="'/recover'" float-right>Forgot password?</a>
             </ion-label>
             <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-            </ion-item>
+          </ion-item>
+          <ion-label floating class="notify" *ngIf="!this.form.get('password').valid">Your password should consist of at least 8 characters.</ion-label>
         </ion-list>
         <ion-button type="submit" [disabled]="!form.valid" expand="block">Sign in</ion-button>
       </form>
