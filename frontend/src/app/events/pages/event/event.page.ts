@@ -3,7 +3,8 @@ import { Event } from '../../../interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../../../data/providers/event/event.service';
 
-import {LoadingController} from "@ionic/angular";
+import {AlertController, LoadingController} from "@ionic/angular";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-event',
@@ -16,7 +17,8 @@ export class EventPage implements OnInit, OnDestroy{
   private sub: any;
   event_id: string;
 
-  constructor(private route: ActivatedRoute, private eventService: EventService,private loadingController : LoadingController) {
+  constructor(private route: ActivatedRoute, private eventService: EventService,private loadingController :
+    LoadingController, private alertController : AlertController) {
 
   }
 
@@ -29,7 +31,7 @@ export class EventPage implements OnInit, OnDestroy{
           (next : Event) =>{
             this.event = next;
           },(err)=>{
-            console.log(err);
+            this.handleError(err);
           },()=>{
             this.loadingController.dismiss();
           }
@@ -53,6 +55,20 @@ export class EventPage implements OnInit, OnDestroy{
       duration: 10000
     });
     return await loading.present();
+  }
+  async presentAlert(errMessage) {
+    const alert = await this.alertController.create({
+        header: 'Wait..',
+        subHeader: 'The event couldn\'t be loaded',
+        message: 'We cannot get the event information: ' + errMessage,
+        buttons: ['Close']
+      });
+    await alert.present();
+  }
+  private handleError(error: HttpErrorResponse) {
+
+    this.presentAlert(`${JSON.stringify(error.error)}`);
+
   }
 
 }
