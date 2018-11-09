@@ -32,7 +32,7 @@ function getUserById(req,res,next) {
     User.findById(id, (err,user) => {
         if(err || !user) {
             res.status(500);
-            res.send("Cannot find user with id : "+id);//res.send(err) returned empty response in case the user is not found
+            res.send("Cannot find user with id : "+id);
         } else {
             res.status(200);
             res.send(user);
