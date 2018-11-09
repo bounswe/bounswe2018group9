@@ -57,14 +57,14 @@ export class SignupPage implements OnInit {
     if(backendError){
       alert = await this.alertController.create({
         header: 'Wait..',
-        subHeader: 'You could not sign in.',
+        subHeader: 'You could not sign up.',
         message: 'You get a backend error: ' + errMessage,
         buttons: ['Close']
       });
     }else{
       alert = await this.alertController.create({
         header: 'Wait..',
-        subHeader: 'You could not sign in.',
+        subHeader: 'You could not sign up.',
         message: 'You get a client error: ' + errMessage,
         buttons: ['Close']
       });
