@@ -60,4 +60,7 @@ export class AuthService {
     localStorage.removeItem('token');
     return of(true);
   }
+  getUserData(userId : string) : Observable<any>{
+    return this.http.get('/api/users/'+userId,AuthService.options);
+  }
 }
