@@ -10,12 +10,13 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 .ng-valid:not(form)  {
-  border-bottom:2px solid #42A948; /* green */
+  border-left:2px solid #42A948; /* green */
 }
 
-.ng-invalid:not(form)  {
-  border-bottom:2px solid Tomato /* red */
+.ng-dirty.ng-invalid:not(form)  {
+  border-left:2px solid Tomato /* red */
 }
 .notify{
-  font-size: 0.7em;
+  font-size: 0.8em;
+  word-wrap: break-word;
 }
