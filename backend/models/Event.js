@@ -35,6 +35,21 @@ var EventSchema = new Schema({
         type: [String],
         required: false
     },
+
+    attendance: {
+        type: [{
+            user: {
+                type: Schema.Types.ObjectId, 
+                ref: 'User'
+            },
+            attendanceType: {
+                type: Number,
+                default: 0,
+                required: true
+            }
+        }],
+        required: false
+    },
     
     willAttendUser: {
         type: [mongoose.Schema.Types.ObjectId],
