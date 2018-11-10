@@ -4,6 +4,18 @@ var User = require("../models/User");
 var jwt = require("jsonwebtoken");
 var secretkey = 'gjkNLnkjBKADJnaldkNADEJMLsmellycat';
 
+function getAllUsers(req,res,next) {
+    
+    User.find({}, (err,users)=>{
+        if (err) {
+            res.status(500);
+            res.send({err});
+        } else {
+            res.send(users);
+        }
+    })
+}
+
 function getUser(email,password) {
     return new Promise((resolve,reject) => {
         
@@ -107,6 +119,7 @@ function logOut(req,res,next){
 }; 
 
 module.exports = {
+    getAllUsers,
     loggedIn,
     addUser,
     getUser,
