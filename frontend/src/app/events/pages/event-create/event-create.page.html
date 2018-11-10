@@ -18,31 +18,31 @@
       <ion-label> Event Title : </ion-label>
       <ion-input type="text" value="" max="150" formControlName="name" class="inputStyle"></ion-input>
     </ion-item>
-    <ion-label floating class="notify" *ngIf="!this.form.get('name').valid">The event name can include characters and space.</ion-label>
+    <ion-label floating class="notify" *ngIf="this.form.get('name').dirty && !this.form.get('name').valid">The event name can include characters and space.</ion-label>
 
     <ion-item>
       <ion-label> Description : </ion-label>
       <ion-textarea style="height : auto;" formControlName="description" class="inputStyle"></ion-textarea>
     </ion-item>
-    <ion-label floating class="notify" *ngIf="!this.form.get('description').valid">The event description can include characters and space. It should be at least 20 chars long.</ion-label>
+    <ion-label floating class="notify" *ngIf="this.form.get('description').dirty && !this.form.get('description').valid">The event description can include characters and space. It should be at least 20 chars long.</ion-label>
 
     <ion-item>
       <ion-label> Owner : </ion-label>
       <ion-input type="text" value="" formControlName="owner" class="inputStyle"></ion-input>
     </ion-item>
-    <ion-label floating class="notify" *ngIf="!this.form.get('owner').valid">The event owner name can include characters and space.</ion-label>
+    <ion-label floating class="notify" *ngIf=" this.form.get('owner').dirty && !this.form.get('owner').valid">The event owner name can include characters and space.</ion-label>
 
     <ion-item>
       <ion-label> Date : </ion-label>
       <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date" class="inputStyle"></ion-datetime>
     </ion-item>
-    <ion-label floating class="notify" *ngIf="!this.form.get('date').valid">Please select a date for your event.</ion-label>
+    <ion-label floating class="notify" *ngIf="this.form.get('date').dirty && !this.form.get('date').valid">Please select a date for your event.</ion-label>
 
     <ion-item>
       <ion-label> Price : </ion-label>
       <ion-input align='right' type="number" formControlName="price" class="inputStyle">{{currency.value}}</ion-input>
     </ion-item>
-    <ion-label floating class="notify" *ngIf="!this.form.get('price').valid">Your event's price is composed of numbers and can be turkish liras euros or dollars.</ion-label>
+    <ion-label text-wrap class="notify" *ngIf="this.form.get('price').dirty && !this.form.get('price').valid">Your event's price is composed of numbers and can be turkish liras euros or dollars.</ion-label>
 
    <ion-item>
      <ion-select mode="md" #currency placeholder="Select currency">
