@@ -8,7 +8,7 @@ import {LoadingController} from "@ionic/angular";
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.page.html',
-  styleUrls: ['./signin.page.scss'],
+  styleUrls: ['../../auth.module.scss', './signin.page.scss'],
 })
 export class SigninPage implements OnInit {
   form: FormGroup;

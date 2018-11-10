@@ -1,18 +1,31 @@
-<ion-content padding>
-  <form [formGroup]="form" (ngSubmit)="login()">
-    <ion-list>
-      <ion-item>
-        <ion-label floating>Email</ion-label>
-        <ion-input type="email" placeholder="Email" formControlName="email" value=""></ion-input>
-      </ion-item>
+<ion-content scrollY="false" color="light" padding>
+  <div class="auth-container">
+    <div class="icon-container">
+      <img src="resources/icon.png">
+    </div>
 
-      <ion-item>
-        <ion-label floating primary>Password</ion-label>
-        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-      </ion-item>
-    </ion-list>
+    <div class="form-container" margin padding>
+      <form [formGroup]="form" (ngSubmit)="login()">
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked"><b>Email</b></ion-label>
+            <ion-input type="email" placeholder="Email" formControlName="email" value=""></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">
+              <b>Password</b>
+              <a [href]="'/recover'" float-right>Forgot password?</a>
+            </ion-label>
+            <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+          </ion-item>
+        </ion-list>
 
-    <ion-button type="submit" [disabled]="!form.valid">Sign in</ion-button>
-    <ion-button color="secondary" [href]="'/auth/signup'">Sign up</ion-button>
-  </form>
+        <ion-button type="submit" [disabled]="!form.valid" expand="block">Sign in</ion-button>
+      </form>
+    </div>
+
+    <div class="form-container" margin>
+      <p text-center class="auth-text">New to Actopus? <a color="secondary" [href]="'/auth/signup'">Create an account.</a></p>
+    </div>
+  </div>
 </ion-content>

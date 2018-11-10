@@ -1,29 +1,32 @@
-<ion-content padding>
-  <form [formGroup]="form" (ngSubmit)="register()">
-    <ion-list>
-      <ion-item>
-        <ion-label fixed>Name</ion-label>
-        <ion-input type="text" placeholder="Name" formControlName="firstName" value=""></ion-input>
-      </ion-item>
+<ion-content scrollY="false" color="light" padding>
+  <div class="auth-container">
+    <div class="icon-container">
+      <img src="resources/icon.png">
+    </div>
 
-      <ion-item>
-        <ion-label fixed>Lastame</ion-label>
-        <ion-input type="text" placeholder="Lastname" formControlName="lastName" value=""></ion-input>
-      </ion-item>
+    <div class="form-container" margin padding>
+      <form [formGroup]="form" (ngSubmit)="register()">
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked"><b>Name</b></ion-label>
+            <ion-input type="text" placeholder="Name" formControlName="name" value=""></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"><b>Email</b></ion-label>
+            <ion-input type="email" placeholder="Email" formControlName="email" value=""></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"><b>Password</b></ion-label>
+            <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+          </ion-item>
+        </ion-list>
 
-      <ion-item>
-        <ion-label fixed>Email</ion-label>
-        <ion-input type="email" placeholder="Email" formControlName="email" value=""></ion-input>
-      </ion-item>
+        <ion-button type="submit" [disabled]="!form.valid" expand="block">Sign up</ion-button>
+      </form>
+    </div>
 
-      <ion-item>
-        <ion-label fixed>Password</ion-label>
-        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-      </ion-item>
-    </ion-list>
-
-
-    <ion-button type="submit" [disabled]="!form.valid">Sign up</ion-button>
-    <ion-button color="secondary" [href]="'/auth/signin'">Sign in</ion-button>
-  </form>
+    <div class="form-container" margin>
+      <p text-center class="auth-text">Already a user? <a color="secondary" [href]="'/auth/signin'">Login here.</a></p>
+    </div>
+  </div>
 </ion-content>

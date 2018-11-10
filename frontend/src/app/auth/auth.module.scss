@@ -1,0 +1,25 @@
+.auth-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .icon-container {
+    max-height: 300px;
+    max-width: 300px;
+  }
+
+  .form-container {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 300px;
+    max-width: 300px;
+    background-color: white;
+  }
+
+  .auth-text {
+    font-size: 14px;
+  }
+}
