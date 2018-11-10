@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Event, User} from "../../../interfaces";
 import {AuthService} from "../../../auth/providers/auth/auth.service";
-import {Observable} from "rxjs";
+import {LoadingController} from '@ionic/angular';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-profile-landing',
@@ -10,18 +11,40 @@ import {Observable} from "rxjs";
 })
 export class ProfileLandingPage implements OnInit {
 
+  private sub : any;
   user: User | null = null;
-  constructor(private auth : AuthService) { }
+  userId : string | null = null;
+  constructor(private auth : AuthService,private loadingController : LoadingController) { }
 
   ngOnInit() {
-    this.getUser();
+    this.presentLoading();
+    this.userId = this.getUserId()._id;
+    console.log('Authenticated:' + this.auth.isAuthenticated());
+    console.log('User:' + this.auth.getUser()._id);
+    this.sub = this.auth.getUserData(this.userId).subscribe((res : User)=>{
+      this.user = res;
+    },(err)=>{
+      console.log(err);
+    },()=>{
+      this.loadingController.dismiss();
+    });
+  }
 
+  ngOnDestroy(){
+    this.sub.unsubscribe();
   }
 
 
-  getUser(){
+   getUserId() : User{
     if(this.auth.isAuthenticated()){
-      this.user = this.auth.getUser();
+       return this.auth.getUser();
     }
+  }
+  async presentLoading(){
+    const loading = await this.loadingController.create({
+      message: 'Loading...',
+      duration: 10000
+    });
+    return await loading.present();
   }
 }

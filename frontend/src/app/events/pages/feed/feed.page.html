@@ -7,12 +7,17 @@
   </ion-toolbar>
 </ion-header>
 <ion-menu>
-  <ion-item [href]="'/feed'" >
-    Feed
-  </ion-item>
-  <ion-item color="danger" (click)="logout()">
-    Sign out
-  </ion-item>
+  <ion-list>
+    <ion-item [href]="'/feed'" >
+      Feed
+    </ion-item>
+    <ion-item [href]="'/profile'" >
+      Profile
+    </ion-item>
+    <ion-item color="danger" (click)="logout()">
+      Sign out
+    </ion-item>
+  </ion-list>
 </ion-menu>
 
 <ion-content main padding>
