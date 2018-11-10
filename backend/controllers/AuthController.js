@@ -20,16 +20,9 @@ function signIn(req,res,next) {
             }
 
             // Generate the jsonwebtoken
-            ret_user = {
-                id:user.id,
-                email:user.email,
-                firstName:user.firstName,
-                lastName:user.lastName
-
-            }
-            ret_user = user;
+            // The token just give in the payload id of the user 
             // The expiresIn token valid for 1 week
-            const token = jwt.sign(ret_user.toJSON(), secretkey, { expiresIn: '7d' });
+            const token = jwt.sign({ _id: user._id }, secretkey, { expiresIn: '7d' });
             return res.json({token}); // the user json object is removed 
         });
     })(req,res);

@@ -1,17 +1,28 @@
+
 # Actopus Frontend Project
 Actopus frontend contains the website and cross platform mobile applications. The project is mainly dependent on Ionic and Angular.
 
-## How to run the code
-You should have npm and node installed.
+## Quickstart
 
-You should install Ionic CLI which is an extended version of Angular CLI.
+1. You should have `npm` and `node` installed.
+
+
+2. You should install Ionic CLI which is an extended version of Angular CLI.
+
 ```
 npm install -g ionic@latest
 ```
 
-To run the code on your computer
+3. Serve/test the application on your local browser with **cloud version** of `Actopus Backend` with:
+
 ```
-ionic serve
+npm start
+```
+
+Or, if you wish to serve the application with a local copy of `Actopus Backend`, you can use:
+
+```
+npm run start:local
 ```
 
 ## Coding Style
