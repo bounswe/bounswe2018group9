@@ -22,7 +22,7 @@ npm start
 Or, if you wish to serve the application with a local copy of `Actopus Backend`, you can use:
 
 ```
-npm start:local
+npm run start:local
 ```
 
 ## Coding Style
