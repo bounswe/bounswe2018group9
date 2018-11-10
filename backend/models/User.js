@@ -15,7 +15,6 @@ var UserSchema = new Schema({
             unique: true 
         }
     },
-    //lastName and firstName field change just name 
     name: {
         type: String,
         required: true    
