@@ -38,12 +38,13 @@ to add other cultural activities to the project). It will be an interactive
 platform that allows users to share their experiences, get recommendations
 and notifications.
 
-### [Wiki](https://github.com/bounswe/bounswe2018group9/wiki) page.
+**[Checkout Wiki for Further Information](https://github.com/bounswe/bounswe2018group9/wiki)**
 
-### [Actopus API for Twitter](http://bounswegroup9api-env.2xbnu7imzw.eu-west-1.elasticbeanstalk.com/)
 ## Contributing
 
-### [You can check here:](https://github.com/bounswe/bounswe2018group9/blob/master/CONTRIBUTING.md)
+* **[Contribution Guide](https://github.com/bounswe/bounswe2018group9/wiki/Contribution-Guide)**
+* **[Development Manual for Actopus Backend](https://github.com/bounswe/bounswe2018group9/blob/master/backend/CONTRIBUTING.md)**
+* **[Development Manual for Actopus Frontend](https://github.com/bounswe/bounswe2018group9/blob/master/frontend/CONTRIBUTING.md)**
 
 ## Credits
 
