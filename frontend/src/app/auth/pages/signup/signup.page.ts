@@ -6,7 +6,6 @@ import {AlertController, LoadingController, NavController} from '@ionic/angular'
 
 import { AuthService } from '../../providers/auth/auth.service';
 import {HttpErrorResponse} from "@angular/common/http";
-import {throwError} from "rxjs";
 
 @Component({
   selector: 'app-signup',

@@ -5,7 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../providers/auth/auth.service';
 import {AlertController, LoadingController} from "@ionic/angular";
 import {HttpErrorResponse} from "@angular/common/http";
-import {throwError} from "rxjs";
 
 @Component({
   selector: 'app-signin',
