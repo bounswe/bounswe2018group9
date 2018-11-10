@@ -1,6 +1,8 @@
 var mongoose = require("mongoose");
 var Event = require("../models/Event");
 
+const _ = require('lodash');
+
 exports.addEvent = function(req,res,next){
   var event = new Event({
     name: req.body.name,
@@ -184,4 +186,57 @@ exports.getAllEvents = function(req,res,next)
       res.status(500);
       res.send({err})
     });
+}
+
+exports.updateAttendee = function(req,res,next){
+  const eventId = req.params.id;
+  const userId = req.body.attendant;
+  const attendanceType = req.body.attendanceType;
+
+  Event.findById(eventId, (err,event)=>{
+    if(err) {
+      res.status(500);
+      res.send({err});
+    } else {
+      
+      let userAlreadyInTheList = false;
+      let attendanceInfo = event.attendance;
+      attendanceInfo = _.map((el)=>{
+        // Check here if the ids are as it is supposed to be.
+        if (el.user === userId) {
+          userAlreadyInTheList = true;
+          return {
+            user: userId,
+            attendanceType: attendanceType
+          }
+        } else {
+          return el;
+        }
+      });
+      
+      // If the user hasn't entered any attendance info before.
+      if (!userAlreadyInTheList) {
+        attendanceInfo.push({
+          user: userId,
+            attendanceType: attendanceType
+        })
+      }
+      
+      // Updated Attendance Info 
+      return attendanceInfo;
+    }
+  }, (attendanceInfo)=> {
+    Event.findByIdAndUpdate(eventId,
+      {attendanceInfo:attendanceInfo},
+      {new:true},(err,newEvent)=>{
+        if (err) {
+          res.status(500);
+          res.send({err})
+        } else {
+          res.status(200);
+          res.send(newEvent);
+        }
+      });
+  });
+  
 }
