@@ -16,4 +16,7 @@ router.get('/getEventbyOwner/:id',EventController.getEventbyOwner);
 router.get('/:id', EventController.getEventbyId);
 router.put('/:id', EventController.updateEventbyId);
 
+
+// Updates the attendee status of an event
+router.post('/:id/attendee', EventController.updateAttendee);
 module.exports=router;
