@@ -9,7 +9,7 @@ import { AuthService } from '../../providers/auth/auth.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
-  styleUrls: ['./signup.page.scss'],
+  styleUrls: ['../../auth.module.scss', './signup.page.scss'],
 })
 export class SignupPage implements OnInit {
   form: FormGroup;
@@ -18,8 +18,7 @@ export class SignupPage implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private loadingController :LoadingController) {
     this.form = this.formBuilder.group(
       {
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
+        name: ['', Validators.required],
         email: ['', Validators.required],
         password: ['', Validators.required]
       }
