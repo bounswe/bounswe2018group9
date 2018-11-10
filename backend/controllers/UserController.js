@@ -43,8 +43,7 @@ function getUserById(req,res,next) {
 function addUser(req,res,next) {
     var user = new User({
         email: req.body.email,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
+        name: req.body.name,
         password: req.body.password
     });
     console.log('request: '+JSON.stringify(req.body,null,2));

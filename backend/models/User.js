@@ -15,14 +15,12 @@ var UserSchema = new Schema({
             unique: true 
         }
     },
-    firstName: {
+    //lastName and firstName field change just name 
+    name: {
         type: String,
         required: true    
     },
-    lastName: {
-        type: String,
-        required: true    
-    },
+    
     password: {
         type: String,
         required: true
