@@ -6,7 +6,6 @@ import { Event } from '../../../interfaces';
 import { AuthService } from '../../../auth/providers/auth/auth.service';
 import { EventService } from '../../../data/providers/event/event.service';
 import {LoadingController} from "@ionic/angular";
-import {async} from "@angular/core/testing";
 
 @Component({
   selector: 'app-feed',
@@ -46,7 +45,7 @@ export class FeedPage implements OnInit {
     this.authService
       .logout()
       .subscribe(response => {
-        this.router.navigate(['signin']);
+        this.router.navigate(['auth','signin']);
       })
   }
 }
