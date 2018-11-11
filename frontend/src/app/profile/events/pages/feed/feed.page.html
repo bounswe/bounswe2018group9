@@ -8,10 +8,10 @@
 </ion-header>
 <ion-menu>
   <ion-list>
-    <ion-item [href]="'/feed'" >
+    <ion-item routerLink="/feed">
       Feed
     </ion-item>
-    <ion-item [href]="'/profile'" >
+    <ion-item routerLink="/profile">
       Profile
     </ion-item>
     <ion-item color="danger" (click)="logout()">
@@ -22,7 +22,7 @@
 
 <ion-content main padding>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [href]="'/feed/create'">
+    <ion-fab-button routerLink="/feed/create">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

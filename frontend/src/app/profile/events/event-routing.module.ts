@@ -5,7 +5,7 @@ import { FeedPage } from './pages/feed/feed.page';
 import { EventPage } from './pages/event/event.page';
 import { EventCreatePage } from './pages/event-create/event-create.page';
 
-import { AuthGuard } from '../auth/guards/auth/auth.guard';
+import { AuthGuard } from '../../auth/guards/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', component: FeedPage, canActivate: [ AuthGuard ] },
