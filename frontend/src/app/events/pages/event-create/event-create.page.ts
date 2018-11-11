@@ -33,7 +33,7 @@ export class EventCreatePage implements OnInit {
       .post(this.form.value)
       .subscribe(
         message => {
-          this.router.navigate(['feed']);
+          this.router.navigate(['/feed']);
         },
         error => {
           console.log(error);

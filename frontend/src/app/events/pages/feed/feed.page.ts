@@ -45,7 +45,7 @@ export class FeedPage implements OnInit {
     this.authService
       .logout()
       .subscribe(response => {
-        this.router.navigate(['auth','signin']);
+        this.router.navigate(['/signin']);
       })
   }
 }
