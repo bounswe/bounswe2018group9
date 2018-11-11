@@ -13,7 +13,7 @@ import { DataModule } from './data/data.module';
 
 import { AppConfigModule } from './app-config.module';
 import { AppRoutingModule } from './app-routing.module';
-import { EventsModule } from "./events/events.module";
+import { EventsModule } from "./profile/events/events.module";
 
 @NgModule({
   declarations: [AppComponent],

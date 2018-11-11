@@ -19,8 +19,6 @@ export class ProfileLandingPage implements OnInit {
   ngOnInit() {
     this.presentLoading();
     this.userId = this.getUserId()._id;
-    console.log('Authenticated:' + this.auth.isAuthenticated());
-    console.log('User:' + this.auth.getUser()._id);
     this.sub = this.auth.getUserData(this.userId).subscribe((res : User)=>{
       this.user = res;
     },(err)=>{

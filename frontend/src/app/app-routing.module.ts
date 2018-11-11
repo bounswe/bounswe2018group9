@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', loadChildren: './auth/auth.module#AuthModule' },
-  { path: 'feed', loadChildren: './events/events.module#EventsModule' }
+  { path: 'profile', loadChildren: './profile/profile.module#ProfileModule'},
+  { path: 'feed', loadChildren: './profile/events/events.module#EventsModule'}
 ];
 
 @NgModule({
