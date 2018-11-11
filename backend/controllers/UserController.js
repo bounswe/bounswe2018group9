@@ -41,15 +41,16 @@ function getUser(email,password) {
 function getUserById(req,res,next) {
     const id = req.params.id;
 
-    User.findById(id, (err,user) => {
-        if(err || !user) {
-            res.status(500);
-            res.send("Cannot find user with id : "+id);
-        } else {
+    User.findById(id)
+        .exec()
+        .then((user) => {
             res.status(200);
             res.send(user);
-        }
-    });
+        })
+        .catch((err) => {
+            res.status(404);
+            res.send({err});
+        });
 }
 
 function addUser(req,res,next) {
@@ -62,16 +63,15 @@ function addUser(req,res,next) {
 
     // Before save salt the password
     
-    user.save(function(err,user){
-        if(!err){
+    user.save()
+        .then((user) => {
+            res.status(200);
             res.send(user);
-        }
-        else
-        {
+        })
+        .catch((err) => {
             res.status(500);
-            res.send(err);
-        }
-    });
+            res.send({err});
+        });
 };
 
 //When user sign in it controls email and password true or not 

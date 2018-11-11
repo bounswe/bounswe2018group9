@@ -11,17 +11,15 @@ exports.addEvent = function(req,res,next){
     date: req.body.date
   });
 
-  event.save(function(err,event)
-  {
-    if(!err){
-      console.log('Error yok');
-      res.send(event);
-    }
-    else
-    {
-       console.log('Error: '+err.message);
-    }
-  });
+  event.save()
+    .then((event) => {
+      res.status(200);
+      res.send({event});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
 }
 
 exports.updateEventbyId = function(req, res, next)
@@ -93,19 +91,18 @@ exports.updateEventbyId = function(req, res, next)
 }
 exports.getEventbyId = function(req, res, next)
 {
-  search_id = req.params.id;
-  console.log(search_id);
-  Event.findById(search_id, function(err, ev)
-  {
-    if(!err)
-    {
-      res.send(ev);
-    }
-    else
-    {
-      res.send("No event found with id: " + search_id);
-    }
-  });
+  searchId = req.params.id;
+
+  Event.findById(searchId)
+    .exec()
+    .then((event) => {
+      res.status(200);
+      res.send(event);
+    })
+    .catch((err)=>{
+      res.status(404);
+      res.send('No event found with id: ' + searchId);
+    });
 }
 
 
@@ -136,17 +133,19 @@ exports.getEventbyOwner = function(req,res,next)
   {
     limitVar=Number(req.query.limit);
   }
-  Event.paginate({'owner' : req.params.id}, {offset: skipVar, limit: limitVar},function(err, result)
-    {
-      if(err || !result.docs)
-      {
-        res.send("No event found with creator id: " + req.params.id);
-      }
-      else
-      {
+  Event.paginate({'owner' : req.params.id}, {offset: skipVar, limit: limitVar})
+    .then((result) => {
+      if (!result.docs){
+        res.send('No event found with creator id: ' + req.params.id);
+      } else {
+        res.status(200);
         res.send(result.docs);
       }
-  });
+    })
+    .catch((err)=>{
+      res.status(500);
+      res.send({err})
+    });
 }
 
 // needs params: skip(integer, default 0), limit(integer, default 10)
@@ -172,14 +171,17 @@ exports.getAllEvents = function(req,res,next)
     limitVar=Number(req.query.limit);
   }
   
-  Event.paginate({}, {offset: skipVar, limit: limitVar},function(err, result){
-    if(err || !result.docs)
-    {
-      res.send("No events found");
-    }
-    else
-    {
-      res.send(result.docs);
-    }
-  });
+  Event.paginate({}, {offset: skipVar, limit: limitVar})
+    .then((result) => {
+      if (!result.docs){
+        res.send('No events found');
+      } else {
+        res.status(200);
+        res.send(result.docs);
+      }
+    })
+    .catch((err)=>{
+      res.status(500);
+      res.send({err})
+    });
 }
