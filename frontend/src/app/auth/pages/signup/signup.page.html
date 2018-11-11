@@ -17,7 +17,7 @@
           </ion-item>
           <ion-item>
             <ion-label position="stacked"><b>Password</b></ion-label>
-            <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+            <ion-input (keyup)="$event.key == 'Enter' && register()" type="password" placeholder="Password" formControlName="password"></ion-input>
           </ion-item>
         </ion-list>
 
