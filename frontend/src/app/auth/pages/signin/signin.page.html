@@ -6,6 +6,7 @@
 
     <div class="form-container" margin padding>
       <form [formGroup]="form" (ngSubmit)="login()">
+
         <ion-list>
           <ion-item>
             <ion-label position="stacked"><b>Email</b></ion-label>
@@ -16,10 +17,9 @@
               <b>Password</b>
               <a [href]="'/recover'" float-right>Forgot password?</a>
             </ion-label>
-            <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-          </ion-item>
+            <ion-input (keyup)="$event.key == 'Enter' && login()" type="password" placeholder="Password" formControlName="password"></ion-input>
+            </ion-item>
         </ion-list>
-
         <ion-button type="submit" [disabled]="!form.valid" expand="block">Sign in</ion-button>
       </form>
     </div>
