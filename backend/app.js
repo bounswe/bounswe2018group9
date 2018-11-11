@@ -1,12 +1,15 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const passport = require("passport");
 const cors = require('cors');
 
 // Passport
 require("./utils/passport");
+
+// Set mongoose promises to global promise
+mongoose.Promise = global.Promise;
 
 // Import routers. 
 var indexRouter = require('./routes/index');
