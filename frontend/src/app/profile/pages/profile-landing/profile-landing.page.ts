@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Event, User} from "../../../interfaces";
+import {User} from "../../../interfaces";
 import {AuthService} from "../../../auth/providers/auth/auth.service";
 import {LoadingController} from '@ionic/angular';
-import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-profile-landing',
