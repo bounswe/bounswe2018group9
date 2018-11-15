@@ -7,6 +7,12 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-item>
+  <ion-label color="primary">Interests</ion-label>
+  <ion-select multiple="true" >
+    <ion-select-option *ngFor="let interest of interests" value="{{interest}}">{{interest}}</ion-select-option>
+  </ion-select>
+</ion-item>
 <ion-content padding *ngIf="user; let u">
   <img src='{{u.profileImage}}'/>
   <p>My name is: {{u.firstName +' ' + u.lastName}}</p>

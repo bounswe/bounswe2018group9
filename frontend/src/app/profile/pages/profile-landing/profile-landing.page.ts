@@ -10,6 +10,7 @@ import {LoadingController} from '@ionic/angular';
 })
 export class ProfileLandingPage implements OnInit {
 
+  interests = ['Movie', 'Music','Theatre'];
   private sub : any;
   user: User | null = null;
   userId : string | null = null;
