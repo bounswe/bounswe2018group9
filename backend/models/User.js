@@ -23,7 +23,16 @@ var UserSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    birth: {
+        type: Date,
+        required: false 
+    },
+    nationality: {
+        type: String,
+        required : false
     }
+    
     //ADDITIONAL USER FIELDS TO BE ADDED
 });
 
