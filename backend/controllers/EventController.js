@@ -238,5 +238,4 @@ exports.updateAttendee = function(req,res,next){
         }
       });
   });
-  
 }
