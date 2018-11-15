@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 var mongoosePaginate = require("mongoose-paginate");
 var Schema = mongoose.Schema;
 
-//Import Models
+// Model Imports
 var UserModel = require("./User");
-// Definition
+
 var EventSchema = new Schema({
     name: {
         type: String,
@@ -12,8 +12,14 @@ var EventSchema = new Schema({
     },
     
     price: {
-        type: Number,
-        required: true
+        amount: {
+            type: Number,
+            required: true
+        },
+        unit: {
+            type: String,
+            required: true
+        }
     },
 
     description: {
@@ -26,7 +32,12 @@ var EventSchema = new Schema({
         required: true    
     },
 
-    owner: {//id of the associated User object
+    created: {
+        type: Date,
+        required: false
+    }
+
+    owner: {
         type: String, 
         required: true
     },
