@@ -10,7 +10,9 @@ exports.addEvent = function(req,res,next){
     owner: req.body.owner,
     artists: req.body.artists,
     description: req.body.description,
-    date: req.body.date
+    date: req.body.date,
+    medias : req.body.medias,
+    created : Date.now()
   });
 
   event.save()
