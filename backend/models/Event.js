@@ -86,6 +86,7 @@ var EventSchema = new Schema({
                     ref: 'User',
                     required: true
                 },
+                //0=downvote 1=upvote 2=not voted
                 voteType: {
                     type: Number,
                     required: true 
@@ -122,9 +123,32 @@ var EventSchema = new Schema({
         type: [String],
         required: true,
         default: []
+    },
+    
+    locationConstruct:{
+        //location construct here
+        locationName:{
+            type:String
+        },
+        location: {
+            locType:{
+                type:[String]
+            },
+            //number of lat,long
+            coordinates:[Number]
+        },
+        
+        required: false
+    },
+
+    medias: {
+        type: [String],
+        required: true,
+        default: []
     }
 });
 
+        
 EventSchema.plugin(mongoosePaginate);
 
 var Event = mongoose.model('Event', EventSchema);
