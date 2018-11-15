@@ -16,7 +16,7 @@ var EventSchema = new Schema({
             type: Number,
             required: true
         },
-        unit: {
+        currency: {
             type: String,
             required: true
         }
@@ -32,14 +32,85 @@ var EventSchema = new Schema({
         required: true    
     },
 
+    duration: {
+        length: {
+            type: Number,
+            required: true
+        },
+        unit: {
+            type: String,
+            required: true
+        }
+    },
+
     created: {
         type: Date,
         required: false
-    }
+    },
 
-    owner: {
-        type: String, 
+    creator: {
+        type: Schema.Types.ObjectId, 
+        ref: 'User',
         required: true
+    },
+
+    attendance: {
+        type: [{
+            user: {
+                type: Schema.Types.ObjectId, 
+                ref: 'User',
+                required: true
+            },
+            attendanceType: {
+                type: Number,
+                default: 0,
+                required: true
+            }
+        }],
+        required: true
+    },
+
+    vote: {
+        upvoteCount: {
+            type: Number,
+            required: false
+        },
+        downvoteCount: {
+            type: Number,
+            required: false
+        },
+        votes: {
+            type: [{
+                user: {
+                    type: Schema.Types.ObjectId,
+                    ref: 'User',
+                    required: true
+                },
+                voteType: {
+                    type: Number,
+                    required: true 
+                }
+            }]
+        }
+    },
+
+    comments: {
+        type: [{
+            author: {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+                required: true
+            },
+            comment: {
+                type: String,
+                required: true
+            },
+            created: {
+                type: Date,
+                required: true
+            }
+        }],
+        default: []
     },
 
     artists: {
@@ -47,48 +118,15 @@ var EventSchema = new Schema({
         required: false
     },
 
-    willAttendUser: {
-        type: [mongoose.Schema.Types.ObjectId],
-        required: false
-    },
-
-    maybeAttendUser: {
-        type: [mongoose.Schema.Types.ObjectId],
-        required: false
-    },
-
-    notAttendUser: {
-        type: [mongoose.Schema.Types.ObjectId],
-        required: false
-    },
-    
-    attendedUsers: {
-        type: [mongoose.Schema.Types.ObjectId],
-        required: false
-    },
-
-    blockedUsers: {
-        type: [mongoose.Schema.Types.ObjectId],
-        required: false
-    },
-
-    /*
-    location-construct: {
-        //location construct here,
-        required: false
-    },
-    
-    comments: {
-        
+    tags: {
+        type: [String],
+        required: true,
+        default: []
     }
-    
-    tags:{
-        
-    }
-    */
 });
+
 EventSchema.plugin(mongoosePaginate);
 
-var Event = mongoose.model('Event',EventSchema);
+var Event = mongoose.model('Event', EventSchema);
 
 module.exports = Event;
