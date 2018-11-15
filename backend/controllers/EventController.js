@@ -201,7 +201,7 @@ exports.updateAttendee = function(req,res,next){
       
       let userAlreadyInTheList = false;
       let attendanceInfo = event.attendance;
-      attendanceInfo = _.map((el)=>{
+      attendanceInfo = _.map(attendanceInfo,(el)=>{
         // Check here if the ids are as it is supposed to be.
         if (el.user === userId) {
           userAlreadyInTheList = true;
