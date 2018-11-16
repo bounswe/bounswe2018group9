@@ -7,6 +7,6 @@ export interface Attendance extends Object {
 }
 
 export interface Attendances extends Object {
-  count?: { [type: string]: number };
+  count?: { [type: number]: number };
   attendances?: [Attendance]
 }

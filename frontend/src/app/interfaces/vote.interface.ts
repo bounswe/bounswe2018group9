@@ -7,6 +7,6 @@ export interface Vote extends Object {
 }
 
 export interface Votes extends Object {
-  count?: { [type: string]: number };
+  count?: { [type: number]: number };
   votes?: [Vote]
 }
