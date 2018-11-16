@@ -36,8 +36,8 @@ var UserSchema = new Schema({
         type: String,
         required: false
     }
-} 
-    
+
+
     //ADDITIONAL USER FIELDS TO BE ADDED
 });
 
