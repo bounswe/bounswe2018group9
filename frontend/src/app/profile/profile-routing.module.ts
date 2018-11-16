@@ -5,6 +5,8 @@ import {ProfileLandingPage} from "./pages/profile-landing/profile-landing.page";
 
 const routes: Routes = [
   { path: '', component: ProfileLandingPage},
+  { path: 'timeline', loadChildren: './pages/timeline/timeline.module#TimelinePageModule' },
+  { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' },
 ];
 
 @NgModule({

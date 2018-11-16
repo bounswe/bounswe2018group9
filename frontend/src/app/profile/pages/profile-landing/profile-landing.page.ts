@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {User} from "../../../interfaces";
 import {AuthService} from "../../../auth/providers/auth/auth.service";
-import {LoadingController} from '@ionic/angular';
+import {Content, LoadingController} from '@ionic/angular';
 
 @Component({
   selector: 'app-profile-landing',
@@ -10,15 +10,21 @@ import {LoadingController} from '@ionic/angular';
 })
 export class ProfileLandingPage implements OnInit {
 
-  interests = ['Movie', 'Music','Theatre'];
+  followedBy : User[];
+  following : User[];
+  notifications : String[];
+  settings : String[];
+  messages : String[];
+  interests : String[] = ['Movie', 'Music','Theatre'];
   private sub : any;
   user: User | null = null;
   userId : string | null = null;
   constructor(private auth : AuthService,private loadingController : LoadingController) { }
+  @ViewChild(Content) content: Content;
 
   ngOnInit() {
     this.presentLoading();
-    this.userId = this.getUserId()._id;
+    this.userId = this.getUser()._id;
     this.sub = this.auth.getUserData(this.userId).subscribe((res : User)=>{
       this.user = res;
     },(err)=>{
@@ -33,7 +39,7 @@ export class ProfileLandingPage implements OnInit {
   }
 
 
-   getUserId() : User{
+   getUser() : User{
     if(this.auth.isAuthenticated()){
        return this.auth.getUser();
     }
