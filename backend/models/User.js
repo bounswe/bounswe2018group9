@@ -6,7 +6,7 @@ var bcrypt =require('bcrypt');
 
 
 // Definition
-
+// The profile page requirenment city,birth and nationality
 var UserSchema = new Schema({
     email: {
         type: String,
@@ -31,7 +31,12 @@ var UserSchema = new Schema({
     nationality: {
         type: String,
         required : false
+    },
+    city:{
+        type: String,
+        required: false
     }
+} 
     
     //ADDITIONAL USER FIELDS TO BE ADDED
 });
