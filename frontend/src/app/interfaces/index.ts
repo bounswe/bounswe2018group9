@@ -4,3 +4,4 @@ export { Media } from './media.interface';
 export { Vote, Votes } from './vote.interface';
 export { Comment, Comments } from './comment.interface';
 export { Attendance, Attendances } from './attendance.interface';
+export { Location } from './location.interface';
