@@ -8,5 +8,5 @@ export interface Vote extends Object {
 
 export interface Votes extends Object {
   count?: { [type: number]: number };
-  votes?: [Vote]
+  votes?: Vote[]
 }

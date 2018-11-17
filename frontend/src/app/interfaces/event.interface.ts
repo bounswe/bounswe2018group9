@@ -10,9 +10,9 @@ export interface Event extends Object {
   creator?: string | User;
   title?: string;
   description?: string;
-  artists?: [string];
-  tags?: [string];
-  media?: Media
+  artists?: string[];
+  tags?: string[];
+  media?: Media[];
   date?: number;
   location?: Location;
   price?: {

@@ -8,5 +8,5 @@ export interface Attendance extends Object {
 
 export interface Attendances extends Object {
   count?: { [type: number]: number };
-  attendances?: [Attendance]
+  attendances?: Attendance[]
 }

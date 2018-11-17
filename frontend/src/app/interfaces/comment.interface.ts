@@ -9,11 +9,11 @@ export interface Comment extends Object {
   reference?: string | User | Event;
   parent?: null | string | Comment;
   text?: string;
-  media?: [Media];
+  media?: Media[];
   votes?: Votes;
 }
 
 export interface Comments extends Object {
   count?: number;
-  comments?: [Comment];
+  comments?: Comment[];
 }
