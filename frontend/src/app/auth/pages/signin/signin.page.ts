@@ -9,7 +9,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.page.html',
-  styleUrls: ['../../auth.module.scss', './signin.page.scss'],
+  styleUrls: ['./signin.page.scss'],
 })
 export class SigninPage implements OnInit {
   form: FormGroup;

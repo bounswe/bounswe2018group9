@@ -10,7 +10,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
-  styleUrls: ['../../auth.module.scss', './signup.page.scss'],
+  styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
   form: FormGroup;
