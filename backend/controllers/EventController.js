@@ -216,11 +216,53 @@ function updateAttendee(req,res,next){
   });
 };
 
+function addComment(req,res,next) {
+  Event.findOneAndUpdate({_id: req.params.id}, {$push: {comments: req.body}}, {new: true})
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({comments: event.comments});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send({err});
+    });
+}
+
+function deleteComment(req,res,next) {
+  Event.findOneAndUpdate({_id: req.params.id}, {$pull: {comments: { _id:req.params.commentId }}}, {new: true})
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({comments: event.comments});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send({err});
+    });
+}
+
+function updateComment(req,res,next) {
+  Event.findOneAndUpdate({"id": req.params.id, "comments.id": req.params.commentId}, {$set: {comment: req.body} }, {new: true})
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({comments: event.comments});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send({err});
+    });
+}
+
 module.exports = {
   addEvent,
   updateEvent,
   getEventbyId,
   getEventbyCreator,
   getAllEvents,
-  updateAttendee
+  updateAttendee,
+  addComment,
+  deleteComment,
+  updateComment
 };
