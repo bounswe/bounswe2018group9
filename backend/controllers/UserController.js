@@ -56,13 +56,13 @@ function getUserById(req,res,next) {
 function addUser(req,res,next) {
     var user = new User({
         email: req.body.email,
-        name: req.body.name,
-        password: req.body.password
+        password: req.body.password,
+        userDetails: req.body.userDetails,
+        followers: [],
+        following: [],
+        interests: []
     });
-    console.log('request: '+JSON.stringify(req.body,null,2));
 
-    // Before save salt the password
-    
     user.save()
         .then((user) => {
             res.status(200);
