@@ -74,6 +74,59 @@ function addUser(req,res,next) {
         });
 };
 
+function addFollower(req,res,next){
+    User.findOneAndUpdate({_id: req.params.id}, {$push: {follower: req.body.id}}, {new: true})
+        .exec()
+        .then((user)=>{
+            res.status(200);
+            res.send({follower: user.follower});
+        })
+        .catch((err)=>{
+            res.status(500);
+            res.send({err});
+        });
+}
+
+function removeFollower(req,res,next) {
+    User.update({_id:req.params.id}, {$pull: {follower: req.body.id}}, {new: true})
+        .exec()
+        .then((user)=>{
+            res.status(200);
+            res.send({follower: user.follower});
+        })
+        .catch((err)=>{
+            res.status(500);
+            res.send({err});
+        });
+}
+
+function follow(req,res,next){
+    User.findOneAndUpdate({_id: req.params.id}, {$push: {following: req.body.id}}, {new: true})
+        .exec()
+        .then((user)=>{
+            res.status(200);
+            res.send({following: user.following});
+        })
+        .catch((err)=>{
+            res.status(500);
+            res.send({err});
+        });
+}
+
+function unfollow(req,res,next) {
+    User.update({_id:req.params.id}, {$pull: {following: req.body.id}}, {new: true})
+        .exec()
+        .then((user)=>{
+            res.status(200);
+            res.send({following: user.following});
+        })
+        .catch((err)=>{
+            res.status(500);
+            res.send({err});
+        });
+}
+
+
 //When user sign in it controls email and password true or not 
 exports.signUser = function(req,res,next){
     console.log('body', req.body);
