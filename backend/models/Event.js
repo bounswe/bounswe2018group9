@@ -2,8 +2,29 @@ var mongoose = require('mongoose');
 var mongoosePaginate = require("mongoose-paginate");
 var Schema = mongoose.Schema;
 
-// Model Imports
-var UserModel = require("./User");
+const CommentSchema = new Schema({
+    type: {
+        author: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
+
+        parentId: {
+            type: Schema.Types.ObjectId
+        },
+
+        body: {
+            type: String,
+            required: true
+        },
+
+        created: {
+            type: Date,
+            default: Date.now()
+        }
+    }
+});
 
 var EventSchema = new Schema({
     name: {
@@ -96,21 +117,7 @@ var EventSchema = new Schema({
     },
 
     comments: {
-        type: [{
-            author: {
-                type: Schema.Types.ObjectId,
-                ref: 'User',
-                required: true
-            },
-            comment: {
-                type: String,
-                required: true
-            },
-            created: {
-                type: Date,
-                required: true
-            }
-        }],
+        type: [CommentSchema],
         default: []
     },
 
