@@ -24,9 +24,9 @@ export class FeedPage implements OnInit {
     this.eventSub = this.eventService.get()
       .subscribe((data: Event[]) => {
         this.events = data;
+        this.loadingController.dismiss();
       }, error => {
-        alert(error);
-      },()=>{
+        console.log(error);
         this.loadingController.dismiss();
       });
   }

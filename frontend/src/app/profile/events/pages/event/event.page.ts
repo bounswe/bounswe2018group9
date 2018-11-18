@@ -30,9 +30,9 @@ export class EventPage implements OnInit, OnDestroy{
         this.eventService.get(this.event_id).subscribe(
           (next : Event) =>{
             this.event = next;
+            this.loadingController.dismiss();
           },(err)=>{
-            this.handleError(err);
-          },()=>{
+            console.log(err);
             this.loadingController.dismiss();
           }
         );
@@ -65,10 +65,6 @@ export class EventPage implements OnInit, OnDestroy{
       });
     await alert.present();
   }
-  private handleError(error: HttpErrorResponse) {
 
-    this.presentAlert(`${JSON.stringify(error.error)}`);
-
-  }
 
 }

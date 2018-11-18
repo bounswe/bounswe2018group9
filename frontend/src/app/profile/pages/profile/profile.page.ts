@@ -24,13 +24,14 @@ export class ProfilePage implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    console.log(this.route.snapshot.routeConfig);
     this.presentLoading();
     this.userId = this.getUser()._id;
     this.sub = this.auth.getUserData(this.userId).subscribe((res : User)=>{
       this.user = res;
+      this.loadingController.dismiss();
     },(err)=>{
       console.log(err);
-    },()=>{
       this.loadingController.dismiss();
     });
   }
