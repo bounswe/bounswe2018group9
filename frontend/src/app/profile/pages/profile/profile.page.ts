@@ -18,13 +18,12 @@ export class ProfilePage implements OnInit {
   messages : String[];
   interests : String[] = ['Movie', 'Music','Theatre'];
   private sub : any;
-  user: User | null = null;
-  userId : string | null = null;
+  user: User | null;
+  userId : string | null;
   constructor(private auth : AuthService,private loadingController : LoadingController, private router : Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.routeConfig);
     this.presentLoading();
     this.userId = this.getUser()._id;
     this.sub = this.auth.getUserData(this.userId).subscribe((res : User)=>{
