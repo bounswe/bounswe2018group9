@@ -3,16 +3,20 @@ var Event = require("../models/Event");
 
 const _ = require('lodash');
 
-exports.addEvent = function(req,res,next){
+function addEvent(req, res, next) {
+  
   var event = new Event({
     name: req.body.name,
     price: req.body.price,
-    owner: req.body.owner,
-    artists: req.body.artists,
     description: req.body.description,
     date: req.body.date,
+    duration: req.body.duration,
+    created : Date.now(),
+    creator: req.body.creator,
+    artists: req.body.artists,
+    tags: req.body.tags,
+    locationConstruct: req.body.locationConstruct,
     medias : req.body.medias,
-    created : Date.now()
   });
 
   event.save()
@@ -26,8 +30,9 @@ exports.addEvent = function(req,res,next){
     });
 }
 
-exports.updateEventbyId = function(req, res, next)
-{
+function updateEvent(req, res, next){
+  
+  /* VALIDATION SHOULD COME HERE */
   if(!(req.body.name))
   {
     res.status(500).send("Name field missing.");
@@ -53,51 +58,23 @@ exports.updateEventbyId = function(req, res, next)
     res.status(500).send("Blocked users field missing.");
   }
 
-  Event.findByIdAndUpdate(
-    //Object Id
-    req.params.id,
-    
-    //Changes to be made
-    {
-      "name": req.body.name,
-    
-      "price": req.body.price,
-  
-      "description": req.body.description,
-  
-      "date": req.body.date,
-  
-      "artists": req.body.artists,
-  
-      "blockedUsers": req.body.blockedUsers
-    },
-
-    //Ask mongoose to return the new version of the object
-    {new: true},
-
-    //Callback
-    (err, newEvent) => {
-      if(err)
-      {
-        res.status(500).send();
-      }
-      else if(!newEvent)
-      {
-        res.status(404).send();
-      }
-      else
-      {
-        res.status(200).send(newEvent);
-      }
-    }
-    
-    );
+  const updateOptions = { new: true }; 
+  Event.findByIdAndUpdate(req.params.id,{ $set:req.body }, updateOptions)
+    .exec()
+    .then((updatedEvent) => {
+      res.status(200);
+      res.send({updatedEvent: updatedEvent});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
 }
-exports.getEventbyId = function(req, res, next)
-{
-  searchId = req.params.id;
 
-  Event.findById(searchId)
+function getEventbyId(req, res, next) {
+  eventId = req.params.id;
+
+  Event.findById(eventId)
     .exec()
     .then((event) => {
       res.status(200);
@@ -105,15 +82,14 @@ exports.getEventbyId = function(req, res, next)
     })
     .catch((err)=>{
       res.status(404);
-      res.send('No event found with id: ' + searchId);
+      res.send('No event found with id: ' + eventId);
     });
 }
 
 
 // needs params: id(owner id as string), skip(integer, default 0), limit(integer, default 10)
 // will return array of event objects with <limit> elements starting from object number <skip> in the db 
-exports.getEventbyOwner = function(req,res,next)
-{
+function getEventbyCreator(req,res,next) {
   var skipVar, limitVar;
   if(!req.query.id)
   {
@@ -154,8 +130,8 @@ exports.getEventbyOwner = function(req,res,next)
 
 // needs params: skip(integer, default 0), limit(integer, default 10)
 // will return array of event objects with <limit> elements starting from object number <skip> in the db 
-exports.getAllEvents = function(req,res,next)
-{
+function getAllEvents(req,res,next) {
+  
   var skipVar, limitVar;
   if(!req.query.skip)
   {
@@ -190,7 +166,7 @@ exports.getAllEvents = function(req,res,next)
     });
 }
 
-exports.updateAttendee = function(req,res,next){
+function updateAttendee(req,res,next){
   const eventId = req.params.id;
   const userId = req.body.attendant;
   const attendanceType = req.body.attendanceType;
@@ -240,4 +216,13 @@ exports.updateAttendee = function(req,res,next){
         }
       });
   });
+}
+
+module.exports = {
+  addEvent,
+  updateEvent,
+  getEventbyId,
+  getEventbyCreator,
+  getAllEvents,
+  updateAttendee
 }
