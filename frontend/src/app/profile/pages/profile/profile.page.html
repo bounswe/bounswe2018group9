@@ -10,19 +10,14 @@
 
 <ion-content padding *ngIf="user">
 
-
   <img src='{{user.profileImage}}'/>
-
   <ion-label>{{user.name}}</ion-label>
   <ion-label>Customize your profile by going to settings page.</ion-label>
-
-  <ion-nav>
-    <ion-button routerLink="/profile/settings">
+  <ion-button routerLink="/profile/settings">
       Settings
-    </ion-button>
-    <ion-button routerLink="/profile/timeline">
+  </ion-button>
+  <ion-button routerLink="/profile/timeline">
       Timeline
-    </ion-button>
-  </ion-nav>
+  </ion-button>
 </ion-content>
 
