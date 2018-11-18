@@ -36,10 +36,10 @@ export class EventCreatePage implements OnInit {
       .subscribe(
         message => {
           this.router.navigate(['/feed']);
+          this.loadingController.dismiss();
         },
         error => {
-          this.handleError(error)
-        },() => {
+          console.log(error);
           this.loadingController.dismiss();
         }
       );
@@ -52,33 +52,5 @@ export class EventCreatePage implements OnInit {
     });
     return await loading.present();
   }
-  async presentAlert(errMessage ,backendError : boolean) {
-    let alert;
-    if(backendError){
-      alert = await this.alertController.create({
-        header: 'Wait..',
-        subHeader: 'You could not create the event.',
-        message: 'You get a backend error: ' + errMessage,
-        buttons: ['Close']
-      });
-    }else{
-      alert = await this.alertController.create({
-        header: 'Wait..',
-        subHeader: 'You could not create the event.',
-        message: 'You get a client error: ' + errMessage,
-        buttons: ['Close']
-      });
-    }
-    await alert.present();
-  }
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      this.presentAlert(error.error.message,false);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      this.presentAlert(`${JSON.stringify(error.error)}`, true);
-    }
-  };
+
 }

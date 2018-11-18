@@ -23,10 +23,9 @@ export class SettingsPage implements OnInit {
     this.userId = this.getUser()._id;
     this.sub = this.authController.getUserData(this.userId).subscribe((res : User) => {
       this.user = res;
-      console.log(res);
+      this.loadingController.dismiss();
     },(err)=>{
       console.log(err);
-    },()=>{
       this.loadingController.dismiss();
     });
   }

@@ -1,11 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-back-button routerLink="/profile"></ion-back-button>
+    <ion-button routerLink="../"></ion-button>
     <ion-title>Settings</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+
+  <h3>Welcome to user settings.</h3>
 <ion-list>
 
 <ion-item>
@@ -18,11 +20,11 @@
   </ion-select>
 </ion-item>
   <ion-item>
-    <ion-label>Your email: {{user.name}}</ion-label>
+    <ion-label *ngIf="user">Your name: {{user.name}}</ion-label>
     <ion-button>Change your name</ion-button>
   </ion-item>
 <ion-item>
-  <ion-label>Your email: {{user.email}}</ion-label>
+  <ion-label *ngIf="user">Your email: {{user.email}}</ion-label>
   <ion-button>Change your e-mail</ion-button>
 </ion-item>
 
@@ -40,7 +42,4 @@
 </ion-item>
 
 </ion-list>
-
-
-  Welcome to user settings.
 </ion-content>
