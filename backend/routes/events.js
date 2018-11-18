@@ -17,4 +17,8 @@ router.post('/:id/attendee', EventController.updateAttendee);
 router.put('/:id', EventController.updateEvent);
 router.get('/:id', EventController.getEventbyId);
 
+router.post('/:id/comments', EventController.addComment);
+router.delete('/:id/comments/:commentId', EventController.deleteComment);
+router.put('/:id/comments/:commentId', EventController.updateComment);
+
 module.exports = router;
