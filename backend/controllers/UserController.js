@@ -128,6 +128,20 @@ function unfollow(req,res,next) {
         });
 }
 
+function deleteUser(req,res,next) {
+    User.findOneAndDelete({_id: req.params.id})
+        .exec()
+        .then((user)=>{
+            res.status(200);
+            res.send({deletedUser: user});
+        })
+        .catch((err)=>{
+            res.status(500);
+            res.send({err});
+        })
+}
+
+
 
 //When user sign in it controls email and password true or not 
 exports.signUser = function(req,res,next){
@@ -182,5 +196,6 @@ module.exports = {
     addFollower,
     removeFollower,
     follow,
-    unfollow
+    unfollow,
+    deleteUser
 }
