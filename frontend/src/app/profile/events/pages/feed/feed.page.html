@@ -11,7 +11,7 @@
     <ion-item routerLink="/feed">
       Feed
     </ion-item>
-    <ion-item routerLink="/profile">
+    <ion-item (click)="goToProfile()">
       Profile
     </ion-item>
     <ion-item color="danger" (click)="logout()">

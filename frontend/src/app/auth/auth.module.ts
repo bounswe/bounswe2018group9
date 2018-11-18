@@ -16,6 +16,7 @@ import { AuthGuard } from './guards/auth/auth.guard';
 import { NoAuthGuard } from './guards/no-auth/no-auth.guard';
 
 import { environment } from '../../environments/environment';
+import {NotFoundPage} from './pages/not-found/not-found.page';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { environment } from '../../environments/environment';
   ],
   declarations: [
     SigninPage,
-    SignupPage
+    SignupPage,
+    NotFoundPage
   ],
   providers: [
     AuthService,
