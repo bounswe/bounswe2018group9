@@ -4,7 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 export const environment = {
   production: false,
-  endpoint: 'boun-actopus.herokuapp.com'
+  endpoint: '46.101.223.116:3000'
 };
 
 /*

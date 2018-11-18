@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 import { Event } from '../../../../interfaces/index';
 
@@ -16,7 +16,8 @@ export class FeedPage implements OnInit {
   events: Event[];
   private eventSub : any;
 
-  constructor(private router: Router, private authService: AuthService, private eventService: EventService, public loadingController: LoadingController) { }
+  constructor(private router: Router, private authService: AuthService, private eventService: EventService,
+              public loadingController: LoadingController, private route : ActivatedRoute) { }
 
   ngOnInit() {
     this.presentLoading();
@@ -47,5 +48,8 @@ export class FeedPage implements OnInit {
       .subscribe(response => {
         this.router.navigate(['/signin']);
       })
+  }
+  goToProfile() {
+    this.router.navigate(['../profile'],{relativeTo: this.route});
   }
 }

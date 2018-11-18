@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {ProfileLandingPage} from "./pages/profile-landing/profile-landing.page";
+import { ProfileLandingPage } from "./profile-landing.page";
+import { TimelinePage } from './pages/timeline/timeline.page';
+import { SettingsPage } from './pages/settings/settings.page';
+import {ProfilePage} from './pages/profile/profile.page';
 
 
 const routes: Routes = [
-  { path: '', component: ProfileLandingPage},
-  { path: 'timeline', loadChildren: './pages/timeline/timeline.module#TimelinePageModule' },
-  { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' },
-];
+  { path: 'profile', component: ProfileLandingPage, children:[
+      { path: 'timeline', component: TimelinePage },
+      { path: 'settings', component: SettingsPage },
+      { path: '', component: ProfilePage, pathMatch: 'full'}
+    ]},
+  ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

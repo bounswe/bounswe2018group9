@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/feed"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding *ngIf="user">
+
+
+  <img src='{{user.profileImage}}'/>
+
+  <ion-label>{{user.name}}</ion-label>
+  <ion-label>Customize your profile by going to settings page.</ion-label>
+
+  <ion-nav>
+    <ion-button routerLink="settings">
+      Settings
+    </ion-button>
+    <ion-button routerLink="timeline">
+      Timeline
+    </ion-button>
+  </ion-nav>
+</ion-content>
+

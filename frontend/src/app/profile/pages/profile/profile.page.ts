@@ -1,14 +1,15 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {User} from "../../../interfaces";
-import {AuthService} from "../../../auth/providers/auth/auth.service";
-import {Content, LoadingController} from '@ionic/angular';
+import {Component, OnInit} from '@angular/core';
+import { LoadingController} from '@ionic/angular';
+import {ActivatedRoute, Router} from '@angular/router';
+import {User} from '../../../interfaces';
+import {AuthService} from '../../../auth/providers/auth/auth.service';
 
 @Component({
-  selector: 'app-profile-landing',
-  templateUrl: './profile-landing.page.html',
-  styleUrls: ['./profile-landing.page.scss'],
+  selector: 'app-profile',
+  templateUrl: './profile.page.html',
+  styleUrls: ['./profile.page.scss'],
 })
-export class ProfileLandingPage implements OnInit {
+export class ProfilePage implements OnInit {
 
   followedBy : User[];
   following : User[];
@@ -19,8 +20,8 @@ export class ProfileLandingPage implements OnInit {
   private sub : any;
   user: User | null = null;
   userId : string | null = null;
-  constructor(private auth : AuthService,private loadingController : LoadingController) { }
-  @ViewChild(Content) content: Content;
+  constructor(private auth : AuthService,private loadingController : LoadingController, private router : Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.presentLoading();
@@ -39,9 +40,9 @@ export class ProfileLandingPage implements OnInit {
   }
 
 
-   getUser() : User{
+  getUser() : User{
     if(this.auth.isAuthenticated()){
-       return this.auth.getUser();
+      return this.auth.getUser();
     }
   }
   async presentLoading(){
@@ -51,4 +52,5 @@ export class ProfileLandingPage implements OnInit {
     });
     return await loading.present();
   }
+
 }

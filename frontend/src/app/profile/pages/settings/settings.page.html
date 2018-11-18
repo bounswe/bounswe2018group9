@@ -1,9 +1,46 @@
 <ion-header>
   <ion-toolbar>
+    <ion-back-button routerLink="/profile"></ion-back-button>
     <ion-title>Settings</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+<ion-list>
+
+<ion-item>
+  <ion-label></ion-label>
+  <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Select One">
+    <ion-select-option value="1">1</ion-select-option>
+    <ion-select-option value="2">2</ion-select-option>
+    <ion-select-option value="3">3</ion-select-option>
+    <ion-select-option value="4">4</ion-select-option>
+  </ion-select>
+</ion-item>
+  <ion-item>
+    <ion-label>Your email: {{user.name}}</ion-label>
+    <ion-button>Change your name</ion-button>
+  </ion-item>
+<ion-item>
+  <ion-label>Your email: {{user.email}}</ion-label>
+  <ion-button>Change your e-mail</ion-button>
+</ion-item>
+
+<ion-item>
+  <ion-label>Your Interests:</ion-label>
+  <ion-label>You can change them to customize your feed. We will show related events.</ion-label>
+  <ion-select multiple="true" >
+    <ion-select-option *ngFor="let interest of interests" value="{{interest}}">{{interest}}</ion-select-option>
+  </ion-select>
+</ion-item>
+
+<ion-item>
+  <ion-label> Date : </ion-label>
+  <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date" class="inputStyle"></ion-datetime>
+</ion-item>
+
+</ion-list>
+
+
   Welcome to user settings.
 </ion-content>
