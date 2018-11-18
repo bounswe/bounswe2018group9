@@ -15,30 +15,56 @@ var UserSchema = new Schema({
             unique: true 
         }
     },
-    name: {
-        type: String,
-        required: true    
-    },
     
     password: {
         type: String,
         required: true
     },
-    birth: {
-        type: Date,
-        required: false 
+
+    userDetails: {
+        type: {
+            name: {
+                type: String,
+                required: true    
+            },
+            
+            birth: {
+                type: Date,
+                required: false 
+            },
+        
+            nationality: {
+                type: String,
+                required : false
+            },
+
+            city:{
+                type: String,
+                required: false
+            }
+        }
     },
-    nationality: {
-        type: String,
-        required : false
+
+    followers: {
+        type: [{
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }],
+        default: []
     },
-    city:{
-        type: String,
-        required: false
+
+    following: {
+        type: [{
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }],
+        default: []
+    },
+
+    interests: {
+        type: [String],
+        default: []
     }
-
-
-    //ADDITIONAL USER FIELDS TO BE ADDED
 });
 
 //Password hashing part
