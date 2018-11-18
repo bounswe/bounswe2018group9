@@ -88,17 +88,20 @@ var EventSchema = new Schema({
                 required: true
             }
         }],
-        required: true
+        required: true,
+        default: []
     },
 
     vote: {
         upvoteCount: {
             type: Number,
-            required: false
+            required: false,
+            default: 0
         },
         downvoteCount: {
             type: Number,
-            required: false
+            required: false,
+            default: 0
         },
         votes: {
             type: [{
@@ -112,7 +115,8 @@ var EventSchema = new Schema({
                     type: Number,
                     required: true 
                 }
-            }]
+            }],
+            default: []
         }
     },
 
