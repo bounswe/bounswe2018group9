@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {User} from '../../../interfaces';
 import {AuthService} from '../../../auth/providers/auth/auth.service';
-import {ProfilePage} from '../profile/profile.page';
-import {LoadingController} from '@ionic/angular';
+import {AlertController, Datetime, LoadingController} from '@ionic/angular';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'profile-settings',
@@ -10,13 +10,18 @@ import {LoadingController} from '@ionic/angular';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
-
+  changeCityButton : boolean = false;
+  changeEmailButton : boolean = false;
+  changeNameButton : boolean = false;
+  changeBirthButton : boolean = false;
+  changeNationalityButton : boolean = false;
   settings : String[];
-  interests : String[];
+  interests : String[] = ['i1','i2','i3'];
   user: User | null;
   private sub : any;
   userId : string | null = null;
-  constructor(private authController: AuthService, private loadingController : LoadingController) { }
+  constructor(private authController: AuthService, private loadingController : LoadingController, private router:
+  Router, private alertController: AlertController) { }
 
   ngOnInit() {
     this.presentLoading();
@@ -34,15 +39,13 @@ export class SettingsPage implements OnInit {
     this.sub.unsubscribe();
   }
   customPopoverOptions: any = {
-    header: 'This is header: Hello',
-    subHeader: 'This is subheader. Just a dummy popover selector',
-    message: 'This is message'
+    header: 'Select who can see your posts',
   };
 
   async presentLoading(){
     const loading = await this.loadingController.create({
       message: 'Loading...',
-      duration: 10000
+      duration: 100
     });
     return await loading.present();
   }
@@ -51,4 +54,131 @@ export class SettingsPage implements OnInit {
       return this.authController.getUser();
     }
   }
-}
+
+  changeName(newName: string) {
+    let newUser : User = {
+      name: newName,
+      email: this.user.email,
+      profileImage: this.user.profileImage,
+      _id: this.user._id,
+      birth: this.user.birth,
+      city : this.user.city,
+      followers : this.user.followers,
+      following : this.user.following,
+      interests : this.user.interests,
+      nationality : this.user.nationality
+    };
+    this.presentLoading();
+    this.authController.updateUser(this.userId,newUser).subscribe((res)=>{
+      this.loadingController.dismiss();
+      this.router.navigate(['/profile/settings']);
+    },(err)=>{
+      console.log(err);
+      this.loadingController.dismiss();
+      this.router.navigate(['/profile/settings']);
+    });
+    }
+
+  changeEmail(newEmail: string) {
+    let newUser : User = {
+      name: this.user.name,
+      email: newEmail,
+      profileImage: this.user.profileImage,
+      _id: this.user._id,
+      birth: this.user.birth,
+      city : this.user.city,
+      followers : this.user.followers,
+      following : this.user.following,
+      interests : this.user.interests,
+      nationality : this.user.nationality
+    };
+      this.presentLoading();
+      this.authController.updateUser(this.userId,newUser).subscribe((res)=>{
+        this.loadingController.dismiss();
+        this.router.navigate(['/profile/settings']);
+      },(err)=>{
+        console.log(err);
+        this.loadingController.dismiss();
+        this.router.navigate(['/profile/settings']);
+      });
+    }
+  changeBirth(newBirth : Datetime){
+
+    let newUser : User = {
+      name: this.user.name,
+      email: this.user.email,
+      profileImage: this.user.profileImage,
+      _id: this.user._id,
+      birth: newBirth,
+      city : this.user.city,
+      followers : this.user.followers,
+      following : this.user.following,
+      interests : this.user.interests,
+      nationality : this.user.nationality
+    };
+      this.presentLoading();
+      this.authController.updateUser(this.userId,newUser).subscribe((res)=>{
+        this.loadingController.dismiss();
+        this.router.navigate(['/profile/settings']);
+      },(err)=>{
+        console.log(err);
+        this.loadingController.dismiss();
+        this.router.navigate(['/profile/settings']);
+      });
+
+  }
+  changeNationality(newNationality : string){
+
+    let newUser : User = {
+      name: this.user.name,
+      email: this.user.email,
+      profileImage: this.user.profileImage,
+      _id: this.user._id,
+      birth: this.user.birth,
+      city : this.user.city,
+      followers : this.user.followers,
+      following : this.user.following,
+      interests : this.user.interests,
+      nationality : newNationality
+    };
+    this.presentLoading();
+    this.authController.updateUser(this.userId,newUser).subscribe((res)=>{
+      this.loadingController.dismiss();
+      this.router.navigate(['/profile/settings']);
+    },(err)=>{
+      console.log(err);
+      this.loadingController.dismiss();
+      this.router.navigate(['/profile/settings']);
+    });
+
+  }
+  changeCity(newCity : string){
+
+    let newUser : User = {
+      name: this.user.name,
+      email: this.user.email,
+      profileImage: this.user.profileImage,
+      _id: this.user._id,
+      birth: this.user.birth,
+      city : newCity,
+      followers : this.user.followers,
+      following : this.user.following,
+      interests : this.user.interests,
+      nationality : this.user.nationality
+    };
+    this.presentLoading();
+    this.authController.updateUser(this.userId,newUser).subscribe((res)=>{
+      this.loadingController.dismiss();
+      this.router.navigate(['/profile/settings']);
+    },(err)=>{
+      console.log(err);
+      this.loadingController.dismiss();
+      this.router.navigate(['/profile/settings']);
+    });
+
+  }
+  savePrivacy(){
+
+  }
+
+  }
