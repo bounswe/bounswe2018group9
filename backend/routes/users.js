@@ -26,7 +26,7 @@ router.post('/:id/addFollower', UserController.addFollower);
 router.post('/:id/removeFollower', UserController.removeFollower);
 
 /* PUT ENDPOINTS */
-router.put('/:id', UserController.updatedUser);
+router.put('/:id', UserController.updateUser);
 
 /* DELETE ENDPOINTS */
 router.delete('/:id', UserController.deleteUser);

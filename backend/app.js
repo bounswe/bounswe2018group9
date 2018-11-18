@@ -14,7 +14,7 @@ mongoose.Promise = global.Promise;
 // Import routers. 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
-var eventsRouter = require('./routes/events');
+const eventsRouter = require('./routes/events');
 const usersRouter = require('./routes/users');
 
 var app = express();

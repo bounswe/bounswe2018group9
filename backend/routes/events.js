@@ -2,21 +2,19 @@ var express = require('express');
 var router = express.Router();
 
 //Import Controllers
-var EventController = require('../controllers/EventController');
+const EventController = require('../controllers/EventController');
 
-//Import Models
-var Event= require('../models/Event');
+router.get('/', EventController.getAllEvents);
+router.get('/getEventbyCreator/:id', EventController.getEventbyCreator);
 
 router.post('/', EventController.addEvent);
 
 
-router.get('/',EventController.getAllEvents);
-router.get('/getEventbyOwner/:id',EventController.getEventbyOwner);
-// these should be last in code
-router.get('/:id', EventController.getEventbyId);
-router.put('/:id', EventController.updateEventbyId);
-
-
 // Updates the attendee status of an event
 router.post('/:id/attendee', EventController.updateAttendee);
-module.exports=router;
+
+// these should be last in code
+router.put('/:id', EventController.updateEvent);
+router.get('/:id', EventController.getEventbyId);
+
+module.exports = router;
