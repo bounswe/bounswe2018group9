@@ -63,4 +63,7 @@ export class AuthService {
   getUserData(userId : string) : Observable<any>{
     return this.http.get('/api/users/'+userId,AuthService.options);
   }
+  updateUser(userId : string , data:User) : Observable<any>{
+    return this.http.put('/api/users/'+ userId , data ,AuthService.options);
+  }
 }
