@@ -74,6 +74,7 @@ function addUser(req,res,next) {
         });
 };
 
+// This will be private later. Only will be used from follow and unfollow.
 function addFollower(req,res,next){
     User.findOneAndUpdate({_id: req.params.id}, {$push: {follower: req.body.id}}, {new: true})
         .exec()
@@ -87,6 +88,7 @@ function addFollower(req,res,next){
         });
 }
 
+// This will be private later. Only will be used from follow and unfollow.
 function removeFollower(req,res,next) {
     User.update({_id:req.params.id}, {$pull: {follower: req.body.id}}, {new: true})
         .exec()
@@ -176,5 +178,9 @@ module.exports = {
     addUser,
     getUser,
     logOut,
-    getUserById
+    getUserById,
+    addFollower,
+    removeFollower,
+    follow,
+    unfollow
 }
