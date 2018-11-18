@@ -28,7 +28,7 @@ function addEvent(req, res, next) {
       res.status(500);
       res.send({err});
     });
-}
+};
 
 function updateEvent(req, res, next){
   
@@ -69,7 +69,7 @@ function updateEvent(req, res, next){
       res.status(500);
       res.send({err});
     });
-}
+};
 
 function getEventbyId(req, res, next) {
   eventId = req.params.id;
@@ -84,8 +84,7 @@ function getEventbyId(req, res, next) {
       res.status(404);
       res.send('No event found with id: ' + eventId);
     });
-}
-
+};
 
 // needs params: id(owner id as string), skip(integer, default 0), limit(integer, default 10)
 // will return array of event objects with <limit> elements starting from object number <skip> in the db 
@@ -126,7 +125,7 @@ function getEventbyCreator(req,res,next) {
       res.status(500);
       res.send({err})
     });
-}
+};
 
 // needs params: skip(integer, default 0), limit(integer, default 10)
 // will return array of event objects with <limit> elements starting from object number <skip> in the db 
@@ -164,7 +163,7 @@ function getAllEvents(req,res,next) {
       res.status(500);
       res.send({err})
     });
-}
+};
 
 function updateAttendee(req,res,next){
   const eventId = req.params.id;
@@ -204,19 +203,18 @@ function updateAttendee(req,res,next){
       return attendanceInfo;
     }
   }, (attendanceInfo)=> {
-    Event.findByIdAndUpdate(eventId,
-      {attendanceInfo:attendanceInfo},
-      {new:true},(err,newEvent)=>{
-        if (err) {
-          res.status(500);
-          res.send({err})
-        } else {
-          res.status(200);
-          res.send(newEvent);
-        }
+    Event.findByIdAndUpdate(eventId,{attendanceInfo:attendanceInfo},{new:true})
+      .exec()
+      .then((updatedEvent) => {
+        res.status(200);
+        res.send({updatedEvent: updatedEvent});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
       });
   });
-}
+};
 
 module.exports = {
   addEvent,
@@ -225,4 +223,4 @@ module.exports = {
   getEventbyCreator,
   getAllEvents,
   updateAttendee
-}
+};
