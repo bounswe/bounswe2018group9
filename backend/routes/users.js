@@ -24,4 +24,8 @@ router.post('/:id/unfollow', UserController.unfollow);
 router.post('/:id/addFollower', UserController.addFollower);
 router.post('/:id/removeFollower', UserController.removeFollower);
 
+
+/* DELETE ENDPOINTS */
+router.delete('/:id', UserController.deleteUser);
+
 module.exports=router;
