@@ -212,5 +212,5 @@ module.exports = {
     follow,
     unfollow,
     deleteUser,
-    updatedUser
+    updateUser
 }
