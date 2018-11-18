@@ -38,6 +38,20 @@ function getUser(email,password) {
     });
 }
 
+function updateUser(req,res,next) {
+    const id = req.params.id;
+    User.findByIdAndUpdate(id, req.body.user, {new: true})
+        .exec()
+        .then((user)=>{
+            res.status(200);
+            res.send({updatedUser: user});
+        })
+        .catch((err)=>{
+            res.status(500);
+            res.send({err});
+        })
+}
+
 function getUserById(req,res,next) {
     const id = req.params.id;
 
@@ -197,5 +211,6 @@ module.exports = {
     removeFollower,
     follow,
     unfollow,
-    deleteUser
+    deleteUser,
+    updatedUser
 }
