@@ -196,6 +196,24 @@ function getAttendance(req,res,next){
     });
 };
 
+function updateAttendance(req,res,next){
+  const eventId = req.params.id;
+  const userId = req.body.user;
+  const attendanceType = req.body.attendanceType;
+  const options = {new: true, upsert: true};
+
+  Event.findOneAndUpdate({"id": eventId, "attendance.user": userId}, {$set: {attendanceType: attendanceType} }, options)
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({attendance: event.attendance});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send({err});
+    });
+};
+
 function addComment(req,res,next) {
   Event.findOneAndUpdate({_id: req.params.id}, {$push: {comments: req.body}}, {new: true})
     .exec()
@@ -243,6 +261,7 @@ module.exports = {
   getAllEvents,
   addAttendance,
   getAttendance,
+  updateAttendance,
   addComment,
   deleteComment,
   updateComment
