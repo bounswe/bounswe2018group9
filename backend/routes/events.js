@@ -11,7 +11,8 @@ router.post('/', EventController.addEvent);
 
 
 // Adds an attendance to an event
-router.post('/:id/attendee', EventController.addAttendee);
+router.post('/:id/attendance', EventController.addAttendance);
+router.get('/:id/attendance', EventController.getAttendance);
 
 // these should be last in code
 router.put('/:id', EventController.updateEvent);
