@@ -165,55 +165,20 @@ function getAllEvents(req,res,next) {
     });
 };
 
-function updateAttendee(req,res,next){
+function addAttendee(req,res,next){
   const eventId = req.params.id;
-  const userId = req.body.attendant;
-  const attendanceType = req.body.attendanceType;
+  const options = {new: true};
 
-  Event.findById(eventId, (err,event)=>{
-    if(err) {
+  Event.findOneAndUpdate({_id: eventId}, {$push: {attendance: req.body}}, options)
+    .exec()
+    .then((event) => {
+      res.status(200);
+      res.send({updatedAttendance: event.attendance});
+    })
+    .catch((err) => {
       res.status(500);
       res.send({err});
-    } else {
-      
-      let userAlreadyInTheList = false;
-      let attendanceInfo = event.attendance;
-      attendanceInfo = _.map(attendanceInfo,(el)=>{
-        // Check here if the ids are as it is supposed to be.
-        if (el.user === userId) {
-          userAlreadyInTheList = true;
-          return {
-            user: userId,
-            attendanceType: attendanceType
-          }
-        } else {
-          return el;
-        }
-      });
-      
-      // If the user hasn't entered any attendance info before.
-      if (!userAlreadyInTheList) {
-        attendanceInfo.push({
-          user: userId,
-            attendanceType: attendanceType
-        })
-      }
-      
-      // Updated Attendance Info 
-      return attendanceInfo;
-    }
-  }, (attendanceInfo)=> {
-    Event.findByIdAndUpdate(eventId,{attendanceInfo:attendanceInfo},{new:true})
-      .exec()
-      .then((updatedEvent) => {
-        res.status(200);
-        res.send({updatedEvent: updatedEvent});
-      })
-      .catch((err) => {
-        res.status(500);
-        res.send({err});
-      });
-  });
+    });
 };
 
 function addComment(req,res,next) {

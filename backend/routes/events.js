@@ -10,8 +10,8 @@ router.get('/getEventbyCreator/:id', EventController.getEventbyCreator);
 router.post('/', EventController.addEvent);
 
 
-// Updates the attendee status of an event
-router.post('/:id/attendee', EventController.updateAttendee);
+// Adds an attendance to an event
+router.post('/:id/attendee', EventController.addAttendee);
 
 // these should be last in code
 router.put('/:id', EventController.updateEvent);
