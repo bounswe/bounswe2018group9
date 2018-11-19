@@ -165,7 +165,7 @@ function getAllEvents(req,res,next) {
     });
 };
 
-function addAttendee(req,res,next){
+function addAttendance(req,res,next){
   const eventId = req.params.id;
   const options = {new: true};
 
@@ -174,6 +174,21 @@ function addAttendee(req,res,next){
     .then((event) => {
       res.status(200);
       res.send({updatedAttendance: event.attendance});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
+};
+
+function getAttendance(req,res,next){
+  const eventId = req.params.id;
+
+  Event.find({_id: eventId})
+    .exec()
+    .then((event) => {
+      res.status(200);
+      res.send({attendance: event.attendance});
     })
     .catch((err) => {
       res.status(500);
@@ -226,7 +241,8 @@ module.exports = {
   getEventbyId,
   getEventbyCreator,
   getAllEvents,
-  updateAttendee,
+  addAttendance,
+  getAttendance,
   addComment,
   deleteComment,
   updateComment
