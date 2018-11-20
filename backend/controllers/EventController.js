@@ -252,6 +252,54 @@ function updateComment(req,res,next) {
         res.send({err});
     });
 }
+function addVote(req,res,next){
+  const eventId = req.params.id;
+  const options = {new: true};
+
+  Event.findOneAndUpdate({_id: eventId}, {$push: {vote: req.body}}, options)
+    .exec()
+    .then((event) => {
+      res.status(200);
+      res.send({updatedVote: event.vote});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
+};
+
+function getVote(req,res,next){
+  const eventId = req.params.id;
+
+  Event.find({_id: eventId})
+    .exec()
+    .then((event) => {
+      res.status(200);
+      res.send({vote: event.vote});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
+};
+
+function updateVote(req,res,next){
+  const eventId = req.params.id;
+  const userId = req.body.user;
+  const voteType = req.body.voteType;
+  const options = {new: true, upsert: true};
+
+  Event.findOneAndUpdate({"id": eventId, "vote.user": userId}, {$set: {voteType: voteType} }, options)
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({vote: event.vote});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send({err});
+    });
+};
 
 module.exports = {
   addEvent,
@@ -262,6 +310,9 @@ module.exports = {
   addAttendance,
   getAttendance,
   updateAttendance,
+  addVote,
+  getVote,
+  updateVote,
   addComment,
   deleteComment,
   updateComment
