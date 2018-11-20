@@ -6,69 +6,75 @@
 </ion-header>
 
 <ion-content padding>
+ <ion-grid *ngIf="user">
+   <ion-row>
+     <ion-label>Privacy Options</ion-label>
+   </ion-row>
+   <ion-row>
+     <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Select who can see your events">
+       <ion-select-option value="0">Allow friends</ion-select-option>
+       <ion-select-option value="1">Allow everyone</ion-select-option>
+     </ion-select>
+   </ion-row>
+   <ion-row>
+     <ion-label> Personal Information </ion-label>
+   </ion-row>
+   <ion-row>
+     <ion-col>
+       <ion-label>Your name: </ion-label>
+       <ion-input  [disabled]="this.nameDisabled"  [value]="user.name"> </ion-input>
+     </ion-col>
+     <ion-col>
+       <ion-button (click) = "toggleName()">Change</ion-button>
+     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-col>
+       <ion-label>Your email: </ion-label>
+       <ion-input  [disabled]="this.emailDisabled"  [value] = "user.email"></ion-input>
+     </ion-col>
+     <ion-col>
+       <ion-button (click) = "toggleEmail()">Change</ion-button>
+     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-col>
+       <ion-label>Your Interests:</ion-label>
+       <ion-select multiple="true">
+         <ion-select-option *ngFor="let interest of interests" [selected]="true" [value]="interest">{{interest}}</ion-select-option>
+       </ion-select>
+     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-label>Your birthday</ion-label>
+   </ion-row>
+   <ion-row>
+     <ion-col>
+       <ion-datetime  [disabled]="this.birthDisabled" display-format="DD-MM-YYYY" placeholder="{{user.birth}}" ></ion-datetime>
+     </ion-col>
+     <ion-col>
+       <ion-button (click) = "toggleBirth()">Change</ion-button>
+     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-col>
+       <ion-label>Nationality: </ion-label>
+       <ion-input value="{{user.nationality}}"></ion-input>
+     </ion-col>
+     <ion-col>
+       <ion-button (click) = "toggleNationality()">Change</ion-button>
+     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-col>
+       <ion-label>City: </ion-label>
+       <ion-input value="{{user.city}}"></ion-input>
+     </ion-col>
+     <ion-col>
+       <ion-button (click) = "toggleCity()">Change</ion-button>
+     </ion-col>
+   </ion-row>
+ </ion-grid>
 
-<ion-list>
-<ion-item>
-  <ion-label>Privacy Options</ion-label>
-  <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Select who can see your events">
-    <ion-select-option value="0">Allow friends</ion-select-option>
-    <ion-select-option value="1">Allow everyone</ion-select-option>
-  </ion-select>
-  <ion-button (click)="savePrivacy()">Save</ion-button>
-</ion-item>
-  <ion-label> Personal Information </ion-label>
-  <ion-item *ngIf="user || true ">
-    <ion-label>Your name: {{user.name}}</ion-label>
-    <ion-input  *ngIf="this.changeNameButton" #newName placeholder="New name"></ion-input>
-    <ion-button *ngIf="this.changeNameButton" (click) = "changeName(newName.value)">OK</ion-button>
-    <ion-button *ngIf="this.changeNameButton" (click) = "this.changeNameButton = !this.changeNameButton">Close</ion-button>
-  </ion-item>
-  <ion-item>
-    <ion-button *ngIf="!this.changeNameButton" (click) = "this.changeNameButton = !this.changeNameButton">Change your name</ion-button>
-  </ion-item>
-<ion-item  *ngIf="user || true">
-  <ion-label> Your email: {{user.email}}</ion-label>
-  <ion-input  *ngIf="this.changeEmailButton" #newEmail placeholder="New email"></ion-input>
-  <ion-button *ngIf="this.changeEmailButton" (click) = "changeEmail(newEmail.value)">OK</ion-button>
-  <ion-button *ngIf="this.changeEmailButton" (click) = "this.changeEmailButton = !this.changeEmailButton">Close</ion-button>
-</ion-item>
-  <ion-item>
-    <ion-button *ngIf="!this.changeEmailButton" (click) = "this.changeEmailButton = !this.changeEmailButton">Change your e-mail</ion-button>
-  </ion-item>
-
-<ion-item>
-  <ion-label>Your Interests:</ion-label>
-  <ion-select multiple="true">
-    <ion-select-option *ngFor="let interest of interests" [selected]="true" value="{{interest}}">{{interest}}</ion-select-option>
-  </ion-select>
-</ion-item>
-
-<ion-item>
-  <ion-label>Birth Date : {{user.birth}}</ion-label>
-  <ion-datetime *ngIf="this.changeBirthButton" #newBirth placeholder="New birthday"></ion-datetime>
-  <ion-button *ngIf="this.changeBirthButton" (click) = "changeBirth(newBirth.value)">OK</ion-button>
-  <ion-button *ngIf="this.changeBirthButton" (click) = "this.changeBirthButton = !this.changeBirthButton">Close</ion-button>
-</ion-item>
-  <ion-item>
-    <ion-button *ngIf="!this.changeBirthButton" (click) = "this.changeBirthButton = !this.changeBirthButton">Change your birthday</ion-button>
-  </ion-item>
-  <ion-item>
-    <ion-label>Nationality: {{user.nationality}}</ion-label>
-    <ion-input  *ngIf="this.changeNationalityButton" #newNationality placeholder="New nationality"></ion-input>
-    <ion-button *ngIf="this.changeNationalityButton" (click) = "changeNationality(newNationality.value)">OK</ion-button>
-    <ion-button *ngIf="this.changeNationalityButton" (click) = "this.changeNationalityButton = !this.changeNationalityButton">Close</ion-button>
-  </ion-item>
-  <ion-item>
-    <ion-button *ngIf="!this.changeNationalityButton" (click) = "this.changeNationalityButton = !this.changeNationalityButton">Change your nationality</ion-button>
-  </ion-item>
-  <ion-item>
-    <ion-label>City: {{user.city}}</ion-label>
-    <ion-input  *ngIf="this.changeCityButton" #newCity placeholder="New city"></ion-input>
-    <ion-button *ngIf="this.changeCityButton" (click) = "changeCity(newCity.value)">OK</ion-button>
-    <ion-button *ngIf="this.changeCityButton" (click) = "this.changeCityButton = !this.changeCityButton">Close</ion-button>
-  </ion-item>
-  <ion-item>
-    <ion-button *ngIf="!this.changeCityButton" (click) = "this.changeCityButton = !this.changeCityButton">Change your city</ion-button>
-  </ion-item>
-</ion-list>
+  <ion-button (click) = "save()">Save</ion-button>
 </ion-content>

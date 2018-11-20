@@ -10,11 +10,11 @@ import {Router} from '@angular/router';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
-  changeCityButton : boolean = false;
-  changeEmailButton : boolean = false;
-  changeNameButton : boolean = false;
-  changeBirthButton : boolean = false;
-  changeNationalityButton : boolean = false;
+  nameDisabled = true;
+  emailDisabled = true;
+  birthDisabled = true;
+  nationalityDisabled = true;
+  cityDisabled = true;
   settings : String[];
   interests : String[] = ['i1','i2','i3'];
   user: User | null;
@@ -55,130 +55,23 @@ export class SettingsPage implements OnInit {
     }
   }
 
-  changeName(newName: string) {
-    let newUser : User = {
-      name: newName,
-      email: this.user.email,
-      profileImage: this.user.profileImage,
-      _id: this.user._id,
-      birth: this.user.birth,
-      city : this.user.city,
-      followers : this.user.followers,
-      following : this.user.following,
-      interests : this.user.interests,
-      nationality : this.user.nationality
-    };
-    this.presentLoading();
-    this.authController.updateUser(this.userId,newUser).subscribe((res)=>{
-      this.loadingController.dismiss();
-      this.router.navigate(['/profile/settings']);
-    },(err)=>{
-      console.log(err);
-      this.loadingController.dismiss();
-      this.router.navigate(['/profile/settings']);
-    });
-    }
 
-  changeEmail(newEmail: string) {
-    let newUser : User = {
-      name: this.user.name,
-      email: newEmail,
-      profileImage: this.user.profileImage,
-      _id: this.user._id,
-      birth: this.user.birth,
-      city : this.user.city,
-      followers : this.user.followers,
-      following : this.user.following,
-      interests : this.user.interests,
-      nationality : this.user.nationality
-    };
-      this.presentLoading();
-      this.authController.updateUser(this.userId,newUser).subscribe((res)=>{
-        this.loadingController.dismiss();
-        this.router.navigate(['/profile/settings']);
-      },(err)=>{
-        console.log(err);
-        this.loadingController.dismiss();
-        this.router.navigate(['/profile/settings']);
-      });
-    }
-  changeBirth(newBirth : Datetime){
-
-    let newUser : User = {
-      name: this.user.name,
-      email: this.user.email,
-      profileImage: this.user.profileImage,
-      _id: this.user._id,
-      birth: newBirth,
-      city : this.user.city,
-      followers : this.user.followers,
-      following : this.user.following,
-      interests : this.user.interests,
-      nationality : this.user.nationality
-    };
-      this.presentLoading();
-      this.authController.updateUser(this.userId,newUser).subscribe((res)=>{
-        this.loadingController.dismiss();
-        this.router.navigate(['/profile/settings']);
-      },(err)=>{
-        console.log(err);
-        this.loadingController.dismiss();
-        this.router.navigate(['/profile/settings']);
-      });
-
+  toggleName() {
+    this.nameDisabled = !this.nameDisabled;
   }
-  changeNationality(newNationality : string){
-
-    let newUser : User = {
-      name: this.user.name,
-      email: this.user.email,
-      profileImage: this.user.profileImage,
-      _id: this.user._id,
-      birth: this.user.birth,
-      city : this.user.city,
-      followers : this.user.followers,
-      following : this.user.following,
-      interests : this.user.interests,
-      nationality : newNationality
-    };
-    this.presentLoading();
-    this.authController.updateUser(this.userId,newUser).subscribe((res)=>{
-      this.loadingController.dismiss();
-      this.router.navigate(['/profile/settings']);
-    },(err)=>{
-      console.log(err);
-      this.loadingController.dismiss();
-      this.router.navigate(['/profile/settings']);
-    });
-
+  toggleEmail() {
+    this.emailDisabled = !this.emailDisabled;
   }
-  changeCity(newCity : string){
-
-    let newUser : User = {
-      name: this.user.name,
-      email: this.user.email,
-      profileImage: this.user.profileImage,
-      _id: this.user._id,
-      birth: this.user.birth,
-      city : newCity,
-      followers : this.user.followers,
-      following : this.user.following,
-      interests : this.user.interests,
-      nationality : this.user.nationality
-    };
-    this.presentLoading();
-    this.authController.updateUser(this.userId,newUser).subscribe((res)=>{
-      this.loadingController.dismiss();
-      this.router.navigate(['/profile/settings']);
-    },(err)=>{
-      console.log(err);
-      this.loadingController.dismiss();
-      this.router.navigate(['/profile/settings']);
-    });
-
+  toggleBirth() {
+    this.birthDisabled = !this.birthDisabled;
   }
-  savePrivacy(){
-
+  toggleNationality() {
+    this.nationalityDisabled = !this.nationalityDisabled;
   }
-
+  toggleCity(){
+    this.cityDisabled = !this.cityDisabled;
   }
+  save(){
+    alert('Saved');
+  }
+}
