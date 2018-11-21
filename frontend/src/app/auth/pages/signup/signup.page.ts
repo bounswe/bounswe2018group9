@@ -33,9 +33,9 @@ export class SignupPage implements OnInit {
 
   register() {
     this.presentLoading();
-
+    let data = { userDetails: {name: this.form.value['name']}, email: this.form.value['email'], password: this.form.value['password'] };
     this.authService
-      .register(this.form.value)
+      .register(data)
       .subscribe(response => {
         this.loadingController.dismiss();
         this.router.navigate(['/signin']);
