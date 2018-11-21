@@ -11,7 +11,7 @@
      <ion-label>Privacy Options</ion-label>
    </ion-row>
    <ion-row>
-     <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Select who can see your events">
+     <ion-select [interfaceOptions]="customPopoverOptionsPrivacy" interface="popover" placeholder="Select who can see your events">
        <ion-select-option value="0">Allow friends</ion-select-option>
        <ion-select-option value="1">Allow everyone</ion-select-option>
      </ion-select>
@@ -22,25 +22,25 @@
    <ion-row>
      <ion-col>
        <ion-label>Your name: </ion-label>
-       <ion-input  [disabled]="this.nameDisabled"  [value]="user.name"> </ion-input>
+       <ion-input  [disabled]="this.nameDisabled"  [(value)]="user.name"> </ion-input>
      </ion-col>
-     <ion-col>
-       <ion-button (click) = "toggleName()">Change</ion-button>
-     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-button (click) = "toggleName()">Change</ion-button>
    </ion-row>
    <ion-row>
      <ion-col>
        <ion-label>Your email: </ion-label>
-       <ion-input  [disabled]="this.emailDisabled"  [value] = "user.email"></ion-input>
+       <ion-input  [disabled]="this.emailDisabled"  [(value)] = "user.email"></ion-input>
      </ion-col>
-     <ion-col>
-       <ion-button (click) = "toggleEmail()">Change</ion-button>
-     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-button (click) = "toggleEmail()">Change</ion-button>
    </ion-row>
    <ion-row>
      <ion-col>
        <ion-label>Your Interests:</ion-label>
-       <ion-select multiple="true">
+       <ion-select [interfaceOptions]="customPopoverOptionsInterests" multiple="true">
          <ion-select-option *ngFor="let interest of interests" [selected]="true" [value]="interest">{{interest}}</ion-select-option>
        </ion-select>
      </ion-col>
@@ -50,29 +50,29 @@
    </ion-row>
    <ion-row>
      <ion-col>
-       <ion-datetime  [disabled]="this.birthDisabled" display-format="DD-MM-YYYY" placeholder="{{user.birth}}" ></ion-datetime>
+       <ion-datetime  [disabled]="this.birthDisabled" display-format="DD-MM-YYYY" [(value)] = "user.birth"></ion-datetime>
      </ion-col>
-     <ion-col>
-       <ion-button (click) = "toggleBirth()">Change</ion-button>
-     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-button (click) = "toggleBirth()">Change</ion-button>
    </ion-row>
    <ion-row>
      <ion-col>
        <ion-label>Nationality: </ion-label>
-       <ion-input value="{{user.nationality}}"></ion-input>
+       <ion-input [(value)]="user.nationality"></ion-input>
      </ion-col>
-     <ion-col>
-       <ion-button (click) = "toggleNationality()">Change</ion-button>
-     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-button (click) = "toggleNationality()">Change</ion-button>
    </ion-row>
    <ion-row>
      <ion-col>
        <ion-label>City: </ion-label>
-       <ion-input value="{{user.city}}"></ion-input>
+       <ion-input [(value)]="user.city"></ion-input>
      </ion-col>
-     <ion-col>
-       <ion-button (click) = "toggleCity()">Change</ion-button>
-     </ion-col>
+   </ion-row>
+   <ion-row>
+     <ion-button (click) = "toggleCity()">Change</ion-button>
    </ion-row>
  </ion-grid>
 
