@@ -28,6 +28,7 @@ export class SettingsPage implements OnInit {
     this.userId = this.getUser()._id;
     this.sub = this.authController.getUserData(this.userId).subscribe((res : User) => {
       this.user = res;
+      console.log(JSON.stringify(res));
       this.loadingController.dismiss();
     },(err)=>{
       console.log(err);
@@ -38,8 +39,11 @@ export class SettingsPage implements OnInit {
   ngOnDestroy(){
     this.sub.unsubscribe();
   }
-  customPopoverOptions: any = {
+  customPopoverOptionsPrivacy: any = {
     header: 'Select who can see your posts',
+  };
+  customPopoverOptionsInterests: any = {
+    header: 'Select your interests',
   };
 
   async presentLoading(){
@@ -72,6 +76,27 @@ export class SettingsPage implements OnInit {
     this.cityDisabled = !this.cityDisabled;
   }
   save(){
+    let newUser : User;
+    newUser = {
+      email: this.user.email,
+      name: this.user.name,
+      birth: this.user.birth,
+      city: this.user.city,
+      followers: this.user.followers,
+      following: this.user.following,
+      interests: this.user.interests,
+      nationality: this.user.nationality,
+      profileImage: this.user.profileImage,
+      _id: this.user._id
+    }
+    this.presentLoading();
+    this.authController.updateUser(this.user._id,newUser).subscribe(()=>{
+      this.loadingController.dismiss();
+    },(err)=>{
+      console.log(err);
+      this.loadingController.dismiss();
+
+    });
     alert('Saved');
   }
 }
