@@ -33,15 +33,15 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
-  getUser(): User | null {
+  getUserId(): string | null {
     const token = localStorage.getItem('token');
     if (token === null) return null;
     const decoded = this.jwtHelper.decodeToken(token);
-    return { _id: decoded._id };
+    return decoded._id;
   }
 
 
-  register(data: { name: string, email: string, password: string }): Observable<any> {
+  register(data: { userDetails: {name: string}, email: string, password: string }): Observable<any> {
     return this.http
       .post('/api/auth/signup', data, AuthService.options);
   }
