@@ -25,7 +25,7 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
     this.presentLoading();
-    this.userId = this.getUser()._id;
+    this.userId = this.getUserId();
     this.sub = this.auth.getUserData(this.userId).subscribe((res : User)=>{
       this.user = res;
       this.loadingController.dismiss();
@@ -40,9 +40,9 @@ export class ProfilePage implements OnInit {
   }
 
 
-  getUser() : User{
+  getUserId() : string{
     if(this.auth.isAuthenticated()){
-      return this.auth.getUser();
+      return this.auth.getUserId();
     }
   }
   async presentLoading(){
