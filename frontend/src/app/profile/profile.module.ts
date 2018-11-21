@@ -6,12 +6,14 @@ import { IonicModule } from "@ionic/angular";
 import { SettingsPage } from './pages/settings/settings.page';
 import { TimelinePage } from './pages/timeline/timeline.page';
 import {ProfilePage} from './pages/profile/profile.page';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    IonicModule
+    IonicModule,
+    FormsModule
   ],
   declarations: [
     ProfileLandingPage,
