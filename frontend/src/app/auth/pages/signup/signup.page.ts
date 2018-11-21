@@ -20,7 +20,7 @@ export class SignupPage implements OnInit {
               , private loadingController :LoadingController, private alertController : AlertController) {
     this.form = this.formBuilder.group(
       {
-        name: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+        name: ['', [Validators.required, Validators.pattern('[ a-zA-ZöçğüşÖÇĞÜŞİ]*')]], // turkish characters added öçğüşÖÇĞÜŞİ
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required,Validators.minLength(8)]]
       }
