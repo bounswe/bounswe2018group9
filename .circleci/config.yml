@@ -16,7 +16,7 @@ jobs:
       # Log the current branch
       - run:
           name: Show current branch
-          command: echo ${CIRCLE_BRANCH} && echo ~
+          command: echo ${CIRCLE_BRANCH}
 
       # Download and cache dependencies
       - restore_cache:
@@ -38,7 +38,7 @@ jobs:
 
 
   test-frontend:
-    working_directory: ../frontend
+    working_directory: ~/frontend
     docker:
       - image: circleci/node:7.10
 
