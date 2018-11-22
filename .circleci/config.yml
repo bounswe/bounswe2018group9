@@ -4,148 +4,98 @@
 #
 version: 2
 jobs:
-  prepare-frontend:
+  test:
     working_directory: ~
+
     docker:
       - image: circleci/node:7.10
 
     steps:
-      - run:
-          name: PWD1
-          command: pwd
-      # Checkout the code from the branch into the working_directory
+      # Checkout the code from the branch into the docker
       - checkout
 
+      # Log the current branch and working directory
       - run:
-          name: PWD2
-          command: pwd
-      # Log the current branch
-      - run:
-          name: Show current branch
-          command: echo ${CIRCLE_BRANCH}
+          name: Show current branch and working directory
+          command: pwd && echo ${CIRCLE_BRANCH}
 
-      # Download and cache dependencies
+      # Download and cache dependencies for frontend
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "./frontend/package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      # Install project dependencies
+      # Install project dependencies for frontend
       - run:
           name: Install local dependencies
-          command: npm install
+          command: cd ~/frontend && npm install
 
-      # Cache local dependencies
+      # Cache local dependencies for frontend
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "./frontend/package.json" }}
 
-
-  test-frontend:
-    working_directory: ~
-    docker:
-      - image: circleci/node:7.10
-
-    steps:
-      # Run unit tests
       - run:
-          name: PWD1
-          command: pwd
-      # Checkout the code from the branch into the working_directory
-      - checkout
-
-      - run:
-          name: PWD2
-          command: pwd
-      - run:
-          name: Unit & Integration tests
+          name: Unit & Integration tests for Frontend
           command: npm run test
 
       # Run e2e tests
       - run:
-          name: E2E tests
+          name: E2E tests for Frontend
           command: npm run e2e
 
-  build-frontend:
-    working_directory: ~/frontend
+
+  build-and-deploy:
+   working_directory: ~
     docker:
       - image: circleci/node:7.10
 
     steps:
-      # Build project
+      # Checkout the code from the branch into the working_directory
+      - checkout
+
+      # Log the current branch and working directory
       - run:
-          name: Build project
+          name: Show current branch and working directory
+          command: pwd && echo ${CIRCLE_BRANCH}
+
+      # Download and cache dependencies for frontend
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "./frontend/package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      # Install project dependencies for frontend
+      - run:
+          name: Install local dependencies
+          command: cd ~/frontend && npm install
+
+      # Cache local dependencies for frontend
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "./frontend/package.json" }}
+
+      # Build frontend
+      - run:
+          name: Build Frontend
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              npm run build:prod && mv www/ ../backend/www/
+              npm run build:prod && mv ./frontend/www/ ./backend/www/
             else
               npm run build
             fi
 
-  prepare-backend:
-    working_directory: ~
-    docker:
-      - image: circleci/node:7.10
-
-    steps:
-      - run:
-          name: PWD1
-          command: pwd
-      # Checkout the code from the branch into the working_directory
-      - checkout
-
-      - run:
-          name: PWD2
-          command: pwd
-
-      # Log the current branch
-      - run:
-          name: Show current branch
-          command: echo ${CIRCLE_BRANCH}
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "./backend/package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      # Install project dependencies
-      - run:
-          name: Install local dependencies
-          command: npm install
-
-      # Cache local dependencies
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "./backend/package.json" }}
 workflows:
   version: 2
   build_test_deploy:
     jobs:
-      - prepare-frontend
-      - prepare-backend
-
-      - test-frontend:
-          requires:
-            - prepare-frontend
-      #- test-backend
-      #  requires:
-      #    - prepare-backend
-
-      - build-frontend:
-          requires:
-            - test-frontend
-
-      #- deploy-frontend
-      #  requires:
-      #      - build-frontend
-      #  filters:
-      #    branches:
-      #      only:
-      #        - master
+      - test
+      - build-and-deploy
+		requires:
+      - test
 
 
