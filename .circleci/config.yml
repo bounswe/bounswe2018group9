@@ -56,8 +56,8 @@ jobs:
     steps:
       # Log
       - run:
-        name: Log
-        command : pwd && ls
+          name: Log
+          command : pwd && ls
       # Run unit tests
       - run:
           name: Unit & Integration tests
