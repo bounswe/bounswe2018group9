@@ -16,7 +16,7 @@ jobs:
       # Log the current branch
       - run:
           name: Show current branch
-          command: ls && echo ${CIRCLE_BRANCH}
+          command: pwd && ls && echo ${CIRCLE_BRANCH}
 
       # Download and cache dependencies
       - restore_cache:
@@ -46,7 +46,7 @@ jobs:
       # Run unit tests
       - run:
           name: Unit & Integration tests
-          command: ls && npm run test
+          command: pwd && ls && npm run test
 
       # Run e2e tests
       - run:
