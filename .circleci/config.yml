@@ -4,6 +4,19 @@
 #
 version: 2
 jobs:
+
+  test-ssh:
+    working_directory: ~
+    docker:
+      - image: circleci/node:8.9
+
+    steps:
+      # Log the current branch and working directory
+      - run:
+          name: Show current branch and working directory
+          command: ssh 46.101.223.116 && cd / && ls && exit
+
+
   test:
     working_directory: ~
     docker:
@@ -110,10 +123,11 @@ workflows:
   version: 2
   test-and-deploy:
     jobs:
-      - test
-      - build-and-deploy:
-          requires:
-            - test
+      - test-ssh
+      #- test
+      #- build-and-deploy:
+          #requires:
+            #- test
       #- test-backend
       #  requires:
       #    - prepare-backend
