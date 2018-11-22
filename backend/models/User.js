@@ -1,97 +1,96 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-//User password bycrpt package
-var bcrypt =require('bcrypt');
-    SALT_WORK_FACTOR = 10;
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
+const { Schema } = mongoose.Schema;
+const SALT_WORK_FACTOR = 10;
 
-// Definition
-// The profile page requirenment city,birth and nationality
-var UserSchema = new Schema({
-    email: {
+const UserSchema = new Schema({
+  email: {
+    type: String,
+    required: true,
+    index: {
+      unique: true,
+    },
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  userDetails: {
+    type: {
+      name: {
         type: String,
         required: true,
-        index: { 
-            unique: true 
-        }
-    },
-    
-    password: {
+      },
+      birth: {
+        type: Date,
+        required: false,
+      },
+      nationality: {
         type: String,
-        required: true
+        required: false,
+      },
+      city: {
+        type: String,
+        required: false,
+      },
     },
-
-    userDetails: {
-        type: {
-            name: {
-                type: String,
-                required: true    
-            },
-            
-            birth: {
-                type: Date,
-                required: false 
-            },
-        
-            nationality: {
-                type: String,
-                required : false
-            },
-
-            city:{
-                type: String,
-                required: false
-            }
-        }
-    },
-
-    followers: {
-        type: [{
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }],
-        default: []
-    },
-
-    following: {
-        type: [{
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }],
-        default: []
-    },
-
-    interests: {
-        type: [String],
-        default: []
-    }
+  },
+  followers: {
+    type: [{
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    }],
+    default: [],
+  },
+  following: {
+    type: [{
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    }],
+    default: [],
+  },
+  interests: {
+    type: [String],
+    default: [],
+  },
 });
 
-//Password hashing part
-UserSchema.pre('save',function(next){
-    var user = this;
-    //hash the password if it has been modified (or is new) 
-    if(!user.isModified('password')) return next();
-    //generate a salt
-    bcrypt.genSalt(SALT_WORK_FACTOR,function(err,salt){
-        if (err) return next(err);
-        
-        //hash the password using our new salt
-        bcrypt.hash(user.password,salt,function(err,hash){
-            if (err) return next(err);
-            //override the password with the hashed one 
-            user.password = hash;
-            next();
-        }); 
-    });
-});
+// hashes password if password is modified
+function hashPassword(next) {
+  const user = this;
 
-UserSchema.methods.comparePassword = function(candidatePassword,callback){
-    bcrypt.compare(candidatePassword,this.password,function(err,isMatch){
-        if(err) return callback(err);
-        callback(undefined, isMatch);
-    });
-};
-var User = mongoose.model('User',UserSchema);
+  // hash the password if it has been modified (or is new)
+  if (!user.isModified('password')) next();
 
+  // generate a salt
+  bcrypt.genSalt(SALT_WORK_FACTOR, (saltError, salt) => {
+    if (saltError) return next(saltError);
+
+    // hash the password using our new salt
+    return bcrypt.hash(user.password, salt, (hashError, hash) => {
+      if (hashError) return next(hashError);
+
+      // override the password with the hashed one
+      user.password = hash;
+      return next();
+    });
+  });
+}
+
+// compares password with hashed password to check whether they match
+function comparePassword(candidatePassword, callback) {
+  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+    if (err) return callback(err);
+    return callback(undefined, isMatch);
+  });
+}
+
+// register hash password pre-hook
+UserSchema.pre('save', hashPassword);
+
+// register compare password method
+UserSchema.methods.comparePassword = comparePassword;
+
+const User = mongoose.model('User', UserSchema);
 module.exports = User;
