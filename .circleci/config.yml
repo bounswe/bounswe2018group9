@@ -87,7 +87,7 @@ jobs:
       # Log the current branch
       - run:
           name: Show current branch
-          command: cd /home/circleci/backend/ && ls #&& echo ${CIRCLE_BRANCH}
+          command: ls #&& echo ${CIRCLE_BRANCH}
 
       # Install project dependencies
       - run:
