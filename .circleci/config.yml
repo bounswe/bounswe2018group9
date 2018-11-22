@@ -10,9 +10,15 @@ jobs:
       - image: circleci/node:7.10
 
     steps:
+      - run:
+          name: PWD1
+          command: pwd
       # Checkout the code from the branch into the working_directory
       - checkout
 
+      - run:
+          name: PWD2
+          command: pwd
       # Log the current branch
       - run:
           name: Show current branch
@@ -38,12 +44,21 @@ jobs:
 
 
   test-frontend:
-    working_directory: ~/frontend
+    working_directory: ~
     docker:
       - image: circleci/node:7.10
 
     steps:
       # Run unit tests
+      - run:
+          name: PWD1
+          command: pwd
+      # Checkout the code from the branch into the working_directory
+      - checkout
+
+      - run:
+          name: PWD2
+          command: pwd
       - run:
           name: Unit & Integration tests
           command: npm run test
@@ -75,8 +90,15 @@ jobs:
       - image: circleci/node:7.10
 
     steps:
+      - run:
+          name: PWD1
+          command: pwd
       # Checkout the code from the branch into the working_directory
       - checkout
+
+      - run:
+          name: PWD2
+          command: pwd
 
       # Log the current branch
       - run:
