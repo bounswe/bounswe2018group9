@@ -16,7 +16,7 @@ jobs:
       # Log the current branch
       - run:
           name: Show current branch
-          command: echo ${CIRCLE_BRANCH}
+          command: echo ${CIRCLE_BRANCH} && echo ~
 
       # Download and cache dependencies
       - restore_cache:
