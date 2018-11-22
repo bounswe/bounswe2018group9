@@ -28,7 +28,7 @@ jobs:
       # Install project dependencies for frontend
       - run:
           name: Install local dependencies
-          command: cd ~/frontend && npm install
+          command: cd ./frontend && npm install
 
       # Cache local dependencies for frontend
       - save_cache:
@@ -38,11 +38,11 @@ jobs:
 
       - run:
           name: Unit & Integration tests for Frontend
-          command: cd ~/frontend && npm run test
+          command: cd ./frontend && npm run test
           
       - run:
           name: E2E tests for Frontend
-          command: cd ~/frontend && npm run e2e  
+          command: cd ./frontend && npm run e2e  
 
   build-and-deploy:
     working_directory: ~
@@ -68,7 +68,7 @@ jobs:
       # Install project dependencies for frontend
       - run:
           name: Install local dependencies
-          command: cd ~/frontend && npm install
+          command: cd ./frontend && npm install
 
       # Cache local dependencies for frontend
       - save_cache:
@@ -86,7 +86,7 @@ jobs:
       # Install project dependencies for frontend
       - run:
           name: Install local dependencies
-          command: cd ~/backend && npm install
+          command: cd ./backend && npm install
 
       # Cache local dependencies for frontend
       - save_cache:
