@@ -15,7 +15,11 @@ jobs:
       
       - run:
           name: Look in frontend folder
-          command: cd ./frontend && ls
+          command: pwd && ls && cd ./frontend && ls
+          
+      - run:
+          name: Look in backend folder
+          command: pwd && ls && cd ./backend && ls
       # Log the current branch
       - run:
           name: Show current branch
