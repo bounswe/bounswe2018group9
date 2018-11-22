@@ -4,15 +4,26 @@
 #
 version: 2
 jobs:
+  checkout-code:
+    working_directory: ~
+    docker:
+      - image: circleci/node:7.10
+      
+     steps:
+      # Checkout the code from the branch into the working_directory
+      - checkout
+
+      # Log the current branch
+      - run:
+          name: Show current branch
+          command: pwd && ls && echo ${CIRCLE_BRANCH}
+      
   prepare-frontend:
     working_directory: ~/frontend
     docker:
       - image: circleci/node:7.10
 
     steps:
-      # Checkout the code from the branch into the working_directory
-      - checkout
-
       # Log the current branch
       - run:
           name: Show current branch
@@ -74,10 +85,6 @@ jobs:
     docker:
       - image: circleci/node:7.10
 
-    steps:
-      # Checkout the code from the branch into the working_directory
-      - checkout
-
       # Log the current branch
       - run:
           name: Show current branch
@@ -100,12 +107,18 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+          
 workflows:
   version: 2
   build_test_deploy:
     jobs:
+      - checkout-code
       - prepare-frontend
+          requires:
+            - checkout-code
       - prepare-backend
+          requires:
+            - checkout-code
 
       - test-frontend:
           requires:
