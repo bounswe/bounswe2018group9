@@ -20,7 +20,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  userDetails: {
+  details: {
     type: {
       birth: {
         type: Date,
