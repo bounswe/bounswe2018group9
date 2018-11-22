@@ -8,7 +8,6 @@ jobs:
     working_directory: ~
     docker:
       - image: circleci/node:7.10
-      
     steps:
       # Checkout the code from the branch into the docker
       - checkout
