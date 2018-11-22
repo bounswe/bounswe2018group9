@@ -54,10 +54,14 @@ jobs:
       - image: circleci/node:7.10
 
     steps:
+      # Log
+      - run:
+        name: Log
+        command : pwd && ls
       # Run unit tests
       - run:
           name: Unit & Integration tests
-          command: pwd && ls && npm run test
+          command: npm run test
 
       # Run e2e tests
       - run:
