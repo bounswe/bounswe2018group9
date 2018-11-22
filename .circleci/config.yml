@@ -84,7 +84,7 @@ jobs:
     working_directory: ~/backend
     docker:
       - image: circleci/node:7.10
-
+    steps:
       # Log the current branch
       - run:
           name: Show current branch
