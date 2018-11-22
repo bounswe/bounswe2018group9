@@ -7,7 +7,7 @@ jobs:
   test:
     working_directory: ~
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:8.9
 
     steps:
       # Checkout the code from the branch into the working_directory
@@ -51,7 +51,7 @@ jobs:
   build-and-deploy:
     working_directory: ~
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:8.9
 
     steps:
       # Checkout the code from the branch into the working_directory
