@@ -38,7 +38,7 @@ jobs:
 
 
   test-frontend:
-    working_directory: ~/frontend
+    working_directory: ../frontend
     docker:
       - image: circleci/node:7.10
 
