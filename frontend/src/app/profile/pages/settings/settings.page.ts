@@ -46,7 +46,6 @@ export class SettingsPage implements OnInit {
   ];
 
   interestsSelected : string[];
-
   user: User | null;
   private sub : any;
   userId : string | null = null;
@@ -57,15 +56,14 @@ export class SettingsPage implements OnInit {
     this.presentLoading();
     this.userId = this.getUserId();
     this.sub = this.authController.getUserData(this.userId).subscribe((res : User) => {
+      console.log(res);
       this.user = res;
-
-      this.displayName = this.user.userDetails.name;
+      this.displayName = this.user.name;
       this.displayEmail = this.user.email;
-      this.displayBirth = this.user.userDetails.birth;
-      this.displayNationality = this.user.userDetails.nationality;
-      this.displayCity = this.user.userDetails.city;
+      this.displayBirth = this.user.details.birth;
+      this.displayNationality = this.user.details.nationality;
+      this.displayCity = this.user.details.city;
       this.interestsSelected = this.user.interests;
-
       this.loadingController.dismiss();
     },(err)=>{
       console.log(err);
@@ -115,10 +113,10 @@ export class SettingsPage implements OnInit {
   save(){
     let newUser : User;
     newUser = {
+      _id: this.user._id,
+      name: this.displayName,
       email: this.displayEmail,
-      profileImage: this.user.profileImage,
-      userDetails: {
-        name: this.displayName,
+      details: {
         birth: this.displayBirth,
         city: this.displayCity,
         nationality: this.displayNationality,
@@ -126,16 +124,12 @@ export class SettingsPage implements OnInit {
       followers: this.user.followers,
       following: this.user.following,
       interests: this.interestsSelected,
-      _id: this.user._id
     };
-    console.log(JSON.stringify(newUser));
     this.presentLoading();
     this.authController.updateUser(this.user._id,newUser).subscribe((res)=>{
-      console.log(res);
       this.loadingController.dismiss();
       alert('Saved');
     },(err)=>{
-      console.log(err);
       this.loadingController.dismiss();
 
     });

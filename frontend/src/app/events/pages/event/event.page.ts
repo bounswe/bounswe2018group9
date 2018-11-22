@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Event } from '../../../../interfaces/index';
+import { Event } from '../../../interfaces/index';
 import { ActivatedRoute } from '@angular/router';
-import { EventService } from '../../../../data/providers/event/event.service';
+import { EventService } from '../../../data/providers/event/event.service';
 
 import {AlertController, LoadingController} from "@ionic/angular";
 import {HttpErrorResponse} from "@angular/common/http";
