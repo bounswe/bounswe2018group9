@@ -4,55 +4,45 @@
 #
 version: 2
 jobs:
-  checkout-code:
-    working_directory: ~
-    docker:
-      - image: circleci/node:7.10
-      
-    steps:
-      # Checkout the code from the branch into the working_directory
-      - checkout
-      
-      - run:
-          name: Look in frontend folder
-          command: pwd && ls && cd ./frontend && ls
-          
-      - run:
-          name: Look in backend folder
-          command: pwd && ls && cd ./backend && ls
-      # Log the current branch
-      - run:
-          name: Show current branch
-          command: pwd && ls && echo ${CIRCLE_BRANCH}
-      
   prepare-frontend:
-    working_directory: ~/project/frontend
+    working_directory: ~
     docker:
       - image: circleci/node:7.10
 
     steps:
+      # Checkout the code from the branch into the working_directory
+      - checkout
+
       # Log the current branch
       - run:
           name: Show current branch
-          command: pwd && ls && echo ${CIRCLE_BRANCH}
+          command: echo ${CIRCLE_BRANCH}
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "./frontend/package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       # Install project dependencies
       - run:
           name: Install local dependencies
           command: npm install
 
+      # Cache local dependencies
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "./frontend/package.json" }}
 
 
   test-frontend:
-    working_directory: ~/project/frontend
+    working_directory: ~/frontend
     docker:
       - image: circleci/node:7.10
 
     steps:
-      # Log
-      - run:
-          name: Log
-          command : pwd && ls
       # Run unit tests
       - run:
           name: Unit & Integration tests
@@ -64,7 +54,7 @@ jobs:
           command: npm run e2e
 
   build-frontend:
-    working_directory: ~/project/frontend
+    working_directory: ~/frontend
     docker:
       - image: circleci/node:7.10
 
@@ -80,32 +70,42 @@ jobs:
             fi
 
   prepare-backend:
-    working_directory: ~/project/backend
+    working_directory: ~
     docker:
       - image: circleci/node:7.10
+
     steps:
+      # Checkout the code from the branch into the working_directory
+      - checkout
+
       # Log the current branch
       - run:
           name: Show current branch
-          command: ls #&& echo ${CIRCLE_BRANCH}
+          command: echo ${CIRCLE_BRANCH}
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "./backend/package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       # Install project dependencies
       - run:
           name: Install local dependencies
           command: npm install
-          
+
+      # Cache local dependencies
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "./backend/package.json" }}
 workflows:
   version: 2
   build_test_deploy:
     jobs:
-      - checkout-code
-      - prepare-frontend:
-          requires:
-            - checkout-code
-            
-      - prepare-backend:
-          requires:
-            - checkout-code
+      - prepare-frontend
+      - prepare-backend
 
       - test-frontend:
           requires:
@@ -125,3 +125,5 @@ workflows:
       #    branches:
       #      only:
       #        - master
+
+
