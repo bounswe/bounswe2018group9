@@ -28,14 +28,18 @@ jobs:
       # Install project dependencies for frontend
       - run:
           name: Install local dependencies
-          command: cd ./frontend && npm install
+          command: cd ./frontend && npm install --save-dev
 
       # Cache local dependencies for frontend
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "./frontend/package.json" }}
-
+          
+      - run:
+          name: Unit & Integration tests for Frontend
+          command: cd ./frontend && npm run test
+          
       - run:
           name: Unit & Integration tests for Frontend
           command: cd ./frontend && npm run test
