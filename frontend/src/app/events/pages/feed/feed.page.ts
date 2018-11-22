@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
-import { Event } from '../../../../interfaces/index';
+import { Event } from '../../../interfaces/index';
 
-import { AuthService } from '../../../../auth/providers/auth/auth.service';
-import { EventService } from '../../../../data/providers/event/event.service';
+import { AuthService } from '../../../auth/providers/auth/auth.service';
+import { EventService } from '../../../data/providers/event/event.service';
 import {LoadingController} from "@ionic/angular";
 
 @Component({
@@ -48,8 +48,5 @@ export class FeedPage implements OnInit {
       .subscribe(response => {
         this.router.navigate(['/signin']);
       })
-  }
-  goToProfile() {
-    this.router.navigate(['../profile'],{relativeTo: this.route});
   }
 }
