@@ -17,7 +17,7 @@ jobs:
       - run:
           name: SSH Key Scan
           command: ssh-keyscan -H 46.101.223.116 >> ~/.ssh/known_hosts
-      # Log the current branch and working directory
+      # Log the current branch and working directory 
       - run:
           name: SSH
           command: ssh 46.101.223.116
