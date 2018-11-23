@@ -16,7 +16,7 @@ jobs:
             - "e2:bf:a7:6e:97:cd:c8:d6:60:3c:6c:e8:c5:65:42:85"
       - run:
           name: SSH Key Scan
-          command: cd ~ && la && cd .ssh && la && ssh-keyscan -H 46.101.223.116 >> ~/.ssh/known_hosts
+          command: cd ~ && ls -a && cd .ssh && ls -a && ssh-keyscan -H 46.101.223.116 >> ~/.ssh/known_hosts
       # Log the current branch and working directory 
       - run:
           name: SSH
