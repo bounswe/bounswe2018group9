@@ -20,7 +20,7 @@ jobs:
       # Log the current branch and working directory 
       - run:
           name: SSH
-          command: ssh -vv root@46.101.223.116
+          command: ssh -v root@46.101.223.116
 
 
   test:
