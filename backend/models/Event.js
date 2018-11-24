@@ -24,6 +24,21 @@ const MediaSchema = new Schema({
         filename: {
             type: String,
             required: true
+        },
+
+        filesize: {
+            type: Number//in KB
+        },
+
+        annotations: {
+          //THIS IS A PLACE HOLDER DEFINITION
+            type: String,
+            required: false
+        },
+        //0 for image, 1 for video
+        media_type:{
+            type: Number,
+            required: true
         }
     }
 
