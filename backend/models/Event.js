@@ -4,6 +4,50 @@ var Schema = mongoose.Schema;
 var MediaSchema = require('./Media');
 
 
+<<<<<<< HEAD
+=======
+const MediaSchema = new Schema({
+    type: {
+        creator: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
+
+        link: {
+            type: String,
+            required: true
+        },
+
+        description: {
+            type: String,
+            required: true
+        },
+
+        filename: {
+            type: String,
+            required: true
+        },
+
+        filesize: {
+            type: Number//in KB
+        },
+
+        annotations: {
+          //THIS IS A PLACE HOLDER DEFINITION
+            type: String,
+            required: false
+        },
+        //0 for image, 1 for video
+        media_type:{
+            type: Number,
+            required: true
+        }
+    }
+
+});
+
+>>>>>>> Added additional fields in media data schema for future use. Couldn't implement get media endpoint.
 const CommentSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,

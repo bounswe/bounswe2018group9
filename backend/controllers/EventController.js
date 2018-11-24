@@ -336,6 +336,7 @@ function addMedia(req,res,next){
         res.send(err);
     });
 }
+<<<<<<< HEAD
 
 function getMedia(req,res,next){
   const eventId = req.params.id;
@@ -353,6 +354,15 @@ function getMedia(req,res,next){
 
 }
 
+=======
+/*
+function getMedia(req,res,next){
+  Event.findById({_id: req.params.id}
+    .exec()
+    .then()
+
+}*/
+>>>>>>> Added additional fields in media data schema for future use. Couldn't implement get media endpoint.
 
 function deleteMedia(req,res,next) {
   Event.findOneAndUpdate({_id: req.params.id}, {$pull: {media: { _id:req.params.mediaId }}}, {new: true})
