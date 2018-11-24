@@ -363,4 +363,7 @@ module.exports = {
   deleteComment,
   updateComment,
   getComments
+  addMedia,
+  deleteMedia,
+  updateMedia
 };

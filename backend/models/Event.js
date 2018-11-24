@@ -11,6 +11,11 @@ const MediaSchema = new Schema({
             required: true
         },
 
+        link: {
+            type: String,
+            required: true
+        },
+
         description: {
             type: String,
             required: true
