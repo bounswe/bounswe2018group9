@@ -328,6 +328,7 @@ function deleteMedia(req,res,next) {
         res.status(500);
         res.send({err});
     });
+    console.log("here");
 }
 
 function updateMedia(req,res,next) {
