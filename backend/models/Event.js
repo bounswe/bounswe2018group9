@@ -2,6 +2,28 @@ var mongoose = require('mongoose');
 var mongoosePaginate = require("mongoose-paginate");
 var Schema = mongoose.Schema;
 
+
+const MediaSchema = new Schema({
+    type: {
+        creator: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
+
+        description: {
+            type: String,
+            required: true
+        },
+
+        filename: {
+            type: String,
+            required: true
+        }
+    }
+
+});
+
 const CommentSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,
