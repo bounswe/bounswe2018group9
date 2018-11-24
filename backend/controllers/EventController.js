@@ -303,6 +303,49 @@ function updateVote(req,res,next){
     });
 };
 
+
+// MEDIA CONTROLLERS
+function addMedia(req,res,next){
+  Event.findOneAndUpdate({_id: req.params.id}, {$push: {medias: req.body}}, {new: true})
+  .exec()
+  .then((event)=>{
+    res.status(200);
+    res.send({medias: event.medias});
+  })
+  .catch((err)=>{
+    res.status(500);
+    res.send({err});
+  });
+}
+function deleteMedia(req,res,next) {
+  Event.findOneAndUpdate({_id: req.params.id}, {$pull: {medias: { _id:req.params.mediaId }}}, {new: true})
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({medias: event.medias});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send({err});
+    });
+}
+
+function updateMedia(req,res,next) {
+  Event.findOneAndUpdate({"id": req.params.id, "medias.id": req.params.mediaId}, {$set: {media: req.body} }, {new: true})
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({medias: event.medias});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send({err});
+    });
+}
+
+
+
+
 module.exports = {
   addEvent,
   updateEvent,
