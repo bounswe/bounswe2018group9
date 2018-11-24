@@ -164,6 +164,7 @@ function addAttendance(req,res,next){
     });
 };
 
+
 function getAttendance(req,res,next){
   const eventId = req.params.id;
 
@@ -317,6 +318,14 @@ function addMedia(req,res,next){
     res.send({err});
   });
 }
+/*
+function getMedia(req,res,next){
+  Event.findById({_id: req.params.id}
+    .exec()
+    .then()
+
+}*/
+
 function deleteMedia(req,res,next) {
   Event.findOneAndUpdate({_id: req.params.id}, {$pull: {medias: { _id:req.params.mediaId }}}, {new: true})
     .exec()
@@ -328,7 +337,6 @@ function deleteMedia(req,res,next) {
         res.status(500);
         res.send({err});
     });
-    console.log("here");
 }
 
 function updateMedia(req,res,next) {
