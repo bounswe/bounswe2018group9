@@ -169,9 +169,9 @@ var EventSchema = new Schema({
     },
 
     medias: {
-        type: [String],
-        required: true,
-        default: []
+        type: [MediaSchema],
+        default: [],
+        required: false
     }
 });
 
