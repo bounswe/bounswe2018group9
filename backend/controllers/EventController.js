@@ -318,13 +318,26 @@ function addMedia(req,res,next){
     res.send({err});
   });
 }
-/*
+
 function getMedia(req,res,next){
   Event.findById({_id: req.params.id}
     .exec()
-    .then()
+    .then((event)=>{
+      event.medias.findById(req.params.mediaId)
+        .exec()
+        .then((mediaVar)=>{res.status(200); res.send(mediaVar);})
+        .catch((err)=>{
+          res.status(500);
+          res.send({err});
+        });
+    })
+    .catch((err)=>{
+      res.status(500);
+      res.send({err});
+    })
+  );
 
-}*/
+}
 
 function deleteMedia(req,res,next) {
   Event.findOneAndUpdate({_id: req.params.id}, {$pull: {medias: { _id:req.params.mediaId }}}, {new: true})
