@@ -83,7 +83,7 @@ jobs:
       # TODO: Directly build into backend
       - run:
           name: Build project
-          command: npm run build:prod --prefix frontend && mv frontend/www/ backend/www/
+          command: npm run --prefix frontend build:prod && mv frontend/www/ backend/www/
 
       - add-ssh-keys:
           fingerprints:
