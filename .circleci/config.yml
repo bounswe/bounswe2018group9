@@ -98,13 +98,14 @@ jobs:
           name: Deploy script chmod
           command: chmod +x scripts/deploy.sh
           #background: true
+
       - run:
           name: Deploy
           command: sh ./scripts/deploy.sh
 
       - run:
-          name: Deployment completed!!! Yaaay.
-          command: echo "Deployment completed!!! Yaaay."
+          name: Deployment Success.
+          command: echo "Deployment Success!"
 
 workflows:
   version: 2
