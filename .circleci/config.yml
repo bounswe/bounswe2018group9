@@ -99,8 +99,11 @@ jobs:
           command: chmod +x scripts/deploy.sh
           #background: true
       - run:
-          name: Deploy
+          name: Copy files
           command: sh ./scripts/deploy.sh
+      - run:
+          name: Run server
+          command: ssh root@46.101.223.116 "nohup npm start"
           
       - run:
           name: Deployment completed!!! Yaaay.
