@@ -103,7 +103,7 @@ jobs:
           command: sh ./scripts/deploy.sh
       - run:
           name: Run server
-          command: ssh root@46.101.223.116 "nohup npm start < /dev/null"
+          command: ssh root@46.101.223.116 "cd backend && nohup npm start < /dev/null"
           
       - run:
           name: Deployment completed!!! Yaaay.
