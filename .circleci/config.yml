@@ -97,6 +97,8 @@ jobs:
       - run:
           name: Deploy
           command: chmod +x scripts/deploy.sh && scripts/deploy.sh
+          background: true
+          
       - run:
           name: Deployment completed!!! Yaaay.
           command: echo "Deployment completed!!! Yaaay."
