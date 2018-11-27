@@ -96,7 +96,7 @@ jobs:
       # Log the current branch and working directory
       - run:
           name: Deploy
-          command: scripts/deploy.sh
+          command: chmod +x scripts/deploy.sh && scripts/deploy.sh
 
 workflows:
   version: 2
