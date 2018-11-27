@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 set -e
 
 HOST="root@46.101.223.116"
@@ -7,5 +7,4 @@ HOST="root@46.101.223.116"
 # TODO: avoid  node_modules
 # rm -r backend/node_modules
 scp -r backend $HOST:~
-ssh $HOST "cd backend && killall node && npm install && nohup npm start < /dev/null && exit"
-
+ssh $HOST:~ && screen -XS "actopus:prod" quit; screen -dmS "actopus:prod" bash -c "cd ~/backend && npm install && sudo npm start"
