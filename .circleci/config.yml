@@ -87,7 +87,7 @@ jobs:
 
       - add-ssh-keys:
           fingerprints:
-            - "4a:54:17:48:ac:ed:54:9c:85:07:e7:ca:72:b4:dc:8b"
+            - "df:15:30:bb:03:3e:48:a5:6e:83:26:d6:eb:6e:8b:b8"
 
       - run:
           name: SSH Key Scan
