@@ -1,28 +1,11 @@
 # Javascript Node CircleCI 2.0 configuration file
-# 
+#
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
 jobs:
-
-  test-ssh:
-    working_directory: ~
-    docker:
-      - image: circleci/node:8.9
-
-    steps:
-      - add-ssh-keys:
-          fingerprints:
-            - "4a:54:17:48:ac:ed:54:9c:85:07:e7:ca:72:b4:dc:8b"
-      - run:
-          name: SSH Key Scan
-          command: ssh-keyscan -H 46.101.223.116 >> ~/.ssh/known_hosts
-      # Log the current branch and working directory 
-      - run:
-          name: SSH
-          command: ssh -v root@46.101.223.116
-
-
+  # TODO: Test whether backend correctly runs
+  # TODO: Add filters that work before PRs
   test:
     working_directory: ~
     docker:
@@ -54,20 +37,17 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "./frontend/package.json" }}
-          
+
       - run:
           name: Unit & Integration tests for Frontend
           command: cd ./frontend && npm run test
-          
-      - run:
-          name: Unit & Integration tests for Frontend
-          command: cd ./frontend && npm run test
-          
+
       - run:
           name: E2E tests for Frontend
-          command: cd ./frontend && npm run e2e  
+          command: cd ./frontend && npm run e2e
 
-  build-and-deploy:
+  # TODO: That works only in master
+  deploy:
     working_directory: ~
     docker:
       - image: circleci/node:8.9
@@ -99,55 +79,22 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "./frontend/package.json" }}
 
-      # Download and cache dependencies for backend
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "./backend/package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      # Install project dependencies for frontend
-      - run:
-          name: Install local dependencies
-          command: cd ./backend && npm install
-
-      # Cache local dependencies for frontend
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "./backend/package.json" }}
+      # TODO: Check whether script is correct for production
+      # TODO: Directly build into backend
       - run:
           name: Build project
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              npm run build:prod && mv www/ ../backend/www/
-            else
-              npm run build
-            fi
+          command: npm run build:prod --prefix frontend && mv frontend/www/ backend/www/
 
-workflows:
-  version: 2
-  test-and-deploy:
-    jobs:
-      - test-ssh
-      #- test
-      #- build-and-deploy:
-          #requires:
-            #- test
-      #- test-backend
-      #  requires:
-      #    - prepare-backend
+      - add-ssh-keys:
+          fingerprints:
+            - "4a:54:17:48:ac:ed:54:9c:85:07:e7:ca:72:b4:dc:8b"
 
-      #- build-frontend:
-       #   requires:
-       #     - test-frontend
+      - run:
+          name: SSH Key Scan
+          command: ssh-keyscan -H 46.101.223.116 >> ~/.ssh/known_hosts
 
-      #- deploy-frontend
-      #  requires:
-      #      - build-frontend
-      #  filters:
-      #    branches:
-      #      only:
-      #        - master
-
+      # Log the current branch and working directory
+      - run:
+          name: Deploy
+          command: scripts/deploy.sh
 
