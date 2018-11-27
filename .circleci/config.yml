@@ -98,3 +98,10 @@ jobs:
           name: Deploy
           command: scripts/deploy.sh
 
+workflows:
+  version: 2
+  deploy:
+    jobs:
+     # - test
+      - deploy
+          #requires: -test
