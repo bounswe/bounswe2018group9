@@ -81,9 +81,9 @@ jobs:
 
       # TODO: Check whether script is correct for production
       # TODO: Directly build into backend
-      - run:
-          name: Build project
-          command: npm run --prefix frontend build && mv frontend/www/ backend/www/
+      #- run:
+          #name: Build project
+          #command: npm run --prefix frontend build && mv frontend/www/ backend/www/
 
       - add-ssh-keys:
           fingerprints:
@@ -95,9 +95,12 @@ jobs:
 
       # Log the current branch and working directory
       - run:
-          name: Deploy
-          command: chmod +x scripts/deploy.sh && scripts/deploy.sh&
+          name: Deploy script chmod
+          command: chmod +x scripts/deploy.sh
           #background: true
+      - run:
+          name: Deploy
+          command: scripts/deploy.sh &
           
       - run:
           name: Deployment completed!!! Yaaay.
