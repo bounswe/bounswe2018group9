@@ -101,7 +101,7 @@ jobs:
 
       - run:
           name: Deploy
-          command: sh ./scripts/deploy.sh
+          command: ssh root@46.101.223.116 'screen -XS "actopus:prod" quit; screen -dmS "actopus:prod" bash -c "cd ~/backend && npm install && sudo npm start"; exit'
 
       - run:
           name: Deployment Success.
