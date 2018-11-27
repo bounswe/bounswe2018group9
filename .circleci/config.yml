@@ -96,8 +96,8 @@ jobs:
       # Log the current branch and working directory
       - run:
           name: Deploy
-          command: chmod +x scripts/deploy.sh && scripts/deploy.sh
-          background: true
+          command: chmod +x scripts/deploy.sh && scripts/deploy.sh&
+          #background: true
           
       - run:
           name: Deployment completed!!! Yaaay.
