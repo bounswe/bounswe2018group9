@@ -269,7 +269,7 @@ function addVote(req,res,next){
       res.status(500);
       res.send({err});
     });
-};
+}
 
 function getVote(req,res,next){
   const eventId = req.params.id;
@@ -302,7 +302,7 @@ function updateVote(req,res,next){
         res.status(500);
         res.send({err});
     });
-};
+}
 
 
 // MEDIA CONTROLLERS
@@ -320,9 +320,11 @@ function addMedia(req,res,next){
 }
 
 function getMedia(req,res,next){
-  Event.findById({_id: req.params.id}
+  Event.findById({_id: req.params.id})
     .exec()
     .then((event)=>{
+      console.log(event.medias);
+      console.log("here");
       event.medias.findById(req.params.mediaId)
         .exec()
         .then((mediaVar)=>{res.status(200); res.send(mediaVar);})
@@ -334,10 +336,25 @@ function getMedia(req,res,next){
     .catch((err)=>{
       res.status(500);
       res.send({err});
-    })
-  );
+    });
 
 }
+
+function getAllMedia(req,res,next){
+  Event.findById({_id: req.params.id})
+    .populate()
+    .exec()
+    .then((event)=>{
+      res.status(500);
+      res.send({medias: event.medias});
+    })
+    .catch((err)=>{
+      res.status(500);
+      res.send({err});
+    });
+
+}
+
 
 function deleteMedia(req,res,next) {
   Event.findOneAndUpdate({_id: req.params.id}, {$pull: {medias: { _id:req.params.mediaId }}}, {new: true})
@@ -384,8 +401,10 @@ module.exports = {
   addComment,
   deleteComment,
   updateComment,
-  getComments
+  getComments,
   addMedia,
   deleteMedia,
-  updateMedia
+  updateMedia,
+  getMedia,
+  getAllMedia
 };
