@@ -16,11 +16,6 @@ const MediaSchema = new Schema({
             required: true
         },
 
-        description: {
-            type: String,
-            required: true
-        },
-
         filename: {
             type: String,
             required: true
@@ -38,7 +33,7 @@ const MediaSchema = new Schema({
         //0 for image, 1 for video
         media_type:{
             type: Number,
-            required: true
+            default: 0
         }
     }
 
@@ -190,8 +185,7 @@ var EventSchema = new Schema({
 
     medias: {
         type: [MediaSchema],
-        default: [],
-        required: false
+        default: []
     }
 });
 
@@ -200,4 +194,4 @@ EventSchema.plugin(mongoosePaginate);
 
 var Event = mongoose.model('Event', EventSchema);
 
-module.exports = Event;
+module.exports = Event
