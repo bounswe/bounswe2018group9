@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 set -e
 
 HOST="root@46.101.223.116"
