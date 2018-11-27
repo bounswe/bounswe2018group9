@@ -96,7 +96,10 @@ jobs:
       # Log the current branch and working directory
       - run:
           name: Deploy
-          command: chmod +x scripts/deploy.sh && scripts/deploy.sh
+          command: chmod +x scripts/deploy.sh && scripts/deploy.sh && exit
+      - run:
+          name: Deployment completed!!! Yaaay.
+          command: echo "Deployment completed!!! Yaaay."
 
 workflows:
   version: 2
