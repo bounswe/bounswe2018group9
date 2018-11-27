@@ -14,14 +14,16 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class EventCreatePage implements OnInit {
   form: FormGroup;
+  isFree = true;
   constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router,
               private loadingController :LoadingController, private alertController: AlertController) {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
-      price: ['', [Validators.required,Validators.pattern('[0-9₺$€]*')]],
-      owner: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
-      description: ['', [Validators.required,Validators.minLength(20)]],
-      date: ['', Validators.required]
+      name: ['', [Validators.required]],
+      datetime: ['', Validators.required],
+      location: ['', Validators.required],
+      isFree: [true, Validators.required],
+      price: [0, [Validators.required,Validators.pattern('[0-9₺$€]*')]],
+      description: ['', [Validators.required,Validators.minLength(20)]]
     });
   }
 
@@ -29,7 +31,10 @@ export class EventCreatePage implements OnInit {
   }
 
   createEvent() {
-    this.presentLoading();
+
+    console.log(this.form.value);
+    //this.presentLoading();
+/*
 
     this.eventService
       .post(this.form.value)
@@ -43,12 +48,12 @@ export class EventCreatePage implements OnInit {
           this.loadingController.dismiss();
         }
       );
+      */
   }
 
   async presentLoading(){
     const loading = await this.loadingController.create({
-      message: 'Loading...',
-      duration: 10000
+      message: 'Loading...'
     });
     return await loading.present();
   }
