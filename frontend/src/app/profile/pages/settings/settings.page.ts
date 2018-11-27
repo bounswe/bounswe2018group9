@@ -16,10 +16,10 @@ export class SettingsPage implements OnInit {
   nationalityDisabled = true;
   cityDisabled = true;
   @Input('displayName') displayName : string;
-  displayEmail : string;
-  displayBirth : Datetime;
-  displayNationality : string;
-  displayCity : string;
+  @Input('displayEmail') displayEmail : string;
+  @Input('displayBirth') displayBirth : Datetime;
+  @Input('displayNationality') displayNationality : string;
+  @Input('displayCity') displayCity : string;
 
   settings : string[];
   interests : string[] = [
@@ -56,13 +56,14 @@ export class SettingsPage implements OnInit {
     this.presentLoading();
     this.userId = this.getUserId();
     this.sub = this.authController.getUserData(this.userId).subscribe((res : User) => {
-      console.log(res);
+      console.log('Response:' + res);
       this.user = res;
+      console.log('User:' + this.user);
       this.displayName = this.user.name;
       this.displayEmail = this.user.email;
-      this.displayBirth = this.user.details.birth;
-      this.displayNationality = this.user.details.nationality;
-      this.displayCity = this.user.details.city;
+      this.displayBirth = this.user.userDetails.birth;
+      this.displayNationality = this.user.userDetails.nationality;
+      this.displayCity = this.user.userDetails.city;
       this.interestsSelected = this.user.interests;
       this.loadingController.dismiss();
     },(err)=>{
@@ -116,7 +117,7 @@ export class SettingsPage implements OnInit {
       _id: this.user._id,
       name: this.displayName,
       email: this.displayEmail,
-      details: {
+      userDetails: {
         birth: this.displayBirth,
         city: this.displayCity,
         nationality: this.displayNationality,
@@ -126,7 +127,7 @@ export class SettingsPage implements OnInit {
       interests: this.interestsSelected,
     };
     this.presentLoading();
-    this.authController.updateUser(this.user._id,newUser).subscribe((res)=>{
+    this.authController.updateUser(this.user._id, newUser).subscribe((res)=>{
       this.loadingController.dismiss();
       alert('Saved');
     },(err)=>{
@@ -134,8 +135,13 @@ export class SettingsPage implements OnInit {
 
     });
   }
-  isSelected(interest : string){
-    return this.interestsSelected.includes(interest);
+  isSelected(interest : string) : boolean{
+    if(this.interestsSelected){
+      return this.interestsSelected.includes(interest);
+    }
+    else{
+      return false;
+    }
   }
   updateInterestsLocally(newSelectedInterests: string[]){
     this.interestsSelected = newSelectedInterests;
