@@ -15,3 +15,18 @@ ion-item{
 .input-required{
   color: #881f19;
 }
+
+.inline-block{
+  display: inline-block;
+}
+
+.flex-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-container ion-input{
+  width: 90%;
+}

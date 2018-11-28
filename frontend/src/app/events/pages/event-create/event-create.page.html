@@ -16,36 +16,36 @@
         <div class="event-form-container">
           <form [formGroup]="form" (ngSubmit)="createEvent()">
 
-            <ion-list>
+            <ion-list lines="none">
 
               <ion-item>
                 <div class="event-image">
                   <img #eventImage
                        (error)="onImageError()"
                        (load)="onImageLoad()"
-                       [src]="this.form.get('imageUrl').value"
+                       [src]="this.form.get('medias').value[0]"
                        alt="Event image">
                 </div>
               </ion-item>
 
-              <ion-item>
-                <ion-label position="floating">
+              <ion-item formArrayName="medias">
+                <ion-label position="stacked">
                   Url of the image
                   <span class="input-required">
                   *
                 </span>
-                  <span class="input-error" *ngIf="this.form.get('imageUrl').dirty && !this.form.get('imageUrl').valid">
+                  <span class="input-error" *ngIf="this.form.get('medias').at(0).dirty && !this.form.get('medias').at(0).valid">
                   (you should add an image link)
                 </span>
                 </ion-label>
                 <ion-input type="url"
-                           formControlName="imageUrl"
+                           formControlName="0"
                            class="form-input">
                 </ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-label position="floating">
+                <ion-label position="stacked">
                   Name of the event
                   <span class="input-required">
                   *
@@ -62,7 +62,7 @@
               </ion-item>
 
               <ion-item>
-                <ion-label position="floating">
+                <ion-label position="stacked">
                   Describe your event
                   <span class="input-required">
                   *
@@ -78,7 +78,7 @@
               </ion-item>
 
               <ion-item>
-                <ion-label position="floating">
+                <ion-label position="stacked">
                   When it will start
                   <span class="input-required">
                   *
@@ -91,12 +91,39 @@
                   display-format="DD MMMM DDDD HH:mm, YYYY"
                   picker-format="DD MMM HH mm YYYY"
                   formControlName="date"
+                  placeholder="Choose a date"
                   class="form-input">
                 </ion-datetime>
               </ion-item>
 
+              <ion-item-group formGroupName="duration">
+                <ion-item>
+                  <ion-label position="stacked">
+                    How long it will take
+                    <span class="input-required">
+                  *
+                </span>
+                    <span class="input-error" *ngIf="this.form.get('date').dirty && !this.form.get('date').valid">
+                  (you should specify the duration)
+                </span>
+                  </ion-label>
+                  <ion-input
+                    type="number"
+                    formControlName="length"
+                    class="form-input">{{duration.value}}
+                  </ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-select formControlName="unit" mode="md" #duration placeholder="Select time unit">
+                    <ion-select-option value ='minute' >Minute</ion-select-option>
+                    <ion-select-option value ='hour' >Hour</ion-select-option>
+                    <ion-select-option value ='day' >Day</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-item-group>
+
               <ion-item formGroupName="locationConstruct">
-                <ion-label position="floating">
+                <ion-label position="stacked">
                   Where it will happen
                   <span class="input-required">
                   *
@@ -112,62 +139,70 @@
                 </ion-input>
               </ion-item>
 
-              <ion-item>
-                <ion-label>
-                  Your event is free
-                  <ion-checkbox formControlName="isFree">
-                  </ion-checkbox>
-                </ion-label>
-              </ion-item>
+              <ion-item-group>
+                <ion-item>
+                    <ion-label>
+                      Your event is free
+                    </ion-label>
+                    <ion-checkbox item-content formControlName="isFree">
+                    </ion-checkbox>
+                </ion-item>
 
-              <ion-item *ngIf="!this.form.get('isFree').value">
-                <ion-label position="floating">
-                  What is its price
-                  <span class="input-required">
+                <ion-item-group formGroupName="price" *ngIf="!this.form.get('isFree').value">
+                  <ion-item>
+                    <ion-label position="stacked">
+                      What is its price
+                      <span class="input-required">
                   *
                 </span>
-                  <span class="input-error" *ngIf="this.form.get('price').dirty && !this.form.get('price').valid">
+                      <span class="input-error" *ngIf="this.form.get('price').get('amount').dirty && !this.form.get('price').get('amount').valid">
                   (you should specify price)
                 </span>
-                </ion-label>
-                <ion-input
-                  align="right"
-                  type="number"
-                  formControlName="price"
-                  class="form-input">{{currency.value}}
-                </ion-input>
+                    </ion-label>
+                    <ion-input
+                      align="right"
+                      type="number"
+                      formControlName="amount"
+                      class="form-input">{{currency.value}}
+                    </ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-select formControlName="currency" mode="md" #currency placeholder="Select currency">
+                      <ion-select-option value ='₺' >Turkish Lira</ion-select-option>
+                      <ion-select-option value ='$' >Dollars</ion-select-option>
+                      <ion-select-option value ='€' >Euro</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-item-group>
+              </ion-item-group>
 
-                <ion-select mode="md" #currency placeholder="Select currency">
-                  <ion-select-option value ='₺' >Turkish Lira</ion-select-option>
-                  <ion-select-option value ='$' >Dollars</ion-select-option>
-                  <ion-select-option value ='€' >Euro</ion-select-option>
-                </ion-select>
-              </ion-item>
-              <ion-item formArrayName="artists">
-                <ion-label position="floating">
-                  Add an artist/artists
-                </ion-label>
-                <button ion-button (click)="addArtist()">
-                  +
-                </button>
-                <div *ngFor="let artist of artists.controls; let i=index">
-                  <ion-input
-                    type="text"
-                    [formControlName]="i"
-                    [placeholder]="'Artist' + (i+1)"
-                    class="form-input">
-                  </ion-input>
-                  <ion-button (click)="removeArtist(i)">
-                    -
-                  </ion-button>
-                </div>
-              </ion-item>
-              <ion-item>
-                <button ion-button type="submit" [disabled]="!form.valid">
-                  <ion-icon name="share" small></ion-icon>
-                  Share your experience
-                </button>
-              </ion-item>
+              <ion-item-group formArrayName="artists">
+                <ion-item>
+                  <ion-label position="stacked">
+                    Add an artist/artists
+                    <ion-button class="inline-block" (click)="addArtist()">
+                      +
+                    </ion-button>
+                  </ion-label>
+                </ion-item>
+                <ion-item *ngFor="let artist of artists.controls; let i=index">
+                  <div class="flex-container">
+                    <ion-input
+                      type="text"
+                      [formControlName]="i"
+                      [placeholder]="'Artist' + (i+1)"
+                      class="form-input inline-block">
+                    </ion-input>
+                    <ion-button class="inline-block" (click)="removeArtist(i)">
+                      -
+                    </ion-button>
+                  </div>
+                </ion-item>
+              </ion-item-group>
+              <ion-button ion-item type="submit" [disabled]="!form.valid">
+                <ion-icon item-start name="share"></ion-icon>
+                Share your experience
+              </ion-button>
             </ion-list>
 
           </form>

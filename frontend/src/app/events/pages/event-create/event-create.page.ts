@@ -21,14 +21,23 @@ export class EventCreatePage implements OnInit {
   constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router,
               private loadingController :LoadingController, private alertController: AlertController) {
     this.form = this.formBuilder.group({
-      imageUrl: ['', Validators.required],
+      medias: this.formBuilder.array([
+        this.formBuilder.control('', Validators.required)
+      ]),
       name: ['', [Validators.required]],
       date: ['', Validators.required],
+      duration: this.formBuilder.group({
+        length: ['', Validators.required],
+        unit: ['', Validators.required]
+      }),
       locationConstruct: this.formBuilder.group({
         locationName: ['', Validators.required]
       }),
       isFree: [true, Validators.required],
-      price: [0, [Validators.required,Validators.pattern('[0-9₺$€]*')]],
+      price: this.formBuilder.group({
+        amount: [0],
+        currency: ['X']
+      }),
       description: ['', [Validators.required,Validators.minLength(20)]],
       artists: this.formBuilder.array([
         this.formBuilder.control('')
@@ -42,8 +51,8 @@ export class EventCreatePage implements OnInit {
   createEvent() {
 
     console.log(this.form.value);
-    //this.presentLoading();
-/*
+    this.presentLoading();
+
 
     this.eventService
       .post(this.form.value)
@@ -57,7 +66,7 @@ export class EventCreatePage implements OnInit {
           this.loadingController.dismiss();
         }
       );
-      */
+
   }
 
   async presentLoading(){
