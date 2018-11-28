@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators, FormArray, FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { EventService } from '../../../data/providers/event/event.service';
@@ -13,17 +13,26 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./event-create.page.scss'],
 })
 export class EventCreatePage implements OnInit {
+  @ViewChild('eventImage') eventImage: ElementRef;
+
   form: FormGroup;
   isFree = true;
+  imageError = false;
   constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router,
               private loadingController :LoadingController, private alertController: AlertController) {
     this.form = this.formBuilder.group({
+      imageUrl: ['', Validators.required],
       name: ['', [Validators.required]],
-      datetime: ['', Validators.required],
-      location: ['', Validators.required],
+      date: ['', Validators.required],
+      locationConstruct: this.formBuilder.group({
+        locationName: ['', Validators.required]
+      }),
       isFree: [true, Validators.required],
       price: [0, [Validators.required,Validators.pattern('[0-9₺$€]*')]],
-      description: ['', [Validators.required,Validators.minLength(20)]]
+      description: ['', [Validators.required,Validators.minLength(20)]],
+      artists: this.formBuilder.array([
+        this.formBuilder.control('')
+      ])
     });
   }
 
@@ -85,5 +94,22 @@ export class EventCreatePage implements OnInit {
       // The response body may contain clues as to what went wrong,
       this.presentAlert(`${JSON.stringify(error.error)}`, true);
     }
-  };
+  }
+  onImageError(){
+    this.imageError = true;
+    (<HTMLImageElement> this.eventImage.nativeElement).src= '../../../../assets/placeholder.png';
+  }
+  onImageLoad(){
+    this.imageError = false;
+  }
+  get artists(){
+    return this.form.get('artists') as FormArray;
+  }
+  addArtist(){
+    this.artists.push(this.formBuilder.control(''));
+  }
+  removeArtist(index: number){
+    this.artists.removeAt(index);
+
+  }
 }
