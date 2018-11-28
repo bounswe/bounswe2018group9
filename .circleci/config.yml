@@ -112,5 +112,9 @@ workflows:
   deploy:
     jobs:
      # - test
-      - deploy
+      - deploy:
           #requires: -test
+          filters:
+            branches:
+              only: master
+              ignore: /pull.*/
