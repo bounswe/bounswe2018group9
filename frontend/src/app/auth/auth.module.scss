@@ -22,4 +22,8 @@
   .auth-text {
     font-size: 14px;
   }
+
+  ion-label > a {
+    pointer-events: all !important;
+  }
 }
