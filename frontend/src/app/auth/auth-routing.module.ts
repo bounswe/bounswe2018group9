@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
   { path: 'signin', component: SigninPage, canActivate: [ NoAuthGuard ] },
   { path: 'signup', component: SignupPage, canActivate: [ NoAuthGuard ] },
-  { path: 'forgotpassword', component: ForgotPasswordPage  },
+  { path: 'forgot-password', component: ForgotPasswordPage  },
   { path: 'change-password', component: ChangePasswordPage }
 ];
 
