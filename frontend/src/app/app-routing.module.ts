@@ -5,6 +5,7 @@ import {NotFoundPage} from './auth/pages/not-found/not-found.page';
 const routes: Routes = [
   { path: 'feed', loadChildren: './events/events.module#EventsModule'},
   { path: 'profile', loadChildren: './profile/profile.module#ProfileModule'},
+  { path: 'search', loadChildren: './search/search.module#SearchModule'},
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule'},
   { path: '', redirectTo: 'auth' , pathMatch: 'full'},
   { path: '**', component: NotFoundPage}];

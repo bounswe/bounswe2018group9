@@ -7,6 +7,7 @@ import { SettingsPage } from './pages/settings/settings.page';
 import { TimelinePage } from './pages/timeline/timeline.page';
 import {ProfilePage} from './pages/profile/profile.page';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UserSearchPage} from '../search/pages/user-search/user-search.page';
 
 @NgModule({
   imports: [

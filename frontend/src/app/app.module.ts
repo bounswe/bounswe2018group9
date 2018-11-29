@@ -14,6 +14,8 @@ import { DataModule } from './data/data.module';
 import { AppConfigModule } from './app-config.module';
 import { AppRoutingModule } from './app-routing.module';
 import {ProfileModule} from './profile/profile.module';
+import {SearchModule} from './search/search.module';
+import {EventsModule} from './events/events.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,8 +26,10 @@ import {ProfileModule} from './profile/profile.module';
     AuthModule.forRoot(),
     DataModule.forRoot(),
     AppConfigModule,
+    AppRoutingModule,
     ProfileModule,
-    AppRoutingModule
+    SearchModule,
+    EventsModule
   ],
   providers: [
     StatusBar,

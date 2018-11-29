@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/search/select"></ion-back-button>
+    <ion-title>Search User</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form [formGroup]="form" (ngSubmit)="search()" (keyup.enter)="form.valid && search()">
+    <ion-label>Enter name:</ion-label>
+    <ion-input formControlName="name" placeholder="Name to search:"></ion-input>
+    <ion-button type="submit" [disabled]="!form.valid" expand="block">Search</ion-button>
+  </form>
+
+</ion-content>

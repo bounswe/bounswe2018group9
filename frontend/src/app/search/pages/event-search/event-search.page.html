@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/search/select"></ion-back-button>
+    <ion-title>Search Events</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-content padding>
+    <ion-tabs>
+
+      <ion-tab label="Semantic" tab="semantic" icon="pricetag">
+        <div>
+          <form [formGroup]="semanticForm" (ngSubmit)="searchByTags()" (keyup.enter)="searchForm.valid && searchByTags()">
+            <ion-label>Semantic Search</ion-label>
+            <ion-input formControlName="tags" placeholder="Enter some tags:"></ion-input>
+            <ion-button type="submit" [disabled]="!semanticForm.valid" expand="block">Search</ion-button>
+          </form>
+        </div>
+      </ion-tab>
+      <ion-tab label="Content" tab="content" icon="book">
+        <div>
+          <form [formGroup]="contentForm" (ngSubmit)="search()" (keyup.enter)="contentForm.valid && search()">
+            <ion-label>Content Search</ion-label>
+            <ion-input formControlName="content" placeholder="Enter some tags:"></ion-input>
+            <ion-button type="submit" [disabled]="!contentForm.valid" expand="block">Search</ion-button>
+          </form>
+        </div>
+      </ion-tab>
+      <ion-tab label="Location" tab="location"  icon="map">
+        <div>
+          <form [formGroup]="locationForm" (ngSubmit)="searchLocation()" (keyup.enter)="locationForm.valid && searchLocation()">
+            <ion-label>Location Based Search</ion-label>
+            <ion-input formControlName="location" placeholder="Select a location:"></ion-input>
+            <ion-button type="submit" [disabled]="!locationForm.valid" expand="block">Search</ion-button>
+          </form>
+        </div>
+      </ion-tab>
+      <ion-tab label="Time" tab="time" icon="time">
+        <div>
+          <form [formGroup]="timeForm" (ngSubmit)="searchTime()" (keyup.enter)="timeForm.valid && searchTime()">
+            <ion-label>Time Search</ion-label>
+            <ion-input formControlName="time" placeholder="Select a time interval:"></ion-input>
+            <ion-button type="submit" [disabled]="!timeForm.valid" expand="block">Search</ion-button>
+          </form>
+        </div>
+      </ion-tab>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="semantic">
+          <ion-label>Semantic</ion-label>
+          <ion-icon name="pricetag"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button tab="content">
+          <ion-label>Content</ion-label>
+          <ion-icon name="book"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button tab="location">
+          <ion-label>Location</ion-label>
+          <ion-icon name="map"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button tab="time">
+          <ion-label>Time</ion-label>
+          <ion-icon name="time"></ion-icon>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+</ion-content>
