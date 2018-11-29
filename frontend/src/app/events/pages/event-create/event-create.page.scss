@@ -1,0 +1,32 @@
+.event-form-container{
+  padding: 10px;
+  border: 2px solid gray;
+}
+
+ion-item{
+  margin-bottom: 10px;
+}
+
+.input-error{
+  font-size: 0.6em;
+  color: #f68076;
+}
+
+.input-required{
+  color: #881f19;
+}
+
+.inline-block{
+  display: inline-block;
+}
+
+.flex-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-container ion-input{
+  width: 90%;
+}

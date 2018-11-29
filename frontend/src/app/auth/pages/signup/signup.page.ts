@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import {AlertController, LoadingController, NavController} from '@ionic/angular';
+import {AlertController, LoadingController} from '@ionic/angular';
 
 import { AuthService } from '../../providers/auth/auth.service';
-import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-signup',
@@ -37,11 +36,11 @@ export class SignupPage implements OnInit {
     this.authService
       .register(data)
       .subscribe(response => {
-        this.loadingController.dismiss();
         this.router.navigate(['/signin']);
-      }, error => {
         this.loadingController.dismiss();
-        this.handleError(error);
+      }, error => {
+        console.log(error);
+        this.loadingController.dismiss();
       });
   }
 
@@ -52,33 +51,5 @@ export class SignupPage implements OnInit {
     });
     return await loading.present();
   }
-  async presentAlert(errMessage ,backendError : boolean) {
-    let alert;
-    if(backendError){
-      alert = await this.alertController.create({
-        header: 'Wait..',
-        subHeader: 'You could not sign up.',
-        message: 'You get a backend error: ' + errMessage,
-        buttons: ['Close']
-      });
-    }else{
-      alert = await this.alertController.create({
-        header: 'Wait..',
-        subHeader: 'You could not sign up.',
-        message: 'You get a client error: ' + errMessage,
-        buttons: ['Close']
-      });
-    }
-    await alert.present();
-  }
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      this.presentAlert(error.error.message,false);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      this.presentAlert(`${JSON.stringify(error.error)}`, true);
-    }
-  };
+
 }

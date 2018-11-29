@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators, FormArray, FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { EventService } from '../../../data/providers/event/event.service';
@@ -13,15 +13,35 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./event-create.page.scss'],
 })
 export class EventCreatePage implements OnInit {
+  @ViewChild('eventImage') eventImage: ElementRef;
+
   form: FormGroup;
+  isFree = true;
+  imageError = false;
   constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router,
               private loadingController :LoadingController, private alertController: AlertController) {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
-      price: ['', [Validators.required,Validators.pattern('[0-9₺$€]*')]],
-      owner: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+      medias: this.formBuilder.array([
+        this.formBuilder.control('', Validators.required)
+      ]),
+      name: ['', [Validators.required]],
+      date: ['', Validators.required],
+      duration: this.formBuilder.group({
+        length: ['', Validators.required],
+        unit: ['', Validators.required]
+      }),
+      locationConstruct: this.formBuilder.group({
+        locationName: ['', Validators.required]
+      }),
+      isFree: [true, Validators.required],
+      price: this.formBuilder.group({
+        amount: [0],
+        currency: ['X']
+      }),
       description: ['', [Validators.required,Validators.minLength(20)]],
-      date: ['', Validators.required]
+      artists: this.formBuilder.array([
+        this.formBuilder.control('')
+      ])
     });
   }
 
@@ -29,7 +49,10 @@ export class EventCreatePage implements OnInit {
   }
 
   createEvent() {
+
+    console.log(this.form.value);
     this.presentLoading();
+
 
     this.eventService
       .post(this.form.value)
@@ -43,12 +66,12 @@ export class EventCreatePage implements OnInit {
           this.loadingController.dismiss();
         }
       );
+
   }
 
   async presentLoading(){
     const loading = await this.loadingController.create({
-      message: 'Loading...',
-      duration: 10000
+      message: 'Loading...'
     });
     return await loading.present();
   }
@@ -80,5 +103,22 @@ export class EventCreatePage implements OnInit {
       // The response body may contain clues as to what went wrong,
       this.presentAlert(`${JSON.stringify(error.error)}`, true);
     }
-  };
+  }
+  onImageError(){
+    this.imageError = true;
+    (<HTMLImageElement> this.eventImage.nativeElement).src= '../../../../assets/placeholder.png';
+  }
+  onImageLoad(){
+    this.imageError = false;
+  }
+  get artists(){
+    return this.form.get('artists') as FormArray;
+  }
+  addArtist(){
+    this.artists.push(this.formBuilder.control(''));
+  }
+  removeArtist(index: number){
+    this.artists.removeAt(index);
+
+  }
 }

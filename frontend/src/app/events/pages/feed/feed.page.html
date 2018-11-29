@@ -7,17 +7,22 @@
   </ion-toolbar>
 </ion-header>
 <ion-menu>
-  <ion-item [href]="'/feed'" >
-    Feed
-  </ion-item>
-  <ion-item color="danger" (click)="logout()">
-    Sign out
-  </ion-item>
+  <ion-list>
+    <ion-item routerLink="/feed">
+      Feed
+    </ion-item>
+    <ion-item routerLink="/profile">
+      Profile
+    </ion-item>
+    <ion-item color="danger" (click)="logout()">
+      Sign out
+    </ion-item>
+  </ion-list>
 </ion-menu>
 
 <ion-content main padding>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [href]="'/feed/create'">
+    <ion-fab-button routerLink="/feed/create">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

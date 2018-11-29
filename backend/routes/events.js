@@ -9,13 +9,12 @@ router.get('/getEventbyCreator/:id', EventController.getEventbyCreator);
 
 router.post('/', EventController.addEvent);
 
-
 // Adds an attendance to an event
 router.post('/:id/attendance', EventController.addAttendance);
 router.get('/:id/attendance', EventController.getAttendance);
 router.put('/:id/attendance', EventController.updateAttendance);
 
-//Adds a vote to event 
+//Adds a vote to event
 router.post('/:id/vote', EventController.addVote);
 router.get('/:id/vote', EventController.getVote);
 router.put('/:id/vote', EventController.updateVote);
@@ -23,6 +22,7 @@ router.put('/:id/vote', EventController.updateVote);
 // these should be last in code
 router.put('/:id', EventController.updateEvent);
 router.get('/:id', EventController.getEventbyId);
+router.delete('/:id', EventController.deleteEvent);
 
 router.post('/:id/comments', EventController.addComment);
 router.delete('/:id/comments/:commentId', EventController.deleteComment);

@@ -8,6 +8,14 @@
 
 # dependencies
 /node_modules
+/platforms
+/plugins
+
+# cordova
+platforms/
+plugins/
+plugins/android.json
+plugins/ios.json
 
 # IDEs and editors
 /.idea
@@ -38,3 +46,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+UserInterfaceState.xcuserstate

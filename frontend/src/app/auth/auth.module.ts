@@ -18,6 +18,7 @@ import { NoAuthGuard } from './guards/no-auth/no-auth.guard';
 import { environment } from '../../environments/environment';
 import { ForgotPasswordPage } from './pages/forgot-password/forgot-password.page';
 import { ChangePasswordPage } from './pages/change-password/change-password.page';
+import {NotFoundPage} from './pages/not-found/not-found.page';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { ChangePasswordPage } from './pages/change-password/change-password.page
     SigninPage,
     SignupPage,
     ForgotPasswordPage,
-    ChangePasswordPage
+    ChangePasswordPage,
+    NotFoundPage
   ],
   providers: [
     AuthService,

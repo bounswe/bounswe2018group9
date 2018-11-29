@@ -9,12 +9,40 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import "./theme/custom_variables";
+
+/* Form elements */
+ion-input, ion-textarea, ion-datetime{
+  border: 2px solid $app-input-border-color;
+  border-radius: 4px;
+  background-color: $app-input-bg-color;
+  padding-left: 8px!important;
+}
+
+ion-input input, ion-textarea input, ion-datetime input{
+  padding-left: 8px!important;
+}
+ion-item #shadow-root .item-inner{
+  border-bottom-color: transparent !important;
+  box-shadow: none !important;
+}
+ion-label{
+  z-index: 1;
+  font-size: 0.8em;
+  color: $app-input-label-color;
+  padding-left: 8px;
+}
+ion-textarea{
+
+}
+
 .ng-valid:not(form)  {
-  border-left:2px solid #42A948; /* green */
+
 }
 
 .ng-dirty.ng-invalid:not(form)  {
-  border-left:2px solid Tomato /* red */
+
 }
 .notify{
   font-size: 0.8em;
