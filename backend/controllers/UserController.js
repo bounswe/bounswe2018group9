@@ -178,15 +178,6 @@ exports.signUser = function(req,res,next){
     });
 };
 
-//User signed in and see its dashboard after loggedIn
-function loggedIn(req,res,next){
-    if(!req.session.user){
-        return res.status(404).send();
-    }
-    
-    return res.status(200).send("Welcome Actopus social platform!");
-};
-
 //User log out part with destroying session
 function logOut(req,res,next){
     req.session.destroy();
@@ -195,7 +186,6 @@ function logOut(req,res,next){
 
 module.exports = {
     getAllUsers,
-    loggedIn,
     addUser,
     getUser,
     logOut,
