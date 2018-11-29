@@ -20,6 +20,18 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  images: {
+    type: {
+      avatar: {
+        type: String,
+        required: false
+      },
+      cover: {
+        type: String,
+        required: false
+      }
+    }
+  },
   details: {
     type: {
       birth: {
@@ -34,7 +46,12 @@ const UserSchema = new Schema({
         type: String,
         required: false,
       },
+      bio: {
+        type: String,
+        required: false,
+      }
     },
+    default: {}
   },
   followers: {
     type: [{
@@ -53,8 +70,8 @@ const UserSchema = new Schema({
   interests: {
     type: [String],
     default: [],
-  },
-});
+  }
+}, { minimize: false });
 
 // hashes password if password is modified
 function hashPassword(next) {
