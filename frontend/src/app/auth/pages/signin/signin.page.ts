@@ -34,14 +34,15 @@ export class SigninPage implements OnInit {
     this.authService
       .login(this.form.value)
       .subscribe(response => {
+        this.loadingController.dismiss();
         this.route.queryParams
           .subscribe(params => {
-            this.loadingController.dismiss();
             this.router.navigate([ ( params['return'], '/feed' ) ]);
           });
+
       }, error => {
+        console.log(error);
         this.loadingController.dismiss();
-        this.handleError(error);
       });
   }
 
@@ -52,34 +53,6 @@ export class SigninPage implements OnInit {
     });
     return await loading.present();
   }
-  async presentAlert(errMessage ,backendError : boolean) {
-    let alert;
-    if(backendError){
-       alert = await this.alertController.create({
-        header: 'Wait..',
-        subHeader: 'You could not sign in.',
-        message: 'Your username or password was not correct.',
-        buttons: ['Close']
-      });
-    }else{
-      alert = await this.alertController.create({
-        header: 'Wait..',
-        subHeader: 'You could not sign in.',
-        message: 'You get a client error: ' + errMessage,
-        buttons: ['Close']
-      });
-    }
-    await alert.present();
-  }
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      this.presentAlert(error.error.message,false);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      this.presentAlert(`${JSON.stringify(error.error)}`, true);
-    }
-  };
+
 
 }

@@ -9,8 +9,7 @@ import { NoAuthGuard } from './guards/no-auth/no-auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
   { path: 'signin', component: SigninPage, canActivate: [ NoAuthGuard ] },
-  { path: 'signup', component: SignupPage, canActivate: [ NoAuthGuard ] }
-];
+  { path: 'signup', component: SignupPage, canActivate: [ NoAuthGuard ] }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

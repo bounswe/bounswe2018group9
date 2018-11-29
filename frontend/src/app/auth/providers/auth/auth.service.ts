@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/internal/operators';
@@ -33,15 +33,15 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
-  getUser(): User | null {
+  getUserId(): string | null {
     const token = localStorage.getItem('token');
     if (token === null) return null;
     const decoded = this.jwtHelper.decodeToken(token);
-    return { _id: decoded._id };
+    return decoded._id;
   }
 
 
-  register(data: { firstName: string, lastName: string, email: string, password: string }): Observable<any> {
+  register(data: { userDetails: {name: string}, email: string, password: string }): Observable<any> {
     return this.http
       .post('/api/auth/signup', data, AuthService.options);
   }
@@ -59,5 +59,11 @@ export class AuthService {
   logout(): Observable<any> {
     localStorage.removeItem('token');
     return of(true);
+  }
+  getUserData(userId : string) : Observable<any>{
+    return this.http.get('/api/users/'+userId,AuthService.options);
+  }
+  updateUser(userId : string , data : User) : Observable<any>{
+    return this.http.put('/api/users/'+ userId , data ,AuthService.options);
   }
 }

@@ -1,0 +1,116 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  test:
+    working_directory: ~
+    docker:
+      - image: circleci/node:8.9-browsers
+
+    steps:
+      # Checkout the code from the branch into the working_directory
+      - checkout
+
+      # Log the current branch and working directory
+      - run:
+          name: Show current branch and working directory
+          command: pwd && echo ${CIRCLE_BRANCH}
+
+      # Download and cache dependencies for frontend
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "./frontend/package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      # Install project dependencies for frontend
+      - run:
+          name: Install local dependencies
+          command: cd ./frontend && npm install --save-dev
+
+      # Cache local dependencies for frontend
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "./frontend/package.json" }}
+
+      - run:
+          name: Unit & Integration tests for Frontend
+          command: cd ./frontend && npm run test
+
+      - run:
+          name: E2E tests for Frontend
+          command: cd ./frontend && npm run e2e
+
+  deploy:
+    working_directory: ~
+    docker:
+      - image: circleci/node:8.9
+
+    steps:
+      # Checkout the code from the branch into the working_directory
+      - checkout
+
+      # Log the current branch and working directory
+      - run:
+          name: Show current branch and working directory
+          command: pwd && echo ${CIRCLE_BRANCH}
+
+      # Download and cache dependencies for frontend
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "./frontend/package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      # Install project dependencies for frontend
+      - run:
+          name: Install local dependencies
+          command: cd ./frontend && npm install
+
+      # Cache local dependencies for frontend
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "./frontend/package.json" }}
+
+      # Build project into the backend folder
+      - run:
+          name: Build project
+          command: npm run --prefix frontend build:prod && mv frontend/www/ backend/www/
+
+      - add-ssh-keys:
+          fingerprints:
+            - "df:15:30:bb:03:3e:48:a5:6e:83:26:d6:eb:6e:8b:b8"
+
+      - run:
+          name: SSH Key Scan
+          command: ssh-keyscan -H 46.101.223.116 >> ~/.ssh/known_hosts
+
+      - run:
+          name: Deploy script chmod
+          command: chmod +x scripts/deploy.sh
+
+      # Run deploy script
+      - run:
+          name: Deploy
+          command: sh scripts/deploy.sh
+
+      - run:
+          name: Deployment Success.
+          command: echo "Deployment Success!"
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
+              ignore:
+                - /pull.*/

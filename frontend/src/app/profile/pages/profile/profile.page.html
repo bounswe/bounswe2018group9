@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/feed"></ion-back-button>
+    <ion-title slot="start" >Profile</ion-title>
+    <ion-button slot="start" shape="round" routerLink="/profile/settings">
+      Settings
+    </ion-button>
+    <ion-button  slot="start" shape="round" routerLink="/profile/timeline">
+      Timeline
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding *ngIf="user">
+  <ion-label>Welcome to profile page</ion-label>
+  <ion-label>{{user.name}}</ion-label>
+
+</ion-content>
+
