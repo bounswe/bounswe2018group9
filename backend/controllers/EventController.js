@@ -1,14 +1,22 @@
 var mongoose = require("mongoose");
 var Event = require("../models/Event");
 
-exports.addEvent = function(req,res,next){
+const _ = require('lodash');
+
+function addEvent(req, res, next) {
+  
   var event = new Event({
     name: req.body.name,
     price: req.body.price,
-    owner: req.body.owner,
-    artists: req.body.artists,
     description: req.body.description,
-    date: req.body.date
+    date: req.body.date,
+    duration: req.body.duration,
+    created : Date.now(),
+    creator: req.body.creator,
+    artists: req.body.artists,
+    tags: req.body.tags,
+    locationConstruct: req.body.locationConstruct,
+    medias : req.body.medias,
   });
 
   event.save()
@@ -20,10 +28,11 @@ exports.addEvent = function(req,res,next){
       res.status(500);
       res.send({err});
     });
-}
+};
 
-exports.updateEventbyId = function(req, res, next)
-{
+function updateEvent(req, res, next){
+  
+  /* VALIDATION SHOULD COME HERE */
   if(!(req.body.name))
   {
     res.status(500).send("Name field missing.");
@@ -49,51 +58,23 @@ exports.updateEventbyId = function(req, res, next)
     res.status(500).send("Blocked users field missing.");
   }
 
-  Event.findByIdAndUpdate(
-    //Object Id
-    req.params.id,
-    
-    //Changes to be made
-    {
-      "name": req.body.name,
-    
-      "price": req.body.price,
-  
-      "description": req.body.description,
-  
-      "date": req.body.date,
-  
-      "artists": req.body.artists,
-  
-      "blockedUsers": req.body.blockedUsers
-    },
+  const updateOptions = { new: true }; 
+  Event.findByIdAndUpdate(req.params.id,{ $set:req.body }, updateOptions)
+    .exec()
+    .then((updatedEvent) => {
+      res.status(200);
+      res.send({updatedEvent: updatedEvent});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
+};
 
-    //Ask mongoose to return the new version of the object
-    {new: true},
+function getEventbyId(req, res, next) {
+  eventId = req.params.id;
 
-    //Callback
-    (err, newEvent) => {
-      if(err)
-      {
-        res.status(500).send();
-      }
-      else if(!newEvent)
-      {
-        res.status(404).send();
-      }
-      else
-      {
-        res.status(200).send(newEvent);
-      }
-    }
-    
-    );
-}
-exports.getEventbyId = function(req, res, next)
-{
-  searchId = req.params.id;
-
-  Event.findById(searchId)
+  Event.findById(eventId)
     .exec()
     .then((event) => {
       res.status(200);
@@ -101,15 +82,13 @@ exports.getEventbyId = function(req, res, next)
     })
     .catch((err)=>{
       res.status(404);
-      res.send('No event found with id: ' + searchId);
+      res.send('No event found with id: ' + eventId);
     });
-}
-
+};
 
 // needs params: id(owner id as string), skip(integer, default 0), limit(integer, default 10)
 // will return array of event objects with <limit> elements starting from object number <skip> in the db 
-exports.getEventbyOwner = function(req,res,next)
-{
+function getEventbyCreator(req,res,next) {
   var skipVar, limitVar;
   if(!req.query.id)
   {
@@ -146,12 +125,12 @@ exports.getEventbyOwner = function(req,res,next)
       res.status(500);
       res.send({err})
     });
-}
+};
 
 // needs params: skip(integer, default 0), limit(integer, default 10)
 // will return array of event objects with <limit> elements starting from object number <skip> in the db 
-exports.getAllEvents = function(req,res,next)
-{
+function getAllEvents(req,res,next) {
+  
   var skipVar, limitVar;
   if(!req.query.skip)
   {
@@ -184,4 +163,157 @@ exports.getAllEvents = function(req,res,next)
       res.status(500);
       res.send({err})
     });
+};
+
+function addAttendance(req,res,next){
+  const eventId = req.params.id;
+  const options = {new: true};
+
+  Event.findOneAndUpdate({_id: eventId}, {$push: {attendance: req.body}}, options)
+    .exec()
+    .then((event) => {
+      res.status(200);
+      res.send({updatedAttendance: event.attendance});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
+};
+
+function getAttendance(req,res,next){
+  const eventId = req.params.id;
+
+  Event.find({_id: eventId})
+    .exec()
+    .then((event) => {
+      res.status(200);
+      res.send({attendance: event.attendance});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
+};
+
+function updateAttendance(req,res,next){
+  const eventId = req.params.id;
+  const userId = req.body.user;
+  const attendanceType = req.body.attendanceType;
+  const options = {new: true, upsert: true};
+
+  Event.findOneAndUpdate({"id": eventId, "attendance.user": userId}, {$set: {attendanceType: attendanceType} }, options)
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({attendance: event.attendance});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send({err});
+    });
+};
+
+function addComment(req,res,next) {
+  Event.findOneAndUpdate({_id: req.params.id}, {$push: {comments: req.body}}, {new: true})
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({comments: event.comments});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send({err});
+    });
 }
+
+function deleteComment(req,res,next) {
+  Event.findOneAndUpdate({_id: req.params.id}, {$pull: {comments: { _id:req.params.commentId }}}, {new: true})
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({comments: event.comments});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send({err});
+    });
+}
+
+function updateComment(req,res,next) {
+  Event.findOneAndUpdate({"id": req.params.id, "comments.id": req.params.commentId}, {$set: {comment: req.body} }, {new: true})
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({comments: event.comments});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send({err});
+    });
+}
+function addVote(req,res,next){
+  const eventId = req.params.id;
+  const options = {new: true};
+
+  Event.findOneAndUpdate({_id: eventId}, {$push: {vote: req.body}}, options)
+    .exec()
+    .then((event) => {
+      res.status(200);
+      res.send({updatedVote: event.vote});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
+};
+
+function getVote(req,res,next){
+  const eventId = req.params.id;
+
+  Event.find({_id: eventId})
+    .exec()
+    .then((event) => {
+      res.status(200);
+      res.send({vote: event.vote});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
+};
+
+function updateVote(req,res,next){
+  const eventId = req.params.id;
+  const userId = req.body.user;
+  const voteType = req.body.voteType;
+  const options = {new: true, upsert: true};
+
+  Event.findOneAndUpdate({"id": eventId, "vote.user": userId}, {$set: {voteType: voteType} }, options)
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({vote: event.vote});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send({err});
+    });
+};
+
+module.exports = {
+  addEvent,
+  updateEvent,
+  getEventbyId,
+  getEventbyCreator,
+  getAllEvents,
+  addAttendance,
+  getAttendance,
+  updateAttendance,
+  addVote,
+  getVote,
+  updateVote,
+  addComment,
+  deleteComment,
+  updateComment
+};

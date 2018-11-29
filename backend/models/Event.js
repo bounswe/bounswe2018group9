@@ -2,9 +2,30 @@ var mongoose = require('mongoose');
 var mongoosePaginate = require("mongoose-paginate");
 var Schema = mongoose.Schema;
 
-//Import Models
-var UserModel = require("./User");
-// Definition
+const CommentSchema = new Schema({
+    type: {
+        author: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
+
+        parentId: {
+            type: Schema.Types.ObjectId
+        },
+
+        body: {
+            type: String,
+            required: true
+        },
+
+        created: {
+            type: Date,
+            default: Date.now()
+        }
+    }
+});
+
 var EventSchema = new Schema({
     name: {
         type: String,
@@ -12,8 +33,14 @@ var EventSchema = new Schema({
     },
     
     price: {
-        type: Number,
-        required: true
+        amount: {
+            type: Number,
+            required: true
+        },
+        currency: {
+            type: String,
+            required: true
+        }
     },
 
     description: {
@@ -26,9 +53,76 @@ var EventSchema = new Schema({
         required: true    
     },
 
-    owner: {//id of the associated User object
-        type: String, 
+    duration: {
+        length: {
+            type: Number,
+            required: true
+        },
+        unit: {
+            type: String,
+            required: true
+        }
+    },
+
+    created: {
+        type: Date,
+        required: false
+    },
+
+    creator: {
+        type: Schema.Types.ObjectId, 
+        ref: 'User',
         required: true
+    },
+
+    attendance: {
+        type: [{
+            user: {
+                type: Schema.Types.ObjectId, 
+                ref: 'User',
+                required: true
+            },
+            attendanceType: {
+                type: Number,
+                default: 0,
+                required: true
+            }
+        }],
+        required: true,
+        default: []
+    },
+
+    vote: {
+        upvoteCount: {
+            type: Number,
+            required: false,
+            default: 0
+        },
+        downvoteCount: {
+            type: Number,
+            required: false,
+            default: 0
+        },
+        votes: {
+            type: [{
+                user: {
+                    type: Schema.Types.ObjectId,
+                    ref: 'User',
+                    required: true
+                },
+                //0=downvote 1=upvote 2=not voted
+                voteType: {
+                    type: Number,
+                    required: true 
+                }
+            }],
+            default: []
+        }
+    },
+
+    comments: {
+        type: [CommentSchema],
+        default: []
     },
 
     artists: {
@@ -36,48 +130,38 @@ var EventSchema = new Schema({
         required: false
     },
 
-    willAttendUser: {
-        type: [mongoose.Schema.Types.ObjectId],
-        required: false
-    },
-
-    maybeAttendUser: {
-        type: [mongoose.Schema.Types.ObjectId],
-        required: false
-    },
-
-    notAttendUser: {
-        type: [mongoose.Schema.Types.ObjectId],
-        required: false
+    tags: {
+        type: [String],
+        required: true,
+        default: []
     },
     
-    attendedUsers: {
-        type: [mongoose.Schema.Types.ObjectId],
-        required: false
-    },
-
-    blockedUsers: {
-        type: [mongoose.Schema.Types.ObjectId],
-        required: false
-    },
-
-    /*
-    location-construct: {
-        //location construct here,
-        required: false
-    },
-    
-    comments: {
+    locationConstruct:{
+        //location construct here
+        locationName:{
+            type:String
+        },
+        location: {
+            locType:{
+                type:[String]
+            },
+            //number of lat,long
+            coordinates:[Number]
+        },
         
+        required: false
+    },
+
+    medias: {
+        type: [String],
+        required: true,
+        default: []
     }
-    
-    tags:{
-        
-    }
-    */
 });
+
+        
 EventSchema.plugin(mongoosePaginate);
 
-var Event = mongoose.model('Event',EventSchema);
+var Event = mongoose.model('Event', EventSchema);
 
 module.exports = Event;

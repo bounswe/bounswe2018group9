@@ -1,4 +1,4 @@
-<ion-content scrollY="false" color="light" padding>
+<ion-content color="light" padding>
   <div class="auth-container">
     <div class="icon-container">
       <img src="assets/logo.png">
@@ -11,7 +11,7 @@
             <ion-label position="stacked"><b>Name</b></ion-label>
             <ion-input type="text" placeholder="Name" formControlName="name" value=""></ion-input>
           </ion-item>
-          <ion-label text-wrap class="notify" *ngIf="this.form.get('firstName').dirty && !this.form.get('firstName').valid">Your name should consist of only alphabet characters.</ion-label>
+          <ion-label text-wrap class="notify" *ngIf="this.form.get('name').dirty && !this.form.get('name').valid">Your name should consist of only alphabet characters.</ion-label>
 
           <ion-item>
             <ion-label position="stacked"><b>Email</b></ion-label>
@@ -33,5 +33,7 @@
     <div class="form-container" margin>
       <p text-center class="auth-text">Already a user? <a color="secondary" [href]="'/signin'">Login here.</a></p>
     </div>
+
+    <p text-center padding class="auth-text">Copyright 2018 @Actopus</p>
   </div>
 </ion-content>

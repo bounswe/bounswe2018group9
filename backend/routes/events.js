@@ -2,18 +2,30 @@ var express = require('express');
 var router = express.Router();
 
 //Import Controllers
-var EventController = require('../controllers/EventController');
+const EventController = require('../controllers/EventController');
 
-//Import Models
-var Event= require('../models/Event');
+router.get('/', EventController.getAllEvents);
+router.get('/getEventbyCreator/:id', EventController.getEventbyCreator);
 
 router.post('/', EventController.addEvent);
 
 
-router.get('/',EventController.getAllEvents);
-router.get('/getEventbyOwner/:id',EventController.getEventbyOwner);
-// these should be last in code
-router.get('/:id', EventController.getEventbyId);
-router.put('/:id', EventController.updateEventbyId);
+// Adds an attendance to an event
+router.post('/:id/attendance', EventController.addAttendance);
+router.get('/:id/attendance', EventController.getAttendance);
+router.put('/:id/attendance', EventController.updateAttendance);
 
-module.exports=router;
+//Adds a vote to event 
+router.post('/:id/vote', EventController.addVote);
+router.get('/:id/vote', EventController.getVote);
+router.put('/:id/vote', EventController.updateVote);
+
+// these should be last in code
+router.put('/:id', EventController.updateEvent);
+router.get('/:id', EventController.getEventbyId);
+
+router.post('/:id/comments', EventController.addComment);
+router.delete('/:id/comments/:commentId', EventController.deleteComment);
+router.put('/:id/comments/:commentId', EventController.updateComment);
+
+module.exports = router;

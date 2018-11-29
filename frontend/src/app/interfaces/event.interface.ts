@@ -1,25 +1,22 @@
 import { Object } from './object.interface';
-import { User } from './user.interface';
-import { Media } from './media.interface';
-import { Votes } from './vote.interface';
-import { Comments } from './comment.interface';
-import { Attendances } from './attendance.interface';
-import { Location } from './location.interface';
+import {User} from "./user.interface";
+import {Comment} from "./comment.interface";
+import {LocationConstruct} from "./location.interface";
 
 export interface Event extends Object {
-  creator?: string | User;
-  title?: string;
-  description?: string;
-  artists?: [string];
-  tags?: [string];
-  media?: Media
-  date?: number;
-  location?: Location;
-  price?: {
-    amount: number;
-    currency: string;
-  };
-  votes?: Votes;
-  comments?: Comments;
-  attendances?: Attendances;
+  name: string;
+  description: string;
+  price?: {amount: number, currency: string};
+  date: Date;
+  duration?: {length: number, unit: string};
+  created: Date;
+  creator: User;
+  attendance: {user: User, attendanceType: number};
+  vote: {upvoteCount: number,
+        downvoteCount: number,
+        votes: {user: User, voteType: number}};
+  comments: Array<Comment>;
+  artists: Array<string>;
+  locationConstruct: LocationConstruct;
+  medias: Array<String>;
 }

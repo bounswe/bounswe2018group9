@@ -38,6 +38,20 @@ function getUser(email,password) {
     });
 }
 
+function updateUser(req,res,next) {
+    const id = req.params.id;
+    User.findByIdAndUpdate(id, req.body.user, {new: true})
+        .exec()
+        .then((user)=>{
+            res.status(200);
+            res.send({updatedUser: user});
+        })
+        .catch((err)=>{
+            res.status(500);
+            res.send({err});
+        })
+}
+
 function getUserById(req,res,next) {
     const id = req.params.id;
 
@@ -56,13 +70,13 @@ function getUserById(req,res,next) {
 function addUser(req,res,next) {
     var user = new User({
         email: req.body.email,
-        name: req.body.name,
-        password: req.body.password
+        password: req.body.password,
+        userDetails: req.body.userDetails,
+        followers: [],
+        following: [],
+        interests: []
     });
-    console.log('request: '+JSON.stringify(req.body,null,2));
 
-    // Before save salt the password
-    
     user.save()
         .then((user) => {
             res.status(200);
@@ -73,6 +87,75 @@ function addUser(req,res,next) {
             res.send({err});
         });
 };
+
+// This will be private later. Only will be used from follow and unfollow.
+function addFollower(req,res,next){
+    User.findOneAndUpdate({_id: req.params.id}, {$push: {follower: req.body.id}}, {new: true})
+        .exec()
+        .then((user)=>{
+            res.status(200);
+            res.send({follower: user.follower});
+        })
+        .catch((err)=>{
+            res.status(500);
+            res.send({err});
+        });
+}
+
+// This will be private later. Only will be used from follow and unfollow.
+function removeFollower(req,res,next) {
+    User.update({_id:req.params.id}, {$pull: {follower: req.body.id}}, {new: true})
+        .exec()
+        .then((user)=>{
+            res.status(200);
+            res.send({follower: user.follower});
+        })
+        .catch((err)=>{
+            res.status(500);
+            res.send({err});
+        });
+}
+
+function follow(req,res,next){
+    User.findOneAndUpdate({_id: req.params.id}, {$push: {following: req.body.id}}, {new: true})
+        .exec()
+        .then((user)=>{
+            res.status(200);
+            res.send({following: user.following});
+        })
+        .catch((err)=>{
+            res.status(500);
+            res.send({err});
+        });
+}
+
+function unfollow(req,res,next) {
+    User.update({_id:req.params.id}, {$pull: {following: req.body.id}}, {new: true})
+        .exec()
+        .then((user)=>{
+            res.status(200);
+            res.send({following: user.following});
+        })
+        .catch((err)=>{
+            res.status(500);
+            res.send({err});
+        });
+}
+
+function deleteUser(req,res,next) {
+    User.findOneAndDelete({_id: req.params.id})
+        .exec()
+        .then((user)=>{
+            res.status(200);
+            res.send({deletedUser: user});
+        })
+        .catch((err)=>{
+            res.status(500);
+            res.send({err});
+        })
+}
+
+
 
 //When user sign in it controls email and password true or not 
 exports.signUser = function(req,res,next){
@@ -123,5 +206,11 @@ module.exports = {
     addUser,
     getUser,
     logOut,
-    getUserById
+    getUserById,
+    addFollower,
+    removeFollower,
+    follow,
+    unfollow,
+    deleteUser,
+    updateUser
 }
