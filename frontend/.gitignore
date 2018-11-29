@@ -8,6 +8,8 @@
 
 # dependencies
 /node_modules
+/platforms
+/plugins
 
 # IDEs and editors
 /.idea
