@@ -1,0 +1,57 @@
+<ion-toolbar>
+  <ion-title>
+    <ion-label *ngIf="searchingUsers">Search User</ion-label>
+    <ion-label *ngIf="!searchingUsers">Search Event</ion-label>
+  </ion-title>
+  <ion-item>
+    <ion-label position="fixed">Toggle</ion-label>
+    <ion-toggle slot="start" [(ngModel)]="searchingUsers"></ion-toggle>
+  </ion-item>
+</ion-toolbar>
+<ion-content padding *ngIf ="searchingUsers">
+  <ion-label>Search Users</ion-label>
+  <ion-label>Enter name:</ion-label>
+  <ion-searchbar (keyup.enter)="username.valid && searchUser()" [formControl]="username" placeholder="Name to search:"></ion-searchbar>
+</ion-content>
+<ion-content padding *ngIf ="!searchingUsers">
+  <ion-tabs>
+  <ion-tab label="Semantic" tab="semantic" icon="pricetag">
+    <ion-label>Semantic Search</ion-label>
+    <ion-select slot="start" (keyup.enter)="tags.valid ? searchByTags() : showErrorTags()" [formControl]="tags" placeholder="Enter some tags:"></ion-select>
+  </ion-tab>
+  <ion-tab label="Content" tab="content" icon="book">
+        <ion-label>Content Search</ion-label>
+        <ion-searchbar (keyup.enter)="content.valid ? search() : showErrorContent()" [formControl]="content" placeholder="Enter keyword(s):"></ion-searchbar>
+  </ion-tab>
+  <ion-tab label="Location" tab="location"  icon="map">
+        <ion-label>Location Based Search</ion-label>
+        <ion-searchbar (keyup.enter)="location.valid ? searchLocation() : showErrorLocation()" [formControl]="location" placeholder="Select a location:"></ion-searchbar>
+  </ion-tab>
+  <ion-tab label="Time" tab="time" icon="time">
+      <form [formGroup]="timeForm" (ngSubmit)="searchTime()" (keyup.enter)="timeForm.valid ? searchTime() : showErrorTime()" >
+        <ion-label>Time Search</ion-label>
+        <ion-row><ion-label>From:</ion-label><ion-datetime [formControl]="fromTime"></ion-datetime></ion-row>
+        <ion-row><ion-label>To: </ion-label><ion-datetime [formControl]="toTime"></ion-datetime></ion-row>
+        <ion-button  type="submit" [disabled]="!timeForm.valid" expand="block">Search</ion-button>
+      </form>
+  </ion-tab>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="semantic">
+     <ion-label>Semantic</ion-label>
+      <ion-icon name="pricetag"></ion-icon>
+    </ion-tab-button>
+     <ion-tab-button tab="content">
+      <ion-label>Content</ion-label>
+      <ion-icon name="book"></ion-icon>
+    </ion-tab-button>
+      <ion-tab-button tab="location">
+        <ion-label>Location</ion-label>
+        <ion-icon name="map"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="time">
+        <ion-label>Time</ion-label>
+        <ion-icon name="time"></ion-icon>
+      </ion-tab-button>
+  </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

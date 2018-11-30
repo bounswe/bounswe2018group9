@@ -1,9 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-menu-button color="tertiary" slot="primary"></ion-menu-button>
+    <ion-buttons slot="start">
+      <ion-menu-button color="tertiary" ></ion-menu-button>
+    </ion-buttons>
     <ion-title>
       Actopus
     </ion-title>
+    <ion-buttons slot="primary">
+      <ion-menu-button color="danger" menu="end"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-menu>
@@ -14,29 +19,34 @@
     <ion-item routerLink="/profile">
       Profile
     </ion-item>
-    <ion-item routerLink="/search">
-      Search
-    </ion-item>
     <ion-item color="danger" (click)="logout()">
       Sign out
     </ion-item>
   </ion-list>
 </ion-menu>
-
+<ion-menu side="end">
+  <ion-content>
+    <app-search></app-search>
+  </ion-content>
+</ion-menu>
 <ion-content main padding>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/feed/create">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
-  <ion-grid>
-    <ion-row *ngFor="let event of events" justify-content-center no-padding>
-      <ion-col size-xs="12">
-        <div class="feed-card">
-          <app-event-card [event]="event" [routerLink]="'/feed/' + event._id"></app-event-card>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button routerLink="/feed/create">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  <ion-content *ngIf="loadedEvents">
+    <ion-grid>
+      <ion-row *ngFor="let event of events" justify-content-center no-padding>
+        <ion-col size-xs="12">
+          <div class="feed-card">
+            <app-event-card [event]="event" [routerLink]="'/feed/' + event._id"></app-event-card>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+  <ion-content *ngIf="!loadedEvents">
+    <ion-spinner name="bubbles"></ion-spinner>
+  </ion-content>
 </ion-content>

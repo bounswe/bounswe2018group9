@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'search', loadChildren: './search/search.module#SearchModule'},
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule'},
   { path: '', redirectTo: 'auth' , pathMatch: 'full'},
+  { path: '', loadChildren: './auth/auth.module#AuthModule', pathMatch: 'full'},
   { path: '**', component: NotFoundPage}];
 
 @NgModule({
