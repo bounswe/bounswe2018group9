@@ -7,6 +7,30 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  fitOnes : string[] = [];
+  interests : string[] = [
+    'Movie'
+    ,'Music'
+    ,'Jazz'
+    ,'Biennial'
+    ,'Theater'
+    ,'Exhibition'
+    ,'Modern Art'
+    ,'Art Movie'
+    ,'Photography'
+    ,'Travel'
+    ,'Festival'
+    ,'Museum'
+    ,'Workshop'
+    ,'Ballet'
+    ,'Dance'
+    ,'Classical Music'
+    ,'Opera'
+    ,'Blues'
+    ,'Turkish Folk Music'
+    ,'Concert'
+  ];
+  selectedTags : string[] = [];
   searchingUsers : boolean = false;
   tags  = new FormControl('',  [Validators.required]);
   content = new FormControl('',  [Validators.required]);
@@ -22,35 +46,30 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
   searchByTags(){
-    alert('searching semantically');
+    alert('searching semantically, tags: '+ this.selectedTags);
   }
   searchLocation(){
-    alert('searching locationally');
+    alert('searching locationally, location is: ' + this.location.value);
   }
   searchTime(){
-    alert('Searching between times:' + this.fromTime+ ' and ' + this.toTime);
+    alert('Searching between times: ' + this.fromTime.value+ ' and ' + this.toTime.value);
   }
   search(){
-    alert('searching content based');
+    alert('searching content based, content: '+ this.content.value);
   }
   searchUser(){
-    alert('searching users');
+    alert('searching users, username is: ' + this.username.value);
   }
-  showErrorTags(){
-    alert('enter some tags first');
+  updateFitOnes(){
+    this.fitOnes = this.interests.filter(value => value.toLowerCase().startsWith(this.tags.value.toString().toLowerCase()));
   }
-  showErrorContent(){
-
+  addToSelected(newTag : string){
+    if(!this.selectedTags.includes(newTag))this.selectedTags.push(newTag);
   }
-  showErrorLocation(){
-
-  }
-  showErrorTime(){
-
-  }
-  changeToggle(){
-    this.searchingUsers = !this.searchingUsers;
-    console.log(this.searchingUsers);
+  removeSelectedTag(toBeRemoved :string){
+    if(this.selectedTags.includes(toBeRemoved)){
+      this.selectedTags.splice(this.selectedTags.indexOf(toBeRemoved),1);
+    }
   }
 }
 
