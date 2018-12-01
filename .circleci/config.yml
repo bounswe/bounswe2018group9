@@ -83,7 +83,7 @@ jobs:
 
       - add-ssh-keys:
           fingerprints:
-            - "df:15:30:bb:03:3e:48:a5:6e:83:26:d6:eb:6e:8b:b8"
+            - "df:71:13:23:3d:3c:18:96:cb:4e:d0:23:dc:37:dc:c7"
 
       - run:
           name: SSH Key Scan
