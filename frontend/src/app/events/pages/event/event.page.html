@@ -12,76 +12,88 @@
 <ion-content no-padding>
   <ion-grid no-padding>
     <ion-row>
-      <ion-col no-padding col-xs-12 col-md-9 col-xl-6>
+      <ion-col no-padding>
 
-        <div class="event-container"
-             *ngIf="event; let e">
-          <div [style]="'background: url(' + e.medias[0] +')'" class="event-desktop-bacground">
-
+        <div class="event-wrapper" *ngIf="event; let e">
+          <div class="event-bg">
+            <img src="{{e.medias[0]}}" alt="{{e.name}}">
           </div>
-          <div class="upper-container">
-            <div class="image-container">
-              <img src="{{e.medias[0]}}" alt="{{e.name}}">
-            </div>
-            <div class="title-container">
-              <h1>{{e.name}}</h1>
-              <p *ngIf="user; let u">
-                Organized by {{u.name}}
-              </p>
-            </div>
-          </div>
-          <div *ngIf="e.artists && e.artists.length > 0" class="detail-container performer">
-            <div class="icon-container">
-              <ion-icon name="microphone"></ion-icon>
-            </div>
-            <div class="inner-container">
-              <h3>Performers</h3>
-              <div *ngFor="let artist of e.artists" class="artist">
-                {{artist}}
+          <div class="event-container">
+            <div class="upper-container">
+              <div class="image-container">
+                <img src="{{e.medias[0]}}" alt="{{e.name}}">
+              </div>
+              <div class="title-container">
+                <p class="date">
+                  {{e.date | date:'dd MMM'}}
+                </p>
+                <p class="price">
+                  <span *ngIf="e.price.amount == 0; else price_t">Free</span>
+                  <ng-template #price_t>{{e.price.amount}} {{e.price.unit}}</ng-template>
+                </p>
+                <h1>{{e.name}}</h1>
+                <p *ngIf="user; let u">
+                  Organized by {{u.name}}
+                </p>
               </div>
             </div>
-          </div>
-          <div class="detail-container datetime">
-            <div class="icon-container">
-              <ion-icon name="calendar"></ion-icon>
+            <div class="ticket-container">
+              <p class="price" *ngIf="e.price.amount == 0; else price">Free</p>
+              <ng-template #price>
+                <p class="price">
+                  {{e.price.amount}} {{e.price.unit}}
+                </p>
+              </ng-template>
+              <ion-button expand="block" color="secondary">Attend</ion-button>
             </div>
-            <div class="inner-container">
-              <h3>Date and Time</h3>
-              <p></p>
-              <p>
-                {{e.date | date:'dd MMMM EEEE HH:mm, yyyy'}}
-              </p>
-              <p>
-                {{e.duration.length}} {{e.duration.length <= 1 ? e.duration.unit : e.duration.unit + 's'}}
-              </p>
+            <div *ngIf="e.artists && e.artists.length > 0" class="detail-container performer">
+              <div class="icon-container">
+                <ion-icon name="microphone"></ion-icon>
+              </div>
+              <div class="inner-container">
+                <h3>Performers</h3>
+                <div *ngFor="let artist of e.artists" class="artist">
+                  {{artist}}
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="detail-container location">
-            <div class="icon-container">
-              <ion-icon name="map"></ion-icon>
+            <div class="detail-container datetime">
+              <div class="icon-container">
+                <ion-icon name="calendar"></ion-icon>
+              </div>
+              <div class="inner-container">
+                <h3>Date and Time</h3>
+                <p></p>
+                <p>
+                  {{e.date | date:'dd MMMM EEEE HH:mm, yyyy'}}
+                </p>
+                <p>
+                  {{e.duration.length}} {{e.duration.length <= 1 ? e.duration.unit : e.duration.unit + 's'}}
+                </p>
+              </div>
             </div>
-            <div class="inner-container">
-              <h3>Location</h3>
-              {{e.locationConstruct.locationName}}
+            <div class="detail-container location">
+              <div class="icon-container">
+                <ion-icon name="map"></ion-icon>
+              </div>
+              <div class="inner-container">
+                <h3>Location</h3>
+                {{e.locationConstruct.locationName}}
+              </div>
             </div>
-          </div>
-          <div class="detail-container description">
-            <div class="icon-container">
-              <ion-icon name="document"></ion-icon>
+            <div class="detail-container description">
+              <div class="icon-container">
+                <ion-icon name="document"></ion-icon>
+              </div>
+              <div class="inner-container">
+                <h3>Description</h3>
+                {{e.description}}
+              </div>
             </div>
-            <div class="inner-container">
-              <h3>Description</h3>
-              {{e.description}}
-            </div>
-          </div>
 
-          <div class="organizer-container">
+            <div class="organizer-container">
 
-          </div>
-          <div class="ticket-container">
-            <p *ngIf="e.price.amount == 0; else price">Free</p>
-            <ng-template #price>{{e.price.amount}} {{e.price.unit}}</ng-template>
-            <ion-button expand="block" color="secondary">Attend</ion-button>
+            </div>
           </div>
         </div>
       </ion-col>

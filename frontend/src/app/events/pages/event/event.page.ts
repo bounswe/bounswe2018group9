@@ -27,7 +27,7 @@ export class EventPage implements OnInit, OnDestroy{
               private authService: AuthService) {}
 
   ngOnInit() {
-    this.presentLoading();
+    //this.presentLoading();
     this.sub = this.route.params.subscribe(params => {
       if(params){
         this.event_id = params['id'];
@@ -43,18 +43,14 @@ export class EventPage implements OnInit, OnDestroy{
                 (user: User) => {
                   console.log("Creator of this event: ", user);
                   this.user = user;
-                  this.loadingController.dismiss();
                 },
                 (error) => {
                   console.log('An error occurred while getting user from backend: ', error);
-                  this.loadingController.dismiss();
                 }
               );
 
-            this.loadingController.dismiss();
           },(err)=>{
             console.log(err);
-            this.loadingController.dismiss();
           }
         );
       }

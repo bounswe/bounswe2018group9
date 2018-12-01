@@ -47,12 +47,17 @@ $ticket-container-height: 80px;
   border-bottom: 2px solid var(--ion-color-medium);
 }
 
+.title-container .price, .title-container .date{
+  display: none;
+}
+
 .detail-container{
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 12px 0;
   border-bottom: 2px solid var(--ion-color-medium);
+  background-color: white;
 }
 
 .detail-container .icon-container{
@@ -83,6 +88,7 @@ $ticket-container-height: 80px;
   border-top: 2px solid var(--ion-color-medium);
   bottom: 0;
   width: 100%;
+  border-bottom: 2px solid var(--ion-color-medium);
 }
 
 .ticket-container{
@@ -97,7 +103,7 @@ $ticket-container-height: 80px;
   margin: 8px 0;
 }
 
-.event-desktop-bacground{
+.event-desktop-background{
   display: none;
 }
 
@@ -109,12 +115,65 @@ $ticket-container-height: 80px;
 @media screen and (min-width: 960px){
   .event-container{
     width: 960px;
-    margin: 0 auto;
+    margin: 40px auto 40px auto;
     border: 2px solid var(--ion-color-medium);
+    z-index: 1;
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translate(-50%, 0%);
   }
 
-  .event-desktop-bacground{
+  .event-bg{
+    filter: blur(18px);
+    -webkit-filter: blur(18px);
+    position: absolute;
+    width: 100%;
+    height: 600px;
+    z-index: 0;
+    opacity: 0.7;
+  }
+
+  .event-bg img{
+    width: 100%;
+    height: 600px;
+  }
+
+  .image-container{
+    height: 400px;
+  }
+
+  .ticket-container{
+    position: static;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 2px solid var(--ion-color-medium);
+    height: auto;
+  }
+
+  .ticket-container .price{
+    display: none;
+  }
+
+  .ticket-container ion-button{
+    width: 30%;
+  }
+
+  .event-wrapper{
+    position: relative;
+  }
+
+  .event-desktop-background{
     display: block;
+    height: 600px;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
   }
 
   .upper-container{
@@ -129,5 +188,35 @@ $ticket-container-height: 80px;
 
   .upper-container .title-container{
     width: 30%;
+  }
+  .title-container{
+    display: flex;
+    padding: 0 0 0 12px;
+    align-items: start;
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+    position: relative;
+    height: 400px;
+    background-color: var(--ion-color-light);
+  }
+
+  .title-container .price, .title-container .date{
+    display: block;
+    margin: 0;
+  }
+
+  .title-container .date{
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-size: 1.4em;
+  }
+
+  .title-container .price{
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    font-size: 1.2em;
   }
 }
