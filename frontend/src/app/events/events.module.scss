@@ -1,0 +1,22 @@
+$padding-normal: 5px;
+$border-radius: 10px;
+$max-media-height: 300px;
+
+ion-card {
+  p {
+    margin: 0;
+    padding-top: $padding-normal;
+    padding-bottom: $padding-normal;
+  }
+
+  .button-container {
+    margin: 0;
+    padding-top: $padding-normal;
+    padding-bottom: $padding-normal;
+
+    ion-icon {
+      font-size: 25px;
+      padding-right: 3px;
+    }
+  }
+}
