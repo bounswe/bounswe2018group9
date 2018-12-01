@@ -1,41 +1,28 @@
-<ion-card>
-
-  <ion-item>
-    <ion-avatar item-start>
-      <img src="{{randomProfileImage}}">
-    </ion-avatar>
-    <h2>{{event.owner}}</h2>
-    <p>{{date_str}}</p>
-  </ion-item>
-
-  <img src="https://picsum.photos/300/300/?image={{likes}}">
+<ion-card no-margin no-padding>
+  <ion-card-header text-center>
+    <ion-card-title>{{event.title}}</ion-card-title>
+    <ion-card-subtitle>{{event.artists}}</ion-card-subtitle>
+    <ion-card-subtitle>{{event.tags}}</ion-card-subtitle>
+  </ion-card-header>
 
   <ion-card-content>
-    <h2>{{event.name}}</h2>
-    <p>
-      {{event.description}}
-    </p>
+    <p>{{event.description}}</p>
+    <app-media [media]="event.media"></app-media>
   </ion-card-content>
 
-  <ion-row>
-    <ion-col>
-      <button ion-button icon-start clear small>
-        <ion-icon name="thumbs-up"></ion-icon>
-        <div>{{likes}} Likes</div>
-      </button>
-    </ion-col>
-    <ion-col>
-      <button ion-button icon-start clear small>
-        <ion-icon name="text"></ion-icon>
-        <div>{{comments}} Comments</div>
-      </button>
-    </ion-col>
-    <ion-col center text-center>
-      <ion-note>
-        {{hours}}h ago
-      </ion-note>
-    </ion-col>
-  </ion-row>
-
+  <div class="button-container" text-center>
+    <ion-button type="button" shape="round" fill="clear" color="{{like ? 'primary' : 'medium'}}" size="small">
+      <ion-icon name="thumbs-up" color="{{like ? 'primary' : 'medium'}}"></ion-icon>
+      {{event.votes?.count[0] || 0}}
+    </ion-button>
+    <ion-button type="button" shape="round" fill="clear" color="{{dislike ? 'danger': 'medium'}}" size="small">
+      <ion-icon name="thumbs-down" color="{{dislike ? 'danger' : 'medium'}}"></ion-icon>
+      {{event.votes?.count[1] || 0}}
+    </ion-button>
+    <ion-button type="button" shape="round" fill="clear" color="medium" size="small">
+      <ion-icon name="chatboxes" color="medium" large></ion-icon>
+      {{event.comments.count || 0}}
+    </ion-button>
+  </div>
 </ion-card>
 

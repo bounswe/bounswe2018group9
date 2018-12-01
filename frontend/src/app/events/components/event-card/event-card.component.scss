@@ -1,0 +1,19 @@
+@import '../../events.module.scss';
+
+ion-card {
+  padding-bottom: 0;
+  border-radius: $border-radius;
+
+  ion-card-header {
+    padding-bottom: 0;
+
+    ion-card-subtitle {
+      padding-top: $padding-normal;
+    }
+  }
+
+  ion-card-content {
+    padding-top: $padding-normal;
+    padding-bottom: 0;
+  }
+}
