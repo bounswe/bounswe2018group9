@@ -11,6 +11,7 @@ import { EventCreatePage } from './pages/event-create/event-create.page';
 
 import { MediaComponent } from './components/media/media.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
+import { CommentCardComponent } from './components/comment-card/comment-card.component';
 
 @NgModule({
   imports: [
@@ -23,8 +24,9 @@ import { EventCardComponent } from './components/event-card/event-card.component
     FeedPage,
     EventPage,
     EventCreatePage,
+    MediaComponent,
     EventCardComponent,
-    MediaComponent
+    CommentCardComponent
   ]
 })
 export class EventsModule { }

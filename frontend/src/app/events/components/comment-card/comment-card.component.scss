@@ -1,0 +1,24 @@
+@import '../../events.module.scss';
+
+ion-card {
+  padding-bottom: 0;
+  border-radius: $border-radius;
+
+  .top-container {
+    display: flex;
+  }
+
+  .text-container {
+    margin: 0;
+    padding-left: $padding-normal;
+    padding-bottom: $padding-normal;
+    vertical-align: top;
+    overflow: auto;
+  }
+
+  ion-avatar {
+    & > img {
+      border-radius: $border-radius !important;
+    }
+  }
+}

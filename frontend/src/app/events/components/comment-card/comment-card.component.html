@@ -1,0 +1,32 @@
+<ion-card no-margin padding>
+  <div class="top-container">
+    <div>
+      <ion-avatar>
+        <img [src]="comment.author?.image?.file">
+      </ion-avatar>
+    </div>
+    <div>
+      <div class="text-container">
+        <b>{{comment.author?.name}}</b>
+        <i *ngIf="comment.reference?.title" float-right>on {{comment.reference?.title}}</i>
+        <br>
+        <p>{{comment.text}}</p>
+      </div>
+      <app-media [media]="comment.media"></app-media>
+    </div>
+  </div>
+  <div class="button-container" text-center>
+    <ion-button type="button" shape="round" fill="clear" color="{{like ? 'primary' : 'medium'}}" size="small">
+      <ion-icon name="thumbs-up" color="{{like ? 'primary' : 'medium'}}"></ion-icon>
+      {{comment.votes?.count[0] || 0}}
+    </ion-button>
+    <ion-button type="button" shape="round" fill="clear" color="{{dislike ? 'danger': 'medium'}}" size="small">
+      <ion-icon name="thumbs-down" color="{{dislike ? 'danger' : 'medium'}}"></ion-icon>
+      {{comment.votes?.count[1] || 0}}
+    </ion-button>
+    <ion-button type="button" shape="round" fill="clear" color="medium" size="small">
+      <ion-icon name="chatboxes" color="medium" large></ion-icon>
+      {{comment.comments?.count || 0}}
+    </ion-button>
+  </div>
+</ion-card>
