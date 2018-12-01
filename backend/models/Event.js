@@ -136,19 +136,17 @@ var EventSchema = new Schema({
         default: []
     },
     
-    locationConstruct:{
-        //location construct here
-        locationName:{
-            type:String
-        },
-        location: {
-            locType:{
-                type:[String]
+    location:{
+        type: {
+            name:{
+                type: String,
+                required: true
             },
-            //number of lat,long
-            coordinates:[Number]
+            coordinates: {
+                lat: Number,
+                long: Number
+            }
         },
-        
         required: false
     },
 
