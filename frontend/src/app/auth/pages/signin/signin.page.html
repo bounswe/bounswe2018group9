@@ -12,9 +12,11 @@
             <ion-input type="email" placeholder="Email" formControlName="email" value=""></ion-input>
           </ion-item>
           <ion-label text-wrap class="notify" *ngIf="this.form.get('email').dirty && !this.form.get('email').valid">Your e-mail should include a name, @ sign, and a domain afterwards.</ion-label>
+
           <ion-item>
-            <ion-label  position="stacked">
+            <ion-label position="stacked">
               <b>Password</b>
+              <a routerLink="/auth/forgot-password" float-right>Forgot password?</a>
             </ion-label>
             <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
           </ion-item>
@@ -25,9 +27,9 @@
     </div>
 
     <div class="form-container" margin>
-      <p text-center class="auth-text">New to Actopus? <a color="secondary" [routerLink]="'/signup'">Create an account.</a></p>
-      <p text-center class="auth-text">  Forgot password? <a color="secondary" [routerLink]="'/auth/forgot-password'">Click here.</a></p>
+      <p text-center class="auth-text">New to Actopus? <a color="secondary" routerLink="/signup">Create an account.</a></p>
     </div>
+
     <p text-center padding class="auth-text">Copyright 2018 @Actopus</p>
   </div>
 </ion-content>
