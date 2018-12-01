@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-
-import { Event } from '../../../interfaces/index';
+import { Router} from '@angular/router';
+import { Event } from '../../../interfaces';
 
 import { AuthService } from '../../../auth/providers/auth/auth.service';
 import { EventService } from '../../../data/providers/event/event.service';
-import {LoadingController} from "@ionic/angular";
 
 @Component({
   selector: 'app-feed',
@@ -14,28 +12,19 @@ import {LoadingController} from "@ionic/angular";
 })
 export class FeedPage implements OnInit {
   events: Event[];
+  loadedEvents : boolean = false;
   private eventSub : any;
 
-  constructor(private router: Router, private authService: AuthService, private eventService: EventService,
-              public loadingController: LoadingController, private route : ActivatedRoute) { }
+  constructor(private router: Router, private authService: AuthService, private eventService: EventService) { }
 
   ngOnInit() {
-    this.presentLoading();
     this.eventSub = this.eventService.get()
       .subscribe((data: Event[]) => {
         this.events = data;
-        this.loadingController.dismiss();
+        this.loadedEvents = true;
       }, error => {
         console.log(error);
-        this.loadingController.dismiss();
       });
-  }
-
-  async presentLoading(){
-    const loading = await this.loadingController.create({
-      message: 'Loading...'
-    });
-    return await loading.present();
   }
 
   ngOnDestroy(){
@@ -48,4 +37,5 @@ export class FeedPage implements OnInit {
         this.router.navigate(['/signin']);
       })
   }
+
 }

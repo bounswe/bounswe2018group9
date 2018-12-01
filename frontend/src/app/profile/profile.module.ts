@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProfileLandingPage } from "./profile-landing.page";
 import { ProfileRoutingModule } from "./profile-routing.module";
 import { IonicModule } from "@ionic/angular";
 import { SettingsPage } from './pages/settings/settings.page';
@@ -17,7 +16,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule
   ],
   declarations: [
-    ProfileLandingPage,
     SettingsPage,
     TimelinePage,
     ProfilePage

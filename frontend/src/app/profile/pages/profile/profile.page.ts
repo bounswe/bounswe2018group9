@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import { LoadingController} from '@ionic/angular';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../../interfaces';
 import {AuthService} from '../../../auth/providers/auth/auth.service';
@@ -11,6 +10,7 @@ import {AuthService} from '../../../auth/providers/auth/auth.service';
 })
 export class ProfilePage implements OnInit {
 
+  gotUserData : boolean = false;
   followedBy : User[];
   following : User[];
   notifications : String[];
@@ -20,18 +20,16 @@ export class ProfilePage implements OnInit {
   private sub : any;
   user: User | null;
   userId : string | null;
-  constructor(private auth : AuthService,private loadingController : LoadingController, private router : Router,
+  constructor(private auth : AuthService, private router : Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.presentLoading();
     this.userId = this.getUserId();
     this.sub = this.auth.getUserData(this.userId).subscribe((res : User)=>{
       this.user = res;
-      this.loadingController.dismiss();
+      this.gotUserData = true;
     },(err)=>{
       console.log(err);
-      this.loadingController.dismiss();
     });
   }
 
@@ -45,12 +43,6 @@ export class ProfilePage implements OnInit {
       return this.auth.getUserId();
     }
   }
-  async presentLoading(){
-    const loading = await this.loadingController.create({
-      message: 'Loading...',
-      duration: 10000
-    });
-    return await loading.present();
-  }
+
 
 }

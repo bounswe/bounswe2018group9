@@ -13,7 +13,6 @@ import { DataModule } from './data/data.module';
 
 import { AppConfigModule } from './app-config.module';
 import { AppRoutingModule } from './app-routing.module';
-import {ProfileModule} from './profile/profile.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,8 +23,7 @@ import {ProfileModule} from './profile/profile.module';
     AuthModule.forRoot(),
     DataModule.forRoot(),
     AppConfigModule,
-    ProfileModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     StatusBar,

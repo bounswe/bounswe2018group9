@@ -65,7 +65,8 @@ export class AuthService {
 
   }
 
-  changePassword(data: {password: string}){
+  changePassword(data: {userId: string ,password: string , againPassword: string}){
+
   }
   getUserData(userId : string) : Observable<any>{
     return this.http.get('/api/users/'+userId,AuthService.options);

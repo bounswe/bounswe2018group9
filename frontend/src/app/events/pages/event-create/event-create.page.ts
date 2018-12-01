@@ -1,13 +1,11 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormArray, FormControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { EventService } from '../../../data/providers/event/event.service';
 
-import {AlertController, LoadingController} from "@ionic/angular";
+import {AlertController} from "@ionic/angular";
 import {HttpErrorResponse} from "@angular/common/http";
-import {Event} from "../../../interfaces";
-import {AuthService} from "../../../auth/providers/auth/auth.service";
 
 @Component({
   selector: 'app-event-create',
@@ -16,16 +14,11 @@ import {AuthService} from "../../../auth/providers/auth/auth.service";
 })
 export class EventCreatePage implements OnInit {
   @ViewChild('eventImage') eventImage: ElementRef;
-
+  eventPosted : boolean = false;
   form: FormGroup;
   isFree = true;
   imageError = false;
-  constructor(private formBuilder: FormBuilder,
-              private eventService: EventService,
-              private router: Router,
-              private loadingController :LoadingController,
-              private alertController: AlertController,
-              private authService: AuthService) {
+  constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router, private alertController: AlertController) {
     this.form = this.formBuilder.group({
       medias: this.formBuilder.array([
         this.formBuilder.control('', Validators.required)
@@ -45,7 +38,9 @@ export class EventCreatePage implements OnInit {
         currency: ['X']
       }),
       description: ['', [Validators.required,Validators.minLength(20)]],
-      artists: this.formBuilder.array([])
+      artists: this.formBuilder.array([
+        this.formBuilder.control('')
+      ])
     });
   }
 
@@ -55,34 +50,23 @@ export class EventCreatePage implements OnInit {
   createEvent() {
 
     console.log(this.form.value);
-    this.presentLoading();
 
-    let event: Event = this.form.value;
-    event.creator = this.authService.getUserId();
-
-    console.log(event);
 
     this.eventService
       .post(this.form.value)
       .subscribe(
         message => {
           this.router.navigate(['/feed']);
+          this.eventPosted = true;
         },
         error => {
           this.handleError(error)
-        },() => {
-          this.loadingController.dismiss();
         }
       );
 
   }
 
-  async presentLoading(){
-    const loading = await this.loadingController.create({
-      message: 'Loading...'
-    });
-    return await loading.present();
-  }
+
   async presentAlert(errMessage ,backendError : boolean) {
     let alert;
     if(backendError){
@@ -100,7 +84,6 @@ export class EventCreatePage implements OnInit {
         buttons: ['Close']
       });
     }
-    this.loadingController.dismiss();
     await alert.present();
   }
   private handleError(error: HttpErrorResponse) {
