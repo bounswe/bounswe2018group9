@@ -6,6 +6,8 @@ import { EventService } from '../../../data/providers/event/event.service';
 
 import {AlertController, LoadingController} from "@ionic/angular";
 import {HttpErrorResponse} from "@angular/common/http";
+import {Event} from "../../../interfaces";
+import {AuthService} from "../../../auth/providers/auth/auth.service";
 
 @Component({
   selector: 'app-event-create',
@@ -18,8 +20,12 @@ export class EventCreatePage implements OnInit {
   form: FormGroup;
   isFree = true;
   imageError = false;
-  constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router,
-              private loadingController :LoadingController, private alertController: AlertController) {
+  constructor(private formBuilder: FormBuilder,
+              private eventService: EventService,
+              private router: Router,
+              private loadingController :LoadingController,
+              private alertController: AlertController,
+              private authService: AuthService) {
     this.form = this.formBuilder.group({
       medias: this.formBuilder.array([
         this.formBuilder.control('', Validators.required)
@@ -39,9 +45,7 @@ export class EventCreatePage implements OnInit {
         currency: ['X']
       }),
       description: ['', [Validators.required,Validators.minLength(20)]],
-      artists: this.formBuilder.array([
-        this.formBuilder.control('')
-      ])
+      artists: this.formBuilder.array([])
     });
   }
 
@@ -53,6 +57,10 @@ export class EventCreatePage implements OnInit {
     console.log(this.form.value);
     this.presentLoading();
 
+    let event: Event = this.form.value;
+    event.creator = this.authService.getUserId();
+
+    console.log(event);
 
     this.eventService
       .post(this.form.value)
@@ -92,6 +100,7 @@ export class EventCreatePage implements OnInit {
         buttons: ['Close']
       });
     }
+    this.loadingController.dismiss();
     await alert.present();
   }
   private handleError(error: HttpErrorResponse) {

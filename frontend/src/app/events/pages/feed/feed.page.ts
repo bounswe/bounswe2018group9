@@ -33,8 +33,7 @@ export class FeedPage implements OnInit {
 
   async presentLoading(){
     const loading = await this.loadingController.create({
-      message: 'Loading...',
-      duration: 10000
+      message: 'Loading...'
     });
     return await loading.present();
   }

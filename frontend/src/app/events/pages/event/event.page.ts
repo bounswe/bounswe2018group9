@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Event } from '../../../interfaces/index';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Event, User} from '../../../interfaces/index';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../../../data/providers/event/event.service';
 
 import {AlertController, LoadingController} from "@ionic/angular";
 import {HttpErrorResponse} from "@angular/common/http";
+import {AuthService} from "../../../auth/providers/auth/auth.service";
 
 @Component({
   selector: 'app-event',
@@ -12,15 +13,18 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./event.page.scss'],
 })
 export class EventPage implements OnInit, OnDestroy{
+  @ViewChild('profileImage') profileImage;
 
   event: Event | null = null;
   private sub: any;
+  user: User;
   event_id: string;
 
-  constructor(private route: ActivatedRoute, private eventService: EventService,private loadingController :
-    LoadingController, private alertController : AlertController) {
-
-  }
+  constructor(private route: ActivatedRoute,
+              private eventService: EventService,
+              private loadingController : LoadingController,
+              private alertController : AlertController,
+              private authService: AuthService) {}
 
   ngOnInit() {
     this.presentLoading();
@@ -30,6 +34,23 @@ export class EventPage implements OnInit, OnDestroy{
         this.eventService.get(this.event_id).subscribe(
           (next : Event) =>{
             this.event = next;
+            console.log(this.event);
+
+            let user_id: string = this.event.creator;
+
+            this.authService.getUserData(user_id)
+              .subscribe(
+                (user: User) => {
+                  console.log("Creator of this event: ", user);
+                  this.user = user;
+                  this.loadingController.dismiss();
+                },
+                (error) => {
+                  console.log('An error occurred while getting user from backend: ', error);
+                  this.loadingController.dismiss();
+                }
+              );
+
             this.loadingController.dismiss();
           },(err)=>{
             console.log(err);
@@ -38,6 +59,7 @@ export class EventPage implements OnInit, OnDestroy{
         );
       }
     });
+
 
   }
   ngOnDestroy() {
@@ -51,8 +73,7 @@ export class EventPage implements OnInit, OnDestroy{
   }
   async presentLoading(){
     const loading = await this.loadingController.create({
-      message: 'Loading...',
-      duration: 10000
+      message: 'Loading...'
     });
     return await loading.present();
   }
@@ -66,5 +87,8 @@ export class EventPage implements OnInit, OnDestroy{
     await alert.present();
   }
 
+  onProfileImageError(){
+    (<HTMLImageElement>this.profileImage.nativeElement).src='../../../../assets/profile.jpg';
+  }
 
 }
