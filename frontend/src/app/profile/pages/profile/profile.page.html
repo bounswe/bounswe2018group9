@@ -2,19 +2,23 @@
   <ion-toolbar>
     <ion-back-button slot="start" defaultHref="/feed"></ion-back-button>
     <ion-title slot="start" >Profile</ion-title>
-    <ion-button slot="start" shape="round" routerLink="/profile/settings">
-      Settings
-    </ion-button>
-    <ion-button  slot="start" shape="round" routerLink="/profile/timeline">
-      Timeline
-    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 
+
 <ion-content padding *ngIf="user">
-  <ion-label>Welcome to profile page</ion-label>
-  <ion-label>{{user.name}}</ion-label>
+  <div *ngIf="gotUserData">
+    <ion-label>Welcome to profile page, {{user.userDetails['name']}}</ion-label>
+    <hr>
+    <ion-button slot="start" shape="round" routerLink="/profile/settings">
+      Settings
+    </ion-button>
+    <ion-button  slot="end" shape="round" routerLink="/profile/timeline">
+      Timeline
+    </ion-button>
+  </div>
+  <ion-spinner *ngIf="!gotUserData" class="bubbles"></ion-spinner>
 
 </ion-content>
 

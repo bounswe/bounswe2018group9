@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { Router} from '@angular/router';
 import { Event } from '../../../interfaces';
 
 import { AuthService } from '../../../auth/providers/auth/auth.service';
 import { EventService } from '../../../data/providers/event/event.service';
-import {LoadingController} from "@ionic/angular";
 
 @Component({
   selector: 'app-feed',
@@ -17,8 +15,7 @@ export class FeedPage implements OnInit {
   loadedEvents : boolean = false;
   private eventSub : any;
 
-  constructor(private router: Router, private authService: AuthService, private eventService: EventService,
-              public loadingController: LoadingController, private route : ActivatedRoute, private modal : ModalController) { }
+  constructor(private router: Router, private authService: AuthService, private eventService: EventService) { }
 
   ngOnInit() {
     this.eventSub = this.eventService.get()
