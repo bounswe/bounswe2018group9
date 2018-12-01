@@ -40,7 +40,7 @@ function getUser(email,password) {
 
 function updateUser(req,res,next) {
     const id = req.params.id;
-    User.findByIdAndUpdate(id, req.body.user, {new: true})
+    User.findByIdAndUpdate(id, req.body, {new: true})
         .exec()
         .then((user)=>{
             res.status(200);
