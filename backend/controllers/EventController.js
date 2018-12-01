@@ -45,7 +45,7 @@ function getEventbyId(req, res, next) {
     })
     .catch((err)=>{
       res.status(404);
-      res.send('No event found with id: ' + eventId);
+      res.send(err);
     });
 };
 
