@@ -3,26 +3,21 @@ var mongoosePaginate = require("mongoose-paginate");
 var Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
-    type: {
-        author: {
-            type: Schema.Types.ObjectId,
-            ref: 'User',
-            required: true
-        },
-
-        parentId: {
-            type: Schema.Types.ObjectId
-        },
-
-        body: {
-            type: String,
-            required: true
-        },
-
-        created: {
-            type: Date,
-            default: Date.now()
-        }
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    parentId: {
+        type: Schema.Types.ObjectId
+    },
+    body: {
+        type: String,
+        required: true
+    },
+    created: {
+        type: Date,
+        default: Date.now()
     }
 });
 

@@ -38,6 +38,7 @@ function getEventbyId(req, res, next) {
   eventId = req.params.id;
 
   Event.findById(eventId)
+    .populate("comments")
     .exec()
     .then((event) => {
       res.status(200);
