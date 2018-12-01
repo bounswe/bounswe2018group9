@@ -1,0 +1,8 @@
+<div *ngIf="media?.length > 0" class="media-container">
+  <div *ngIf="media[0].type == 0">
+    <img [src]="media[0].file">
+  </div>
+  <div *ngIf="media[0].type == 1">
+    Not supported...
+  </div>
+</div>

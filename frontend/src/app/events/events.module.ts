@@ -9,6 +9,7 @@ import { FeedPage } from './pages/feed/feed.page';
 import { EventPage } from './pages/event/event.page';
 import { EventCreatePage } from './pages/event-create/event-create.page';
 
+import { MediaComponent } from './components/media/media.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
 
 @NgModule({
@@ -22,7 +23,8 @@ import { EventCardComponent } from './components/event-card/event-card.component
     FeedPage,
     EventPage,
     EventCreatePage,
-    EventCardComponent
+    EventCardComponent,
+    MediaComponent
   ]
 })
 export class EventsModule { }
