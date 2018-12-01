@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Event } from '../../../interfaces/index';
+import { Event } from '../../../interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../../../data/providers/event/event.service';
 
-import {AlertController, LoadingController} from "@ionic/angular";
-import {HttpErrorResponse} from "@angular/common/http";
+import {AlertController} from "@ionic/angular";
 
 @Component({
   selector: 'app-event',
@@ -17,23 +16,20 @@ export class EventPage implements OnInit, OnDestroy{
   private sub: any;
   event_id: string;
 
-  constructor(private route: ActivatedRoute, private eventService: EventService,private loadingController :
-    LoadingController, private alertController : AlertController) {
+  constructor(private route: ActivatedRoute, private eventService: EventService,
+              private alertController : AlertController) {
 
   }
 
   ngOnInit() {
-    this.presentLoading();
     this.sub = this.route.params.subscribe(params => {
       if(params){
         this.event_id = params['id'];
         this.eventService.get(this.event_id).subscribe(
           (next : Event) =>{
             this.event = next;
-            this.loadingController.dismiss();
           },(err)=>{
             console.log(err);
-            this.loadingController.dismiss();
           }
         );
       }
@@ -49,13 +45,7 @@ export class EventPage implements OnInit, OnDestroy{
     let date = new Date(date_str);
     return date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
   }
-  async presentLoading(){
-    const loading = await this.loadingController.create({
-      message: 'Loading...',
-      duration: 10000
-    });
-    return await loading.present();
-  }
+
   async presentAlert(errMessage) {
     const alert = await this.alertController.create({
         header: 'Wait..',

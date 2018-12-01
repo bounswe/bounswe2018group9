@@ -1,10 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormArray, FormControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { EventService } from '../../../data/providers/event/event.service';
 
-import {AlertController, LoadingController} from "@ionic/angular";
+import {AlertController} from "@ionic/angular";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
@@ -14,12 +14,11 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class EventCreatePage implements OnInit {
   @ViewChild('eventImage') eventImage: ElementRef;
-
+  eventPosted : boolean = false;
   form: FormGroup;
   isFree = true;
   imageError = false;
-  constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router,
-              private loadingController :LoadingController, private alertController: AlertController) {
+  constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router, private alertController: AlertController) {
     this.form = this.formBuilder.group({
       medias: this.formBuilder.array([
         this.formBuilder.control('', Validators.required)
@@ -51,7 +50,6 @@ export class EventCreatePage implements OnInit {
   createEvent() {
 
     console.log(this.form.value);
-    this.presentLoading();
 
 
     this.eventService
@@ -59,22 +57,16 @@ export class EventCreatePage implements OnInit {
       .subscribe(
         message => {
           this.router.navigate(['/feed']);
+          this.eventPosted = true;
         },
         error => {
           this.handleError(error)
-        },() => {
-          this.loadingController.dismiss();
         }
       );
 
   }
 
-  async presentLoading(){
-    const loading = await this.loadingController.create({
-      message: 'Loading...'
-    });
-    return await loading.present();
-  }
+
   async presentAlert(errMessage ,backendError : boolean) {
     let alert;
     if(backendError){

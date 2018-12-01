@@ -14,7 +14,7 @@ export class SigninPage implements OnInit {
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute,
-              private authService: AuthService, private loadingController : LoadingController,
+              private authService: AuthService,
               private alertController: AlertController) {
     this.form = this.formBuilder.group(
       {
@@ -28,12 +28,10 @@ export class SigninPage implements OnInit {
   }
 
   login() {
-    this.presentLoading();
 
     this.authService
       .login(this.form.value)
       .subscribe(response => {
-        this.loadingController.dismiss();
         this.route.queryParams
           .subscribe(params => {
             this.router.navigate([ ( params['return'], '/feed' ) ]);
@@ -41,16 +39,8 @@ export class SigninPage implements OnInit {
 
       }, error => {
         console.log(error);
-        this.loadingController.dismiss();
       });
   }
 
-  async presentLoading(){
-    const loading = await this.loadingController.create({
-      message: 'Loading...',
-      duration: 10000
-    });
-    return await loading.present();
-  }
 
 }
