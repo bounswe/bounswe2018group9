@@ -8,16 +8,23 @@ import { AuthService } from '../../providers/auth/auth.service';
 })
 export class ChangePasswordPage implements OnInit {
    form: FormGroup;
+   userId: string;
    constructor(private formBuilder: FormBuilder, private authService: AuthService) {
     this.form = this.formBuilder.group(
       {
-        password: ['', Validators.required]
+        password: ['', Validators.required],
+        againPassword: ['', Validators.required]
       }
     );
   }
    ngOnInit() {
   }
    changePassword(){
-    this.authService.changePassword(this.form.value);
+     let data = {
+       userId: this.userId,
+       password: this.form.value['password'],
+       againPassword: this.form.value['againPassword']
+       };
+    this.authService.changePassword(data);
   }
  }

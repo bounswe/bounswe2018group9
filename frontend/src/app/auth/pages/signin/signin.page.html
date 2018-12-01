@@ -16,9 +16,7 @@
           <ion-item>
             <ion-label position="stacked">
               <b>Password</b>
-              <span>
-                <a color="secondary" [routerLink]="'/forgot-password'" float-right>Forgot password?</a>
-              </span>
+              <a routerLink="/auth/forgot-password" float-right>Forgot password?</a>
             </ion-label>
             <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
           </ion-item>
@@ -29,7 +27,7 @@
     </div>
 
     <div class="form-container" margin>
-      <p text-center class="auth-text">New to Actopus? <a color="secondary" [routerLink]="'/signup'">Create an account.</a></p>
+      <p text-center class="auth-text">New to Actopus? <a color="secondary" routerLink="/signup">Create an account.</a></p>
     </div>
 
     <p text-center padding class="auth-text">Copyright 2018 @Actopus</p>

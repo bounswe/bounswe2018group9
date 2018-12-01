@@ -4,7 +4,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthService } from '../../providers/auth/auth.service';
 import {AlertController, LoadingController} from "@ionic/angular";
-import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-signin',
@@ -53,6 +52,5 @@ export class SigninPage implements OnInit {
     });
     return await loading.present();
   }
-
 
 }
