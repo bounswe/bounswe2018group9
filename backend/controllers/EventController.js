@@ -4,19 +4,7 @@ const Event = require("../models/Event");
 const _ = require('lodash');
 
 function addEvent(req, res, next) {
-  var event = new Event({
-    name: req.body.name,
-    price: req.body.price,
-    description: req.body.description,
-    date: req.body.date,
-    duration: req.body.duration,
-    created : Date.now(),
-    creator: req.body.creator,
-    artists: req.body.artists,
-    tags: req.body.tags,
-    locationConstruct: req.body.locationConstruct,
-    medias : req.body.medias,
-  });
+  var event = new Event(req.body);
 
   event.save()
     .then((event) => {
@@ -25,40 +13,16 @@ function addEvent(req, res, next) {
     })
     .catch((err) => {
       res.status(500);
-      res.send({err});
+      res.send(err);
     });
 };
 
 function updateEvent(req, res, next){
-  
-  /* VALIDATION SHOULD COME HERE */
-  if(!(req.body.name))
-  {
-    res.status(500).send("Name field missing.");
-  }
-  else if(!(req.body.price))
-  {
-    res.status(500).send("Price field missing.");
-  }
-  else if(!(req.body.description))
-  {
-    res.status(500).send("Description field missing.");
-  }
-  else if(!(req.body.date))
-  {
-    res.status(500).send("Date field missing.");
-  }
-  else if(!(req.body.artists))
-  {
-    res.status(500).send("Artists field missing.");
-  }
-  else if(!(req.body.blockedUsers))
-  {
-    res.status(500).send("Blocked users field missing.");
-  }
+  /* Validation here */
 
-  const updateOptions = { new: true }; 
-  Event.findByIdAndUpdate(req.params.id,{ $set:req.body }, updateOptions)
+  const updateOptions = { new: true };
+
+  Event.findByIdAndUpdate(req.params.id,{ $set: req.body }, updateOptions)
     .exec()
     .then((updatedEvent) => {
       res.status(200);
