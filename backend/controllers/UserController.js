@@ -178,17 +178,10 @@ exports.signUser = function(req,res,next){
     });
 };
 
-//User log out part with destroying session
-function logOut(req,res,next){
-    req.session.destroy();
-    return res.status(200).send();
-}; 
-
 module.exports = {
     getAllUsers,
     addUser,
     getUser,
-    logOut,
     getUserById,
     addFollower,
     removeFollower,
