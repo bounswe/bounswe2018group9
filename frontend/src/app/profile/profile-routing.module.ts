@@ -11,8 +11,7 @@ const routes: Routes = [
       { path: 'timeline', component: TimelinePage },
       { path: 'settings', component: SettingsPage },
       { path: '', component: ProfilePage, pathMatch: 'full'}
-    ]},
-  ];
+    ]}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
