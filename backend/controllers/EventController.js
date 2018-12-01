@@ -202,7 +202,7 @@ function addAttendance(req,res,next){
 function getAttendance(req,res,next){
   const eventId = req.params.id;
 
-  Event.find({_id: eventId})
+  Event.findById(eventId)
     .exec()
     .then((event) => {
       res.status(200);
