@@ -15,18 +15,19 @@
   </ion-item>
 </ion-menu>
 
-<ion-content main padding>
+<ion-content main>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button [href]="'/feed/create'">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <ion-grid>
-    <ion-row *ngFor="let event of events" justify-content-center no-padding>
+  <ion-grid class="feed">
+    <ion-row *ngFor="let post of feed" justify-content-center no-padding>
       <ion-col size-xs="12">
         <div class="feed-card">
-          <app-event-card [event]="event" [routerLink]="'/feed/' + event._id"></app-event-card>
+          <app-event-card *ngIf="post.type == 0" [event]="post.content"></app-event-card>
+          <app-comment-card *ngIf="post.type == 1" [comment]="post.content"></app-comment-card>
         </div>
       </ion-col>
     </ion-row>
