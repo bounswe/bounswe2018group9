@@ -60,7 +60,7 @@ export class SettingsPage implements OnInit {
       this.user = res;
       console.log('User:' + this.user);
       this.form.setValue({
-        name: this.user.userDetails.name,
+        name: this.user.name,
         email: this.user.email,
         nationality: this.user.userDetails.nationality || 'none',
         city: this.user.userDetails.city || 'none'
@@ -94,9 +94,9 @@ export class SettingsPage implements OnInit {
   save(){
     let newUser : User;
     newUser = {
+      name: this.form.value['name'],
       email: this.form.value['email'],
       userDetails: {
-        name: this.form.value['name'],
         birth: this.displayBirth,
         city: this.form.value['city'],
         nationality: this.form.value['nationality'],
