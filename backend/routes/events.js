@@ -25,6 +25,7 @@ router.get('/:id', EventController.getEventbyId);
 router.delete('/:id', EventController.deleteEvent);
 
 router.post('/:id/comments', EventController.addComment);
+router.get('/:id/comments', EventController.getComments);
 router.delete('/:id/comments/:commentId', EventController.deleteComment);
 router.put('/:id/comments/:commentId', EventController.updateComment);
 
