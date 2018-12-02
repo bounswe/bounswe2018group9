@@ -160,7 +160,7 @@ function addAttendance(req,res,next){
     })
     .catch((err) => {
       res.status(500);
-      res.send({err});
+      res.send(err);
     });
 };
 
@@ -175,7 +175,7 @@ function getAttendance(req,res,next){
     })
     .catch((err) => {
       res.status(500);
-      res.send({err});
+      res.send(err);
     });
 };
 
@@ -193,7 +193,7 @@ function updateAttendance(req,res,next){
     })
     .catch((err)=>{
         res.status(500);
-        res.send({err});
+        res.send(err);
     });
 };
 
@@ -206,7 +206,7 @@ function addComment(req,res,next) {
     })
     .catch((err)=>{
         res.status(500);
-        res.send({err});
+        res.send(err);
     });
 }
 
@@ -219,12 +219,15 @@ function deleteComment(req,res,next) {
     })
     .catch((err)=>{
         res.status(500);
-        res.send({err});
+        res.send(err);
     });
 }
 
 function updateComment(req,res,next) {
-  Event.findOneAndUpdate({"id": req.params.id, "comments.id": req.params.commentId}, {$set: {comment: req.body} }, {new: true})
+  const eventId = req.params.id;
+  const commentId = req.params.commentId;
+  const options = { upsert: true, new: true };
+  Event.findOneAndUpdate({"_id": eventId, "comments._id": commentId}, {"$set": {"comments.$": req.body} }, options)
     .exec()
     .then((event)=>{
         res.status(200);
@@ -232,9 +235,25 @@ function updateComment(req,res,next) {
     })
     .catch((err)=>{
         res.status(500);
-        res.send({err});
+        res.send(err);
     });
 }
+
+function getComments(req,res,next){
+  const eventId = req.params.id;
+
+  Event.findById(eventId)
+    .exec()
+    .then((event) => {
+      res.status(200);
+      res.send({comments: event.comments});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send(err);
+    });
+};
+
 function addVote(req,res,next){
   const eventId = req.params.id;
   const options = {new: true};
@@ -299,5 +318,6 @@ module.exports = {
   updateVote,
   addComment,
   deleteComment,
-  updateComment
+  updateComment,
+  getComments
 };

@@ -9,7 +9,8 @@ const CommentSchema = new Schema({
         required: true
     },
     parentId: {
-        type: Schema.Types.ObjectId
+        type: Schema.Types.ObjectId,
+        default: null
     },
     body: {
         type: String,
