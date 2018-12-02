@@ -13,20 +13,15 @@
 @import "./theme/custom_variables";
 
 /* Form elements */
-ion-input, ion-textarea, ion-datetime{
-  border: 2px solid $app-input-border-color;
+
+
+ion-input, ion-textarea, ion-datetime, ion-select{
+  border: 2px solid var(--ion-color-medium);
   border-radius: 4px;
-  background-color: $app-input-bg-color;
+  background-color: var(--ion-color-light);
   padding-left: 8px!important;
 }
 
-ion-input input, ion-textarea input, ion-datetime input{
-  padding-left: 8px!important;
-}
-ion-item #shadow-root .item-inner{
-  border-bottom-color: transparent !important;
-  box-shadow: none !important;
-}
 ion-label{
   z-index: 1;
   font-size: 0.8em;

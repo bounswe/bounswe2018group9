@@ -38,13 +38,13 @@ export class EventCreatePage implements OnInit {
         currency: ['X']
       }),
       description: ['', [Validators.required,Validators.minLength(20)]],
-      artists: this.formBuilder.array([
-        this.formBuilder.control('')
-      ])
+      artists: this.formBuilder.array([]),
+      tags: this.formBuilder.array([])
     });
   }
 
   ngOnInit() {
+
   }
 
   createEvent() {
@@ -111,6 +111,14 @@ export class EventCreatePage implements OnInit {
   }
   removeArtist(index: number){
     this.artists.removeAt(index);
-
+  }
+  get tags(){
+    return this.form.get('tags') as FormArray;
+  }
+  addTag(){
+    this.tags.push(this.formBuilder.control(''));
+  }
+  removeTag(index: number){
+    this.tags.removeAt(index);
   }
 }

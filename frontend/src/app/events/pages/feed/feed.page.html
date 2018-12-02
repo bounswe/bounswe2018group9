@@ -40,7 +40,7 @@
       <ion-row *ngFor="let event of events" justify-content-center no-padding>
         <ion-col size-xs="12">
           <div class="feed-card">
-            <app-event-card [event]="event" [routerLink]="'/feed/' + event._id"></app-event-card>
+            <app-event-card [event]="event"></app-event-card>
           </div>
         </ion-col>
       </ion-row>

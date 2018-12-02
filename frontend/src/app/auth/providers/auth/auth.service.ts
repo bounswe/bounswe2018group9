@@ -40,6 +40,12 @@ export class AuthService {
     return decoded._id;
   }
 
+  getUserFromToken(){
+    const token = localStorage.getItem('token');
+    if (token === null) return null;
+    const decoded = this.jwtHelper.decodeToken(token);
+    return decoded;
+  }
 
   register(data: { userDetails: {name: string}, email: string, password: string }): Observable<any> {
     return this.http

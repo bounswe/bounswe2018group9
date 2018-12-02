@@ -18,6 +18,7 @@ export class FeedPage implements OnInit {
   constructor(private router: Router, private authService: AuthService, private eventService: EventService) { }
 
   ngOnInit() {
+    console.log(this.authService.getUserFromToken());
     this.eventSub = this.eventService.get()
       .subscribe((data: Event[]) => {
         this.events = data;

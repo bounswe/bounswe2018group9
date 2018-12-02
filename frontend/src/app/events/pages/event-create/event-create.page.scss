@@ -30,3 +30,10 @@ ion-item{
 .flex-container ion-input{
   width: 90%;
 }
+
+@media screen and (min-width: 1200px){
+  .event-create-container{
+    width: 1200px;
+    margin: 0 auto;
+  }
+}

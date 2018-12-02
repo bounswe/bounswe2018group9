@@ -39,6 +39,7 @@ export class EventCardComponent implements OnInit {
     /*console.log(this.event);
     console.log(this.date);*/
 
+
   }
 
   getRndInteger(min, max) {
