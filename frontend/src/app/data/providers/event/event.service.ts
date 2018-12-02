@@ -15,4 +15,8 @@ export class EventService extends DataService<Event> {
     super(http);
   }
 
+  vote(id: string){
+    let path = '';
+  }
+
 }

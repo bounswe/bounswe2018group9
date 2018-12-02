@@ -103,7 +103,7 @@ $ticket-container-height: 80px;
   margin: 8px 0;
 }
 
-.event-desktop-background{
+.event-bg{
   display: none;
 }
 
@@ -125,6 +125,7 @@ $ticket-container-height: 80px;
   }
 
   .event-bg{
+    display: block;
     filter: blur(18px);
     -webkit-filter: blur(18px);
     position: absolute;

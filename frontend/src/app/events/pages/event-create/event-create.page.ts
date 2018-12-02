@@ -6,6 +6,8 @@ import { EventService } from '../../../data/providers/event/event.service';
 
 import {AlertController} from "@ionic/angular";
 import {HttpErrorResponse} from "@angular/common/http";
+import {AuthService} from "../../../auth/providers/auth/auth.service";
+import {Event} from "../../../interfaces";
 
 @Component({
   selector: 'app-event-create',
@@ -18,7 +20,11 @@ export class EventCreatePage implements OnInit {
   form: FormGroup;
   isFree = true;
   imageError = false;
-  constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router, private alertController: AlertController) {
+  constructor(private formBuilder: FormBuilder,
+              private eventService: EventService,
+              private router: Router,
+              private alertController: AlertController,
+              private authService: AuthService) {
     this.form = this.formBuilder.group({
       medias: this.formBuilder.array([
         this.formBuilder.control('', Validators.required)
@@ -51,6 +57,9 @@ export class EventCreatePage implements OnInit {
 
     console.log(this.form.value);
 
+    let event: Event = this.form.value;
+
+    event.creator = this.authService.getUserFromToken();
 
     this.eventService
       .post(this.form.value)

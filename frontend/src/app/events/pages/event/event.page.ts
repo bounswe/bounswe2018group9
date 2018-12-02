@@ -36,18 +36,7 @@ export class EventPage implements OnInit, OnDestroy{
             this.event = next;
             console.log(this.event);
 
-            let user_id: string = this.event.creator;
-
-            this.authService.getUserData(user_id)
-              .subscribe(
-                (user: User) => {
-                  console.log("Creator of this event: ", user);
-                  this.user = user;
-                },
-                (error) => {
-                  console.log('An error occurred while getting user from backend: ', error);
-                }
-              );
+            this.user = this.event.creator;
 
           },(err)=>{
             console.log(err);

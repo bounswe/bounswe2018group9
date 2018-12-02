@@ -22,35 +22,35 @@
           <ion-grid no-padding="">
             <ion-row no-padding>
               <ion-col size="6" no-padding>
-                <ion-button color="success" fill="clear">
+                <ion-button [disabled]="view"color="success" fill="clear">
                   <ion-icon name="thumbs-up"></ion-icon>
-                  <div>{{likes}}</div>
+                  <div>{{event.vote.upvoteCount}}</div>
                 </ion-button>
               </ion-col>
               <ion-col text-center size="6" no-padding>
-                <ion-button color="danger" fill="clear">
+                <ion-button [disabled]="view" color="danger" fill="clear">
                   <ion-icon name="thumbs-down"></ion-icon>
-                  <div>{{likes}}</div>
+                  <div>{{event.vote.downvoteCount}}</div>
                 </ion-button>
               </ion-col>
             </ion-row>
           </ion-grid>
         </ion-col>
         <ion-col text-center size="6">
-          <ion-button color="secondary" fill="clear">
+          <ion-button [disabled]="view" color="secondary" fill="clear">
             <ion-icon name="text"></ion-icon>
-            <div>{{comments}} Comments</div>
+            <div>{{event.comments.length}} Comments</div>
           </ion-button>
         </ion-col>
         <ion-col class="ago-container" size="3">
           <div>
-            {{hours}}h ago
+            {{timeDiff}} {{timeDiffUnit}} ago
           </div>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button expand="full" [routerLink]="event._id">
+          <ion-button [disabled]="view" expand="full" [routerLink]="event._id">
             More Details
           </ion-button>
         </ion-col>
