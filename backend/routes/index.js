@@ -1,10 +1,14 @@
-// This is for the home page.
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const passport = require('passport');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.send('Welcome to the homepage, angular will be served from here. For API Endpoints please refer to /api/COLLECTION_NAME');
-});
+const authRouter = require('./auth');
+const eventsRouter = require('./events');
+const usersRouter = require('./users');
+
+const router = express.Router();
+
+router.use('/auth', authRouter);
+router.use('/events', passport.authenticate('jwt', { session: false }), eventsRouter);
+router.use('/users', passport.authenticate('jwt', { session: false }), usersRouter);
 
 module.exports = router;
