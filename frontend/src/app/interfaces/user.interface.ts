@@ -9,7 +9,7 @@ export interface User extends Object {
     nationality?: string;
     city?: string;
   };
-  followers? : User[];
-  following? : User[];
+  followers? : string[];
+  following? : string[];
   interests? : string[];
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {User} from '../../../interfaces';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../../auth/providers/auth/auth.service';
@@ -13,10 +13,13 @@ export class PublicPage implements OnInit {
   private sub : any;
   userId : string;
   user : User;
+  signedInId : string;
+  signedInUser : User;
   isFollowing : boolean;
   errorMessage : string;
-  errorHappened : boolean = false;
-  constructor(private route : ActivatedRoute, private auth : AuthService) { }
+  error : boolean = false;
+  sameUser : boolean = false;
+  constructor(private route : ActivatedRoute, private auth : AuthService, private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -27,53 +30,54 @@ export class PublicPage implements OnInit {
             this.user = res;
           },(err)=>{
             this.errorMessage = JSON.stringify(err);
-            this.errorHappened = true;
+            this.error = true;
           }
         );
       }
     });
-    this.signedIn = this.auth.isAuthenticated();
-    let signedInId : string;
     if(this.auth.isAuthenticated()){
-      signedInId = this.auth.getUserId();
+      this.signedInId = this.auth.getUserId();
+      if(this.signedInId == this.userId) this.sameUser = true;
+      this.signedIn = true;
+      this.auth.getUserData(this.signedInId).subscribe((res)=>{
+        this.signedInUser = res;
+        this.isFollowing = this.signedInUser.following.includes(this.userId);
+      },(err)=>{
+        console.log(err);
+      });
     }
-    let signedInUser : User;
-    this.auth.getUserData(signedInId).subscribe((res)=>{
-      signedInUser = res;
-    },(err)=>{
-      console.log(err);
-    });
-    if(signedInUser) {
-      this.isFollowing = signedInUser.following.includes(this.user);
-    }
+
   }
   follow(){
-
-   let signedInId : string;
-   if(this.auth.isAuthenticated()){
-     signedInId = this.auth.getUserId();
-   }
-    let signedInUser : User;
-    this.auth.getUserData(signedInId).subscribe((res)=>{
-      console.log(res);
-      signedInUser = res;
-   },(err)=>{
-      console.log(err);
-      return;
-    });
-    if(signedInUser){
-      if(!signedInUser.following.includes(this.user)){
-        this.auth.follow(signedInId,this.userId).subscribe(
-          (res)=>{
-            console.log(res);
-          },
-          (err)=>{
-            console.log(err);
-          }
-        );
-      }
+    console.log('follow');
+    if(this.signedInUser){
+      this.auth.follow(this.signedInId,this.userId).subscribe(
+        (res)=>{
+          console.log(res);
+          this.isFollowing = true;
+          this.ref.detectChanges();
+        },
+        (err)=>{
+          console.log(err);
+        }
+      );
     }
 
+  }
+  unfollow(){
+    console.log('unfollow');
+    if(this.signedInUser){
+      this.auth.unfollow(this.signedInId,this.userId).subscribe(
+        (res)=>{
+          console.log(res);
+          this.isFollowing = false;
+          this.ref.detectChanges();
+        },
+        (err)=>{
+          console.log(err);
+        }
+      );
+    }
 
   }
 }
