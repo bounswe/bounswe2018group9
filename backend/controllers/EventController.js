@@ -182,10 +182,10 @@ function getAttendance(req,res,next){
 function updateAttendance(req,res,next){
   const eventId = req.params.id;
   const userId = req.body.user;
-  const attendanceType = req.body.attendanceType;
+  const newAttendanceType = req.body.attendanceType;
   const options = {new: true, upsert: true};
 
-  Event.findOneAndUpdate({"id": eventId, "attendance.user": userId}, {$set: {attendanceType: attendanceType} }, options)
+  Event.findOneAndUpdate({"_id": eventId, "attendance.user": userId}, {$set: {"attendance.$": req.body} }, options)
     .exec()
     .then((event)=>{
         res.status(200);
