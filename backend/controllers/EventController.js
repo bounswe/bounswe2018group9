@@ -184,7 +184,11 @@ function updateAttendance(req,res,next){
   const userId = req.body.user;
   const newAttendanceType = req.body.attendanceType;
   const options = {new: true, upsert: true};
-
+  if(newAttendanceType===""||newAttendanceType===null)
+  {
+    res.status(500);
+    res.send("Invalid attendanceType");
+  }
   Event.findOneAndUpdate({"_id": eventId, "attendance.user": userId}, {$set: {"attendance.$": req.body} }, options)
     .exec()
     .then((event)=>{
