@@ -17,7 +17,7 @@ export class EventCardComponent implements OnInit {
   ngOnInit() {
 
     let now = new Date();
-    let eventCreated = new Date(this.event.date);
+    let eventCreated = new Date(this.event.created);
 
     console.log(now);
     console.log(eventCreated);
@@ -32,12 +32,12 @@ export class EventCardComponent implements OnInit {
 
     if(timeDiff_m < 60){
       this.timeDiff = timeDiff_m;
-      this.timeDiffUnit = timeDiff_m != 1 ? 'minutes' : 'minute';
+      this.timeDiffUnit = 'm';
     } else if(timeDiff_h < 24){
-      this.timeDiffUnit = timeDiff_h != 1 ? 'hours' : 'hour';
+      this.timeDiffUnit = 'h';
       this.timeDiff = timeDiff_h;
     } else{
-      this.timeDiffUnit = timeDiff_d != 1 ? 'days' : 'day';
+      this.timeDiffUnit = 'd';
       this.timeDiff = timeDiff_d;
     }
 
