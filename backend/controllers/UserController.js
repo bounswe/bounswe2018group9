@@ -68,7 +68,15 @@ function getUserById(req,res,next) {
 }
 
 function addUser(req,res,next) {
-    var user = new User(req.body);
+    var user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        details: req.body.details,
+        followers: [],
+        following: [],
+        interests: []
+    });
 
     user.save()
         .then((user) => {
