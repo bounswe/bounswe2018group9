@@ -1,7 +1,7 @@
 import { Object } from './object.interface';
 import {User} from "./user.interface";
 import {Comment} from "./comment.interface";
-import {LocationConstruct} from "./location.interface";
+import {Location} from "./location.interface";
 import {Attendance} from "./attendance.interface";
 import {Vote} from "./vote.interface";
 
@@ -18,6 +18,6 @@ export interface Event extends Object {
   comments?: Array<Comment>;
   artists?: Array<string>;
   tags: Array<String>;
-  locationConstruct: LocationConstruct;
+  location: Location;
   medias: Array<String>;
 }

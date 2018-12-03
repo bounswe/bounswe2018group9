@@ -1,4 +1,4 @@
-export interface LocationConstruct {
-  locationName: string;
-  location: {locType: string, coordinates: Array<number>};
+export interface Location {
+  name: string;
+  coordinates: {lat: number, long: number};
 }
