@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {User} from '../../../interfaces';
 import {AuthService} from '../../../auth/providers/auth/auth.service';
-import {Datetime, LoadingController} from '@ionic/angular';
+import {Datetime} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -11,6 +11,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
+  gotUserData : boolean;
   form : FormGroup;
   @Input('displayBirth') displayBirth : Datetime;
   settings : string[];
@@ -40,8 +41,8 @@ export class SettingsPage implements OnInit {
   user: User | null;
   private sub : any;
   userId : string | null = null;
-  constructor(private authController: AuthService, private loadingController : LoadingController, private router:
-  Router, private formBuilder : FormBuilder) {
+  constructor(private authController: AuthService, private router:
+  Router, private formBuilder : FormBuilder, private ref: ChangeDetectorRef) {
     this.form = this.formBuilder.group(
       {
         name: ['', [Validators.required, Validators.pattern('[ a-zA-Z]*')]],
@@ -53,43 +54,24 @@ export class SettingsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.presentLoading();
-    this.user = {
-      name: 'Serkan Ozel',
-      email: 's@s.s' ,
-      userDetails : {
-        nationality : 'Turkiye',
-        city: 'Konya'
-      },
-      following: [],
-      interests : ['Photography'
-        ,'Travel'
-        ,'Festival'
-        ,'Museum'
-        ,'Workshop'
-        ,'Ballet'],
-
-      followers : [],
-    };
-
-    this.form.setValue({
-      name: this.user.name,
-      email: this.user.email,
-      nationality: this.user.userDetails.nationality,
-      city: this.user.userDetails.city
-    });
-    this.displayBirth = this.user.userDetails.birth;
-    this.interestsSelected = this.user.interests;
-    this.loadingController.dismiss();
     this.userId = this.getUserId();
-   /* this.sub = this.authController.getUserData(this.userId).subscribe((res : User) => {
-      console.log('Response:' + res);
-      console.log('User:' + this.user);
-
+    this.sub = this.authController.getUserData(this.userId).subscribe((res : User) => {
+      console.log('Response:' + JSON.stringify(res));
+      this.user = res;
+      console.log('User:' + JSON.stringify(this.user));
+      this.form.setValue({
+        name: this.user.name || '',
+        email: this.user.email || '',
+        nationality: this.user.details.nationality || '',
+        city: this.user.details.city || ''
+      });
+      this.displayBirth = this.user.details.birth;
+      this.interestsSelected = this.user.interests;
+      this.gotUserData = true;
+      this.ref.detectChanges();
     },(err)=>{
       console.log(err);
-      this.loadingController.dismiss();
-    });*/
+    });
   }
 
   ngOnDestroy(){
@@ -102,13 +84,7 @@ export class SettingsPage implements OnInit {
     header: 'Select your interests',
   };
 
-  async presentLoading(){
-    const loading = await this.loadingController.create({
-      message: 'Loading...',
-      duration: 100
-    });
-    return await loading.present();
-  }
+  a
   getUserId() : string {
     if(this.authController.isAuthenticated()){
       return this.authController.getUserId();
@@ -121,7 +97,7 @@ export class SettingsPage implements OnInit {
     newUser = {
       name: this.form.value['name'],
       email: this.form.value['email'],
-      userDetails: {
+      details: {
         birth: this.displayBirth,
         city: this.form.value['city'],
         nationality: this.form.value['nationality'],
@@ -130,17 +106,13 @@ export class SettingsPage implements OnInit {
       following: this.user.following,
       interests: this.interestsSelected
     };
-    this.presentLoading();
     console.log(this.userId + ': ' + JSON.stringify(newUser));
-    this.loadingController.dismiss();
 
-    /* this.authController.updateUser(this.user._id, newUser).subscribe((res)=>{
-       this.loadingController.dismiss();
+    this.authController.updateUser(this.user._id, newUser).subscribe((res)=>{
        alert('Saved');
      },(err)=>{
-       this.loadingController.dismiss();
-
-     });*/
+      console.log(err);
+     });
   }
   isSelected(interest : string) : boolean{
     if(this.interestsSelected){

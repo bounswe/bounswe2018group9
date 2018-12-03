@@ -4,8 +4,11 @@
     <ion-title>Settings</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content *ngIf="!gotUserData">
+  <ion-spinner class="bubbles"></ion-spinner>
+</ion-content>
 
-<ion-content padding>
+<ion-content *ngIf="gotUserData" padding>
   <form [formGroup]="form" (ngSubmit)="save()" (keyup.enter)="form.valid && save()">
     <ion-list>
       <ion-item>
@@ -46,3 +49,4 @@
        <ion-select #select (ionChange)="updateInterestsLocally(select.value)" [interfaceOptions]="customPopoverOptionsInterests" multiple="true">
          <ion-select-option *ngFor="let interest of interests" [selected]="isSelected(interest)" [value]="interest">{{interest}}</ion-select-option>
        </ion-select>
+</ion-content>

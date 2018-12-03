@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileLandingPage } from './profile-landing.page';
+import { PublicPage } from './public.page';
 
-describe('ProfileLandingPage', () => {
-  let component: ProfileLandingPage;
-  let fixture: ComponentFixture<ProfileLandingPage>;
+describe('PublicPage', () => {
+  let component: PublicPage;
+  let fixture: ComponentFixture<PublicPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfileLandingPage ],
+      declarations: [ PublicPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfileLandingPage);
+    fixture = TestBed.createComponent(PublicPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

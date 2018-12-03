@@ -9,7 +9,172 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content no-padding>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col no-padding>
+
+        <div class="event-wrapper" *ngIf="event; let e">
+          <div class="event-bg">
+            <img src="{{e.medias[0]}}" alt="{{e.name}}">
+          </div>
+          <div class="event-container">
+            <div class="upper-container">
+              <div class="image-container">
+                <img src="{{e.medias[0]}}" alt="{{e.name}}">
+              </div>
+              <div class="title-container">
+                <p class="date">
+                  {{e.date | date:'dd MMM'}}
+                </p>
+                <p class="price">
+                  <span *ngIf="e.price.amount == 0; else price_t">Free</span>
+                  <ng-template #price_t>{{e.price.amount}} {{e.price.unit}}</ng-template>
+                </p>
+                <h1>{{e.name}}</h1>
+                <p *ngIf="user; let u">
+                  Organized by {{u.name}}
+                </p>
+              </div>
+            </div>
+            <div class="ticket-container">
+              <p class="price" *ngIf="e.price.amount == 0; else price">Free</p>
+              <ng-template #price>
+                <p class="price">
+                  {{e.price.amount}} {{e.price.unit}}
+                </p>
+              </ng-template>
+              <ion-button (click)="attendEvent()" expand="block" color="secondary">Attend</ion-button>
+            </div>
+            <div *ngIf="e.artists && e.artists.length > 0" class="detail-container performer">
+              <div class="icon-container">
+                <ion-icon name="microphone"></ion-icon>
+              </div>
+              <div class="inner-container">
+                <h3>Performers</h3>
+                <div *ngFor="let artist of e.artists" class="artist">
+                  {{artist}}
+                </div>
+              </div>
+            </div>
+            <div class="detail-container datetime">
+              <div class="icon-container">
+                <ion-icon name="calendar"></ion-icon>
+              </div>
+              <div class="inner-container">
+                <h3>Date and Time</h3>
+                <p></p>
+                <p>
+                  {{e.date | date:'dd MMMM EEEE HH:mm, yyyy'}}
+                </p>
+                <p>
+                  {{e.duration.length}} {{e.duration.length <= 1 ? e.duration.unit : e.duration.unit + 's'}}
+                </p>
+              </div>
+            </div>
+            <div class="detail-container location">
+              <div class="icon-container">
+                <ion-icon name="map"></ion-icon>
+              </div>
+              <div class="inner-container">
+                <h3>Location</h3>
+                {{e.location.name}}
+              </div>
+            </div>
+            <div class="detail-container description">
+              <div class="icon-container">
+                <ion-icon name="document"></ion-icon>
+              </div>
+              <div class="inner-container">
+                <h3>Description</h3>
+                {{e.description}}
+              </div>
+            </div>
+
+            <div class="detail-container tag-container" *ngIf="e.tags.length > 0">
+              <div class="icon-container">
+                <ion-icon name="pricetags"></ion-icon>
+              </div>
+              <div class="inner-container">
+                <h3>Tags</h3>
+                <span class="tag" *ngFor="let tag of e.tags">
+                  {{tag}}
+                </span>
+              </div>
+            </div>
+
+            <div class="organizer-container">
+
+            </div>
+
+            <ion-grid>
+              <div class="comments-container">
+                <h3 text-center>Comments</h3>
+                <div class="comment" *ngFor="let comment of e.comments">
+                <ion-row >
+                  <ion-col *ngIf="!isUndefined(comment.author)" size="3" offset-md="1" size-md="2">
+                    <div class="user" *ngIf="!isUndefined(comment.author.name); else noUser">
+                      <img src="../../../../assets/profile.jpg" alt="{{comment.author.name}}">
+                      <span class="username">{{comment.author.name}}</span>
+                    </div>
+                    <ng-template>
+                      <div #noUser class="user">
+                        <img src="../../../../assets/profile.jpg">
+                        <span class="username">Anonymous</span>
+                      </div>
+                    </ng-template>
+                  </ion-col>
+                  <ion-col size="9" size-md="8" *ngIf="!isUndefined(comment.body)">
+                    <div class="comment-box">
+                      <div class="comment-body">
+                        <span class="tip tip-left">
+                        </span>
+                        <div class="comment-message">
+                          <span>{{comment.body}}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </ion-col>
+                </ion-row>
+                </div>
+                <div class="comment new-comment">
+                  <ion-row>
+                    <ion-col size="9" offset-md="1" size-md="8">
+                      <form [formGroup]="form" (ngSubmit)="createComment()" class="comment-box">
+                        <div class="comment-body">
+                        <span class="tip tip-right">
+                        </span>
+                          <div class="comment-message">
+                            <ion-textarea type="text"
+                                          rows = "4"
+                                          formControlName="body"
+                                          class="form-input">
+                            </ion-textarea>
+                            <ion-button type="submit" [disabled]="!form.valid">Comment</ion-button>
+                            <span class="input-error" *ngIf="this.form.get('body').dirty && !this.form.get('body').valid">
+                              (min: 10 character)
+                            </span>
+                          </div>
+                        </div>
+                      </form>
+                    </ion-col>
+                    <ion-col size="3" size-md="2">
+                      <div class="user">
+                        <img src="../../../../assets/profile.jpg" alt="{{user.name}}">
+                        <span class="username">{{user.name}}</span>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </div>
+              </div>
+            </ion-grid>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!--
   <ion-list *ngIf="event; let e">
     <ion-card>
       <ion-card-header>
@@ -17,7 +182,7 @@
           {{e.name}}
         </h1>
       </ion-card-header>
-      <img src="https://picsum.photos/600/300/?random" alt="{{e.name}}">
+      <img src="{{e.medias[0]}}">
     </ion-card>
     <ion-card>
       <ion-card-header>
@@ -52,8 +217,7 @@
       </ion-card-content>
     </ion-card>
   </ion-list>
-
-  <button ion-button color="secondary" outline>Attend</button>
+  -->
 
 
 
