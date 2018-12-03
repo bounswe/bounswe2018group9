@@ -1,21 +1,21 @@
-<ion-card>
+<ion-card *ngIf="event; let e">
 
   <ion-card-content>
     <div class="image">
-      <img src="{{event.medias[0]}}" alt="{{event.name}}">
+      <img src="{{e.medias[0]}}" alt="{{e.name}}">
     </div>
     <div class="date">
-      {{event.date | date:'dd MMM'}}
+      {{e.date | date:'dd MMM'}}
     </div>
     <h2>
-      {{event.name}}
+      {{e.name}}
     </h2>
     <div class="location">
-      {{event.location.name}}
+      {{e.location.name}}
     </div>
   </ion-card-content>
 
-  <ion-card-content *ngIf="!isUndefined(event.vote)">
+  <ion-card-content *ngIf="!isUndefined(e.vote)">
     <ion-grid no-padding>
       <ion-row>
         <ion-col size="3">
@@ -24,13 +24,13 @@
               <ion-col size="6" no-padding>
                 <ion-button [disabled]="view"color="success" fill="clear">
                   <ion-icon name="thumbs-up"></ion-icon>
-                  <div>{{event.vote.upvoteCount}}</div>
+                  <div>{{e.vote.upvoteCount}}</div>
                 </ion-button>
               </ion-col>
               <ion-col text-center size="6" no-padding>
                 <ion-button [disabled]="view" color="danger" fill="clear">
                   <ion-icon name="thumbs-down"></ion-icon>
-                  <div>{{event.vote.downvoteCount}}</div>
+                  <div>{{e.vote.downvoteCount}}</div>
                 </ion-button>
               </ion-col>
             </ion-row>
@@ -39,7 +39,7 @@
         <ion-col text-center size="6">
           <ion-button [disabled]="view" color="secondary" fill="clear">
             <ion-icon name="text"></ion-icon>
-            <div>{{event.comments.length}} Comments</div>
+            <div>{{e.comments.length}} Comments</div>
           </ion-button>
         </ion-col>
         <ion-col class="ago-container" size="3">
@@ -50,7 +50,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button [disabled]="view" expand="full" [routerLink]="event._id">
+          <ion-button [disabled]="view" expand="full" [routerLink]="e._id">
             More Details
           </ion-button>
         </ion-col>
