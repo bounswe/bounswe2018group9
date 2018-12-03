@@ -15,6 +15,7 @@
 </ion-content>
 
 <ion-content *ngIf="!error && user" padding>
+  <img src={{user.images.avatar}}>
   <ion-row>  <ion-label class="big">{{user.name}}</ion-label></ion-row>
   <ion-row>  <ion-label class="medium">{{user.email}}</ion-label></ion-row>
     <ion-label class="medium">Likes to do: </ion-label>
