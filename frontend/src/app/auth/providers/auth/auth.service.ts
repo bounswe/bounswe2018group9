@@ -80,4 +80,12 @@ export class AuthService {
   updateUser(userId : string , data : User) : Observable<any>{
     return this.http.put('/api/users/'+ userId , data ,AuthService.options);
   }
+  follow(signedInId: string, userToFollow : string){
+      let data = { id: userToFollow};
+    return this.http.post('/api/users/' + signedInId +'/follow',data,AuthService.options);
+  }
+  unfollow(signedInId: string, userToUnfollow : string){
+    let data = { id: userToUnfollow};
+    return this.http.post('/api/users/' + signedInId +'/unfollow',data,AuthService.options);
+  }
 }

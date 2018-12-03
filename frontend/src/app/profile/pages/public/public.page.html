@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button routerLink="/profile">Profile</ion-button>
+    <ion-button routerLink="/feed">Feed</ion-button>
+    <ion-title *ngIf="user && !sameUser">User Profile:</ion-title>
+    <ion-title *ngIf="user && sameUser">Your public profile page:</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="error" padding>
+<ion-label>Sorry, an error happened: {{errorMessage}}</ion-label>
+</ion-content>
+<ion-content *ngIf="!error && !user" padding>
+  <ion-spinner class="bubbles"></ion-spinner>
+</ion-content>
+
+<ion-content *ngIf="!error && user" padding>
+  <ion-row>  <ion-label class="big">{{user.name}}</ion-label></ion-row>
+  <ion-row>  <ion-label class="medium">{{user.email}}</ion-label></ion-row>
+    <ion-label class="medium">Likes to do: </ion-label>
+      <ion-label *ngFor="let i of user.interests"><b>{{i}}</b></ion-label>
+    <hr>
+
+  <div *ngIf="!sameUser">
+    <ion-row *ngIf="signedIn && isFollowing"><ion-label class="followStatus">You are following {{user.name}}</ion-label></ion-row>
+    <ion-row *ngIf="signedIn && !isFollowing"><ion-label class="followStatus">You are not following {{user.name}}</ion-label></ion-row>
+    <ion-row ><ion-button [disabled]="isFollowing" (click)="follow()">Follow</ion-button></ion-row>
+    <ion-row ><ion-button [disabled]="!isFollowing" (click)="unfollow()">Unfollow</ion-button></ion-row>
+  </div>
+
+</ion-content>
