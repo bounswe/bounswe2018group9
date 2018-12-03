@@ -4,7 +4,7 @@ import {Datetime} from '@ionic/angular';
 export interface User extends Object {
   name: string;
   email: string;
-  userDetails: {
+  details: {
     birth?: Datetime;
     nationality?: string;
     city?: string;
