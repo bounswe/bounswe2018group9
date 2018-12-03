@@ -12,7 +12,4 @@ var User = require('../models/User');
 router.post('/signup', UserController.addUser);
 router.post('/signin', AuthController.signIn);
 
-router.get('/dashboard',UserController.loggedIn); //First user signed in then dashboard can be seen
-router.get('/signout',UserController.logOut);
-
 module.exports = router;

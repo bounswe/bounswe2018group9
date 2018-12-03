@@ -40,7 +40,7 @@ function getUser(email,password) {
 
 function updateUser(req,res,next) {
     const id = req.params.id;
-    User.findByIdAndUpdate(id, req.body.user, {new: true})
+    User.findByIdAndUpdate(id, req.body, {new: true})
         .exec()
         .then((user)=>{
             res.status(200);
@@ -68,16 +68,7 @@ function getUserById(req,res,next) {
 }
 
 function addUser(req,res,next) {
-    console.log('add user');
-    var user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        details: req.body.details,
-        followers: [],
-        following: [],
-        interests: []
-    });
+    var user = new User(req.body);
 
     user.save()
         .then((user) => {
@@ -86,7 +77,7 @@ function addUser(req,res,next) {
         })
         .catch((err) => {
             res.status(500);
-            res.send({err});
+            res.send(err);
         });
 };
 
@@ -187,27 +178,10 @@ exports.signUser = function(req,res,next){
     });
 };
 
-//User signed in and see its dashboard after loggedIn
-function loggedIn(req,res,next){
-    if(!req.session.user){
-        return res.status(404).send();
-    }
-    
-    return res.status(200).send("Welcome Actopus social platform!");
-};
-
-//User log out part with destroying session
-function logOut(req,res,next){
-    req.session.destroy();
-    return res.status(200).send();
-}; 
-
 module.exports = {
     getAllUsers,
-    loggedIn,
     addUser,
     getUser,
-    logOut,
     getUserById,
     addFollower,
     removeFollower,
