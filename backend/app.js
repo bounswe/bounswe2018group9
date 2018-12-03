@@ -39,7 +39,7 @@ app.use('/api', api);
 
 // Register API routers.
 app.use('/api/auth', authRouter);
-app.use('/api/events', /*passport.authenticate('jwt', {session: false}),*/ eventsRouter);
+app.use('/api/events', passport.authenticate('jwt', {session: false}), eventsRouter);
 app.use('/api/users', passport.authenticate('jwt', {session: false}), usersRouter);
 app.get('/*', function(req, res) {
   res.sendFile(__dirname + '/www/index.html');
