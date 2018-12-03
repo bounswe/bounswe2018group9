@@ -151,8 +151,16 @@ function deleteEvent(req,res,next) {
 function addAttendance(req,res,next){
   const eventId = req.params.id;
   const options = {new: true};
-
-  Event.findOneAndUpdate({_id: eventId}, {$push: {attendance: req.body}}, options)
+  const attType = req.body.attendanceType;
+  if(attType===""||attType===null||isNaN(attType))
+  {
+    console.log(attType);
+    res.status(500);
+    res.send("Invalid attendanceType");
+  }
+  else
+  {
+    Event.findOneAndUpdate({_id: eventId}, {$push: {attendance: req.body}}, options)
     .exec()
     .then((event) => {
       res.status(200);
@@ -162,6 +170,8 @@ function addAttendance(req,res,next){
       res.status(500);
       res.send(err);
     });
+  }
+
 };
 
 function getAttendance(req,res,next){
@@ -182,14 +192,16 @@ function getAttendance(req,res,next){
 function updateAttendance(req,res,next){
   const eventId = req.params.id;
   const userId = req.body.user;
-  const newAttendanceType = req.body.attendanceType;
+  const attType = req.body.attendanceType;
   const options = {new: true, upsert: true};
-  if(newAttendanceType===""||newAttendanceType===null)
+  if(attType===""||attType===null||isNaN(attType))
   {
     res.status(500);
     res.send("Invalid attendanceType");
   }
-  Event.findOneAndUpdate({"_id": eventId, "attendance.user": userId}, {$set: {"attendance.$": req.body} }, options)
+  else
+  {
+    Event.findOneAndUpdate({"_id": eventId, "attendance.user": userId}, {$set: {"attendance.$": req.body} }, options)
     .exec()
     .then((event)=>{
         res.status(200);
@@ -199,6 +211,8 @@ function updateAttendance(req,res,next){
         res.status(500);
         res.send(err);
     });
+  }
+
 };
 
 function addComment(req,res,next) {
