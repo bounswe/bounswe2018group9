@@ -9,7 +9,7 @@
 
 <ion-content padding *ngIf="user">
   <div *ngIf="gotUserData">
-    <ion-label>Welcome to profile page, {{user.userDetails['name']}}</ion-label>
+    <ion-label>Welcome to profile page, {{user.name}}</ion-label>
     <hr>
     <ion-button slot="start" shape="round" routerLink="/profile/settings">
       Settings

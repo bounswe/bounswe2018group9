@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {User} from '../../../interfaces';
 import {AuthService} from '../../../auth/providers/auth/auth.service';
 import {Datetime} from '@ionic/angular';
@@ -42,7 +42,7 @@ export class SettingsPage implements OnInit {
   private sub : any;
   userId : string | null = null;
   constructor(private authController: AuthService, private router:
-  Router, private formBuilder : FormBuilder) {
+  Router, private formBuilder : FormBuilder, private ref: ChangeDetectorRef) {
     this.form = this.formBuilder.group(
       {
         name: ['', [Validators.required, Validators.pattern('[ a-zA-Z]*')]],
@@ -56,18 +56,19 @@ export class SettingsPage implements OnInit {
   ngOnInit() {
     this.userId = this.getUserId();
     this.sub = this.authController.getUserData(this.userId).subscribe((res : User) => {
-      console.log('Response:' + res);
+      console.log('Response:' + JSON.stringify(res));
       this.user = res;
-      console.log('User:' + this.user);
+      console.log('User:' + JSON.stringify(this.user));
       this.form.setValue({
-        name: this.user.name,
-        email: this.user.email,
-        nationality: this.user.userDetails.nationality || 'none',
-        city: this.user.userDetails.city || 'none'
+        name: this.user.name || '',
+        email: this.user.email || '',
+        nationality: this.user.details.nationality || '',
+        city: this.user.details.city || ''
       });
-      this.displayBirth = this.user.userDetails.birth;
+      this.displayBirth = this.user.details.birth;
       this.interestsSelected = this.user.interests;
       this.gotUserData = true;
+      this.ref.detectChanges();
     },(err)=>{
       console.log(err);
     });
@@ -96,7 +97,7 @@ export class SettingsPage implements OnInit {
     newUser = {
       name: this.form.value['name'],
       email: this.form.value['email'],
-      userDetails: {
+      details: {
         birth: this.displayBirth,
         city: this.form.value['city'],
         nationality: this.form.value['nationality'],
