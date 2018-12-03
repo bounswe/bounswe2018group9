@@ -151,31 +151,17 @@ function deleteEvent(req,res,next) {
 function addAttendance(req,res,next){
   const eventId = req.params.id;
   const options = {new: true};
-  Event.findOne({"_id": eventId, "attendance.user._id": req.body.user})
-  .exec()
-  .then((event)=>
-  {
-    if(event===null)
-    {
-      //If this used didn't give attendance information for this event before
-      Event.findOneAndUpdate({_id: eventId}, {$push: {attendance: req.body}}, options)
-      .exec()
-      .then((event1) => {
-        res.status(200);
-        res.send({updatedAttendance: event1.attendance});
-      })
-      .catch((err) => {
-        res.status(500);
-        res.send(err);
-      });
-    }
-    
-  }) 
-  .catch((err)=> {
-    res.status(500);
-    res.send(err);
-  });
-  
+
+  Event.findOneAndUpdate({_id: eventId}, {$push: {attendance: req.body}}, options)
+    .exec()
+    .then((event) => {
+      res.status(200);
+      res.send({updatedAttendance: event.attendance});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send(err);
+    });
 };
 
 function getAttendance(req,res,next){
