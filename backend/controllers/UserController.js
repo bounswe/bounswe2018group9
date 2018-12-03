@@ -65,28 +65,6 @@ function getUserById(req, res, next) {
     });
 }
 
-function addUser(req, res, next) {
-  const user = new User({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    details: req.body.details,
-    followers: [],
-    following: [],
-    interests: [],
-  });
-
-  user.save()
-    .then((user) => {
-      res.status(200);
-      res.send(user);
-    })
-    .catch((err) => {
-      res.status(500);
-      res.send({ err });
-    });
-}
-
 // This will be private later. Only will be used from follow and unfollow.
 function addFollower(req, res, next) {
   User.findOneAndUpdate({ _id: req.params.id }, { $push: { follower: req.body.id } }, { new: true })
@@ -201,7 +179,6 @@ function logOut(req, res, next) {
 module.exports = {
   getAllUsers,
   loggedIn,
-  addUser,
   getUser,
   logOut,
   getUserById,

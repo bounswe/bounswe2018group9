@@ -1,15 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-// Import Controllers
-var UserController = require('../controllers/UserController');
-var AuthController = require('../controllers/AuthController');
+const AuthController = require('../controllers/AuthController');
 
-// Import model
-var User = require('../models/User');
-
-// Router from UserController
-router.post('/signup', UserController.addUser);
-router.post('/signin', AuthController.signIn);
+router.post('/signin', AuthController.login);
+router.post('/signup', AuthController.register);
 
 module.exports = router;
