@@ -119,7 +119,6 @@
           "builder": "@ionic/angular-toolkit:cordova-build",
           "options": {
             "browserTarget": "app:build",
-            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -132,7 +131,6 @@
           "options": {
             "cordovaBuildTarget": "app:ionic-cordova-build",
             "devServerTarget": "app:serve",
-            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

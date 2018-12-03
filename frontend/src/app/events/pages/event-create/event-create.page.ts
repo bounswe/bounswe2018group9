@@ -20,6 +20,8 @@ export class EventCreatePage implements OnInit {
   form: FormGroup;
   isFree = true;
   imageError = false;
+  eventMinDate: string;
+
   constructor(private formBuilder: FormBuilder,
               private eventService: EventService,
               private router: Router,
@@ -50,7 +52,8 @@ export class EventCreatePage implements OnInit {
   }
 
   ngOnInit() {
-
+    let now = new Date();
+    this.eventMinDate = now.toISOString();
   }
 
   createEvent() {
@@ -62,7 +65,7 @@ export class EventCreatePage implements OnInit {
     event.creator = this.authService.getUserFromToken();
 
     this.eventService
-      .post(this.form.value)
+      .post(event)
       .subscribe(
         message => {
           this.router.navigate(['/feed']);

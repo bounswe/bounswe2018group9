@@ -46,5 +46,6 @@ export class EventCardComponent implements OnInit {
 
   }
 
+  isUndefined(val) { return typeof val === 'undefined'; }
 
 }

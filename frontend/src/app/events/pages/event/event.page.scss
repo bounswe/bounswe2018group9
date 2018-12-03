@@ -107,6 +107,90 @@ $ticket-container-height: 90px;
   display: none;
 }
 
+.tag{
+  border-radius: 4px;
+  background-color: var(--ion-color-tertiary);
+  color: white;
+  font-weight: bold;
+  padding: 0 2px;
+  margin: 0 2px;
+}
+
+/* Comment Section */
+.tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid var(--ion-color-medium);
+}
+
+.tip-up {
+  top: -25px; /* Same as body margin top + border */
+  left: 10px;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+.tip-down {
+  bottom: -25px;
+  left: 10px;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.tip-left {
+  top: 10px;
+  left: -25px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.tip-right {
+  top: 10px;
+  right: -25px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.comment-box .comment-body {
+  position: relative;
+  height: auto;
+  margin: 20px 10px;
+  padding: 5px;
+  background-color: var(--ion-color-light);
+  border-radius: 3px;
+  border: 5px solid var(--ion-color-medium);
+}
+
+.comment-body .comment-message {
+  min-height: 30px;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #797979;
+}
+
+.comment .user img{
+  width: 60%;
+  margin: 4px 20%;
+  border-radius: 100%;
+  border: 2px solid var(--ion-color-dark);
+}
+/* */
+
+.input-error{
+  font-size: 0.8em;
+  color: var(--ion-color-danger);
+}
+
+ion-textarea{
+  background-color: white;
+}
 @media screen and (min-width: 600px){
   .image-container{
     height: 350px;
