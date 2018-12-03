@@ -14,9 +14,13 @@
     <ion-button slot="start" shape="round" routerLink="/profile/settings">
       Settings
     </ion-button>
+    <hr>
     <ion-button  slot="end" shape="round" routerLink="/profile/timeline">
       Timeline
     </ion-button>
+    <hr>
+    <ion-button slot="end" shape="round" routerLink="/profile/public/{{userId}}"> Go to my public page</ion-button>
+    <hr>
   </div>
   <ion-spinner *ngIf="!gotUserData" class="bubbles"></ion-spinner>
 

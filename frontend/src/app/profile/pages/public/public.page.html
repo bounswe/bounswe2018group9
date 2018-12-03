@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="user">User Profile: {{user.userDetails.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="errorHappened" padding>
+<ion-label>Sorry, an error happened: {{errorMessage}}</ion-label>
+</ion-content>
+<ion-content *ngIf="!errorHappened && !user" padding>
+  <ion-spinner class="bubbles"></ion-spinner>
+</ion-content>
+
+<ion-content *ngIf="!errorHappened && user" padding>
+  <ion-row>  <ion-label>User name: {{user.userDetails.name}}</ion-label></ion-row>
+  <ion-row>  <ion-label>User email: {{user.email}}</ion-label></ion-row>
+  <ion-row>
+    <ion-label>User interests: </ion-label>
+    <ion-list>
+      <ion-item *ngFor="let i of user.interests">{{i}}</ion-item>
+    </ion-list>
+  </ion-row>
+  <ion-row *ngIf="signedIn && isFollowing"><ion-label class="followStatus">Following</ion-label></ion-row>
+  <ion-row *ngIf="signedIn && !isFollowing"><ion-label class="followStatus">Not Following</ion-label></ion-row>
+  <ion-row><ion-button (click)="follow()">Follow</ion-button></ion-row>
+
+</ion-content>
