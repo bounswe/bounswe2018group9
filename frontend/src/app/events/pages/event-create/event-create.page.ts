@@ -37,8 +37,8 @@ export class EventCreatePage implements OnInit {
         length: ['', Validators.required],
         unit: ['', Validators.required]
       }),
-      locationConstruct: this.formBuilder.group({
-        locationName: ['', Validators.required]
+      location: this.formBuilder.group({
+        name: ['', Validators.required]
       }),
       isFree: [true, Validators.required],
       price: this.formBuilder.group({
@@ -132,5 +132,8 @@ export class EventCreatePage implements OnInit {
   }
   removeTag(index: number){
     this.tags.removeAt(index);
+  }
+  get medias(){
+    return this.form.get('medias') as FormArray;
   }
 }
