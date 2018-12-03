@@ -68,7 +68,6 @@ function getUserById(req,res,next) {
 }
 
 function addUser(req,res,next) {
-    console.log('add user');
     var user = new User({
         name: req.body.name,
         email: req.body.email,

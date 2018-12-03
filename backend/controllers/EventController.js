@@ -4,19 +4,7 @@ const Event = require("../models/Event");
 const _ = require('lodash');
 
 function addEvent(req, res, next) {
-  var event = new Event({
-    name: req.body.name,
-    price: req.body.price,
-    description: req.body.description,
-    date: req.body.date,
-    duration: req.body.duration,
-    created : Date.now(),
-    creator: req.body.creator,
-    artists: req.body.artists,
-    tags: req.body.tags,
-    locationConstruct: req.body.locationConstruct,
-    medias : req.body.medias,
-  });
+  var event = new Event(req.body);
 
   event.save()
     .then((event) => {
@@ -25,40 +13,16 @@ function addEvent(req, res, next) {
     })
     .catch((err) => {
       res.status(500);
-      res.send({err});
+      res.send(err);
     });
 };
 
 function updateEvent(req, res, next){
-  
-  /* VALIDATION SHOULD COME HERE */
-  if(!(req.body.name))
-  {
-    res.status(500).send("Name field missing.");
-  }
-  else if(!(req.body.price))
-  {
-    res.status(500).send("Price field missing.");
-  }
-  else if(!(req.body.description))
-  {
-    res.status(500).send("Description field missing.");
-  }
-  else if(!(req.body.date))
-  {
-    res.status(500).send("Date field missing.");
-  }
-  else if(!(req.body.artists))
-  {
-    res.status(500).send("Artists field missing.");
-  }
-  else if(!(req.body.blockedUsers))
-  {
-    res.status(500).send("Blocked users field missing.");
-  }
+  /* Validation here */
 
-  const updateOptions = { new: true }; 
-  Event.findByIdAndUpdate(req.params.id,{ $set:req.body }, updateOptions)
+  const updateOptions = { new: true };
+
+  Event.findByIdAndUpdate(req.params.id,{ $set: req.body }, updateOptions)
     .exec()
     .then((updatedEvent) => {
       res.status(200);
@@ -74,6 +38,7 @@ function getEventbyId(req, res, next) {
   eventId = req.params.id;
 
   Event.findById(eventId)
+    .populate("comments")
     .exec()
     .then((event) => {
       res.status(200);
@@ -81,7 +46,7 @@ function getEventbyId(req, res, next) {
     })
     .catch((err)=>{
       res.status(404);
-      res.send('No event found with id: ' + eventId);
+      res.send(err);
     });
 };
 
@@ -195,7 +160,7 @@ function addAttendance(req,res,next){
     })
     .catch((err) => {
       res.status(500);
-      res.send({err});
+      res.send(err);
     });
 };
 
@@ -210,7 +175,7 @@ function getAttendance(req,res,next){
     })
     .catch((err) => {
       res.status(500);
-      res.send({err});
+      res.send(err);
     });
 };
 
@@ -228,7 +193,7 @@ function updateAttendance(req,res,next){
     })
     .catch((err)=>{
         res.status(500);
-        res.send({err});
+        res.send(err);
     });
 };
 
@@ -241,7 +206,7 @@ function addComment(req,res,next) {
     })
     .catch((err)=>{
         res.status(500);
-        res.send({err});
+        res.send(err);
     });
 }
 
@@ -254,12 +219,15 @@ function deleteComment(req,res,next) {
     })
     .catch((err)=>{
         res.status(500);
-        res.send({err});
+        res.send(err);
     });
 }
 
 function updateComment(req,res,next) {
-  Event.findOneAndUpdate({"id": req.params.id, "comments.id": req.params.commentId}, {$set: {comment: req.body} }, {new: true})
+  const eventId = req.params.id;
+  const commentId = req.params.commentId;
+  const options = { upsert: true, new: true };
+  Event.findOneAndUpdate({"_id": eventId, "comments._id": commentId}, {"$set": {"comments.$": req.body} }, options)
     .exec()
     .then((event)=>{
         res.status(200);
@@ -267,9 +235,25 @@ function updateComment(req,res,next) {
     })
     .catch((err)=>{
         res.status(500);
-        res.send({err});
+        res.send(err);
     });
 }
+
+function getComments(req,res,next){
+  const eventId = req.params.id;
+
+  Event.findById(eventId)
+    .exec()
+    .then((event) => {
+      res.status(200);
+      res.send({comments: event.comments});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send(err);
+    });
+};
+
 function addVote(req,res,next){
   const eventId = req.params.id;
   const options = {new: true};
@@ -334,5 +318,6 @@ module.exports = {
   updateVote,
   addComment,
   deleteComment,
-  updateComment
+  updateComment,
+  getComments
 };

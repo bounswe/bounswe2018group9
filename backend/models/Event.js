@@ -3,26 +3,22 @@ var mongoosePaginate = require("mongoose-paginate");
 var Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
-    type: {
-        author: {
-            type: Schema.Types.ObjectId,
-            ref: 'User',
-            required: true
-        },
-
-        parentId: {
-            type: Schema.Types.ObjectId
-        },
-
-        body: {
-            type: String,
-            required: true
-        },
-
-        created: {
-            type: Date,
-            default: Date.now()
-        }
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    parentId: {
+        type: Schema.Types.ObjectId,
+        default: null
+    },
+    body: {
+        type: String,
+        required: true
+    },
+    created: {
+        type: Date,
+        default: Date.now()
     }
 });
 
@@ -136,19 +132,17 @@ var EventSchema = new Schema({
         default: []
     },
     
-    locationConstruct:{
-        //location construct here
-        locationName:{
-            type:String
-        },
-        location: {
-            locType:{
-                type:[String]
+    location:{
+        type: {
+            name:{
+                type: String,
+                required: true
             },
-            //number of lat,long
-            coordinates:[Number]
+            coordinates: {
+                lat: Number,
+                long: Number
+            }
         },
-        
         required: false
     },
 
