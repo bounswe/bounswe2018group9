@@ -39,7 +39,7 @@
   </ion-tab>
   <ion-tab label="Location" tab="location" icon="map">
     <div>
-      <ion-label position="stacked">Location Based Search> </ion-label>
+      <ion-label position="stacked">Location Based Search </ion-label>
       <ion-searchbar  [formControl]="location" placeholder="Select a location:"></ion-searchbar>
       <ion-button [disabled]="!(location.dirty && location.valid)" (click)="searchLocation()">Search</ion-button>
     </div>
