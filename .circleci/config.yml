@@ -4,6 +4,55 @@
 #
 version: 2
 jobs:
+  build:
+    working_directory: ~
+    docker:
+      - image: circleci/node:8.9
+
+    steps:
+      # Checkout the code from the branch into the working_directory
+      - checkout
+
+      # Log the current branch and working directory
+      - run:
+          name: Show current branch and working directory
+          command: pwd && echo ${CIRCLE_BRANCH}
+
+      # Download and cache dependencies for frontend
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "./frontend/package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      # Install project dependencies for frontend
+      - run:
+          name: Install local dependencies
+          command: cd ./frontend && npm install --save-dev
+
+      # Cache local dependencies for frontend
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "./frontend/package.json" }}
+
+      - run:
+          name: Build Frontend
+          command: |
+            cd ./frontend
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              npm run build:prod
+              echo "Production build"
+            else
+              npm run build
+              echo "Development build"
+            fi
+
+      - persist_to_workspace:
+          root: frontend
+          paths:
+            - www/*
+
   test:
     working_directory: ~
     docker:
@@ -58,28 +107,13 @@ jobs:
           name: Show current branch and working directory
           command: pwd && echo ${CIRCLE_BRANCH}
 
-      # Download and cache dependencies for frontend
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "./frontend/package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      - attach_workspace:
+          at: /frontend
 
-      # Install project dependencies for frontend
-      - run:
-          name: Install local dependencies
-          command: cd ./frontend && npm install
-
-      # Cache local dependencies for frontend
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "./frontend/package.json" }}
-
-      # Build project into the backend folder
+      # Move project into the backend folder
       - run:
           name: Build project
-          command: npm run --prefix frontend build:prod && mv frontend/www/ backend/www/
+          command: mv frontend/www/ backend/www/
 
       - add-ssh-keys:
           fingerprints:
@@ -106,8 +140,11 @@ workflows:
   version: 2
   test_and_deploy:
     jobs:
+      - build
       - test
       - deploy:
+          requires:
+            - build
           filters:
             branches:
               only:
