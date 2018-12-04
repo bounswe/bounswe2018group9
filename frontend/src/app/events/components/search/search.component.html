@@ -13,7 +13,7 @@
   <hr>
   <ion-label position="stacked">Enter name:</ion-label>
   <ion-searchbar  [formControl]="username" placeholder="Name to search:"></ion-searchbar>
-  <ion-button routerLink="/profile/public/5c044e75eb42a65599b562c5">Kemal Tulum</ion-button>
+  <a routerLink="/profile/public/5c044e75eb42a65599b562c5">Kemal Tulum</a>
   <hr>
   <ion-button [disabled]="!(username.dirty && username.valid)" (click) ="searchUser()">Search</ion-button>
 </ion-content>
