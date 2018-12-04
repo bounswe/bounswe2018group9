@@ -7,7 +7,7 @@ import { EventService } from '../../../data/providers/event/event.service';
 import {AlertController} from "@ionic/angular";
 import {HttpErrorResponse} from "@angular/common/http";
 import {AuthService} from "../../../auth/providers/auth/auth.service";
-import {Event} from "../../../interfaces";
+import {Attendance, Event} from "../../../interfaces";
 
 @Component({
   selector: 'app-event-create',
@@ -63,6 +63,13 @@ export class EventCreatePage implements OnInit {
     let event: Event = this.form.value;
 
     event.creator = this.authService.getUserFromToken();
+
+    let attendance: Attendance = {
+      user: this.authService.getUserId(),
+      attendanceType: 1
+    };
+
+    event.attendance = [attendance];
 
     this.eventService
       .post(event)
