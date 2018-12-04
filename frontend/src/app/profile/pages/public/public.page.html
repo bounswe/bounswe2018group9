@@ -7,26 +7,43 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="error" padding>
-<ion-label>Sorry, an error happened: {{errorMessage}}</ion-label>
-</ion-content>
-<ion-content *ngIf="!error && !user" padding>
-  <ion-spinner class="bubbles"></ion-spinner>
-</ion-content>
+<ion-content padding *ngIf="user">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-xs="12" offset-md="4" size-md="4">
+        <div class="profile-container">
+          <div *ngIf="error" class="error">
+            <ion-label>Sorry, an error happened: {{errorMessage}}</ion-label>
+          </div>
+          <div *ngIf="!error && !user">
+            <ion-spinner class="bubbles"></ion-spinner>
+          </div>
 
-<ion-content *ngIf="!error && user" padding>
-  <img height="400" width="400" src={{user.images.avatar}}>
-  <ion-row>  <ion-label class="big">{{user.name}}</ion-label></ion-row>
-  <ion-row>  <ion-label class="medium">{{user.email}}</ion-label></ion-row>
-    <ion-label class="medium">Likes to do: </ion-label>
-      <ion-label *ngFor="let i of user.interests"><b>{{i}}</b></ion-label>
-    <hr>
+          <div *ngIf="!error && user">
+            <div class="image-container">
+              <img src={{user.images.avatar}}>
+            </div>
+            <h2 class="big">
+              {{user.name}}
+            </h2>
+            <p class="medium">{{user.email}}</p>
+            <h3 class="medium">Likes to do: </h3>
+            <p *ngFor="let i of user.interests"><b>{{i}}</b></p>
+            <hr>
 
-  <div *ngIf="!sameUser">
-    <ion-row *ngIf="signedIn && isFollowing"><ion-label class="followStatus">You are following {{user.name}}</ion-label></ion-row>
-    <ion-row *ngIf="signedIn && !isFollowing"><ion-label class="followStatus">You are not following {{user.name}}</ion-label></ion-row>
-    <ion-row ><ion-button [disabled]="isFollowing" (click)="follow()">Follow</ion-button></ion-row>
-    <ion-row ><ion-button [disabled]="!isFollowing" (click)="unfollow()">Unfollow</ion-button></ion-row>
-  </div>
+            <div *ngIf="!sameUser">
+              <div *ngIf="signedIn && isFollowing">
+                <ion-label class="followStatus">You are following {{user.name}}</ion-label>
+              </div>
+              <div *ngIf="signedIn && !isFollowing"><ion-label class="followStatus">You are not following {{user.name}}</ion-label></div>
+              <div><ion-button [disabled]="isFollowing" (click)="follow()">Follow</ion-button></div>
+              <div><ion-button [disabled]="!isFollowing" (click)="unfollow()">Unfollow</ion-button></div>
+            </div>
+
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

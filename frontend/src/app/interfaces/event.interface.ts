@@ -12,7 +12,7 @@ export interface Event extends Object {
   date: Date;
   duration: {length: number, unit: string};
   created?: Date;
-  creator: User;
+  creator: string | User;
   attendance: Array<Attendance>;
   vote?: Vote;
   comments?: Array<Comment>;
