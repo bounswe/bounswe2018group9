@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Event, User, Comment, Attendance} from '../../../interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../../../data/providers/event/event.service';
@@ -7,19 +7,23 @@ import {AlertController, LoadingController} from "@ionic/angular";
 import {HttpErrorResponse} from "@angular/common/http";
 import {AuthService} from "../../../auth/providers/auth/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.page.html',
   styleUrls: ['./event.page.scss'],
 })
-export class EventPage implements OnInit, OnDestroy{
+export class EventPage implements OnInit, OnDestroy, AfterViewInit{
   @ViewChild('profileImage') profileImage;
+  @ViewChild('comments') comments: ElementRef;
   form: FormGroup;
   event: Event | null = null;
   private sub: any;
+  private fragmentSub;
   user: User;
   event_id: string;
+  commentsSec = false;
 
   constructor(private route: ActivatedRoute,
               private eventService: EventService,
@@ -48,11 +52,32 @@ export class EventPage implements OnInit, OnDestroy{
         );
       }
     });
-
-
   }
+
+  ngAfterViewInit(){
+    // Capture the fragment if available
+    this.fragmentSub = this.route
+      .fragment
+      .subscribe(
+        fragment => {
+          console.log(fragment);
+          if (fragment) {
+            this.commentsSec = true;
+          }
+        });
+
+    //setTimeout(this.goToComments(),2000)
+  }
+
+  goToComments(){
+    if(this.commentsSec){
+      this.comments.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.fragmentSub.unsubscribe();
   }
 
   async presentLoading(){
@@ -115,6 +140,5 @@ export class EventPage implements OnInit, OnDestroy{
   }
 
   isUndefined(val) { return typeof val === 'undefined'; }
-
 
 }

@@ -3,6 +3,12 @@
   <ion-card-content>
     <div class="image">
       <img src="{{e.medias[0]}}" alt="{{e.name}}">
+      <div class="price">
+        {{e.price.amount == 0 ? 'Free' : e.price.amount + ' ' + e.price.currency}}
+      </div>
+      <div *ngIf="e.artists.length > 0" class="artist">
+        {{e.artists[0] | titlecase}}
+      </div>
     </div>
     <div class="date">
       {{e.date | date:'dd MMM'}}
@@ -22,13 +28,13 @@
           <ion-grid no-padding="">
             <ion-row no-padding>
               <ion-col size="6" no-padding>
-                <ion-button [disabled]="view"color="success" fill="clear">
+                <ion-button (click)="vote(1)" [disabled]="view || voted" color="success" fill="clear">
                   <ion-icon name="thumbs-up"></ion-icon>
                   <div>{{e.vote.upvoteCount}}</div>
                 </ion-button>
               </ion-col>
               <ion-col text-center size="6" no-padding>
-                <ion-button [disabled]="view" color="danger" fill="clear">
+                <ion-button (click)="vote(-1)" [disabled]="view || voted" color="danger" fill="clear">
                   <ion-icon name="thumbs-down"></ion-icon>
                   <div>{{e.vote.downvoteCount}}</div>
                 </ion-button>

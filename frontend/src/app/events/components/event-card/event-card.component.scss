@@ -10,6 +10,11 @@
 
 .image{
   margin-bottom: 10px;
+  position: relative;
+}
+
+.image img{
+  border: 2px solid var(--ion-color-medium);
 }
 
 h2{
@@ -20,4 +25,24 @@ h2{
 .date, .location{
   font-size: 1em;
   margin: 5px 0;
+}
+
+.price, .artist{
+  position: absolute;
+  background-color: rgba(var(--ion-color-primary-rgb), 0.8);
+  color: black;
+  right: 4px;
+  display: inline-block;
+  padding: 2px 4px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.price{
+  top: 40px;
+}
+
+.artist{
+  top: 10px;
 }

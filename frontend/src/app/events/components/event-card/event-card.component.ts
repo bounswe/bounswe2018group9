@@ -11,6 +11,7 @@ export class EventCardComponent implements OnInit {
   @Input('view') view = false;
   timeDiff;
   timeDiffUnit;
+  voted = false;
 
   constructor() { }
 
@@ -44,6 +45,15 @@ export class EventCardComponent implements OnInit {
     this.timeDiff = Math.floor(this.timeDiff);
 
 
+  }
+
+  vote(vote: number){
+    if(vote == 1){
+      this.event.vote.upvoteCount += 1;
+    } else if(vote == -1){
+      this.event.vote.downvoteCount -= 1;
+    }
+    this.voted = true;
   }
 
   isUndefined(val) { return typeof val === 'undefined'; }
