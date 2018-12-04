@@ -6,7 +6,7 @@
     <ion-title>
       Actopus
     </ion-title>
-    <ion-buttons slot="primary">
+    <ion-buttons class="search-mobile" slot="primary">
       <ion-menu-button color="danger" menu="end"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
@@ -24,7 +24,7 @@
     </ion-item>
   </ion-list>
 </ion-menu>
-<ion-menu side="end">
+<ion-menu class="search-mobile" side="end">
   <ion-content>
     <app-search></app-search>
   </ion-content>
@@ -37,11 +37,14 @@
     </ion-fab>
   <ion-content *ngIf="loadedEvents">
     <ion-grid>
-      <ion-row *ngFor="let event of events" justify-content-center no-padding>
-        <ion-col size-xs="12">
+      <ion-row justify-content-center no-padding>
+        <ion-col size-xs="12" size-md="4" offset-md="4">
           <div class="feed-card">
-            <app-event-card [event]="event"></app-event-card>
+            <app-event-card *ngFor="let event of events" [event]="event"></app-event-card>
           </div>
+        </ion-col>
+        <ion-col class="search-desktop" size-md="4">
+          <app-search></app-search>
         </ion-col>
       </ion-row>
     </ion-grid>

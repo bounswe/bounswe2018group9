@@ -37,6 +37,7 @@ h2{
   margin-bottom: 8px;
   border-radius: 4px;
   font-size: 0.9em;
+  font-weight: bold;
 }
 
 .price{
@@ -45,4 +46,14 @@ h2{
 
 .artist{
   top: 10px;
+}
+
+@media screen and (min-width: 768px){
+  .price, .artist{
+    background-color: rgba(var(--ion-color-primary-rgb), 0.8);
+    padding: 4px 8px;
+    margin-bottom: 16px;
+    right: 8px;
+    font-size: 1em;
+  }
 }
