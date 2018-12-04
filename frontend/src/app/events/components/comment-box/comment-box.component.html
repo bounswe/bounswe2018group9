@@ -1,22 +1,26 @@
 <div class="comment">
   <ion-row >
     <ion-col *ngIf="user; let author" size="3" offset-md="1" size-md="2">
-      <div class="user" *ngIf="!isUndefined(author.name); else noUser">
-        <img src="../../../../assets/profile.jpg" alt="{{author.name}}">
-        <span class="username">{{author.name}}</span>
-      </div>
-      <ng-template>
-        <div #noUser class="user">
-          <img src="../../../../assets/profile.jpg">
-          <span class="username">Anonymous</span>
+      <a routerLink="/profile/public/{{comment.author}}">
+        <div class="user" *ngIf="!isUndefined(author.name) && !isUndefined(author.images); else noUser">
+          <img src="{{author.images.avatar}}" #profileImage (error)="onProfileImageError()" alt="{{author.name}}">
+          <span class="username">{{author.name}}</span>
         </div>
+      </a>
+      <ng-template #noUser>
+        <a routerLink="/public/profile/{{comment.author}}">
+          <div class="user">
+            <img src="../../../../assets/profile.jpg" alt="">
+            <span class="username">{{author.name}}</span>
+          </div>
+        </a>
       </ng-template>
     </ion-col>
     <ion-col size="9" size-md="8" *ngIf="!isUndefined(comment.body)">
       <div class="comment-box">
         <div class="comment-body">
-                        <span class="tip tip-left">
-                        </span>
+                      <span class="tip tip-left">
+                      </span>
           <div class="comment-message">
             <span>{{comment.body}}</span>
           </div>

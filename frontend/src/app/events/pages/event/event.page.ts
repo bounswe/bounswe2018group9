@@ -22,6 +22,7 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
   private sub: any;
   private fragmentSub;
   user: User;
+  currentUser: User;
   event_id: string;
   commentsSec = false;
 
@@ -38,7 +39,18 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
 
   ngOnInit() {
     //this.presentLoading();
-    this.user = this.authService.getUserFromToken();
+    //this.currentUser = this.authService.getUserFromToken();
+
+    this.authService.getUserData(this.authService.getUserId())
+       .subscribe(
+         (user: User) => {
+           this.currentUser = user;
+         },
+         error => {
+           console.log('An error occurred while getting current user');
+         }
+       );
+
     this.sub = this.route.params.subscribe(params => {
       if(params){
         this.event_id = params['id'];
@@ -46,6 +58,16 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
           (next : Event) =>{
             this.event = next;
             console.log(this.event);
+
+            this.authService.getUserData(String(this.event.creator))
+              .subscribe(
+                (user: User) => {
+                  this.user = user;
+                },
+                error => {
+                  console.log('An error occurred while getting user');
+                }
+              );
           },(err)=>{
             console.log(err);
           }
@@ -104,7 +126,7 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
     let comment: Comment = this.form.value;
 
     comment.parentId = this.event_id;
-    comment.author = this.user._id;
+    comment.author = this.currentUser._id;
 
     console.log(comment);
 
@@ -140,5 +162,6 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
   }
 
   isUndefined(val) { return typeof val === 'undefined'; }
+
 
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "../../../auth/providers/auth/auth.service";
 import {User} from "../../../interfaces";
 
@@ -8,6 +8,7 @@ import {User} from "../../../interfaces";
   styleUrls: ['./comment-box.component.scss']
 })
 export class CommentBoxComponent implements OnInit {
+  @ViewChild('profileImage') profileImage;
   @Input('comment') comment;
   user: User;
   constructor(private authService: AuthService) { }
@@ -18,6 +19,7 @@ export class CommentBoxComponent implements OnInit {
       .subscribe(
         user => {
           this.user = user;
+          console.log(user);
         },
         error => {
           console.log(error);
@@ -26,4 +28,8 @@ export class CommentBoxComponent implements OnInit {
   }
 
   isUndefined(val) { return typeof val === 'undefined'; }
+
+  onProfileImageError(element){
+    (<HTMLImageElement>this.profileImage.nativeElement).src = '../../../../assets/profile.jpg';
+  }
 }

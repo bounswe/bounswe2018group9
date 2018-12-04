@@ -8,3 +8,18 @@
 .medium{
   font-size: 1.5em;
 }
+
+.image-container{
+  width: 60%;
+  margin: 20px auto;
+}
+
+.image-container img{
+  border-radius: 100%;
+  width: 100%;
+}
+
+.profile-container{
+  border: 2px solid var(--ion-color-medium);
+  text-align: center;
+}
