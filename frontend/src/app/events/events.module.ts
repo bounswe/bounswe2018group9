@@ -11,6 +11,7 @@ import { EventCreatePage } from './pages/event-create/event-create.page';
 
 import { EventCardComponent } from './components/event-card/event-card.component';
 import {SearchComponent} from './components/search/search.component';
+import { CommentBoxComponent } from './components/comment-box/comment-box.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import {SearchComponent} from './components/search/search.component';
     EventPage,
     EventCreatePage,
     EventCardComponent,
-    SearchComponent
+    SearchComponent,
+    CommentBoxComponent
   ]
 })
 export class EventsModule { }
