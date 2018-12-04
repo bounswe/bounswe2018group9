@@ -55,11 +55,6 @@ export class EventPage implements OnInit, OnDestroy{
     this.sub.unsubscribe();
   }
 
-  prettyDate(date_str: string){
-    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    let date = new Date(date_str);
-    return date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
-  }
   async presentLoading(){
     const loading = await this.loadingController.create({
       message: 'Loading...'
@@ -84,7 +79,7 @@ export class EventPage implements OnInit, OnDestroy{
     let comment: Comment = this.form.value;
 
     comment.parentId = this.event_id;
-    comment.author = this.user;
+    comment.author = this.user._id;
 
     console.log(comment);
 
@@ -93,6 +88,7 @@ export class EventPage implements OnInit, OnDestroy{
       .subscribe(
         (next) => {
           this.event.comments.push(comment);
+          this.form.setValue({body: ''});
         },
         error => {
           console.log('An error occurred when commenting', error);

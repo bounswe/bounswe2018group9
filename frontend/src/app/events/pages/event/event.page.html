@@ -110,34 +110,7 @@
             <ion-grid>
               <div class="comments-container">
                 <h3 text-center>Comments</h3>
-                <div class="comment" *ngFor="let comment of e.comments">
-                <ion-row >
-                  <ion-col *ngIf="!isUndefined(comment.author)" size="3" offset-md="1" size-md="2">
-                    <div class="user" *ngIf="!isUndefined(comment.author.name); else noUser">
-                      <img src="../../../../assets/profile.jpg" alt="{{comment.author.name}}">
-                      <span class="username">{{comment.author.name}}</span>
-                    </div>
-                    <ng-template>
-                      <div #noUser class="user">
-                        <img src="../../../../assets/profile.jpg">
-                        <span class="username">Anonymous</span>
-                      </div>
-                    </ng-template>
-                  </ion-col>
-                  <ion-col size="9" size-md="8" *ngIf="!isUndefined(comment.body)">
-                    <div class="comment-box">
-                      <div class="comment-body">
-                        <span class="tip tip-left">
-                        </span>
-                        <div class="comment-message">
-                          <span>{{comment.body}}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                  </ion-col>
-                </ion-row>
-                </div>
+                <app-comment-box *ngFor="let comment of e.comments" [comment]="comment"></app-comment-box>
                 <div class="comment new-comment">
                   <ion-row>
                     <ion-col size="9" offset-md="1" size-md="8">
@@ -174,50 +147,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <!--
-  <ion-list *ngIf="event; let e">
-    <ion-card>
-      <ion-card-header>
-        <h1>
-          {{e.name}}
-        </h1>
-      </ion-card-header>
-      <img src="{{e.medias[0]}}">
-    </ion-card>
-    <ion-card>
-      <ion-card-header>
-        <h2>Description</h2>
-      </ion-card-header>
-      <ion-card-content>
-        {{e.description}}
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-header>
-        <h2>Price</h2>
-      </ion-card-header>
-      <ion-card-content>
-        {{e.price}}
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-header>
-        <h2>Organized By:</h2>
-      </ion-card-header>
-      <ion-card-content>
-        {{e.owner}}
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-header>
-        <h2>Date:</h2>
-      </ion-card-header>
-      <ion-card-content>
-        {{prettyDate(e.date)}}
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
-  -->
 
 
 

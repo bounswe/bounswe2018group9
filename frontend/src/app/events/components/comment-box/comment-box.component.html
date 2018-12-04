@@ -1,0 +1,28 @@
+<div class="comment">
+  <ion-row >
+    <ion-col *ngIf="user; let author" size="3" offset-md="1" size-md="2">
+      <div class="user" *ngIf="!isUndefined(author.name); else noUser">
+        <img src="../../../../assets/profile.jpg" alt="{{author.name}}">
+        <span class="username">{{author.name}}</span>
+      </div>
+      <ng-template>
+        <div #noUser class="user">
+          <img src="../../../../assets/profile.jpg">
+          <span class="username">Anonymous</span>
+        </div>
+      </ng-template>
+    </ion-col>
+    <ion-col size="9" size-md="8" *ngIf="!isUndefined(comment.body)">
+      <div class="comment-box">
+        <div class="comment-body">
+                        <span class="tip tip-left">
+                        </span>
+          <div class="comment-message">
+            <span>{{comment.body}}</span>
+          </div>
+        </div>
+      </div>
+
+    </ion-col>
+  </ion-row>
+</div>

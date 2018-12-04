@@ -2,7 +2,7 @@ import { Object } from './object.interface';
 import { User } from './user.interface';
 
 export interface Attendance extends Object {
-  user: User;
+  user: string | User;
   attendanceType: number;
 }
 
