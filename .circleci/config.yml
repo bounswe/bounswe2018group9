@@ -41,11 +41,11 @@ jobs:
           command: |
             cd ./frontend
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              npm run build:prod
               echo "Production build"
+              npm run build:prod
             else
-              npm run build
               echo "Development build"
+              npm run build
             fi
 
       - persist_to_workspace:
@@ -112,7 +112,7 @@ jobs:
 
       # Move project into the backend folder
       - run:
-          name: Build project
+          name: Move project
           command: mv frontend/www/ backend/www/
 
       - add-ssh-keys:
@@ -130,11 +130,15 @@ jobs:
       # Run deploy script
       - run:
           name: Deploy
-          command: sh scripts/deploy.sh
-
-      - run:
-          name: Deployment Success.
-          command: echo "Deployment Success!"
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              echo "Production deploy"
+              sh scripts/deploy.sh prod
+            else
+              export ENV=dev
+              echo "Development deploy"
+              sh scripts/deploy.sh dev
+            fi
 
 workflows:
   version: 2
@@ -149,5 +153,6 @@ workflows:
             branches:
               only:
                 - master
+                - staging
               ignore:
                 - /pull.*/
