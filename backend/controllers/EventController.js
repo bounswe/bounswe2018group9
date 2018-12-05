@@ -350,15 +350,18 @@ function deleteMedia(req,res,next) {
 }
 
 function updateMedia(req,res,next) {
-  Event.findOneAndUpdate({"id": req.params.id, "medias.id": req.params.mediaId}, {$set: {media: req.body} }, {new: true})
+  const eventId = req.params.id;
+  const mediaId = req.params.mediaId;
+  const options = { upsert: true, new: true };
+  Event.findOneAndUpdate({"_id": eventId, "media._id": mediaId}, {"$set": {"media.$": req.body} }, options)
     .exec()
     .then((event)=>{
         res.status(200);
-        res.send({medias: event.medias});
+        res.send({media: event.media});
     })
     .catch((err)=>{
         res.status(500);
-        res.send({err});
+        res.send(err);
     });
 }
 
