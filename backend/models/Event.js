@@ -183,7 +183,7 @@ var EventSchema = new Schema({
         required: false
     },
 
-    medias: {
+    media: {
         type: [MediaSchema],
         default: []
     }
