@@ -16,6 +16,7 @@ var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 const eventsRouter = require('./routes/events');
 const usersRouter = require('./routes/users');
+const searchRouter = require('./routes/search');
 
 var app = express();
 
@@ -37,6 +38,7 @@ var db = mongoose.connection;
 // app.use('/', indexRouter);
 
 // Register API routers.
+app.use('/api/search',searchRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/events', passport.authenticate('jwt', {session: false}), eventsRouter);
 app.use('/api/users', passport.authenticate('jwt', {session: false}), usersRouter);
