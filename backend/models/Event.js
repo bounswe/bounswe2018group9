@@ -4,7 +4,6 @@ var Schema = mongoose.Schema;
 
 
 const MediaSchema = new Schema({
-    type: {
         creator: {
             type: Schema.Types.ObjectId,
             ref: 'User',
@@ -22,21 +21,20 @@ const MediaSchema = new Schema({
         },
 
         filesize: {
-            type: Number//in KB
+            type: Number,//in KB
+            default: 0
         },
 
         annotations: {
           //THIS IS A PLACE HOLDER DEFINITION
             type: String,
-            required: false
+            default: ""
         },
         //0 for image, 1 for video
         media_type:{
             type: Number,
             default: 0
         }
-    }
-
 });
 
 const CommentSchema = new Schema({
