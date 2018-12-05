@@ -11,8 +11,7 @@ router.post('/', EventController.addEvent);
 
 //Media endpoints
 router.post('/:id/media', EventController.addMedia);
-router.get('/:id/media', EventController.getAllMedia);
-router.get('/:id/media/:mediaId', EventController.getMedia);
+router.get('/:id/media/', EventController.getMedia);
 router.put('/:id/media', EventController.updateMedia);
 router.delete('/:id/media/:mediaId', EventController.deleteMedia);
 
