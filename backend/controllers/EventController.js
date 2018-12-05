@@ -307,16 +307,16 @@ function updateVote(req,res,next){
 
 // MEDIA CONTROLLERS
 function addMedia(req,res,next){
-  Event.findOneAndUpdate({_id: req.params.id}, {$push: {medias: req.body}}, {new: true})
-  .exec()
-  .then((event)=>{
-    res.status(200);
-    res.send({medias: event.medias});
-  })
-  .catch((err)=>{
-    res.status(500);
-    res.send({err});
-  });
+  Event.findOneAndUpdate({_id: req.params.id}, {$push: {media: req.body}}, {new: true})
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({media: event.media});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send(err);
+    });
 }
 
 function getMedia(req,res,next){
@@ -335,32 +335,17 @@ function getMedia(req,res,next){
 
 }
 
-function getAllMedia(req,res,next){
-  Event.findById({_id: req.params.id})
-    .populate()
-    .exec()
-    .then((event)=>{
-      res.status(500);
-      res.send({medias: event.medias});
-    })
-    .catch((err)=>{
-      res.status(500);
-      res.send({err});
-    });
-
-}
-
 
 function deleteMedia(req,res,next) {
-  Event.findOneAndUpdate({_id: req.params.id}, {$pull: {medias: { _id:req.params.mediaId }}}, {new: true})
+  Event.findOneAndUpdate({_id: req.params.id}, {$pull: {media: { _id:req.params.mediaId }}}, {new: true})
     .exec()
     .then((event)=>{
         res.status(200);
-        res.send({medias: event.medias});
+        res.send({media: event.media});
     })
     .catch((err)=>{
         res.status(500);
-        res.send({err});
+        res.send(err);
     });
 }
 
