@@ -320,22 +320,17 @@ function addMedia(req,res,next){
 }
 
 function getMedia(req,res,next){
-  Event.findById({_id: req.params.id})
+  const eventId = req.params.id;
+
+  Event.findById(eventId)
     .exec()
-    .then((event)=>{
-      console.log(event.medias);
-      console.log("here");
-      event.medias.findById(req.params.mediaId)
-        .exec()
-        .then((mediaVar)=>{res.status(200); res.send(mediaVar);})
-        .catch((err)=>{
-          res.status(500);
-          res.send({err});
-        });
+    .then((event) => {
+      res.status(200);
+      res.send({media: event.media});
     })
-    .catch((err)=>{
+    .catch((err) => {
       res.status(500);
-      res.send({err});
+      res.send(err);
     });
 
 }
