@@ -310,8 +310,6 @@ function addMedia(req,res,next){
   Event.findOneAndUpdate({_id: req.params.id}, {$push: {media: req.body}}, {new: true})
     .exec()
     .then((event)=>{
-        console.log(JSON.stringify(req.body));
-        console.log(JSON.stringify(event.media[0]));
         res.status(200);
         res.send({media: event.media});
     })
