@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {User} from '../../../interfaces';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../../auth/providers/auth/auth.service';
+import {UserService} from '../../../data/providers/user/user.service';
 
 @Component({
   selector: 'app-public',
@@ -9,6 +10,7 @@ import {AuthService} from '../../../auth/providers/auth/auth.service';
   styleUrls: ['./public.page.scss'],
 })
 export class PublicPage implements OnInit {
+  loading : boolean = false;
   signedIn : boolean;
   private sub : any;
   userId : string;
@@ -19,32 +21,44 @@ export class PublicPage implements OnInit {
   errorMessage : string;
   error : boolean = false;
   sameUser : boolean = false;
-  constructor(private route : ActivatedRoute, private auth : AuthService, private ref: ChangeDetectorRef) { }
+  constructor(private route : ActivatedRoute,
+              private auth : AuthService,
+              private ref: ChangeDetectorRef,
+              private userService : UserService) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       if(params){
         this.userId= params['id'];
-        this.auth.getUserData(this.userId).subscribe(
-          (res)=>{
+        this.loading = true;
+        this.userService.get(this.userId).subscribe(
+          (res : User)=>{
             this.user = res;
+            this.loading = false;
           },(err)=>{
             this.errorMessage = JSON.stringify(err);
             this.error = true;
+            this.loading = false;
           }
         );
       }
     });
     if(this.auth.isAuthenticated()){
       this.signedInId = this.auth.getUserId();
-      if(this.signedInId == this.userId) this.sameUser = true;
+      if(this.signedInId == this.userId) {
+        this.sameUser = true;
+      }
       this.signedIn = true;
-      this.auth.getUserData(this.signedInId).subscribe((res)=>{
+      this.loading = true;
+      this.userService.get(this.signedInId).subscribe(
+        (res : User)=>{
         this.signedInUser = res;
         this.isFollowing = this.signedInUser.following.includes(this.userId);
-      },(err)=>{
-        console.log(err);
-      });
+          this.loading = false;
+        },(err)=>{
+          console.log(err);
+          this.loading = false;
+        });
     }
 
   }

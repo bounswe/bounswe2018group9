@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {AuthService} from "../../../auth/providers/auth/auth.service";
 import {User} from "../../../interfaces";
+import {UserService} from '../../../data/providers/user/user.service';
 
 @Component({
   selector: 'app-comment-box',
@@ -11,13 +11,13 @@ export class CommentBoxComponent implements OnInit {
   @ViewChild('profileImage') profileImage;
   @Input('comment') comment;
   user: User;
-  constructor(private authService: AuthService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     console.log(this.comment);
-    this.authService.getUserData(this.comment.author)
+    this.userService.get(this.comment.author)
       .subscribe(
-        user => {
+        (user : User) => {
           this.user = user;
           console.log(user);
         },

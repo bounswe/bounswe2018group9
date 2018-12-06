@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {EventService} from '../../../data/providers/event/event.service';
+import {User, Event} from '../../../interfaces';
+import {UserService} from '../../../data/providers/user/user.service';
 
 @Component({
   selector: 'app-search',
@@ -30,6 +33,10 @@ export class SearchComponent implements OnInit {
     ,'Turkish Folk Music'
     ,'Concert'
   ];
+
+  foundUsers: User[] | User = [];
+  foundEvents: Event[] | Event = [];
+
   selectedTags : string[] = [];
   searchingUsers : boolean = false;
   tags  = new FormControl('',  [Validators.required]);
@@ -39,7 +46,8 @@ export class SearchComponent implements OnInit {
   toTime = new FormControl('',  [Validators.required]);
   username = new FormControl('',  [Validators.required]);
   timeForm : FormGroup;
-  constructor(private formBuilder : FormBuilder) {
+  loading : boolean = false;
+  constructor(private formBuilder : FormBuilder, private eventService : EventService, private userService : UserService) {
     this.timeForm = this.formBuilder.group([this.fromTime,this.toTime]);
   }
 
@@ -55,9 +63,29 @@ export class SearchComponent implements OnInit {
     alert('Searching between times: ' + this.fromTime.value+ ' and ' + this.toTime.value);
   }
   search(){
+    this.loading = true;
+    this.eventService.get('',{search:this.content.value,isUser:"0"}).subscribe(
+      (res)=>{
+        this.foundEvents = res;
+        this.loading = false;
+      },(err)=>{
+        console.log(err);
+        this.loading = true;
+      }
+    );
     alert('searching content based, content: '+ this.content.value);
   }
   searchUser(){
+    this.loading = true;
+    this.userService.get('',{search:this.content.value,isUser:"1"}).subscribe(
+      (res)=>{
+        this.foundUsers = res;
+        this.loading = false;
+      },(err)=>{
+        console.log(err);
+        this.loading = true;
+      }
+    );
     alert('searching users, username is: ' + this.username.value);
   }
   updateFitOnes(){

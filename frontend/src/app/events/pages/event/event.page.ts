@@ -4,10 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../../../data/providers/event/event.service';
 
 import {AlertController, LoadingController} from "@ionic/angular";
-import {HttpErrorResponse} from "@angular/common/http";
 import {AuthService} from "../../../auth/providers/auth/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {map} from "rxjs/operators";
+import {UserService} from '../../../data/providers/user/user.service';
 
 @Component({
   selector: 'app-event',
@@ -25,13 +24,15 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
   currentUser: User;
   event_id: string;
   commentsSec = false;
+  loading : boolean = false;
 
   constructor(private route: ActivatedRoute,
               private eventService: EventService,
               private loadingController : LoadingController,
               private alertController : AlertController,
               private authService: AuthService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private userService : UserService) {
     this.form = this.formBuilder.group({
       body: ['', [Validators.required, Validators.minLength(10)]]
     });
@@ -41,7 +42,7 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
     //this.presentLoading();
     //this.currentUser = this.authService.getUserFromToken();
 
-    this.authService.getUserData(this.authService.getUserId())
+    this.userService.get(this.authService.getUserId())
        .subscribe(
          (user: User) => {
            this.currentUser = user;
@@ -54,12 +55,12 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
     this.sub = this.route.params.subscribe(params => {
       if(params){
         this.event_id = params['id'];
+        this.loading = true;
         this.eventService.get(this.event_id).subscribe(
           (next : Event) =>{
             this.event = next;
             console.log(this.event);
-
-            this.authService.getUserData(String(this.event.creator))
+            this.userService.get(String(this.event.creator))
               .subscribe(
                 (user: User) => {
                   this.user = user;
@@ -68,8 +69,10 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
                   console.log('An error occurred while getting user');
                 }
               );
+            this.loading = false;
           },(err)=>{
             console.log(err);
+            this.loading = false;
           }
         );
       }

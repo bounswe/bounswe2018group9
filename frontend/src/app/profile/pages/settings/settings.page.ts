@@ -4,6 +4,7 @@ import {AuthService} from '../../../auth/providers/auth/auth.service';
 import {Datetime} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../../data/providers/user/user.service';
 
 @Component({
   selector: 'profile-settings',
@@ -11,7 +12,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
-  gotUserData : boolean;
+  gotUserData : boolean = false;
+  loading : boolean = false;
   form : FormGroup;
   @Input('displayBirth') displayBirth : Datetime;
   settings : string[];
@@ -41,8 +43,11 @@ export class SettingsPage implements OnInit {
   user: User | null;
   private sub : any;
   userId : string | null = null;
-  constructor(private authController: AuthService, private router:
-  Router, private formBuilder : FormBuilder, private ref: ChangeDetectorRef) {
+  constructor(private authController: AuthService,
+              private router: Router,
+              private formBuilder : FormBuilder,
+              private ref: ChangeDetectorRef,
+              private userService : UserService) {
     this.form = this.formBuilder.group(
       {
         name: ['', [Validators.required, Validators.pattern('[ a-zA-Z]*')]],
@@ -55,7 +60,9 @@ export class SettingsPage implements OnInit {
 
   ngOnInit() {
     this.userId = this.getUserId();
-    this.sub = this.authController.getUserData(this.userId).subscribe((res : User) => {
+    this.loading = true;
+    this.sub = this.userService.get(this.userId).subscribe(
+      (res : User) => {
       console.log('Response:' + JSON.stringify(res));
       this.user = res;
       console.log('User:' + JSON.stringify(this.user));
@@ -69,9 +76,11 @@ export class SettingsPage implements OnInit {
       this.interestsSelected = this.user.interests;
       this.gotUserData = true;
       this.ref.detectChanges();
-    },(err)=>{
-      console.log(err);
-    });
+      this.loading = false;
+      },(err)=>{
+        console.log(err);
+        this.loading = false;
+      });
   }
 
   ngOnDestroy(){
@@ -108,11 +117,15 @@ export class SettingsPage implements OnInit {
     };
     console.log(this.userId + ': ' + JSON.stringify(newUser));
 
-    this.authController.updateUser(this.user._id, newUser).subscribe((res)=>{
+    this.loading = true;
+    this.userService.put(this.user._id, newUser).subscribe(
+      (res)=>{
        alert('Saved');
-     },(err)=>{
-      console.log(err);
-     });
+        this.loading = false;
+      },(err)=>{
+        console.log(err);
+        this.loading = false;
+      });
   }
   isSelected(interest : string) : boolean{
     if(this.interestsSelected){

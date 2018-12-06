@@ -14,9 +14,8 @@ export abstract class DataService<T> {
     return '/api/' + this.api + '/' + id;
   }
 
-  get(id: string = '', params: { limit?: number, skip?: number, search?: string } = {}): Observable<T | T[]> {
+  get(id: string = '', params: { limit?: number, skip?: number, search?: string, isUser?: string} = {}): Observable<T | T[]> {
     if (!id) id = '';
-
     let options = {
       params: new HttpParams()
     };
