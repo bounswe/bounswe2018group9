@@ -1,41 +1,8 @@
 var mongoose = require('mongoose');
 var mongoosePaginate = require("mongoose-paginate");
 var Schema = mongoose.Schema;
+var Media = require('./Media')
 
-
-const MediaSchema = new Schema({
-        creator: {
-            type: Schema.Types.ObjectId,
-            ref: 'User',
-            required: true
-        },
-
-        link: {
-            type: String,
-            required: true
-        },
-
-        filename: {
-            type: String,
-            required: true
-        },
-
-        filesize: {
-            type: Number,//in KB
-            default: 0
-        },
-
-        annotations: {
-          //THIS IS A PLACE HOLDER DEFINITION
-            type: String,
-            default: ""
-        },
-        //0 for image, 1 for video
-        media_type:{
-            type: Number,
-            default: 0
-        }
-});
 
 const CommentSchema = new Schema({
     author: {
@@ -182,7 +149,7 @@ var EventSchema = new Schema({
     },
 
     media: {
-        type: [MediaSchema],
+        type: [Media.MediaSchema],
         default: []
     }
 });
