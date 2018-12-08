@@ -191,7 +191,6 @@ exports.signUser = function(req,res,next){
 
 function getAvatar(req, res, next){
     /* Validation here */
-  
     User.findById(req.params.id)
       .exec()
       .then((user) => {
@@ -288,28 +287,24 @@ function addAvatar(req, res, next){
   };
 
   function deleteAvatar(req, res, next){
-    User.findById(req.params.id)
-      .exec()
-      .then((user) => {
-        user.media.avatar=undefined;
-        user.save();
-        res.status(200);
-        res.send({updatedUser: user});
-      })
-      .catch((err) => {
-        res.status(500);
-        res.send({err});
-      });
+    User.findByIdAndUpdate(req.params.id,{ $set: {"media.avatar" : {}} })
+    .exec()
+    .then((updatedUser) => {
+      res.status(200);
+      res.send({updatedUser: updatedUser});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
   };
 
   function deleteCover(req, res, next){
-    User.findById(req.params.id)
+    User.findByIdAndUpdate(req.params.id,{ $set: {"media.cover" : {}} })
     .exec()
-    .then((user) => {
-      user.media.cover=undefined;
-      user.save();
+    .then((updatedUser) => {
       res.status(200);
-      res.send({updatedUser: user});
+      res.send({updatedUser: updatedUser});
     })
     .catch((err) => {
       res.status(500);
