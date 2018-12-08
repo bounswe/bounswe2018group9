@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 const MediaSchema = new Schema({
+    _id: { type: Schema.ObjectId, auto: true },
+
     creator: {
         type: Schema.Types.ObjectId,
         ref: 'User',

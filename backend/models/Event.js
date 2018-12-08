@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var mongoosePaginate = require("mongoose-paginate");
 var Schema = mongoose.Schema;
-var Media = require('./Media')
+var MediaSchema = require('./Media');
 
 
 const CommentSchema = new Schema({
@@ -149,7 +149,7 @@ var EventSchema = new Schema({
     },
 
     media: {
-        type: [Media.MediaSchema],
+        type: [MediaSchema],
         default: []
     }
 });
