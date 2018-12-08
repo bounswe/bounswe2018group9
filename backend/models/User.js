@@ -21,7 +21,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  images: {
+  media: {
     type: {
       avatar: {
         type: MediaSchema,

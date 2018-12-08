@@ -5,7 +5,6 @@ const _ = require('lodash');
 
 function addEvent(req, res, next) {
   var event = new Event(req.body);
-  console.log(JSON.stringify(event));
 
   event.save()
     .then((event) => {

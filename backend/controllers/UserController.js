@@ -186,6 +186,143 @@ exports.signUser = function(req,res,next){
     });
 };
 
+
+//MEDIA ENDPOINT HANDLERS
+
+function getAvatar(req, res, next){
+    /* Validation here */
+  
+    User.findById(req.params.id)
+      .exec()
+      .then((user) => {
+        res.status(200);
+        res.send({avatar: user.media.avatar});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
+      });
+  };
+
+  function getCover(req, res, next){
+    /* Validation here */
+  
+    User.findById(req.params.id)
+      .exec()
+      .then((user) => {
+        res.status(200);
+        res.send({cover: user.media.cover});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
+      });
+  };
+
+function addAvatar(req, res, next){
+    /* Validation here */
+  
+    const opt = { new: true };
+  
+    User.findByIdAndUpdate(req.params.id,{ $set: {"media.avatar": req.body} }, opt)
+      .exec()
+      .then((updatedUser) => {
+        res.status(200);
+        res.send({updatedUser: updatedUser});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
+      });
+  };
+
+  function addCover(req, res, next){
+    /* Validation here */
+  
+    const opt = { new: true };
+  
+    User.findByIdAndUpdate(req.params.id,{ $set: {"media.cover" : req.body} }, opt)
+      .exec()
+      .then((updatedUser) => {
+        res.status(200);
+        res.send({updatedUser: updatedUser});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
+      });
+  };
+
+  function updateAvatar(req, res, next){
+    /* Validation here */
+  
+    const opt = { new: true };
+  
+    User.findByIdAndUpdate(req.params.id,{ $set: {"media.avatar" : req.body} }, opt)
+      .exec()
+      .then((updatedUser) => {
+        res.status(200);
+        res.send({updatedUser: updatedUser});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
+      });
+  };
+
+  function updateCover(req, res, next){
+    /* Validation here */
+  
+    const opt = { new: true };
+  
+    User.findByIdAndUpdate(req.params.id,{ $set: {"media.cover" : req.body} }, opt)
+      .exec()
+      .then((updatedUser) => {
+        res.status(200);
+        res.send({updatedUser: updatedUser});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
+      });
+  };
+/*
+  function deleteAvatar(req, res, next){
+    // Validation here
+  
+    const opt = { new: true };
+  
+    User.findByIdAndUpdate(req.params.id,{ $set: {"media.cover" : req.body} }, opt)
+      .exec()
+      .then((updatedUser) => {
+        res.status(200);
+        res.send({updatedUser: updatedUser});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
+      });
+  };
+
+  function deleteCover(req, res, next){
+    // Validation here
+  
+    const opt = { new: true };
+  
+    User.findByIdAndUpdate(req.params.id,{ $set: {"media.cover" : req.body} }, opt)
+      .exec()
+      .then((updatedUser) => {
+        res.status(200);
+        res.send({updatedUser: updatedUser});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
+      });
+  };*/
+
+
+
 module.exports = {
     getAllUsers,
     addUser,
