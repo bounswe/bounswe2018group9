@@ -286,17 +286,15 @@ function addAvatar(req, res, next){
         res.send({err});
       });
   };
-/*
+
   function deleteAvatar(req, res, next){
-    // Validation here
-  
-    const opt = { new: true };
-  
-    User.findByIdAndUpdate(req.params.id,{ $set: {"media.cover" : req.body} }, opt)
+    User.findById(req.params.id)
       .exec()
-      .then((updatedUser) => {
+      .then((user) => {
+        user.media.avatar=undefined;
+        user.save();
         res.status(200);
-        res.send({updatedUser: updatedUser});
+        res.send({updatedUser: user});
       })
       .catch((err) => {
         res.status(500);
@@ -305,21 +303,19 @@ function addAvatar(req, res, next){
   };
 
   function deleteCover(req, res, next){
-    // Validation here
-  
-    const opt = { new: true };
-  
-    User.findByIdAndUpdate(req.params.id,{ $set: {"media.cover" : req.body} }, opt)
-      .exec()
-      .then((updatedUser) => {
-        res.status(200);
-        res.send({updatedUser: updatedUser});
-      })
-      .catch((err) => {
-        res.status(500);
-        res.send({err});
-      });
-  };*/
+    User.findById(req.params.id)
+    .exec()
+    .then((user) => {
+      user.media.cover=undefined;
+      user.save();
+      res.status(200);
+      res.send({updatedUser: user});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
+  };
 
 
 
