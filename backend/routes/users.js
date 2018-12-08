@@ -31,4 +31,20 @@ router.put('/:id', UserController.updateUser);
 /* DELETE ENDPOINTS */
 router.delete('/:id', UserController.deleteUser);
 
+
+
+// MEDIA ENDPOINTS
+
+router.get('/:id/avatar', UserController.getAvatar);
+router.get('/:id/cover', UserController.getCover);
+
+router.post('/:id/avatar', UserController.addAvatar);
+router.post('/:id/cover', UserController.addCover);
+
+router.put('/:id/avatar', UserController.updateAvatar);
+router.put('/:id/cover', UserController.updateCover);
+
+router.delete('/:id/avatar', UserController.deleteAvatar);
+router.delete('/:id/cover', UserController.deleteCover);
+
 module.exports=router;
