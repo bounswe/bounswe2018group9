@@ -196,5 +196,13 @@ module.exports = {
     follow,
     unfollow,
     deleteUser,
-    updateUser
+    updateUser,
+    getAvatar,
+    getCover,
+    addAvatar,
+    addCover,
+    updateAvatar,
+    updateCover,
+    deleteAvatar,
+    deleteCover
 }
