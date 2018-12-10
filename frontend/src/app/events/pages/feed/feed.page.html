@@ -30,26 +30,30 @@
   </ion-content>
 </ion-menu>
 <ion-content main padding>
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button routerLink="/feed/create">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-  <ion-content *ngIf="loadedEvents">
-    <ion-grid>
-      <ion-row justify-content-center no-padding>
-        <ion-col size-xs="12" size-md="4" offset-md="4">
-          <div class="feed-card">
-            <app-event-card *ngFor="let event of events" [event]="event"></app-event-card>
-          </div>
-        </ion-col>
-        <ion-col class="search-desktop" size-md="4">
-          <app-search></app-search>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-content>
-  <ion-content *ngIf="!loadedEvents">
+  <ion-content *ngIf="!events">
     <ion-spinner name="bubbles"></ion-spinner>
   </ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/feed/create">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-grid *ngIf="events">
+    <ion-row justify-content-center no-padding>
+      <ion-col size-xs="12" size-md="4" offset-md="4">
+        <div class="feed-card">
+          <app-event-card *ngFor="let event of events" [event]="event"></app-event-card>
+        </div>
+      </ion-col>
+      <ion-col class="search-desktop" size-md="4">
+        <app-search></app-search>
+      </ion-col>
+    </ion-row>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="load($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more entries...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-grid>
 </ion-content>
