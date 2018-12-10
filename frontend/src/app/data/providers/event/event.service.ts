@@ -20,11 +20,11 @@ export class EventService extends DataService<Event> {
   }
 
   comment(event_id: string, comment: Comment){
-    return this.http.post<Comment>('/api/events/' + event_id + '/comments', comment, this.options);
+    return this.http.post<Comment>('/events/' + event_id + '/comments', comment);
   }
 
   attend(event_id: string, attendance: Attendance){
-    return this.http.post<Attendance>('/api/events/' + event_id + '/attendance', attendance, this.options);
+    return this.http.post<Attendance>('/events/' + event_id + '/attendance', attendance);
   }
 
 }
