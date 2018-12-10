@@ -12,7 +12,7 @@ var AnnotationSchema = new Schema({
     },
     target: {
         source: {
-            type: String,
+            type: "desc" || "date" || "artists" || "loc",
             required: true
         },
         selector: {
