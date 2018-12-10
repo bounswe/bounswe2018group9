@@ -49,9 +49,9 @@ jobs:
             fi
 
       - persist_to_workspace:
-          root: frontend
+          root: .
           paths:
-            - www/*
+            - ./frontend/www/*
 
   test:
     working_directory: ~
@@ -108,7 +108,7 @@ jobs:
           command: pwd && echo ${CIRCLE_BRANCH}
 
       - attach_workspace:
-          at: /frontend
+          at: .
 
       # Move project into the backend folder
       - run:
@@ -135,7 +135,6 @@ jobs:
               echo "Production deploy"
               sh scripts/deploy.sh prod
             else
-              export ENV=dev
               echo "Development deploy"
               sh scripts/deploy.sh dev
             fi
@@ -144,8 +143,20 @@ workflows:
   version: 2
   test_and_deploy:
     jobs:
-      - build
-      - test
+      - build:
+          filters:
+            branches:
+              only:
+                - master
+                - staging
+                - /pull.*/
+      - test:
+          filters:
+            branches:
+              only:
+                - master
+                - staging
+                - /pull.*/
       - deploy:
           requires:
             - build
