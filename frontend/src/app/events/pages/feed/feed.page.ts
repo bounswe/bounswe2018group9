@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
 import { Event } from '../../../interfaces';
@@ -18,7 +19,12 @@ export class FeedPage implements OnInit {
   private skip = 0;
   private events: Event[] = [];
 
-  constructor(private router: Router, private authService: AuthService, private eventService: EventService) {
+  constructor(
+    private router: Router,
+    private alertController: AlertController,
+    private authService: AuthService,
+    private eventService: EventService
+  ) {
     this.load();
   }
 
@@ -40,11 +46,19 @@ export class FeedPage implements OnInit {
         if (event) { // finalize infinite-scroll animation
           event.target.complete();
         }
-      }, error => {
+      }, async (error) => {
         if (event) { // finalize infinite-scroll animation
           event.target.complete();
         }
-        // TODO: Display error!
+
+        // TODO: Develop a consensus on frontend error handling
+        const alert = await this.alertController.create({
+          header: 'Oops!',
+          subHeader: 'Something is wrong?',
+          message: 'Seems like we can\'t talk with our good old friends, servers!',
+          buttons: ['OK']
+        });
+        await alert.present();
       });
   }
 
