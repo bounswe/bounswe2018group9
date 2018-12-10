@@ -16,12 +16,7 @@ export function tokenGetter() {
   providedIn: 'root'
 })
 export class AuthService {
-
-  static readonly options = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    })
-  };
+  private api = 'auth';
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
@@ -49,12 +44,12 @@ export class AuthService {
 
   register(data: {name: string, email: string, password: string }): Observable<any> {
     return this.http
-      .post('/api/auth/signup', data, AuthService.options);
+      .post('/' + this.api + '/signup', data);
   }
 
   login(data: { email: string, password: string }): Observable<any> {
     return this.http
-      .post('/api/auth/signin', data, AuthService.options)
+      .post('/' + this.api + '/signin', data)
       .pipe(
         tap(response => {
           localStorage.setItem('token', response['token']);
@@ -75,17 +70,17 @@ export class AuthService {
 
   }
   getUserData(userId : string) : Observable<any>{
-    return this.http.get('/api/users/'+userId,AuthService.options);
+    return this.http.get('/users/'+userId);
   }
   updateUser(userId : string , data : User) : Observable<any>{
-    return this.http.put('/api/users/'+ userId , data ,AuthService.options);
+    return this.http.put('/users/'+ userId , data);
   }
   follow(signedInId: string, userToFollow : string){
       let data = { id: userToFollow};
-    return this.http.post('/api/users/' + signedInId +'/follow',data,AuthService.options);
+    return this.http.post('/users/' + signedInId +'/follow',data);
   }
   unfollow(signedInId: string, userToUnfollow : string){
     let data = { id: userToUnfollow};
-    return this.http.post('/api/users/' + signedInId +'/unfollow',data,AuthService.options);
+    return this.http.post('/users/' + signedInId +'/unfollow',data);
   }
 }

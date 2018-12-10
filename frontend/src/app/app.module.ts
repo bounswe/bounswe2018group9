@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { DataModule } from './data/data.module';
 
-import { AppConfigModule } from './app-config.module';
+import { AppConfigModule } from './config/app-config.module';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
