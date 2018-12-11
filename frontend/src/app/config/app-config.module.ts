@@ -3,7 +3,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 
-import { InterceptorService } from './interceptor.provider';
+import { InterceptorService } from './interceptor/interceptor.service';
 
 @NgModule({
   providers: [
