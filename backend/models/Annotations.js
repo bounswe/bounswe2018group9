@@ -20,7 +20,6 @@ var ImageSelectorSchema = new Schema({
 }, {_id: false});
 
 var AnnotationSchema = new Schema({
-    _id: { type: Schema.ObjectId, auto: true },
     '@context': { type: String, required:true, default:"http://www.w3.org/ns/anno.jsonld" },
     'type': { type: String, required: true, default:"Annotation"},
     body: {
@@ -29,12 +28,7 @@ var AnnotationSchema = new Schema({
     },
     target: {
         source: {
-            // This refers to what is being annotated.
-            // For example, "desc" is for description of an event and "interests" could be for annotations on a user's interests
-            // Note that source should in fact be either an object or a URI
-            // In this case, since the annotations are stored per event or user, "desc" will identify the object being annotated uniquely
-            // thus we can think of it as the URI of the target
-            type: "desc" || "date" || "artists" || "loc" || "interests", //etc.
+            type: String,
             required: true
         },
         selector: {
@@ -44,4 +38,6 @@ var AnnotationSchema = new Schema({
     }
 });
 
-module.exports = AnnotationSchema;
+var Annotation = mongoose.model('Annotation', AnnotationsSchema);
+
+module.exports = Annotation;
