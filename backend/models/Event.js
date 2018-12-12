@@ -25,6 +25,7 @@ const CommentSchema = new Schema({
 var EventSchema = new Schema({
     name: {
         type: String,
+        text: true,
         required: true
     },
     
@@ -41,6 +42,7 @@ var EventSchema = new Schema({
 
     description: {
         type: String,
+        text: true,
         required: true
     },
 
