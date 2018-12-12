@@ -8,15 +8,28 @@ var BodySchema = new Schema({
     language: {type: String, required: false}
 }, {_id: false});
 
-var TextSelectorSchema = new Schema({
+var TextPositionSelector = new Schema({
     'type': "TextPositionSelector",
     start: {type: Number, required: true},
     end: {type: Number, required: true}
 }, {_id: false});
 
 // This is a placeholder. I couldn't figure out how we should generate selectors for images yet :/
-var ImageSelectorSchema = new Schema({
+var MediaFragmentSelector = new Schema({
     placeholder:{type: String, required: true}
+}, {_id: false});
+
+var TextFragmentSelector = new Schema({
+
+}, {_id: false});
+
+var SelectorSchema = new Schema({
+    type: TextPositionSelector || TextFragmentSelector || MediaFragmentSelector
+}, {_id: false});
+
+
+var SpecificResource = new Schema({
+    
 }, {_id: false});
 
 var AnnotationSchema = new Schema({
@@ -38,6 +51,6 @@ var AnnotationSchema = new Schema({
     }
 });
 
-var Annotation = mongoose.model('Annotation', AnnotationsSchema);
+var Annotation = mongoose.model('Annotation', AnnotationSchema);
 
 module.exports = Annotation;
