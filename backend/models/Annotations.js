@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
 //WE DO NOT ALLOW EXTERNAL RESOURCES AND SELECTORS FOR BODIES!!!!
 var BodySchema = new Schema({
     'type': {type: String, required: true}, //TextualBody for texts, XXXXXXXXX for media
@@ -38,7 +37,19 @@ var SelectorSchema = new Schema({
     }
 }, {_id: false});
 
+//THIS SCHEMA MEANS WE ONLY ALLOW SPECIFICRESOURCES AS TARGETS!!
+var SpecificResourceSchema = new Schema({
+    //URI of the target
+    source: {
+        type: String,
+        required: true
+    },
 
+    selector:{
+        type: SelectorSchema,
+        required: true
+    }
+});
 
 var AnnotationSchema = new Schema({
     '@context': { type: String, required:true, default:"http://www.w3.org/ns/anno.jsonld" },
@@ -47,10 +58,10 @@ var AnnotationSchema = new Schema({
         type: [BodySchema],
         required: false
     },
-  /*  target: {
-        type:  [SpecificResource],
+    target: {
+        type:  [SpecificResourceSchema],
         required: true
-    }*/
+    }
 });
 
 var Annotation = mongoose.model('Annotation', AnnotationSchema);
