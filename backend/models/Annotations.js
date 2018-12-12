@@ -10,18 +10,6 @@ var BodySchema = new Schema({
     language: {type: String, required: false} // consult https://www.w3.org/International/articles/language-tags/
 }, {_id: false});
 
-var TextPositionSelector = new Schema({
-    'type': "TextPositionSelector",
-    start: {type: Number, required: true},
-    end: {type: Number, required: true}
-}, {_id: false});
-
-var MediaFragmentSelector = new Schema({
-}, {_id: false});
-
-var TextFragmentSelector = new Schema({
-}, {_id: false});
-
 var SelectorSchema = new Schema({
     'type':{
         type: String,
@@ -29,7 +17,7 @@ var SelectorSchema = new Schema({
     },
     conformsTo:{
         type: String,
-        default: "http://www.w3.org/TR/media-frags/",
+        default: "http://www.w3.org/TR/media-frags/", //????????????????
         required: false //required for FragmentSelector type selectors
     },
     value: {
@@ -43,13 +31,13 @@ var SelectorSchema = new Schema({
     end: {
         type: Number,
         required: false //required for TextPositionSelector type selectors
+    },
+    refinedBy: {
+        type: SelectorSchema,
+        required: false
     }
-
 }, {_id: false});
 
-
-var SpecificResource = new Schema({
-}, {_id: false});
 
 
 var AnnotationSchema = new Schema({
@@ -59,10 +47,10 @@ var AnnotationSchema = new Schema({
         type: [BodySchema],
         required: false
     },
-    target: {
-        type: String || SpecificResource || [Schema.Types.Mixed], //If target is not SpecificResource, TargetSchema = IRI of target which is a plain String
+  /*  target: {
+        type:  [SpecificResource],
         required: true
-    }
+    }*/
 });
 
 var Annotation = mongoose.model('Annotation', AnnotationSchema);
