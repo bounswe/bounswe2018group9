@@ -37,4 +37,24 @@ function addAnnotation(req, res, next) {
   });
 };
 
-module.exports = {addAnnotation};
+function getAnnotation(req, res, next)
+{
+  console.log("a");
+  Annotation.findById(annotId)
+  .exec()
+  .then((annot)=>{
+    res.status(200);
+    res.send(annot)
+  })
+  .catch((err)=>{
+    res.status(404);
+    res.send(err);
+  });
+}
+
+
+
+module.exports = {
+  addAnnotation,
+  getAnnotation
+};
