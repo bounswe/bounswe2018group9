@@ -27,14 +27,14 @@ function addAnnotation(req, res, next) {
     }
   }
   annot.save()
-    .then((annot) => {
-      res.status(200);
-      res.send({annot});
-    })
-    .catch((err) => {
-      res.status(500);
-      res.send(err);
-    });
+  .then((annot) => {
+    res.status(200);
+    res.send({annot});
+  })
+  .catch((err) => {
+    res.status(500);
+    res.send(err);
+  });
 };
 
 module.exports = {addAnnotation};
