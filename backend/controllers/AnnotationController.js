@@ -52,9 +52,42 @@ function getAnnotation(req, res, next)
   });
 }
 
+function updateAnnotation(req, res, next)
+{
+  var annotId=req.params.id;
+  Annotation.findById(annotId)
+  .exec()
+  .then((annot)=>{
+    res.status(200);
+    res.send(annot)
+  })
+  .catch((err)=>{
+    res.status(404);
+    res.send(err);
+  });
+}
+
+function deleteAnnotation(req, res, next)
+{
+  let annotId = req.params.id;
+
+  Annotation.findByIdAndRemove(annotId, (err,annot) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    const response = {
+      message: "Annotation is succesfully deleted.",
+      annotation: annot
+    }
+
+    return res.status(200).send(response);
+  });
+}
 
 
 module.exports = {
   addAnnotation,
-  getAnnotation
+  getAnnotation,
+  updateAnnotation,
+  deleteAnnotation
 };
