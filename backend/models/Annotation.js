@@ -9,11 +9,8 @@ var BodySchema = new Schema({
     language: {type: String, required: false} // consult https://www.w3.org/International/articles/language-tags/
 }, {_id: false});
 
-var SelectorSchema = new Schema({
-    'type':{
-        type: String,
-        required: true
-    },
+var FragmentSelector = new Schema({
+    'type':"FragmentSelector",
     conformsTo:{
         type: String,
         default: "http://www.w3.org/TR/media-frags/", //????????????????
@@ -22,6 +19,32 @@ var SelectorSchema = new Schema({
     value: {
         type: String,
         required: false //Required for XPathSelector and FragmentSelector type selectors
+    },
+    refinedBy: {
+        type: SelectorSchema,
+        required: false
+    }
+});
+
+var XPathSelector = new Schema({
+    'type':{
+        type: String,
+        required: true
+    },
+    value: {
+        type: String,
+        required: false //Required for XPathSelector and FragmentSelector type selectors
+    },
+    refinedBy: {
+        type: SelectorSchema,
+        required: false
+    }
+});
+
+var TextPositionSelector = new Schema({
+    'type':{
+        type: String,
+        required: true
     },
     start: {
         type: Number,
@@ -46,7 +69,7 @@ var SpecificResourceSchema = new Schema({
     },
 
     selector:{
-        type: SelectorSchema,
+        type: XPathSelector | TextPositionSelector,
         required: true
     }
 });
