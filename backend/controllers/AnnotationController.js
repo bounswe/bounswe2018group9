@@ -15,6 +15,4 @@ function addAnnotation(req, res, next) {
     });
 };
 
-module.exports = {
-  addAnnotation
-};
+module.exports = {addAnnotation};
