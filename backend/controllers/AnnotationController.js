@@ -39,7 +39,7 @@ function addAnnotation(req, res, next) {
 
 function getAnnotation(req, res, next)
 {
-  console.log("a");
+  var annotId=req.params.id;
   Annotation.findById(annotId)
   .exec()
   .then((annot)=>{
