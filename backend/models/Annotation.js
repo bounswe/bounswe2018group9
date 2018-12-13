@@ -3,11 +3,10 @@ var Schema = mongoose.Schema;
 
 //WE DO NOT ALLOW EXTERNAL RESOURCES AND SELECTORS FOR BODIES!!!!
 var BodySchema = new Schema({
-    'type': {type: String, required: true}, //TextualBody for texts, XXXXXXXXX for media
-    value: { type: String, required: true},
+     //TextualBody for texts, XXXXXXXXX for media
     format: { type: String, required: false}, //consult http://www.iana.org/assignments/media-types/media-types.xhtml
     language: {type: String, required: false} // consult https://www.w3.org/International/articles/language-tags/
-}, {_id: false});
+}, {discriminatorKey: 'type', _id: false});
 
 var SelectorSchema= new Schema({}, { discriminatorKey: 'type', _id: false });
 
@@ -32,7 +31,9 @@ var SpecificResourceSchema = new Schema({
         type: RefinedSelectorSchema,
         required: true
     }
-});
+}, {_id: false});
+
+
 
 RefinedSelectorSchema.path('refinedBy').discriminator('TextPositionSelector', new Schema({
     start: {
@@ -108,7 +109,16 @@ var AnnotationSchema = new Schema({
         required: true
     }
 });
+AnnotationSchema.path('body').discriminator('TextualBody', new Schema({
+    value: {type:String, required:true}
+},{_id:false}));
 
+AnnotationSchema.path('body').discriminator('Image', new Schema({
+    id: {type:String, required:true}
+},{_id:false}));
 var Annotation = mongoose.model('Annotation', AnnotationSchema);
+
+
+
 
 module.exports = Annotation;
