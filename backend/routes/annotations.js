@@ -10,5 +10,4 @@ router.get('/:id', AnnotationController.getAnnotation);
 router.put('/:id', AnnotationController.updateAnnotation);
 router.delete('/:id', AnnotationController.deleteAnnotation);
 
-
 module.exports = router;
