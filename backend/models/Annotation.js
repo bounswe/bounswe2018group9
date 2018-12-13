@@ -38,7 +38,7 @@ var XPathSelector = new Schema({
     },
     value: {
         type: String,
-        required: false //Required for XPathSelector and FragmentSelector type selectors
+        required: true //Required for XPathSelector and FragmentSelector type selectors
     },
   /*  refinedBy: {
         type: TextPositionSelector,
@@ -54,11 +54,11 @@ var TextPositionSelector = new Schema({
     },
     start: {
         type: Number,
-        required: false //required for TextPositionSelector type selectors
+        required: true //required for TextPositionSelector type selectors
     },
     end: {
         type: Number,
-        required: false //required for TextPositionSelector type selectors
+        required: true //required for TextPositionSelector type selectors
     },
    /* refinedBy: {
         type: TextPositionSelector,
@@ -75,7 +75,7 @@ var SpecificResourceSchema = new Schema({
     },
 
     selector:{
-        type: TextPositionSelector,
+        type: TextPositionSelector || XPathSelector,
         required: true
     }
 });
