@@ -23,7 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
     IonicModule.forRoot(),
     AuthModule.forRoot(),
     DataModule.forRoot(),
-    NativeModule,
+    NativeModule.forRoot(),
     AppConfigModule,
     AppRoutingModule,
   ],

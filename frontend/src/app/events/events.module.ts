@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { EventRoutingModule } from './event-routing.module';
+import { NativeModule } from '../native/native.module';
 
 import { FeedPage } from './pages/feed/feed.page';
 import { EventPage } from './pages/event/event.page';
@@ -19,7 +20,8 @@ import { CommentBoxComponent } from './components/comment-box/comment-box.compon
     IonicModule,
     ReactiveFormsModule,
     EventRoutingModule,
-    FormsModule
+    FormsModule,
+    NativeModule
   ],
   declarations: [
     FeedPage,
