@@ -3,23 +3,62 @@ var Schema = mongoose.Schema;
 
 //WE DO NOT ALLOW EXTERNAL RESOURCES AND SELECTORS FOR BODIES!!!!
 var BodySchema = new Schema({
-     //TextualBody for texts, XXXXXXXXX for media
+    'type': {type: String, required: true}, //TextualBody for texts, XXXXXXXXX for media
+    value: { type: String, required: true},
     format: { type: String, required: false}, //consult http://www.iana.org/assignments/media-types/media-types.xhtml
-    language: {type: String, required: false}, // consult https://www.w3.org/International/articles/language-tags/
-    textDirection: {type: String, required: false, enum:['rtl','ltr','auto'] },
-    processingLanguage : {type: String, required:false}
-}, {discriminatorKey: 'type', _id: false});
+    language: {type: String, required: false} // consult https://www.w3.org/International/articles/language-tags/
+}, {_id: false});
 
-var SelectorSchema= new Schema({}, { discriminatorKey: 'type', _id: false });
+var FragmentSelector = new Schema({
+    'type':"FragmentSelector",
+    conformsTo:{
+        type: String,
+        default: "http://www.w3.org/TR/media-frags/", //????????????????
+        required: false //required for FragmentSelector type selectors
+    },
+    value: {
+        type: String,
+        required: false //Required for XPathSelector and FragmentSelector type selectors
+    },
+    refinedBy: {
+        type: SelectorSchema,
+        required: false
+    }
+});
 
-var RefinedSelectorSchema= new Schema({
-        refinedBy:{
-            type: SelectorSchema,
-            required:false
-        }
-    }, { discriminatorKey: 'type', _id: false });
+var XPathSelector = new Schema({
+    'type':{
+        type: String,
+        required: true
+    },
+    value: {
+        type: String,
+        required: false //Required for XPathSelector and FragmentSelector type selectors
+    },
+    refinedBy: {
+        type: SelectorSchema,
+        required: false
+    }
+});
 
-
+var TextPositionSelector = new Schema({
+    'type':{
+        type: String,
+        required: true
+    },
+    start: {
+        type: Number,
+        required: false //required for TextPositionSelector type selectors
+    },
+    end: {
+        type: Number,
+        required: false //required for TextPositionSelector type selectors
+    },
+    refinedBy: {
+        type: SelectorSchema,
+        required: false
+    }
+}, {_id: false});
 
 //THIS SCHEMA MEANS WE ONLY ALLOW SPECIFICRESOURCES AS TARGETS!!
 var SpecificResourceSchema = new Schema({
@@ -30,74 +69,10 @@ var SpecificResourceSchema = new Schema({
     },
 
     selector:{
-        type: RefinedSelectorSchema,
+        type: XPathSelector | TextPositionSelector,
         required: true
     }
-}, {_id: false});
-
-
-
-RefinedSelectorSchema.path('refinedBy').discriminator('TextPositionSelector', new Schema({
-    start: {
-        type: Number,
-        required: true //required for TextPositionSelector type selectors
-    },
-    end: {
-        type: Number,
-        required: true
-    }
-  }, { _id: false }));
-
-
-  RefinedSelectorSchema.path('refinedBy').discriminator('XPathSelector', new Schema({
-    value: {
-        type: String,
-        required: true //Required for XPathSelector and FragmentSelector type selectors
-    }
-  }, { _id: false }));
-
-  RefinedSelectorSchema.path('refinedBy').discriminator('FragmentSelector', new Schema({
-    conformsTo:{
-        type: String,
-        default: "http://www.w3.org/TR/media-frags/", //????????????????
-        required: true 
-    },  
-    value: {
-        type: String,
-        required: true
-    }
-  }, { _id: false }));
-
-SpecificResourceSchema.path('selector').discriminator('TextPositionSelector', new Schema({
-    start: {
-        type: Number,
-        required: true //required for TextPositionSelector type selectors
-    },
-    end: {
-        type: Number,
-        required: true
-    }
-  }, { _id: false }));
-
-  SpecificResourceSchema.path('selector').discriminator('XPathSelector', new Schema({
-    value: {
-        type: String,
-        required: true //Required for XPathSelector and FragmentSelector type selectors
-    }
-  }, { _id: false }));
-
-  SpecificResourceSchema.path('selector').discriminator('FragmentSelector', new Schema({
-    conformsTo:{
-        type: String,
-        default: "http://www.w3.org/TR/media-frags/", //????????????????
-        required: true 
-    },
-    value: {
-        type: String,
-        required: true
-    }
-  }, { _id: false }));
- 
+});
 
 var AnnotationSchema = new Schema({
     '@context': { type: String, required:true, default:"http://www.w3.org/ns/anno.jsonld" },
@@ -109,32 +84,9 @@ var AnnotationSchema = new Schema({
     target: {
         type:  [SpecificResourceSchema],
         required: true
-    },
-    creator: {
-        type: String,
-        required: false 
-    },
-
-    created: {
-        type: Date,
-        required: false
-    },
-
-    modified: {
-        type: Date,
-        required: false
     }
 });
-AnnotationSchema.path('body').discriminator('TextualBody', new Schema({
-    value: {type:String, required:true}
-},{_id:false}));
 
-AnnotationSchema.path('body').discriminator('Image', new Schema({
-    id: {type:String, required:true}
-},{_id:false}));
 var Annotation = mongoose.model('Annotation', AnnotationSchema);
-
-
-
 
 module.exports = Annotation;
