@@ -55,11 +55,12 @@ function getAnnotation(req, res, next)
 function updateAnnotation(req, res, next)
 {
   var annotId=req.params.id;
-  Annotation.findById(annotId)
+
+  Annotation.findByIdAndUpdate(annotId,{ $set: req.body }, { new: true })
   .exec()
   .then((annot)=>{
     res.status(200);
-    res.send(annot)
+    res.send({updatedAnnotation: annot})
   })
   .catch((err)=>{
     res.status(404);
