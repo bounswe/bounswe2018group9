@@ -9,8 +9,16 @@ var BodySchema = new Schema({
     language: {type: String, required: false} // consult https://www.w3.org/International/articles/language-tags/
 }, {_id: false});
 
-var SelectorSchema= new Schema({},
-    { discriminatorKey: 'type', _id: false });
+var SelectorSchema= new Schema({}, { discriminatorKey: 'type', _id: false });
+
+var RefinedSelectorSchema= new Schema({
+        refinedBy:{
+            type: SelectorSchema,
+            required:false
+        }
+    }, { discriminatorKey: 'type', _id: false });
+
+
 
 //THIS SCHEMA MEANS WE ONLY ALLOW SPECIFICRESOURCES AS TARGETS!!
 var SpecificResourceSchema = new Schema({
@@ -21,15 +29,41 @@ var SpecificResourceSchema = new Schema({
     },
 
     selector:{
-        type: SelectorSchema,
+        type: RefinedSelectorSchema,
         required: true
-    },
-
-    refinedBy:{
-        type:[SelectorSchema],
-        required:false
     }
 });
+
+RefinedSelectorSchema.path('refinedBy').discriminator('TextPositionSelector', new Schema({
+    start: {
+        type: Number,
+        required: true //required for TextPositionSelector type selectors
+    },
+    end: {
+        type: Number,
+        required: true
+    }
+  }, { _id: false }));
+
+
+  RefinedSelectorSchema.path('refinedBy').discriminator('XPathSelector', new Schema({
+    value: {
+        type: String,
+        required: true //Required for XPathSelector and FragmentSelector type selectors
+    }
+  }, { _id: false }));
+
+  RefinedSelectorSchema.path('refinedBy').discriminator('FragmentSelector', new Schema({
+    conformsTo:{
+        type: String,
+        default: "http://www.w3.org/TR/media-frags/", //????????????????
+        required: true 
+    },
+    value: {
+        type: String,
+        required: true
+    }
+  }, { _id: false }));
 
 SpecificResourceSchema.path('selector').discriminator('TextPositionSelector', new Schema({
     start: {
@@ -60,39 +94,7 @@ SpecificResourceSchema.path('selector').discriminator('TextPositionSelector', ne
         required: true
     }
   }, { _id: false }));
-
-  SpecificResourceSchema.path('refinedBy').discriminator('TextPositionSelector', new Schema({
-    start: {
-        type: Number,
-        required: true //required for TextPositionSelector type selectors
-    },
-    end: {
-        type: Number,
-        required: true
-    }
-  }, { _id: false }));
-
-  SpecificResourceSchema.path('refinedBy').discriminator('XPathSelector', new Schema({
-    value: {
-        type: String,
-        required: true //Required for XPathSelector and FragmentSelector type selectors
-    }
-  }, { _id: false }));
-
-  SpecificResourceSchema.path('refinedBy').discriminator('FragmentSelector', new Schema({
-    conformsTo:{
-        type: String,
-        default: "http://www.w3.org/TR/media-frags/", //????????????????
-        required: true 
-    },
-    value: {
-        type: String,
-        required: true
-    }
-  }, { _id: false }));
-
-
-  
+ 
 
 var AnnotationSchema = new Schema({
     '@context': { type: String, required:true, default:"http://www.w3.org/ns/anno.jsonld" },
