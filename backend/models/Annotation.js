@@ -10,7 +10,11 @@ var BodySchema = new Schema({
 }, {_id: false});
 
 var FragmentSelector = new Schema({
-    'type':"FragmentSelector",
+    'type':{
+        type:String,
+        default:"FragmentSelector",
+        required: true
+    },
     conformsTo:{
         type: String,
         default: "http://www.w3.org/TR/media-frags/", //????????????????
@@ -20,30 +24,32 @@ var FragmentSelector = new Schema({
         type: String,
         required: false //Required for XPathSelector and FragmentSelector type selectors
     },
-    refinedBy: {
-        type: SelectorSchema,
+   /* refinedBy: {
+        type:  TextPositionSelector,
         required: false
-    }
+    }*/
 });
 
 var XPathSelector = new Schema({
     'type':{
         type: String,
+        default: "XPathSelector",
         required: true
     },
     value: {
         type: String,
         required: false //Required for XPathSelector and FragmentSelector type selectors
     },
-    refinedBy: {
-        type: SelectorSchema,
+  /*  refinedBy: {
+        type: TextPositionSelector,
         required: false
-    }
+    }*/
 });
 
 var TextPositionSelector = new Schema({
     'type':{
         type: String,
+        default: 'TextPositionSelector',
         required: true
     },
     start: {
@@ -54,10 +60,10 @@ var TextPositionSelector = new Schema({
         type: Number,
         required: false //required for TextPositionSelector type selectors
     },
-    refinedBy: {
-        type: SelectorSchema,
+   /* refinedBy: {
+        type: TextPositionSelector,
         required: false
-    }
+    }*/
 }, {_id: false});
 
 //THIS SCHEMA MEANS WE ONLY ALLOW SPECIFICRESOURCES AS TARGETS!!
@@ -69,7 +75,7 @@ var SpecificResourceSchema = new Schema({
     },
 
     selector:{
-        type: XPathSelector | TextPositionSelector,
+        type: TextPositionSelector,
         required: true
     }
 });
