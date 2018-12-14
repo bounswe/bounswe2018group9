@@ -4,8 +4,11 @@ const path = require('path');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+// File System
+require('./utils/file');
+
 // Passport
-require("./utils/passport");
+require('./utils/passport');
 
 // Set mongoose promises to global promise
 mongoose.Promise = global.Promise;
