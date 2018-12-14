@@ -10,18 +10,16 @@ require("./utils/passport");
 // Set mongoose promises to global promise
 mongoose.Promise = global.Promise;
 
-// Import router
-const apiRouter = require('./routes/index');
-
+// Create express app
 var app = express();
 
+// Configure app
 app.use(cors({
   origin: '*',
   optionsSuccessStatus: 200
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, '/www')));
 
 // DB Setup
 var mongoDB = 'mongodb://admin:actopus2018@ds141813.mlab.com:41813/actopus2018';
@@ -33,9 +31,14 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 
 // Register API router
-app.use('/api', apiRouter);
+const api = require('./routes/index');
+app.use('/api', api);
 
-// Register Frontend router
+// Serve static files
+app.use('/static', express.static(path.join(__dirname, '/static')));
+
+// Serve client
+app.use(express.static(path.join(__dirname, '/www')));
 app.get('/*', function(req, res) {
   res.sendFile(__dirname + '/www/index.html');
 });
