@@ -1,8 +1,7 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
-const passport = require("passport");
 const cors = require('cors');
 
 // Passport
@@ -11,12 +10,8 @@ require("./utils/passport");
 // Set mongoose promises to global promise
 mongoose.Promise = global.Promise;
 
-// Import routers. 
-var indexRouter = require('./routes/index');
-var authRouter = require('./routes/auth');
-const eventsRouter = require('./routes/events');
-const usersRouter = require('./routes/users');
-const uploadRouter = require('./routes/upload');
+// Import router
+const apiRouter = require('./routes/index');
 
 var app = express();
 
@@ -37,14 +32,10 @@ mongoose.Promise = global.Promise;
 //Get the default connection
 var db = mongoose.connection;
 
-// Register static angular files endpoint.
-// app.use('/', indexRouter);
+// Register API router
+app.use('/api', apiRouter);
 
-// Register API routers.
-app.use('/api/auth', authRouter);
-app.use('/api/events', passport.authenticate('jwt', {session: false}), eventsRouter);
-app.use('/api/users', passport.authenticate('jwt', {session: false}), usersRouter);
-app.use('/api/upload', passport.authenticate('jwt', {session: false}), uploadRouter);
+// Register Frontend router
 app.get('/*', function(req, res) {
   res.sendFile(__dirname + '/www/index.html');
 });
