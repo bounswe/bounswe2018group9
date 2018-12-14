@@ -5,7 +5,9 @@ var Schema = mongoose.Schema;
 var BodySchema = new Schema({
      //TextualBody for texts, XXXXXXXXX for media
     format: { type: String, required: false}, //consult http://www.iana.org/assignments/media-types/media-types.xhtml
-    language: {type: String, required: false} // consult https://www.w3.org/International/articles/language-tags/
+    language: {type: String, required: false}, // consult https://www.w3.org/International/articles/language-tags/
+    textDirection: {type: String, required: false, enum:['rtl','ltr','auto'] },
+    processingLanguage : {type: String, required:false}
 }, {discriminatorKey: 'type', _id: false});
 
 var SelectorSchema= new Schema({}, { discriminatorKey: 'type', _id: false });
