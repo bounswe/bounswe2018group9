@@ -1,13 +1,16 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
+import { AlertController } from '@ionic/angular';
+
+import { AuthService } from '../../../auth/providers/auth/auth.service';
 import { EventService } from '../../../data/providers/event/event.service';
+import { UploadService } from '../../../data/providers/upload/upload.service';
+import { MediaService } from '../../../native/providers/media/media.service';
 
-import {AlertController} from "@ionic/angular";
-import {HttpErrorResponse} from "@angular/common/http";
-import {AuthService} from "../../../auth/providers/auth/auth.service";
-import {Attendance, Event} from "../../../interfaces";
+import { Attendance, Event, Media } from '../../../interfaces';
 
 @Component({
   selector: 'app-event-create',
@@ -22,11 +25,17 @@ export class EventCreatePage implements OnInit {
   imageError = false;
   eventMinDate: string;
 
-  constructor(private formBuilder: FormBuilder,
-              private eventService: EventService,
-              private router: Router,
-              private alertController: AlertController,
-              private authService: AuthService) {
+  media: Media[] = [];
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private eventService: EventService,
+    private router: Router,
+    private alertController: AlertController,
+    private authService: AuthService,
+    private mediaService: MediaService,
+    private uploadService: UploadService
+  ) {
     this.form = this.formBuilder.group({
       medias: this.formBuilder.array([
         this.formBuilder.control('', Validators.required)
@@ -142,5 +151,38 @@ export class EventCreatePage implements OnInit {
   }
   get medias(){
     return this.form.get('medias') as FormArray;
+  }
+
+  /**
+   * Controls interaction with the media component
+   * @param {number }} event
+   */
+  async onEvent(event: { key: string, slide: number }) {
+    if (event.key == 'add') {
+      let media = await this.mediaService.get({ includeFile: true })
+        .catch(error => {});
+
+      if (media) {
+        // add media
+        this.media = [ ...this.media.slice(0, event.slide),
+                       ...media,
+                       ...this.media.slice(event.slide, this.media.length) ];
+
+        // upload files
+        media.forEach(media => {
+          this.uploadService.upload(media.file)
+            .response.subscribe(result => {
+              media.source = this.uploadService.getUrl(result.body.file);
+          }, error => {
+            // TODO: Handle upload error
+            console.log(error);
+          });
+        })
+      }
+    } else if (event.key == 'remove') {
+      // remove media
+      this.media = [ ...this.media.slice(0, event.slide),
+                     ...this.media.slice(event.slide + 1, this.media.length) ];
+    }
   }
 }
