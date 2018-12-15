@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 
@@ -6,7 +6,11 @@ import { Subject, Observable } from 'rxjs';
 export class UploadService {
   static api = '/upload';
 
-  constructor(private http: HttpClient) {}
+  constructor(@Inject('RESOURCE') private resource: string, private http: HttpClient) {}
+
+  getUrl(resource: string): string {
+    return this.resource + '/' + resource;
+  }
 
   upload(file: File, body?: { [key: string]: string }): { progress: Observable<number>, response: Observable<HttpResponse<any>> } {
     const formData: FormData = new FormData();
