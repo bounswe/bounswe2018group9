@@ -2,42 +2,65 @@ import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
 
 import { Platform } from '@ionic/angular';
+import { ActionSheetController } from '@ionic/angular';
 
-import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
+import {
+  Camera,
+  CameraOptions,
+  MediaType,
+  DestinationType,
+  PictureSourceType
+} from '@ionic-native/camera/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
-import { ActionSheetController } from '@ionic/angular';
+import { Media } from '../../../interfaces';
+import { FileService } from '../file/file.service';
+
+export interface MediaOptions {
+  mediaType?: MediaType,
+  destinationType?: DestinationType,
+  sourceType?: PictureSourceType,
+  includeFile?: boolean
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class MediaService {
-  private options: CameraOptions;
+  private options: MediaOptions = {
+    mediaType: MediaType.PICTURE,
+    destinationType: DestinationType.FILE_URL,
+    includeFile: false
+  };
 
   constructor(
     private platform: Platform,
     private camera: Camera,
     private imagePicker: ImagePicker,
-    private actionSheetCtrl: ActionSheetController
-  ) {
-    this.options = {
-      mediaType: this.camera.MediaType.PICTURE,
-      destinationType: this.camera.DestinationType.FILE_URI
-    };
-  }
+    private actionSheetCtrl: ActionSheetController,
+    private fileService: FileService
+  ) {}
 
-  async get(options: CameraOptions = {}) {
+  async get(options: MediaOptions  = {}): Promise<Media[]> {
+    const opts = { ...this.options, ...options };
+
     if (!this.platform.is('mobile')) {
-      return this.clickInput();
+      let files = await this.fileService.get('image/*');
+      return files.map(file => {
+        return { type: 0, source: file.name, file: opts.includeFile ? file : null } as Media
+      });
     }
 
-    const opts = { ...this.options, ...options };
     if (opts.sourceType === undefined) {
       let type = await this.presentActionSheet();
       if (!type) return null;
       opts.sourceType = type;
     }
-    return this.camera.getPicture(opts);
+    return this.camera.getPicture(opts)
+      .then(result => {
+        // TODO: Add file if desired
+        return [ { type: 0, source: result } ]
+      });
   }
 
   private async presentActionSheet(): Promise<PictureSourceType> {
@@ -74,32 +97,5 @@ export class MediaService {
         }
         return null;
       });
-  }
-
-  private async clickInput() {
-    return new Promise((resolve, reject) => {
-      var input = document.createElement('input');
-      input.type = 'file';
-      input.accept = 'image/*';
-      input.hidden = true;
-
-      // event listeners
-      let changeListener = (event: Event) => {
-        let files: File[] = Array.from(<FileList>event.target['files']);
-        let media = files.map(file => {
-          return { type: 0, file: file.name }
-        });
-        resolve(media);
-      };
-      let focusListener = (event: Event) => reject();
-
-      // register listeners
-      input.addEventListener('change', changeListener, { once: true });
-      window.addEventListener('focus', focusListener, { once: true });
-
-      document.body.appendChild(input);
-      input.click();
-      document.body.removeChild(input);
-    });
   }
 }
