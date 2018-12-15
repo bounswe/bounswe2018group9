@@ -25,6 +25,7 @@ function upload(req, res, next) {
   // 3. Delete files whence the referent is removed or referent removes the file (hooks)
   // 4. Update the referent object
 
+
   var form = new IncomingForm({
     uploadDir: config.tempFolder,
     keepExtensions: true
@@ -32,6 +33,18 @@ function upload(req, res, next) {
   form.parse(req, function (err, fields, files) {
     if (err) next(err);
 
+    // Rename and move files
+    let map = {};
+    for (file in files) {
+      let name = uuid.v4() + files[file].name.substr(files[file].name.indexOf('.'));
+      map[file] = name;
+      fs.renameSync(files[file].path, config.staticFolder + '/' + name);
+    }
+
+    // Return mapped file names
+    return res.status(200).send(map);
+
+    /*
     // Validate fields existence
     if (!fields.id) return res.status(400).send('ID field is missing!');
     if (!fields.model) return res.status(400).send('Model field is missing!');
@@ -67,6 +80,7 @@ function upload(req, res, next) {
       .catch((err) => {
         return res.status(500).send(err);
       });
+    */
   });
 }
 
