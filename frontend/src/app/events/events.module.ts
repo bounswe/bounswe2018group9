@@ -4,7 +4,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { EventRoutingModule } from './event-routing.module';
-import { NativeModule } from '../native/native.module';
 
 import { FeedPage } from './pages/feed/feed.page';
 import { EventPage } from './pages/event/event.page';
@@ -14,14 +13,15 @@ import { EventCardComponent } from './components/event-card/event-card.component
 import {SearchComponent} from './components/search/search.component';
 import { CommentBoxComponent } from './components/comment-box/comment-box.component';
 
+import { MediaComponent } from './components/media/media.component';
+
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
     ReactiveFormsModule,
     EventRoutingModule,
-    FormsModule,
-    NativeModule
+    FormsModule
   ],
   declarations: [
     FeedPage,
@@ -29,7 +29,8 @@ import { CommentBoxComponent } from './components/comment-box/comment-box.compon
     EventCreatePage,
     EventCardComponent,
     SearchComponent,
-    CommentBoxComponent
+    CommentBoxComponent,
+    MediaComponent
   ]
 })
 export class EventsModule { }
