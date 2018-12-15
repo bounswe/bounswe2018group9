@@ -8,9 +8,13 @@ export class UploadService {
 
   constructor(private http: HttpClient) {}
 
-  upload(file: File): { progress: Observable<number>, response: Observable<HttpResponse<any>> } {
+  upload(file: File, body?: { [key: string]: string }): { progress: Observable<number>, response: Observable<HttpResponse<any>> } {
     const formData: FormData = new FormData();
-      formData.append('file', file, file.name);
+      formData.append('file', file, file.name); // add file
+
+      if (body) { // add body
+        for (let key in body) formData.append(key, body[key]);
+      }
 
       const req = new HttpRequest('POST', UploadService.api, formData, {
         reportProgress: true
