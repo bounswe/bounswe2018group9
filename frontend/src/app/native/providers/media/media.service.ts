@@ -22,7 +22,8 @@ import { FileService } from '../file/file.service';
 export class MediaService {
   private cameraOptions: CameraOptions = {
     mediaType: MediaType.PICTURE,
-    destinationType: DestinationType.FILE_URL
+    destinationType: DestinationType.FILE_URL,
+    correctOrientation: true
   };
   private options: { file?: boolean } = {
     file: true
