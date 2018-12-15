@@ -159,7 +159,7 @@ export class EventCreatePage implements OnInit {
    */
   async onEvent(event: { key: string, slide: number }) {
     if (event.key == 'add') {
-      let media = await this.mediaService.get({ includeFile: true })
+      let media = await this.mediaService.get({ file: true })
         .catch(error => {});
 
       if (media) {

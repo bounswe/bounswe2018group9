@@ -12,9 +12,9 @@ export class UploadService {
     return this.resource + '/' + resource;
   }
 
-  upload(file: File, body?: { [key: string]: string }): { progress: Observable<number>, response: Observable<HttpResponse<any>> } {
+  upload(file: File | Blob, body?: { [key: string]: string }): { progress: Observable<number>, response: Observable<HttpResponse<any>> } {
     const formData: FormData = new FormData();
-      formData.append('file', file, file.name); // add file
+      formData.append('file', file); // add file
 
       if (body) { // add body
         for (let key in body) formData.append(key, body[key]);

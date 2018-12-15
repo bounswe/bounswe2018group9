@@ -10,7 +10,7 @@ export class FileService {
   constructor(private fileNative: FileNative) {}
 
   // TODO: Refactor FileService 'get' pathway (File | Blob??)
-  async extract(path: string): Promise<File | Blob> {
+  async get(path: string): Promise<File | Blob> {
     let entry = await this.fileNative.resolveLocalFilesystemUrl(path);
     if (entry.isFile) {
       return new Promise<File | Blob>((resolve, reject) => {
@@ -33,7 +33,7 @@ export class FileService {
     }
   }
 
-  async get(type: string): Promise<File[]> {
+  async select(type: string): Promise<File[]> {
     return new Promise<File[]>((resolve, reject) => {
       var input = document.createElement('input');
       input.type = 'file';
