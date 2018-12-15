@@ -5,6 +5,7 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 import { MediaService } from './providers/media/media.service';
+import { FileService } from './providers/file/file.service';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { MediaService } from './providers/media/media.service';
   providers: [
     Camera,
     ImagePicker,
-    MediaService
+    MediaService,
+    FileService
   ]
 })
 export class NativeModule {
@@ -22,7 +24,8 @@ export class NativeModule {
     return {
       ngModule: NativeModule,
       providers: [
-        MediaService
+        MediaService,
+        FileService
       ]
     }
   }
