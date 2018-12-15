@@ -56,7 +56,8 @@ export class MediaComponent implements OnInit, OnChanges {
     };
   }
 
-  async on(key: string, index: number = this.slides.getActiveIndex()) {
-    this.onEvent.emit({key: key, slide: index});
+  async on(key: string, index: number = -1) {
+    let slide = index === -1 ? await this.slides.getActiveIndex() : index;
+    this.onEvent.emit({key: key, slide: slide});
   }
 }
