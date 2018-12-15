@@ -16,21 +16,16 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Media } from '../../../interfaces';
 import { FileService } from '../file/file.service';
 
-export interface MediaOptions {
-  mediaType?: MediaType,
-  destinationType?: DestinationType,
-  sourceType?: PictureSourceType,
-  includeFile?: boolean
-};
-
 @Injectable({
   providedIn: 'root'
 })
 export class MediaService {
-  private options: MediaOptions = {
+  private cameraOptions: CameraOptions = {
     mediaType: MediaType.PICTURE,
-    destinationType: DestinationType.FILE_URL,
-    includeFile: false
+    destinationType: DestinationType.FILE_URL
+  };
+  private options: { file?: boolean } = {
+    file: true
   };
 
   constructor(
@@ -41,26 +36,29 @@ export class MediaService {
     private fileService: FileService
   ) {}
 
-  async get(options: MediaOptions  = {}): Promise<Media[]> {
+  async get(options: { file?: boolean } = {}, cameraOptions: CameraOptions  = {}): Promise<Media[]> {
     const opts = { ...this.options, ...options };
+    const cameraOpts = { ...this.cameraOptions, ...cameraOptions };
 
     if (!this.platform.is('mobile')) {
-      let files = await this.fileService.get('image/*');
+      let files = await this.fileService.select('image/*');
       return files.map(file => {
-        return { type: 0, source: file.name, file: opts.includeFile ? file : null } as Media
+        return { type: 0, source: file.name, file: opts.file ? file : null } as Media
       });
     }
 
-    if (opts.sourceType === undefined) {
+    if (cameraOpts.sourceType === undefined) {
       let type = await this.presentActionSheet();
-      if (!type) return null;
-      opts.sourceType = type;
+      if (type === null) return null;
+      cameraOpts.sourceType = type;
     }
-    return this.camera.getPicture(opts)
-      .then(result => {
-        // TODO: Add file if desired
-        return [ { type: 0, source: result } ]
-      });
+
+    let result = await this.camera.getPicture(cameraOpts);
+    if (opts.file) {
+      let file = await this.fileService.get(result);
+      return [ { type: 0, source: result, file: file } ]
+    }
+    return [ { type: 0, source: result } ];
   }
 
   private async presentActionSheet(): Promise<PictureSourceType> {
