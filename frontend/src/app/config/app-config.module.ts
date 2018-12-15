@@ -8,6 +8,7 @@ import { InterceptorService } from './interceptor/interceptor.service';
 @NgModule({
   providers: [
     { provide: 'ENDPOINT', useValue: environment.endpoint },
+    { provide: 'RESOURCE', useValue: environment.resource },
     { provide: 'GOOGLE_API_KEY', useValue: environment.googleApiKey },
     {
       provide: HTTP_INTERCEPTORS,
