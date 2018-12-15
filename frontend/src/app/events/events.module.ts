@@ -13,7 +13,7 @@ import { EventCardComponent } from './components/event-card/event-card.component
 import {SearchComponent} from './components/search/search.component';
 import { CommentBoxComponent } from './components/comment-box/comment-box.component';
 
-import { MediaComponent } from './components/media/media.component';
+import { SliderComponent } from './components/slider/slider.component';
 
 @NgModule({
   imports: [
@@ -30,7 +30,7 @@ import { MediaComponent } from './components/media/media.component';
     EventCardComponent,
     SearchComponent,
     CommentBoxComponent,
-    MediaComponent
+    SliderComponent
   ]
 })
 export class EventsModule { }

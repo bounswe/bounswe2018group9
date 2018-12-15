@@ -5,11 +5,11 @@ import { Media } from '../../../interfaces';
 import { MediaService } from '../../../native/providers/media/media.service';
 
 @Component({
-  selector: 'app-media',
-  templateUrl: './media.component.html',
-  styleUrls: ['./media.component.scss']
+  selector: 'app-slider',
+  templateUrl: './slider.component.html',
+  styleUrls: ['./slider.component.scss']
 })
-export class MediaComponent implements OnInit, OnChanges {
+export class SliderComponent implements OnInit, OnChanges {
   static options = {
     slides: 1,
     empty: {
@@ -48,7 +48,7 @@ export class MediaComponent implements OnInit, OnChanges {
   }
 
   private setOptions() {
-    this.options = { ...MediaComponent.options, ...this.options };
+    this.options = { ...SliderComponent.options, ...this.options };
 
     this.opts = {
       grabCursor: true,
