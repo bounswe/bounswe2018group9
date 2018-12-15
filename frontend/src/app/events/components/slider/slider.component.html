@@ -11,8 +11,7 @@
   </ion-fab>
   <ion-slides #slides [options]="opts">
     <ion-slide *ngFor="let m of media; let i = index">
-      <img *ngIf="m.source" [src]="m.source" [alt]="m.source">
-      <h6 *ngIf="!m.source">Can't preview source</h6>
+      <app-media [media]="m"></app-media>
     </ion-slide>
     <ion-slide *ngIf="options.empty">
       <ion-button fill="outline" (click)="on(options.empty.key)">

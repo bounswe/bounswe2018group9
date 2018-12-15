@@ -172,7 +172,7 @@ export class EventCreatePage implements OnInit {
         media.forEach(media => {
           this.uploadService.upload(media.file)
             .response.subscribe(result => {
-              media.source = this.uploadService.getUrl(result.body.file);
+              media.source = result.body.file;
           }, error => {
             // TODO: Handle upload error
             console.log(error);
