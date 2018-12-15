@@ -20,7 +20,7 @@
             </h1>
             <form [formGroup]="form" (ngSubmit)="createEvent()">
               <div class="media-container">
-                <app-media [media]="media" (onEvent)="onEvent($event)"></app-media>
+                <app-slider [media]="media" (onEvent)="onEvent($event)"></app-slider>
               </div>
 
               <ion-list lines="none">
