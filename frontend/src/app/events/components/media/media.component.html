@@ -1,4 +1,14 @@
 <div>
+  <ion-fab *ngIf="options.buttons" vertical="start" horizontal="end" slot="fixed">
+    <ion-fab-button mini fill="outline">
+      <ion-icon name="more"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button *ngFor="let button of options.buttons" mini (click)="on(button.key)">
+        <ion-icon [name]="button.icon"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
   <ion-slides #slides [options]="opts">
     <ion-slide *ngFor="let m of media; let i = index">
       <img *ngIf="m.source" [src]="m.source" [alt]="m.source">
@@ -9,15 +19,5 @@
         <ion-icon [name]="options.empty.icon"></ion-icon>
       </ion-button>
     </ion-slide>
-    <ion-fab *ngIf="options.buttons" vertical="end" horizontal="end" slot="fixed">
-      <ion-fab-button mini fill="outline">
-        <ion-icon name="more"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-list side="start">
-        <ion-fab-button *ngFor="let button of options.buttons" mini (click)="on(button.key)">
-          <ion-icon [name]="button.icon"></ion-icon>
-        </ion-fab-button>
-      </ion-fab-list>
-    </ion-fab>
   </ion-slides>
 </div>
