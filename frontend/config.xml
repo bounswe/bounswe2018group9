@@ -97,4 +97,5 @@
     <plugin name="cordova-plugin-telerik-imagepicker" spec="2.2.2">
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="Actopus wants to access your media library" />
     </plugin>
+    <plugin name="cordova-plugin-file" spec="6.0.1" />
 </widget>

@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { File as FileNative } from '@ionic-native/file/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
@@ -13,10 +14,11 @@ import { FileService } from './providers/file/file.service';
   ],
   declarations: [],
   providers: [
+    FileNative,
     Camera,
     ImagePicker,
+    FileService,
     MediaService,
-    FileService
   ]
 })
 export class NativeModule {
