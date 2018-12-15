@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEventType, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 
 @Injectable()
@@ -35,6 +35,13 @@ export class UploadService {
           response.next(event);
           response.complete();
         }
+      }, error => {
+        // complete progress
+        progress.complete();
+
+        // send error
+        response.error(error);
+        response.complete();
       });
 
       return { progress: progress, response: response };
