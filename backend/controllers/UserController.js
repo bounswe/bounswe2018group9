@@ -121,8 +121,16 @@ function follow(req,res,next){
     User.findOneAndUpdate({_id: req.params.id}, {$push: {following: req.body.id}}, {new: true})
         .exec()
         .then((user)=>{
-            res.status(200);
-            res.send({following: user.following});
+            User.findOneAndUpdate({_id: req.body.id}, {$push: {followers: req.params.id}}, {new: true})
+            .exec()
+            .then(()=>{
+                res.status(200);
+                res.send({following: user.following});
+            })
+            .catch((err)=>{
+                res.status(500);
+                res.send({err});
+        });
         })
         .catch((err)=>{
             res.status(500);
@@ -134,8 +142,16 @@ function unfollow(req,res,next) {
     User.update({_id:req.params.id}, {$pull: {following: req.body.id}}, {new: true})
         .exec()
         .then((user)=>{
-            res.status(200);
-            res.send({following: user.following});
+            User.update({_id:req.body.id}, {$pull: {followers: req.params.id}}, {new: true})
+            .exec()
+            .then(()=>{
+                res.status(200);
+                res.send({following: user.following});
+            })
+            .catch((err)=>{
+                res.status(500);
+                res.send({err});
+        });
         })
         .catch((err)=>{
             res.status(500);
