@@ -61,7 +61,7 @@ RefinedSelectorSchema.path('refinedBy').discriminator('TextPositionSelector', ne
         type: String,
         default: "http://www.w3.org/TR/media-frags/", //????????????????
         required: true 
-    },
+    },  
     value: {
         type: String,
         required: true
