@@ -1,9 +1,23 @@
 const mongoose = require("mongoose");
 const Annotation = require("../models/Annotation");
 
+function getAnnotationsofPage(req,res,next)
+{
+  Annotation.find({"target.source": req.body.url})
+  .exec()
+  .then((annotations)=>{
+      res.status(200);
+      res.send({'annotations': annotations});
+  })
+  .catch((err)=>{
+      res.status(500);
+      res.send(err);
+  });
+
+}
+
 function addAnnotation(req, res, next) {
   var annot = new Annotation(req.body);
-  console.log(JSON.stringify(annot.target[0].selector.refinedBy.start));
   if(annot.target[0].selector)
   {
     if(annot.target[0].selector.type==="TextPositionSelector")
@@ -90,5 +104,6 @@ module.exports = {
   addAnnotation,
   getAnnotation,
   updateAnnotation,
-  deleteAnnotation
+  deleteAnnotation,
+  getAnnotationsofPage
 };
