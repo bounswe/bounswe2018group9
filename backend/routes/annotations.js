@@ -9,5 +9,6 @@ router.get('/',AnnotationController.getAnnotationsofPage);
 router.get('/:id', AnnotationController.getAnnotation);
 router.put('/:id', AnnotationController.updateAnnotation);
 router.delete('/:id', AnnotationController.deleteAnnotation);
+router.post('/pageAnnotations',AnnotationController.getAnnotationsofPage);
 
 module.exports = router;
