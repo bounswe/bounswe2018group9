@@ -1,13 +1,25 @@
 const mongoose = require("mongoose");
 const Annotation = require("../models/Annotation");
+const _= require("lodash");
 
 function getAnnotationsofPage(req,res,next)
 {
   Annotation.find({"target.source": req.params.url})
   .exec()
   .then((annotations)=>{
-      res.status(200);
-      res.send({'annotations': annotations});
+    // Change this to full endpoint 
+    let hrefPrefix = 'api/annotations/';
+    let filteredAnnotations = _.map(annotations,(annotation) => {
+      annotation.id = hrefPrefix + annotation._id;
+      return annotation;
+    });  
+  
+    let returnedAnnotations = _.map(filteredAnnotations,(annotation) => {
+      return _.omit(annotation, ['_id']);
+    });
+
+    res.status(200);
+    res.send({'annotations': returnedAnnotations});
   })
   .catch((err)=>{
       res.status(500);
