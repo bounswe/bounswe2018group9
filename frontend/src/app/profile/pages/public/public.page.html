@@ -16,6 +16,19 @@
             <button [disabled]="!isFollowing" (click)="unfollow()" class="follow">UNFOLLOW</button>
           </div>
       </div>
+      <div class="about">
+        <p class="name"> {{user.name}} </p>
+        <p class="email"> {{user.email}} </p>
+        <div class="attr">
+            <p class="title">FOLLOWERS</p>
+            <p class="follower-no attr-val"> {{user.followers.length}} </p>
+        </div>
+        <div class="attr">
+            <p class="title">FOLLOWING</p>
+            <p class="following-no attr-val"> {{user.following.length}}</p>
+        </div>
+        
+      </div>
     </div>
   </div>
 </ion-content>
