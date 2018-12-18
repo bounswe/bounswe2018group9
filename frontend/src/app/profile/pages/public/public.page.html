@@ -1,9 +1,15 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-button routerLink="/profile">Profile</ion-button>
-    <ion-button routerLink="/feed">Feed</ion-button>
-    <ion-title *ngIf="user && !sameUser">User Profile:</ion-title>
-    <ion-title *ngIf="user && sameUser">Your public profile page:</ion-title>
+  <ion-toolbar class="toolbar">
+    <div class="router-container">
+      <div class="route-btns">
+          <button routerLink="/profile" class="route-btn">PROFILE</button>
+          <button routerLink="/feed" class="route-btn">FEED</button>
+      </div>
+      <div class="route-title">
+          <p *ngIf="user && !sameUser">User Profile:</p>
+          <p *ngIf="user && sameUser">Your public profile page:</p>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
