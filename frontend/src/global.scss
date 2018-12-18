@@ -43,3 +43,9 @@ ion-textarea{
   font-size: 0.8em;
   word-wrap: break-word;
 }
+
+@media screen and (max-width: 576px){
+  ion-content{
+    --padding-bottom: $menu-height;
+  }
+}

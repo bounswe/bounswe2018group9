@@ -1,10 +1,5 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-button routerLink="/profile">Profile</ion-button>
-    <ion-button routerLink="/feed">Feed</ion-button>
-    <ion-title *ngIf="user && !sameUser">User Profile:</ion-title>
-    <ion-title *ngIf="user && sameUser">Your public profile page:</ion-title>
-  </ion-toolbar>
+  <app-toolbar [backButton]="true" [href]="'/profile'"></app-toolbar>
 </ion-header>
 
 <ion-content padding *ngIf="user">
@@ -12,6 +7,8 @@
     <ion-row>
       <ion-col size-xs="12" offset-md="4" size-md="4">
         <div class="profile-container">
+          <h1 *ngIf="user && !sameUser">User Profile:</h1>
+          <h1 *ngIf="user && sameUser">Your public profile page:</h1>
           <div *ngIf="error" class="error">
             <ion-label>Sorry, an error happened: {{errorMessage}}</ion-label>
           </div>
