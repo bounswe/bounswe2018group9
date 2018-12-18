@@ -1,25 +1,68 @@
-.followStatus{
-  color: purple;
-}
-.big
+// .followStatus{
+//   color: purple;
+// }
+// .big
+// {
+//   font-size: 3em;
+// }
+// .medium{
+//   font-size: 1.5em;
+// }
+
+// .image-container{
+//   width: 60%;
+//   margin: 20px auto;
+// }
+
+// .image-container img{
+//   border-radius: 100%;
+//   width: 100%;
+// }
+
+// .profile-container{
+//   border: 2px solid var(--ion-color-medium);
+//   text-align: center;
+// }
+.container
 {
-  font-size: 3em;
-}
-.medium{
-  font-size: 1.5em;
-}
-
-.image-container{
-  width: 60%;
-  margin: 20px auto;
-}
-
-.image-container img{
-  border-radius: 100%;
+  display: flex;
   width: 100%;
+  justify-content: center;
 }
-
-.profile-container{
-  border: 2px solid var(--ion-color-medium);
-  text-align: center;
+.profile
+{
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  height: 700px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.profile-img
+{
+  width: 250px;
+  height: 400px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+  align-content: center;
+  padding-bottom: 5px;
+}
+.follow
+{
+  width: 115px;
+  height: 35px;
+  background-color: rgba($color: #ffffff, $alpha: 0.9);
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+}
+.follow-div
+{
+  align-self: center;
 }

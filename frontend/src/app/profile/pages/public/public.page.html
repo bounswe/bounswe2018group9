@@ -8,42 +8,14 @@
 </ion-header>
 
 <ion-content padding *ngIf="user">
-  <ion-grid>
-    <ion-row>
-      <ion-col size-xs="12" offset-md="4" size-md="4">
-        <div class="profile-container">
-          <div *ngIf="error" class="error">
-            <ion-label>Sorry, an error happened: {{errorMessage}}</ion-label>
+  <div class="container">
+    <div class="profile">
+      <div class="profile-img" [ngStyle]="{'background-image': 'url(' + user.images.avatar + ')'}">
+          <div *ngIf="!sameUser" class="follow-div">
+            <button [disabled]="isFollowing" (click)="follow()" class="follow">FOLLOW</button>
+            <button [disabled]="!isFollowing" (click)="unfollow()" class="follow">UNFOLLOW</button>
           </div>
-          <div *ngIf="!error && !user">
-            <ion-spinner class="bubbles"></ion-spinner>
-          </div>
-
-          <div *ngIf="!error && user">
-            <div class="image-container">
-              <img src={{user.images.avatar}}>
-            </div>
-            <h2 class="big">
-              {{user.name}}
-            </h2>
-            <p class="medium">{{user.email}}</p>
-            <h3 class="medium">Likes to do: </h3>
-            <p *ngFor="let i of user.interests"><b>{{i}}</b></p>
-            <hr>
-
-            <div *ngIf="!sameUser">
-              <div *ngIf="signedIn && isFollowing">
-                <ion-label class="followStatus">You are following {{user.name}}</ion-label>
-              </div>
-              <div *ngIf="signedIn && !isFollowing"><ion-label class="followStatus">You are not following {{user.name}}</ion-label></div>
-              <div><ion-button [disabled]="isFollowing" (click)="follow()">Follow</ion-button></div>
-              <div><ion-button [disabled]="!isFollowing" (click)="unfollow()">Unfollow</ion-button></div>
-            </div>
-
-          </div>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
+      </div>
+    </div>
+  </div>
 </ion-content>
