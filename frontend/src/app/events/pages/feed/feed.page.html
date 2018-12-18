@@ -1,59 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button color="tertiary" ></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Actopus
-    </ion-title>
-    <ion-buttons class="search-mobile" slot="primary">
-      <ion-menu-button color="danger" menu="end"></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
+  <app-toolbar></app-toolbar>
 </ion-header>
-<ion-menu>
-  <ion-list>
-    <ion-item routerLink="/feed">
-      Feed
-    </ion-item>
-    <ion-item routerLink="/profile">
-      Profile
-    </ion-item>
-    <ion-item color="danger" (click)="logout()">
-      Sign out
-    </ion-item>
-  </ion-list>
-</ion-menu>
 <ion-menu class="search-mobile" side="end">
   <ion-content>
     <app-search></app-search>
   </ion-content>
 </ion-menu>
 <ion-content main padding>
-  <ion-content *ngIf="!events">
+  <div *ngIf="!events">
     <ion-spinner name="bubbles"></ion-spinner>
-  </ion-content>
+  </div>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="/feed/create">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-grid *ngIf="events">
-    <ion-row justify-content-center no-padding>
-      <ion-col size-xs="12" size-md="4" offset-md="4">
-        <div class="feed-card">
-          <app-event-card *ngFor="let event of events" [event]="event"></app-event-card>
-        </div>
-      </ion-col>
-      <ion-col class="search-desktop" size-md="4">
-        <app-search></app-search>
-      </ion-col>
-    </ion-row>
-    <ion-infinite-scroll threshold="100px" (ionInfinite)="load($event)">
-      <ion-infinite-scroll-content
-        loadingSpinner="bubbles"
-        loadingText="Loading more entries...">
-      </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-  </ion-grid>
+  <div class="events-container" *ngIf="events">
+    <ion-grid>
+      <ion-row justify-content-center no-padding>
+        <ion-col size-xs="12" size-md="4" offset-md="4">
+          <div class="feed-card">
+            <app-event-card *ngFor="let event of events" [event]="event"></app-event-card>
+          </div>
+        </ion-col>
+        <ion-col class="search-desktop" size-md="4">
+          <app-search></app-search>
+        </ion-col>
+      </ion-row>
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="load($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Loading more entries...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-grid>
+  </div>
 </ion-content>

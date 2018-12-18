@@ -1,12 +1,5 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/feed"></ion-back-button>
-    </ion-buttons>
-    <ion-title>
-      Event
-    </ion-title>
-  </ion-toolbar>
+  <app-toolbar [backButton]="true" [href]="'/feed'"></app-toolbar>
 </ion-header>
 
 <ion-content no-padding>
@@ -133,7 +126,7 @@
                         </form>
                       </ion-col>
                       <ion-col size="3" size-md="2">
-                        <div class="user" *ngIf="currentUser">
+                        <div class="user" *ngIf="currentUser && currentUser.images">
                           <img src="{{currentUser.images.avatar}}" alt="{{currentUser.name}}">
                           <span class="username">{{currentUser.name}}</span>
                         </div>
