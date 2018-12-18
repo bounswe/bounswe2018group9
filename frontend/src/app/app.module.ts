@@ -23,7 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
     AuthModule.forRoot(),
     DataModule.forRoot(),
     AppConfigModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [
     StatusBar,

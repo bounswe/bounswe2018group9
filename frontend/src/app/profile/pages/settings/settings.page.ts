@@ -5,6 +5,8 @@ import {Datetime} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+import { ToastController } from '@ionic/angular';
+
 @Component({
   selector: 'profile-settings',
   templateUrl: './settings.page.html',
@@ -42,7 +44,8 @@ export class SettingsPage implements OnInit {
   private sub : any;
   userId : string | null = null;
   constructor(private authController: AuthService, private router:
-  Router, private formBuilder : FormBuilder, private ref: ChangeDetectorRef) {
+  Router, private formBuilder : FormBuilder, private ref: ChangeDetectorRef,
+  public toastController: ToastController) {
     this.form = this.formBuilder.group(
       {
         name: ['', [Validators.required, Validators.pattern('[ a-zA-Z]*')]],
@@ -109,7 +112,7 @@ export class SettingsPage implements OnInit {
     console.log(this.userId + ': ' + JSON.stringify(newUser));
 
     this.authController.updateUser(this.user._id, newUser).subscribe((res)=>{
-       alert('Saved');
+       this.presentToast();
      },(err)=>{
       console.log(err);
      });
@@ -125,4 +128,14 @@ export class SettingsPage implements OnInit {
   updateInterestsLocally(newSelectedInterests: string[]){
     this.interestsSelected = newSelectedInterests;
   }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      position: 'top',
+      message: 'Settings have been changed.',
+      duration: 2000
+    });
+    toast.present();
+  }
+  
 }

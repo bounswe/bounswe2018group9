@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 import { EventService } from '../../../data/providers/event/event.service';
 
@@ -26,7 +27,8 @@ export class EventCreatePage implements OnInit {
               private eventService: EventService,
               private router: Router,
               private alertController: AlertController,
-              private authService: AuthService) {
+              private authService: AuthService,
+              public toastController: ToastController) {
     this.form = this.formBuilder.group({
       medias: this.formBuilder.array([
         this.formBuilder.control('', Validators.required)
@@ -77,12 +79,22 @@ export class EventCreatePage implements OnInit {
         message => {
           this.router.navigate(['/feed']);
           this.eventPosted = true;
+          this.presentToast();
         },
         error => {
           this.handleError(error)
         }
       );
 
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      position: 'top',
+      message: 'Event has been created.',
+      duration: 2000
+    });
+    toast.present();
   }
 
 
