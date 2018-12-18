@@ -27,6 +27,13 @@
             <p class="title">FOLLOWING</p>
             <p class="following-no attr-val"> {{user.following.length}}</p>
         </div>
+        <div class="attr">
+            <p class="title">INTERESTS</p>
+            <p class="following-no attr-val"> {{user.interests.length}}</p>
+        </div>
+        <div class="interests">
+          <p *ngFor="let interest of user.interests"> {{interest}} </p>
+        </div>
         
       </div>
     </div>
