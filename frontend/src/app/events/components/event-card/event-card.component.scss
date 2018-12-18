@@ -29,8 +29,8 @@ h2{
 
 .price, .artist{
   position: absolute;
-  background-color: rgba(var(--ion-color-secondary-rgb), 0.8);
-  color: black;
+  background-color: rgba(var(--ion-color-secondary-rgb), 0.9);
+  color: white;
   right: 4px;
   display: inline-block;
   padding: 2px 4px;
@@ -50,7 +50,6 @@ h2{
 
 @media screen and (min-width: 768px){
   .price, .artist{
-    background-color: rgba(var(--ion-color-primary-rgb), 0.8);
     padding: 4px 8px;
     margin-bottom: 16px;
     right: 8px;

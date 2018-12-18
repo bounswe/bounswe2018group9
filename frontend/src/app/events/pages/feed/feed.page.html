@@ -1,11 +1,6 @@
 <ion-header>
   <app-toolbar></app-toolbar>
 </ion-header>
-<ion-menu class="search-mobile" side="end">
-  <ion-content>
-    <app-search></app-search>
-  </ion-content>
-</ion-menu>
 <ion-content main padding>
   <div *ngIf="!events">
     <ion-spinner name="bubbles"></ion-spinner>
@@ -18,14 +13,16 @@
   <div class="events-container" *ngIf="events">
     <ion-grid>
       <ion-row justify-content-center no-padding>
-        <ion-col size-xs="12" size-md="4" offset-md="4">
+        <ion-col size-xs="12" size-md="8" size-lg="6">
           <div class="feed-card">
             <app-event-card *ngFor="let event of events" [event]="event"></app-event-card>
           </div>
         </ion-col>
+        <!--
         <ion-col class="search-desktop" size-md="4">
           <app-search></app-search>
         </ion-col>
+        -->
       </ion-row>
       <ion-infinite-scroll threshold="100px" (ionInfinite)="load($event)">
         <ion-infinite-scroll-content

@@ -2,7 +2,7 @@
 
   <ion-card-content>
     <div class="image">
-      <img src="{{e.medias[0]}}" alt="{{e.name}}">
+      <img src="{{e.medias[0]}}" alt="{{e.name}}" #eventImage (error)="onImageError()">
       <div class="price">
         {{e.price.amount == 0 ? 'Free' : e.price.amount + ' ' + e.price.currency}}
       </div>

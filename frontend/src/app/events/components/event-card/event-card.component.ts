@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Event} from "../../../interfaces";
 
 @Component({
@@ -9,6 +9,7 @@ import {Event} from "../../../interfaces";
 export class EventCardComponent implements OnInit {
   @Input('event') event: Event;
   @Input('view') view = false;
+  @ViewChild('eventImage') eventImage: ElementRef;
   timeDiff;
   timeDiffUnit;
   voted = false;
@@ -57,5 +58,9 @@ export class EventCardComponent implements OnInit {
   }
 
   isUndefined(val) { return typeof val === 'undefined'; }
+
+  onImageError(){
+    (<HTMLImageElement>this.eventImage.nativeElement).src = '../../../../assets/placeholder.png';
+  }
 
 }
