@@ -1,41 +1,69 @@
-<ion-card>
-
-  <ion-item>
-    <ion-avatar item-start>
-      <img src="{{randomProfileImage}}">
-    </ion-avatar>
-    <h2>{{event.owner}}</h2>
-    <p>{{date_str}}</p>
-  </ion-item>
-
-  <img src="https://picsum.photos/300/300/?image={{likes}}">
+<ion-card *ngIf="event; let e">
 
   <ion-card-content>
-    <h2>{{event.name}}</h2>
-    <p>
-      {{event.description}}
-    </p>
+    <div class="image">
+      <img src="{{e.medias[0]}}" alt="{{e.name}}" #eventImage (error)="onImageError()">
+      <div class="price">
+        {{e.price.amount == 0 ? 'Free' : e.price.amount + ' ' + e.price.currency}}
+      </div>
+      <div *ngIf="e.artists.length > 0" class="artist">
+        {{e.artists[0] | titlecase}}
+      </div>
+    </div>
+    <div class="date">
+      {{e.date | date:'dd MMM'}}
+    </div>
+    <h2>
+      {{e.name}}
+    </h2>
+    <div class="location">
+      {{e.location.name}}
+    </div>
   </ion-card-content>
 
-  <ion-row>
-    <ion-col>
-      <button ion-button icon-start clear small>
-        <ion-icon name="thumbs-up"></ion-icon>
-        <div>{{likes}} Likes</div>
-      </button>
-    </ion-col>
-    <ion-col>
-      <button ion-button icon-start clear small>
-        <ion-icon name="text"></ion-icon>
-        <div>{{comments}} Comments</div>
-      </button>
-    </ion-col>
-    <ion-col center text-center>
-      <ion-note>
-        {{hours}}h ago
-      </ion-note>
-    </ion-col>
-  </ion-row>
+  <ion-card-content *ngIf="!isUndefined(e.vote)">
+    <ion-grid no-padding>
+      <ion-row>
+        <ion-col size="3">
+          <ion-grid no-padding="">
+            <ion-row no-padding>
+              <ion-col size="6" no-padding>
+                <ion-button (click)="vote(1)" [disabled]="view || voted" color="success" fill="clear">
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  <div>{{e.vote.upvoteCount}}</div>
+                </ion-button>
+              </ion-col>
+              <ion-col text-center size="6" no-padding>
+                <ion-button (click)="vote(-1)" [disabled]="view || voted" color="danger" fill="clear">
+                  <ion-icon name="thumbs-down"></ion-icon>
+                  <div>{{e.vote.downvoteCount}}</div>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+        <ion-col text-center size="6">
+          <ion-button [disabled]="view" color="secondary" fill="clear">
+            <ion-icon name="text"></ion-icon>
+            <div>{{e.comments.length}} Comments</div>
+          </ion-button>
+        </ion-col>
+        <ion-col class="ago-container" size="3">
+          <div>
+            {{timeDiff}} {{timeDiffUnit}} ago
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button [disabled]="view" expand="full" [routerLink]="e._id">
+            More Details
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+  </ion-card-content>
 
 </ion-card>
-

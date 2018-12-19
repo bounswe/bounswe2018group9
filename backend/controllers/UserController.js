@@ -68,7 +68,15 @@ function getUserById(req,res,next) {
 }
 
 function addUser(req,res,next) {
-    var user = new User(req.body);
+    var user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        details: req.body.details,
+        followers: [],
+        following: [],
+        interests: []
+    });
 
     user.save()
         .then((user) => {
@@ -178,6 +186,134 @@ exports.signUser = function(req,res,next){
     });
 };
 
+
+//MEDIA ENDPOINT HANDLERS
+
+function getAvatar(req, res, next){
+    /* Validation here */
+    User.findById(req.params.id)
+      .exec()
+      .then((user) => {
+        res.status(200);
+        res.send({avatar: user.media.avatar});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
+      });
+  };
+
+  function getCover(req, res, next){
+    /* Validation here */
+  
+    User.findById(req.params.id)
+      .exec()
+      .then((user) => {
+        res.status(200);
+        res.send({cover: user.media.cover});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
+      });
+  };
+
+function addAvatar(req, res, next){
+    /* Validation here */
+  
+    const opt = { new: true };
+  
+    User.findByIdAndUpdate(req.params.id,{ $set: {"media.avatar": req.body} }, opt)
+      .exec()
+      .then((updatedUser) => {
+        res.status(200);
+        res.send({updatedUser: updatedUser});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
+      });
+  };
+
+  function addCover(req, res, next){
+    /* Validation here */
+  
+    const opt = { new: true };
+  
+    User.findByIdAndUpdate(req.params.id,{ $set: {"media.cover" : req.body} }, opt)
+      .exec()
+      .then((updatedUser) => {
+        res.status(200);
+        res.send({updatedUser: updatedUser});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
+      });
+  };
+
+  function updateAvatar(req, res, next){
+    /* Validation here */
+  
+    const opt = { new: true };
+  
+    User.findByIdAndUpdate(req.params.id,{ $set: {"media.avatar" : req.body} }, opt)
+      .exec()
+      .then((updatedUser) => {
+        res.status(200);
+        res.send({updatedUser: updatedUser});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
+      });
+  };
+
+  function updateCover(req, res, next){
+    /* Validation here */
+  
+    const opt = { new: true };
+  
+    User.findByIdAndUpdate(req.params.id,{ $set: {"media.cover" : req.body} }, opt)
+      .exec()
+      .then((updatedUser) => {
+        res.status(200);
+        res.send({updatedUser: updatedUser});
+      })
+      .catch((err) => {
+        res.status(500);
+        res.send({err});
+      });
+  };
+
+  function deleteAvatar(req, res, next){
+    User.findByIdAndUpdate(req.params.id,{ $set: {"media.avatar" : {}} })
+    .exec()
+    .then((updatedUser) => {
+      res.status(200);
+      res.send({updatedUser: updatedUser});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
+  };
+
+  function deleteCover(req, res, next){
+    User.findByIdAndUpdate(req.params.id,{ $set: {"media.cover" : {}} })
+    .exec()
+    .then((updatedUser) => {
+      res.status(200);
+      res.send({updatedUser: updatedUser});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
+  };
+
+
+
 module.exports = {
     getAllUsers,
     addUser,
@@ -188,5 +324,13 @@ module.exports = {
     follow,
     unfollow,
     deleteUser,
-    updateUser
+    updateUser,
+    getAvatar,
+    getCover,
+    addAvatar,
+    addCover,
+    updateAvatar,
+    updateCover,
+    deleteAvatar,
+    deleteCover
 }

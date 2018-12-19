@@ -174,6 +174,7 @@ function addAttendance(req,res,next){
 
 };
 
+
 function getAttendance(req,res,next){
   const eventId = req.params.id;
 
@@ -286,7 +287,7 @@ function addVote(req,res,next){
       res.status(500);
       res.send({err});
     });
-};
+}
 
 function getVote(req,res,next){
   const eventId = req.params.id;
@@ -319,7 +320,71 @@ function updateVote(req,res,next){
         res.status(500);
         res.send({err});
     });
-};
+}
+
+
+// MEDIA CONTROLLERS
+function addMedia(req,res,next){
+  Event.findOneAndUpdate({_id: req.params.id}, {$push: {media: req.body}}, {new: true})
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({media: event.media});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send(err);
+    });
+}
+
+function getMedia(req,res,next){
+  const eventId = req.params.id;
+
+  Event.findById(eventId)
+    .exec()
+    .then((event) => {
+      res.status(200);
+      res.send({media: event.media});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send(err);
+    });
+
+}
+
+
+function deleteMedia(req,res,next) {
+  Event.findOneAndUpdate({_id: req.params.id}, {$pull: {media: { _id:req.params.mediaId }}}, {new: true})
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({media: event.media});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send(err);
+    });
+}
+
+function updateMedia(req,res,next) {
+  const eventId = req.params.id;
+  const mediaId = req.params.mediaId;
+  const options = { upsert: true, new: true };
+  Event.findOneAndUpdate({"_id": eventId, "media._id": mediaId}, {"$set": {"media.$": req.body} }, options)
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({media: event.media});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send(err);
+    });
+}
+
+
+
 
 module.exports = {
   addEvent,
@@ -337,5 +402,10 @@ module.exports = {
   addComment,
   deleteComment,
   updateComment,
-  getComments
+  getComments,
+  addMedia,
+  deleteMedia,
+  updateMedia,
+  getMedia
+  //getAllMedia
 };

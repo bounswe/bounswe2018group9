@@ -1,5 +1,27 @@
-.feed-card {
-  margin: auto;
-  min-width: 300px;
-  max-width: 600px;
+@import '../../../../theme/custom_variables';
+
+.load-error{
+  font-size: 2em;
+}
+
+.search-desktop{
+  display: none;
+}
+
+@media screen and (max-width: 576px){
+  .events-container{
+    margin-bottom: $menu-height;
+  }
+  ion-fab-button{
+    margin-bottom: $menu-height;
+  }
+}
+
+@media screen and (min-width: 768px){
+  .search-desktop{
+    display: block;
+  }
+  .search-mobile{
+    display: none;
+  }
 }

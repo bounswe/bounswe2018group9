@@ -1,28 +1,28 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
-const passport = require("passport");
 const cors = require('cors');
 
+// File System
+require('./utils/file');
+
 // Passport
-require("./utils/passport");
+require('./utils/passport');
 
 // Set mongoose promises to global promise
 mongoose.Promise = global.Promise;
 
-// Import routers. 
-var indexRouter = require('./routes/index');
-var authRouter = require('./routes/auth');
-const eventsRouter = require('./routes/events');
-const usersRouter = require('./routes/users');
-
+// Create express app
 var app = express();
 
-app.use(cors());
+// Configure app
+app.use(cors({
+  origin: '*',
+  optionsSuccessStatus: 200
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, '/www')));
 
 // DB Setup
 var mongoDB = 'mongodb://admin:actopus2018@ds141813.mlab.com:41813/actopus2018';
@@ -33,13 +33,15 @@ mongoose.Promise = global.Promise;
 //Get the default connection
 var db = mongoose.connection;
 
-// Register static angular files endpoint.
-// app.use('/', indexRouter);
+// Register API router
+const api = require('./routes/index');
+app.use('/api', api);
 
-// Register API routers.
-app.use('/api/auth', authRouter);
-app.use('/api/events', passport.authenticate('jwt', {session: false}), eventsRouter);
-app.use('/api/users', passport.authenticate('jwt', {session: false}), usersRouter);
+// Serve static files
+app.use('/static', express.static(path.join(__dirname, '/static')));
+
+// Serve client
+app.use(express.static(path.join(__dirname, '/www')));
 app.get('/*', function(req, res) {
   res.sendFile(__dirname + '/www/index.html');
 });

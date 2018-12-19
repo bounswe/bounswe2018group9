@@ -32,7 +32,7 @@ export class SignupPage implements OnInit {
 
   register() {
     this.presentLoading();
-    let data = { userDetails: {name: this.form.value['name']}, email: this.form.value['email'], password: this.form.value['password'] };
+    let data = { name: this.form.value['name'], email: this.form.value['email'], password: this.form.value['password'] };
     this.authService
       .register(data)
       .subscribe(response => {

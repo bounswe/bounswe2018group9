@@ -9,6 +9,13 @@ router.get('/getEventbyCreator/:id', EventController.getEventbyCreator);
 
 router.post('/', EventController.addEvent);
 
+//Media endpoints
+router.post('/:id/media', EventController.addMedia);
+router.get('/:id/media', EventController.getMedia);
+router.put('/:id/media/:mediaId', EventController.updateMedia);
+router.delete('/:id/media/:mediaId', EventController.deleteMedia);
+
+
 // Adds an attendance to an event
 router.post('/:id/attendance', EventController.addAttendance);
 router.get('/:id/attendance', EventController.getAttendance);

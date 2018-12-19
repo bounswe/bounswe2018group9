@@ -1,0 +1,58 @@
+.ago-container{
+  text-align: right;
+  font-size: 1em;
+  color: var(--ion-color-medium);
+  vertical-align: bottom;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image{
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.image img{
+  border: 2px solid var(--ion-color-medium);
+}
+
+h2{
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.date, .location{
+  font-size: 1em;
+  margin: 5px 0;
+}
+
+.price, .artist{
+  position: absolute;
+  background-color: rgba(var(--ion-color-secondary-rgb), 0.9);
+  color: white;
+  right: 4px;
+  display: inline-block;
+  padding: 2px 4px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.price{
+  top: 40px;
+}
+
+.artist{
+  top: 10px;
+}
+
+@media screen and (min-width: 768px){
+  .price, .artist{
+    padding: 4px 8px;
+    margin-bottom: 16px;
+    right: 8px;
+    font-size: 1em;
+  }
+}

@@ -14,6 +14,22 @@ router.get('/', UserController.getAllUsers);
 router.get('/:id', UserController.getUserById);//this should be last in code
 
 
+// MEDIA ENDPOINTS
+
+router.get('/:id/avatar', UserController.getAvatar);
+router.get('/:id/cover', UserController.getCover);
+
+router.post('/:id/avatar', UserController.addAvatar);
+router.post('/:id/cover', UserController.addCover);
+
+router.put('/:id/avatar', UserController.updateAvatar);
+router.put('/:id/cover', UserController.updateCover);
+
+router.delete('/:id/avatar', UserController.deleteAvatar);
+router.delete('/:id/cover', UserController.deleteCover);
+
+
+
 /* POST ENDPOINTS */
 // Following and follower endpoints
 // User with the id follows someone.
@@ -30,5 +46,9 @@ router.put('/:id', UserController.updateUser);
 
 /* DELETE ENDPOINTS */
 router.delete('/:id', UserController.deleteUser);
+
+
+
+
 
 module.exports=router;

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/internal/operators';
@@ -16,12 +16,7 @@ export function tokenGetter() {
   providedIn: 'root'
 })
 export class AuthService {
-
-  static readonly options = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    })
-  };
+  private api = 'auth';
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
@@ -40,15 +35,21 @@ export class AuthService {
     return decoded._id;
   }
 
+  getUserFromToken(){
+    const token = localStorage.getItem('token');
+    if (token === null) return null;
+    const decoded = this.jwtHelper.decodeToken(token);
+    return decoded;
+  }
 
-  register(data: { userDetails: {name: string}, email: string, password: string }): Observable<any> {
+  register(data: {name: string, email: string, password: string }): Observable<any> {
     return this.http
-      .post('/api/auth/signup', data, AuthService.options);
+      .post('/' + this.api + '/signup', data);
   }
 
   login(data: { email: string, password: string }): Observable<any> {
     return this.http
-      .post('/api/auth/signin', data, AuthService.options)
+      .post('/' + this.api + '/signin', data)
       .pipe(
         tap(response => {
           localStorage.setItem('token', response['token']);
@@ -60,10 +61,26 @@ export class AuthService {
     localStorage.removeItem('token');
     return of(true);
   }
+
+  forgotPassword(data: {email: string}){
+
+  }
+
+  changePassword(data: {userId: string ,password: string , againPassword: string}){
+
+  }
   getUserData(userId : string) : Observable<any>{
-    return this.http.get('/api/users/'+userId,AuthService.options);
+    return this.http.get('/users/'+userId);
   }
   updateUser(userId : string , data : User) : Observable<any>{
-    return this.http.put('/api/users/'+ userId , data ,AuthService.options);
+    return this.http.put('/users/'+ userId , data);
+  }
+  follow(signedInId: string, userToFollow : string){
+      let data = { id: userToFollow};
+    return this.http.post('/users/' + signedInId +'/follow',data);
+  }
+  unfollow(signedInId: string, userToUnfollow : string){
+    let data = { id: userToUnfollow};
+    return this.http.post('/users/' + signedInId +'/unfollow',data);
   }
 }

@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Event} from "../../../interfaces/index";
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Event} from "../../../interfaces";
 
 @Component({
   selector: 'app-event-card',
@@ -8,41 +8,59 @@ import {Event} from "../../../interfaces/index";
 })
 export class EventCardComponent implements OnInit {
   @Input('event') event: Event;
-
-  randomProfileImage: string;
-  likes: number;
-  comments: number;
-  hours: number;
-
-  date: Date;
-  date_str: string;
+  @Input('view') view = false;
+  @ViewChild('eventImage') eventImage: ElementRef;
+  timeDiff;
+  timeDiffUnit;
+  voted = false;
 
   constructor() { }
 
   ngOnInit() {
-    let url = 'https://randomuser.me/api/portraits/';
 
-    let gender = Math.random() > 0.5 ? 'men' : 'women';
-    let randNum = this.getRndInteger(1, 80);
-    this.randomProfileImage = url + gender + '/' + randNum + '.jpg';
+    let now = new Date();
+    let eventCreated = new Date(this.event.created);
 
-    this.likes = this.getRndInteger(1, 100);
-    this.comments = this.getRndInteger(1, 25);
-    this.hours = this.getRndInteger(1,24);
+    console.log(now);
+    console.log(eventCreated);
 
-    this.date = new Date(this.event.date);
+    let timeDiff_ms = now.getTime() - eventCreated.getTime();
 
-    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let timeDiff_m = timeDiff_ms / (60*1000);
+    let timeDiff_h = timeDiff_ms / (60*60*1000);
+    let timeDiff_d = timeDiff_ms / (24*60*60*1000);
 
-    this.date_str = this.date.getDate() + ' ' + months[this.date.getMonth()] + ' ' + this.date.getFullYear();
+    console.log(timeDiff_m, timeDiff_h, timeDiff_d);
 
-    /*console.log(this.event);
-    console.log(this.date);*/
+    if(timeDiff_m < 60){
+      this.timeDiff = timeDiff_m;
+      this.timeDiffUnit = 'm';
+    } else if(timeDiff_h < 24){
+      this.timeDiffUnit = 'h';
+      this.timeDiff = timeDiff_h;
+    } else{
+      this.timeDiffUnit = 'd';
+      this.timeDiff = timeDiff_d;
+    }
+
+    this.timeDiff = Math.floor(this.timeDiff);
+
 
   }
 
-  getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min) ) + min;
+  vote(vote: number){
+    if(vote == 1){
+      this.event.vote.upvoteCount += 1;
+    } else if(vote == -1){
+      this.event.vote.downvoteCount -= 1;
+    }
+    this.voted = true;
+  }
+
+  isUndefined(val) { return typeof val === 'undefined'; }
+
+  onImageError(){
+    (<HTMLImageElement>this.eventImage.nativeElement).src = '../../../../assets/placeholder.png';
   }
 
 }

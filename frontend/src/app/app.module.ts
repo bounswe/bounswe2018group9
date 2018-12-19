@@ -10,10 +10,10 @@ import { AppComponent } from './app.component';
 
 import { AuthModule } from './auth/auth.module';
 import { DataModule } from './data/data.module';
+import { NativeModule } from './native/native.module';
 
-import { AppConfigModule } from './app-config.module';
+import { AppConfigModule } from './config/app-config.module';
 import { AppRoutingModule } from './app-routing.module';
-import {ProfileModule} from './profile/profile.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,9 +23,9 @@ import {ProfileModule} from './profile/profile.module';
     IonicModule.forRoot(),
     AuthModule.forRoot(),
     DataModule.forRoot(),
+    NativeModule.forRoot(),
     AppConfigModule,
-    ProfileModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     StatusBar,

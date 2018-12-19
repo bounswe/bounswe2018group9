@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 
-import { Event } from '../../../interfaces/index';
+import { Event } from '../../../interfaces';
 
 import { AuthService } from '../../../auth/providers/auth/auth.service';
 import { EventService } from '../../../data/providers/event/event.service';
-import {LoadingController} from "@ionic/angular";
 
 @Component({
   selector: 'app-feed',
@@ -13,35 +14,54 @@ import {LoadingController} from "@ionic/angular";
   styleUrls: ['./feed.page.scss'],
 })
 export class FeedPage implements OnInit {
-  events: Event[];
-  private eventSub : any;
+  private static count = 3;
 
-  constructor(private router: Router, private authService: AuthService, private eventService: EventService,
-              public loadingController: LoadingController, private route : ActivatedRoute) { }
+  private skip = 0;
+  private events: Event[] = [];
+
+  constructor(
+    private router: Router,
+    private alertController: AlertController,
+    private authService: AuthService,
+    private eventService: EventService
+  ) {
+    this.load();
+  }
 
   ngOnInit() {
-    this.presentLoading();
-    this.eventSub = this.eventService.get()
+
+  }
+
+  /**
+   * Loads feed entries and appends entries to the existing loaded events
+   * @param {number} start the start index of will-be-loaded events
+   * @param {number} count the desired count for the load batch
+   */
+  load(event: any = null, start: number = this.skip, count: number = FeedPage.count) {
+    this.eventService.get(null, { limit: count, skip: start })
       .subscribe((data: Event[]) => {
-        this.events = data;
-        this.loadingController.dismiss();
-      }, error => {
-        console.log(error);
-        this.loadingController.dismiss();
+        this.events.push(...data);
+        this.skip += count;
+
+        if (event) { // finalize infinite-scroll animation
+          event.target.complete();
+        }
+      }, async (error) => {
+        if (event) { // finalize infinite-scroll animation
+          event.target.complete();
+        }
+
+        // TODO: Develop a consensus on frontend error handling
+        const alert = await this.alertController.create({
+          header: 'Oops!',
+          subHeader: 'Something is wrong?',
+          message: 'Seems like we can\'t talk with our good old friends, servers!',
+          buttons: ['OK']
+        });
+        await alert.present();
       });
   }
 
-  async presentLoading(){
-    const loading = await this.loadingController.create({
-      message: 'Loading...',
-      duration: 10000
-    });
-    return await loading.present();
-  }
-
-  ngOnDestroy(){
-    this.eventSub.unsubscribe();
-  }
   logout() {
     this.authService
       .logout()
@@ -49,4 +69,5 @@ export class FeedPage implements OnInit {
         this.router.navigate(['/signin']);
       })
   }
+
 }

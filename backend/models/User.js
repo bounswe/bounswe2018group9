@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const MediaSchema = require('./Media');
 const bcrypt = require('bcrypt');
 
 const { Schema } = mongoose;
@@ -23,11 +24,11 @@ const UserSchema = new Schema({
   images: {
     type: {
       avatar: {
-        type: String,
+        type: MediaSchema,
         required: false
       },
       cover: {
-        type: String,
+        type: MediaSchema,
         required: false
       }
     }

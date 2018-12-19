@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var mongoosePaginate = require("mongoose-paginate");
 var Schema = mongoose.Schema;
+var MediaSchema = require('./Media');
+
 
 const CommentSchema = new Schema({
     author: {
@@ -146,9 +148,8 @@ var EventSchema = new Schema({
         required: false
     },
 
-    medias: {
-        type: [String],
-        required: true,
+    media: {
+        type: [MediaSchema],
         default: []
     }
 });
@@ -158,4 +159,4 @@ EventSchema.plugin(mongoosePaginate);
 
 var Event = mongoose.model('Event', EventSchema);
 
-module.exports = Event;
+module.exports = Event
