@@ -3,7 +3,7 @@ import { User } from './user.interface';
 import { Comment } from './comment.interface';
 import { Location } from './location.interface';
 import { Attendance } from './attendance.interface';
-import { Vote } from './vote.interface';
+import {Vote, Votes} from './vote.interface';
 import { Media } from './media.interface';
 
 export interface Event extends Object {
@@ -15,7 +15,7 @@ export interface Event extends Object {
   created?: Date;
   creator: string | User;
   attendance: Array<Attendance>;
-  vote?: Vote;
+  votes?: Votes;
   comments?: Array<Comment>;
   artists?: Array<string>;
   tags: Array<String>;

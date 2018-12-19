@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Event, User, Comment, Attendance} from '../../../interfaces';
+import {Event, User, Comment, Attendance, Attendances} from '../../../interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../../../data/providers/event/event.service';
 
@@ -25,6 +25,9 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
   currentUser: User;
   event_id: string;
   commentsSec = false;
+  attendances : Attendances;
+  attended = false;
+
 
   constructor(private route: ActivatedRoute,
               private eventService: EventService,
@@ -74,6 +77,22 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
         );
       }
     });
+    this.eventService.getAttendance(this.event._id).subscribe(
+      (attendences : Attendances)=>{
+        this.attendances = attendences;
+        let users = [];
+        for(let att in this.attendances['attendance']){
+          users.push(att['user']);
+        }
+        if(users.includes(this.authService.getUserId())){
+          this.attended = true;
+        }else{
+          this.attended = false;
+        }
+      },(err)=>{
+        console.log(err);
+      }
+    );
   }
 
   ngAfterViewInit(){

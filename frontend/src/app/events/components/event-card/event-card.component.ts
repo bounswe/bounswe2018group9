@@ -1,5 +1,7 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {Event} from "../../../interfaces";
+import {Attendances, Event, Votes} from '../../../interfaces';
+import {EventService} from '../../../data/providers/event/event.service';
+import {AuthService} from '../../../auth/providers/auth/auth.service';
 
 @Component({
   selector: 'app-event-card',
@@ -14,9 +16,10 @@ export class EventCardComponent implements OnInit {
   timeDiffUnit;
   voted = false;
 
-  constructor() { }
+  constructor(private eventService : EventService, private authService : AuthService) { }
 
   ngOnInit() {
+
 
     let now = new Date();
     let eventCreated = new Date(this.event.created);
@@ -46,15 +49,45 @@ export class EventCardComponent implements OnInit {
     this.timeDiff = Math.floor(this.timeDiff);
 
 
+    this.eventService.getVotes(this.event._id).subscribe(
+      (votes : Votes)=>{
+        this.event.votes = votes;
+        let users = [];
+        for(let vot in this.event.votes['votes']){
+          users.push(vot['user']);
+        }
+        if(users.includes(this.authService.getUserId())){
+          this.voted = true;
+        }else{
+          this.voted = false;
+        }
+      },(err)=>{
+        console.log(err);
+      }
+    );
+
   }
 
   vote(vote: number){
     if(vote == 1){
-      this.event.vote.upvoteCount += 1;
+      this.eventService.vote(this.event._id,{user: this.authService.getUserId(), voteType: 1}).subscribe(
+        ()=>{
+          //TODO
+          this.voted = true;
+        },(error)=>{
+          console.log(error);
+        }
+      );
     } else if(vote == -1){
-      this.event.vote.downvoteCount -= 1;
+      this.eventService.vote(this.event._id,{user: this.authService.getUserId(), voteType: 1}).subscribe(
+        ()=>{
+          //TODO
+          this.voted = true;
+        },(error)=>{
+          console.log(error);
+        }
+      );
     }
-    this.voted = true;
   }
 
   isUndefined(val) { return typeof val === 'undefined'; }
