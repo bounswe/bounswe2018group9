@@ -44,8 +44,17 @@ ion-textarea{
   word-wrap: break-word;
 }
 
+
 @media screen and (max-width: 576px){
   ion-content{
     --padding-bottom: $menu-height;
   }
 }
+
+ion-item{
+  --highlight-color-focused: transparent;
+  --border-color: transparent;
+  --highlight-color-invalid: transparent;
+  --highlight-color-valid: transparent;
+}
+
