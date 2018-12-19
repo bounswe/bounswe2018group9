@@ -388,6 +388,6 @@ module.exports = {
   addMedia,
   deleteMedia,
   updateMedia,
-  getMedia,
-  getAllMedia
+  getMedia
+  //getAllMedia
 };
