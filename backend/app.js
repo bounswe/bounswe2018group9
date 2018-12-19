@@ -51,8 +51,8 @@ app.use(express.static(path.join(__dirname, '/www')));
 
 // Register API routers.
 app.use('/api/auth', authRouter);
-app.use('/api/events', /*passport.authenticate('jwt', {session: false}),*/ eventsRouter);
-app.use('/api/users', /*passport.authenticate('jwt', {session: false}),*/ usersRouter);
+app.use('/api/events', passport.authenticate('jwt', {session: false}), eventsRouter);
+app.use('/api/users', passport.authenticate('jwt', {session: false}), usersRouter);
 app.use('/api/annotations',/* passport.authenticate('jwt', {session: false}),*/annotationsRouter);
 app.get('/*', function(req, res) {
   res.sendFile(__dirname + '/www/index.html');
