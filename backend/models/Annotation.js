@@ -109,6 +109,20 @@ var AnnotationSchema = new Schema({
     target: {
         type:  [SpecificResourceSchema],
         required: true
+    },
+    creator: {
+        type: String,
+        required: false 
+    },
+
+    created: {
+        type: String,
+        required: false
+    },
+
+    modified: {
+        type: String,
+        required: false
     }
 });
 AnnotationSchema.path('body').discriminator('TextualBody', new Schema({
