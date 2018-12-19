@@ -116,12 +116,12 @@ var AnnotationSchema = new Schema({
     },
 
     created: {
-        type: String,
+        type: Date,
         required: false
     },
 
     modified: {
-        type: String,
+        type: Date,
         required: false
     }
 });
