@@ -17,7 +17,7 @@ export class FeedPage implements OnInit {
   private static count = 3;
 
   private skip = 0;
-  private events: Event[] = [];
+  events: Event[] = [];
 
   constructor(
     private router: Router,
