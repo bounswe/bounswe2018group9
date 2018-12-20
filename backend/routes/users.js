@@ -15,7 +15,6 @@ router.get('/:id', UserController.getUserById);//this should be last in code
 
 
 // MEDIA ENDPOINTS
-
 router.get('/:id/avatar', UserController.getAvatar);
 router.get('/:id/cover', UserController.getCover);
 
