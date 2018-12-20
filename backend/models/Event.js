@@ -4,8 +4,6 @@ var Schema = mongoose.Schema;
 var MediaSchema = require('./Media');
 
 
-<<<<<<< HEAD
-=======
 const MediaSchema = new Schema({
     type: {
         creator: {
@@ -47,7 +45,6 @@ const MediaSchema = new Schema({
 
 });
 
->>>>>>> Added additional fields in media data schema for future use. Couldn't implement get media endpoint.
 const CommentSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,
