@@ -30,7 +30,7 @@ function getAnnotationsofPage(req,res,next)
 
 function getAnnotationsofPage(req,res,next)
 {
-  Annotation.find({"target.source": req.params.url})
+  Annotation.find({"target.source": req.query.url})
   .exec()
   .then((annotations)=>{
     // Change this to full endpoint 
