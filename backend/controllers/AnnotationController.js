@@ -8,7 +8,7 @@ function getAnnotationsofPage(req,res,next)
   .exec()
   .then((annotations)=>{
     // Change this to full endpoint 
-    let hrefPrefix = 'api/annotations/';
+    let hrefPrefix = 'http://46.101.223.116/api/annotations/';
     let filteredAnnotations = _.map(annotations,(annotation) => {
       annotation.id = hrefPrefix + annotation._id;
       return annotation;
