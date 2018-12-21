@@ -23,9 +23,10 @@ function addEvent(req, res, next) {
 function updateEvent(req, res, next){
   /* Validation here */
 
-  const updateOptions = { new: true };
+  const updateOptions = { new: true};
 
-  Event.findByIdAndUpdate(req.params.id,{ $set: req.body }, updateOptions)
+  //Tried to just owner can update 
+  Event.findByIdAndUpdate( {'owner' : req.params.id},{ $set: req.body }, updateOptions)
     .exec()
     .then((updatedEvent) => {
       res.status(200);
