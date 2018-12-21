@@ -7,6 +7,7 @@ import {FormsModule} from "@angular/forms";
 
 import { MediaComponent } from './components/media/media.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   imports: [
@@ -18,12 +19,14 @@ import { SliderComponent } from './components/slider/slider.component';
   declarations: [
     ToolbarComponent,
     MediaComponent,
-    SliderComponent
+    SliderComponent,
+    MapComponent
   ],
   exports: [
     ToolbarComponent,
     MediaComponent,
-    SliderComponent
+    SliderComponent,
+    MapComponent
   ]
 })
 export class SharedModule { }
