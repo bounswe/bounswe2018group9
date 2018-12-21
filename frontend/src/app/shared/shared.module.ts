@@ -5,6 +5,9 @@ import {IonicModule} from "@ionic/angular";
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 
+import { MediaComponent } from './components/media/media.component';
+import { SliderComponent } from './components/slider/slider.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -13,8 +16,14 @@ import {FormsModule} from "@angular/forms";
     FormsModule
   ],
   declarations: [
-    ToolbarComponent
+    ToolbarComponent,
+    MediaComponent,
+    SliderComponent
   ],
-  exports: [CommonModule, IonicModule, ToolbarComponent]
+  exports: [
+    ToolbarComponent,
+    MediaComponent,
+    SliderComponent
+  ]
 })
 export class SharedModule { }
