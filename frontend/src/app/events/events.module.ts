@@ -14,9 +14,6 @@ import {SearchComponent} from './components/search/search.component';
 import { CommentBoxComponent } from './components/comment-box/comment-box.component';
 import {SharedModule} from "../shared/shared.module";
 
-
-import { MediaComponent } from './components/media/media.component';
-import { SliderComponent } from './components/slider/slider.component';
 import { EventFormComponent } from './components/event-form/event-form.component';
 import {SearchPage} from "./pages/search/search.page";
 import {EventEditPage} from "./pages/event-edit/event-edit.page";
@@ -38,8 +35,6 @@ import {EventEditPage} from "./pages/event-edit/event-edit.page";
     EventCardComponent,
     SearchComponent,
     CommentBoxComponent,
-    MediaComponent,
-    SliderComponent,
     EventFormComponent,
     EventEditPage
   ]
