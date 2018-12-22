@@ -82,7 +82,12 @@
     <plugin name="cordova-plugin-splashscreen" spec="~5.0.2" />
     <plugin name="cordova-plugin-statusbar" spec="~2.4.2" />
     <plugin name="cordova-plugin-whitelist" spec="~1.3.3" />
-    <plugin name="cordova-plugin-googlemaps" spec="2.4.6">
+    <plugin name="cordova-plugin-camera" spec="4.0.3" />
+    <plugin name="cordova-plugin-telerik-imagepicker" spec="2.2.2">
+        <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="Actopus wants to access your media library" />
+    </plugin>
+    <plugin name="cordova-plugin-file" spec="6.0.1" />
+    <plugin name="cordova-plugin-googlemaps" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps#multiple_maps">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyB4ZrRpdbTqRbr0vIbQM5Wpzwk_ceZpjyw" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyB4ZrRpdbTqRbr0vIbQM5Wpzwk_ceZpjyw" />
         <variable name="PLAY_SERVICES_VERSION" value="15.0.1" />
@@ -90,12 +95,7 @@
         <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="This app wants to get your location while this app runs only." />
         <variable name="LOCATION_ALWAYS_USAGE_DESCRIPTION" value="This app wants to get your location always, even this app runs in background." />
     </plugin>
-    <plugin name="cordova-plugin-camera" spec="4.0.3" />
     <engine name="ios" spec="4.5.5" />
     <engine name="android" spec="7.1.4" />
     <engine name="browser" spec="5.0.4" />
-    <plugin name="cordova-plugin-telerik-imagepicker" spec="2.2.2">
-        <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="Actopus wants to access your media library" />
-    </plugin>
-    <plugin name="cordova-plugin-file" spec="6.0.1" />
 </widget>
