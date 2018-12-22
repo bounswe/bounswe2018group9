@@ -1,8 +1,17 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+export interface DataParams {
+  limit?: number;
+  skip?: number;
+  search?: string;
+}
+
 export abstract class DataService<T> {
   protected api = '';
+  protected sub = '';
+  protected params: DataParams = {};
+
   protected options = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -12,10 +21,10 @@ export abstract class DataService<T> {
   constructor(protected http: HttpClient) { }
 
   private path(id: string = '') {
-    return '/' + this.api + '/' + id;
+    return '/' + this.api + '/' + id + (this.sub.length ? ('/' + this.sub) : '');
   }
 
-  get(id: string = '', params: { limit?: number, skip?: number, search?: string } = {}): Observable<T | T[]> {
+  get(id: string = '', params: DataParams = this.params): Observable<T | T[]> {
     if (!id) id = '';
 
     let options = {
