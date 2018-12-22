@@ -10,11 +10,11 @@ function search(req,res,next) {
     let response = {};
 
     const regexedSearchQuery = new RegExp(escapeRegex(searchQuery), 'gi');
-    User.find({ $text: { $search : regexedSearchQuery }})
+    User.find({ "name" : regexedSearchQuery })
         .exec()
         .then((users) => {
             response.users = users;
-            return Event.find({ $text: { $search : regexedSearchQuery }})
+            return Event.find({ "name" : regexedSearchQuery })
                 .exec();
         })
         .then((events) => {
@@ -52,6 +52,8 @@ function advancedSearch(req,res,next){
 
     let response = {}
     let searchParams = {}
+
+    searchParams.name = regexedSearchQuery;
 
     // Get query params
     // Location
