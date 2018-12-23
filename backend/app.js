@@ -13,7 +13,6 @@ require('./utils/passport');
 // Set mongoose promises to global promise
 mongoose.Promise = global.Promise;
 
-// Create express app
 var app = express();
 
 // Configure app
@@ -42,6 +41,7 @@ app.use('/static', express.static(path.join(__dirname, '/static')));
 
 // Serve client
 app.use(express.static(path.join(__dirname, '/www')));
+
 app.get('/*', function(req, res) {
   res.sendFile(__dirname + '/www/index.html');
 });
