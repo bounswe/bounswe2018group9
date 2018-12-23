@@ -154,7 +154,7 @@ function deleteEvent(req,res,next) {
 
 function addAttendance(req,res,next){
   const eventId = req.params.id;
-  const options = {new: true};
+  const options = {new: true, upsert: true};
 
   Event.findOneAndUpdate({_id: eventId}, {$push: {attendance: req.body}}, options)
     .exec()
@@ -187,10 +187,9 @@ function getAttendance(req,res,next){
 function updateAttendance(req,res,next){
   const eventId = req.params.id;
   const userId = req.body.user;
-  const attendanceType = req.body.attendanceType;
   const options = {new: true, upsert: true};
 
-  Event.findOneAndUpdate({"id": eventId, "attendance.user": userId}, {$set: {attendanceType: attendanceType} }, options)
+  Event.findOneAndUpdate({"_id": eventId, "attendance.user": userId}, {"$set": {"attendance.$": req.body} }, options)
     .exec()
     .then((event)=>{
         res.status(200);
