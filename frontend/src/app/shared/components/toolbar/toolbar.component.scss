@@ -130,4 +130,24 @@ ion-searchbar{
   .menu-mobile{
     display: none;
   }
+  .search-results-overlay{
+    padding: 4px;
+    border-radius: 0 0 6px 6px;
+    border: 2px solid var(--ion-color-primary);
+    border-top: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
+  /* Handle */
+  .search-results-overlay::-webkit-scrollbar-thumb {
+    background: rgba(var(--ion-color-primary-rgb), 0.5);
+    border-radius: 4px;
+  }
+
+  /* Handle on hover */
+  .search-results-overlay::-webkit-scrollbar-thumb:hover {
+    background: var(--ion-color-primary);
+  }
 }

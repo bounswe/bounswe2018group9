@@ -89,7 +89,7 @@
 <ion-grid>
   <ion-row>
     <ion-col offset-lg="3" size-lg="6">
-      <div class="search-results-overlay">
+      <div class="search-results-overlay" *ngIf="currentSearchResult">
         <div *ngIf="currentSearchResult?.events" class="results-container">
           <ion-card *ngFor="let event of currentSearchResult?.events" class="result">
             <ion-item href="{{'/feed/' + event._id}}">
