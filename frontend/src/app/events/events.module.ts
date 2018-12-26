@@ -17,6 +17,7 @@ import {SharedModule} from "../shared/shared.module";
 
 import { MediaComponent } from './components/media/media.component';
 import { SliderComponent } from './components/slider/slider.component';
+import {SearchPage} from "./pages/search/search.page";
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { SliderComponent } from './components/slider/slider.component';
     FeedPage,
     EventPage,
     EventCreatePage,
+    SearchPage,
     EventCardComponent,
     SearchComponent,
     CommentBoxComponent,

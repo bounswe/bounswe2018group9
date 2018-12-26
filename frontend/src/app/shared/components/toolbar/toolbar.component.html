@@ -34,7 +34,7 @@
         </a>
       </ion-col>
       <ion-col offset-xs="0" size-xs="21" size-md="22" offset-lg="2" size-lg="6" *ngIf="!backButton">
-        <ion-searchbar *ngIf="!backButton" placeholder="Search Favorites"></ion-searchbar>
+        <ion-searchbar autocomplete="on" *ngIf="!backButton" placeholder="Search Favorites"></ion-searchbar>
       </ion-col>
       <ion-col offset-lg="1" size-lg="6" *ngIf="!backButton">
         <!-- Desktop menu is shown for width larger than 992px which means lg and xl in ionic grid system-->
