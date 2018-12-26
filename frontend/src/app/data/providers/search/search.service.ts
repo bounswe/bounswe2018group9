@@ -7,7 +7,7 @@ import {Injectable} from "@angular/core";
   providedIn: 'root'
 })
 export class SearchService {
-  static api = '/api/search';
+  static api = '/search';
   private options = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
