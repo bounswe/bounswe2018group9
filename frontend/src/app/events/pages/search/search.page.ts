@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {SearchService} from "../../../data/providers/search/search.service";
 import {ActivatedRoute} from "@angular/router";
 import {SearchResult} from "../../../interfaces/search-result.interface";
+import {VIEWS} from "@angular/core/src/render3/interfaces/container";
 
 @Component({
   selector: 'app-search',
@@ -29,7 +30,9 @@ export class SearchPage implements OnInit {
         if(queries['query']){
           this.searchService.get(queries['query'])
             .subscribe(
-              result => this.currentSearchResult = result,
+              (result) => {
+                this.currentSearchResult = result;
+              },
               error => console.log('An error occurred while getting search results for', queries['query'], error)
             )
         }
