@@ -2,6 +2,7 @@ import { Component, OnInit, Input} from '@angular/core';
 import {AuthService} from "../../../auth/providers/auth/auth.service";
 import {Router} from "@angular/router";
 import {SearchService} from "../../../data/providers/search/search.service";
+import {SearchResult} from "../../../interfaces/search-result.interface";
 
 @Component({
   selector: 'app-toolbar',
@@ -11,6 +12,8 @@ import {SearchService} from "../../../data/providers/search/search.service";
 export class ToolbarComponent implements OnInit {
   @Input('backButton') backButton = false;
   @Input('href') href: string;
+  currentSearchResult: SearchResult = null;
+  queryText: string;
   constructor(private authService: AuthService,
               private router: Router,
               private searchService: SearchService) { }
@@ -25,6 +28,17 @@ export class ToolbarComponent implements OnInit {
       .subscribe(response => {
         this.router.navigate(['/signin']);
       })
+  }
+
+  onSearchChange(){
+    if(this.queryText.length == 0) {this.currentSearchResult = null;}
+    else{
+      this.searchService.get(this.queryText)
+        .subscribe(
+          result => this.currentSearchResult = result,
+          error => console.log('An error occurred while getting search results for', this.queryText, error)
+        )
+    }
   }
 
 }

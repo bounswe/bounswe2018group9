@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import {ToolbarComponent} from "./components/toolbar/toolbar.component";
 import {IonicModule} from "@ionic/angular";
 import {RouterModule} from "@angular/router";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   declarations: [
     ToolbarComponent
