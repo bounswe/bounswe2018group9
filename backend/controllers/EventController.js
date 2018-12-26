@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Event = require("../models/Event");
-
+const User = require("../models/User");
+const EventSchema = Event.EventSchema;
+EventSchema.plugin('voting', { ref:'UserSchema' });
 const _ = require('lodash');
 
 function addEvent(req, res, next) {
@@ -255,15 +257,18 @@ function getComments(req,res,next){
     });
 };
 
-function addVote(req,res,next){
+function vote(req,res,next){
   const eventId = req.params.id;
-  const options = {new: true};
+  const senderId = req.params.voterId;
+  const isUpvote = req.params.isUpvote; 
 
-  Event.findOneAndUpdate({_id: eventId}, {$push: {vote: req.body}}, options)
+  Event.findById(eventId)
     .exec()
     .then((event) => {
-      res.status(200);
-      res.send({updatedVote: event.vote});
+      User.findById(userId).exec().then((user) => {
+        if(isUpvote) event.upvote(user);
+        else event.downvote(user);
+      })
     })
     .catch((err) => {
       res.status(500);
