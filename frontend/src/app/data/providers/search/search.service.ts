@@ -26,7 +26,9 @@ export class SearchService {
     let options = {
       params: new HttpParams()
     };
-    for (let param in params) options.params = options.params.set(param, params[param]);
+    for (let param in params) {
+      if(params[param] !== '') options.params = options.params.set(param, params[param]);
+    }
 
     return this.http.get<Event[]>(SearchService.apiAdvanced, { ...this.options, ...options });
   }
