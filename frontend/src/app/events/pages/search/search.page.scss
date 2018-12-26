@@ -1,0 +1,22 @@
+.search-results-overlay{
+  width: 100%;
+}
+
+.search-results{
+  width: 100%;
+}
+
+.form-input{
+  margin: 4px 2px;
+}
+
+.search-form{
+  padding: 6px;
+  border: 2px solid rgba(var(--ion-color-light-rgb), 0.9);
+}
+
+@media screen and (min-width: 992px){
+  .form-input{
+    margin: 12px 2px;
+  }
+}
