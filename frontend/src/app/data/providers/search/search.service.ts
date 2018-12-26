@@ -22,7 +22,7 @@ export class SearchService {
     return this.http.get<SearchResult>(SearchService.api, {params: params, ...this.options})
   }
 
-  advanced(params: SearchParams): Observable<Array<Event>>{
+  advanced(params: SearchParams): Observable<Event[]>{
     let options = {
       params: new HttpParams()
     };

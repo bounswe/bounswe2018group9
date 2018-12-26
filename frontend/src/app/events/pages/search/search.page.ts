@@ -1,8 +1,15 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {SearchService} from "../../../data/providers/search/search.service";
 import {ActivatedRoute} from "@angular/router";
-import {SearchResult} from "../../../interfaces/search-result.interface";
-import {VIEWS} from "@angular/core/src/render3/interfaces/container";
+import {Event} from "../../../interfaces/";
+import {FormBuilder, FormGroup, ValidationErrors, ValidatorFn} from "@angular/forms";
+
+export const dateValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+  const minDate = control.get('beforeThan');
+  const maxDate = control.get('afterThan');
+
+  return maxDate > minDate ? {date: true} : null;
+};
 
 @Component({
   selector: 'app-search',
@@ -10,12 +17,25 @@ import {VIEWS} from "@angular/core/src/render3/interfaces/container";
   styleUrls: ['./search.page.scss'],
 })
 export class SearchPage implements OnInit {
-  currentSearchResult: SearchResult = null;
+  currentSearchResult: Event[] = null;
+  form: FormGroup;
+  eventCurrentDate;
 
   constructor(private searchService: SearchService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      'search': [''],
+      'beforeThan': [''],
+      'afterThan': [''],
+      'lowPrice': [''],
+      'highPrice': [''],
+      'currency': ['']
+    }, { validators: dateValidator });
+  }
 
   ngOnInit() {
+    /*
     if(this.route.snapshot.queryParams['query']){
       let query = this.route.snapshot.queryParams['query'];
       this.searchService.get(query)
@@ -37,7 +57,19 @@ export class SearchPage implements OnInit {
             )
         }
       }
-    )
+    ) */
+    let now = new Date();
+    this.eventCurrentDate = now.toISOString();
+  }
+
+  search(){
+    console.log(this.form.value);
+    this.searchService.advanced(this.form.value)
+      .subscribe(
+        (searchResult) => {
+          this.currentSearchResult = searchResult;
+        }
+      )
   }
 
 }
