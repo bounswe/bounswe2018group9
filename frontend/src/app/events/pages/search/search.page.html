@@ -1,0 +1,44 @@
+<ion-header>
+  <app-toolbar [backButton]="true" [href]="'/feed'"></app-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="results-container">
+    <div *ngFor="" class="result"></div>
+  </div>
+  <ion-tabs>
+    <ion-tab tab="events">
+      <div *ngIf="currentSearchResult?.events" class="results-container">
+        <ion-list>
+          <app-event-card *ngFor="let event of currentSearchResult?.events" [event]="event" class="result">
+            {{event.name}}
+          </app-event-card>
+        </ion-list>
+      </div>
+    </ion-tab>
+    <ion-tab tab="users">
+      <div *ngIf="currentSearchResult?.users" class="results-container">
+        <ion-list>
+          <div *ngFor="let user of currentSearchResult?.users" class="result">
+            {{user.name}}
+          </div>
+        </ion-list>
+      </div>
+    </ion-tab>
+    <ion-tab-bar slot="top">
+
+      <ion-tab-button tab="events">
+        <ion-label>Events</ion-label>
+        <ion-icon name="microphone"></ion-icon>
+        <ion-badge *ngIf="currentSearchResult?.events">{{currentSearchResult.events.length}}</ion-badge>
+      </ion-tab-button>
+
+      <ion-tab-button tab="users">
+        <ion-label>Users</ion-label>
+        <ion-icon name="people"></ion-icon>
+        <ion-badge *ngIf="currentSearchResult?.users">{{currentSearchResult.users.length}}</ion-badge>
+      </ion-tab-button>
+
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>
