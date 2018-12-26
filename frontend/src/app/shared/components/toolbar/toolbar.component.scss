@@ -51,34 +51,53 @@ ion-searchbar{
 /* Search Results */
 .search-results-overlay{
   position: absolute;
+  padding-bottom: 16px;
   width: 100%;
   background: white;
-  max-height: 40vh;
-  overflow: auto;
   -webkit-box-shadow: 0px 8px 20px 0px rgba(255,255,255,1);
   -moz-box-shadow: 0px 8px 20px 0px rgba(255,255,255,1);
   box-shadow: 0px 8px 20px 0px rgba(255,255,255,1);
 }
 
+.search-results{
+  width: 100%;
+  max-height: 42vh;
+  overflow: auto;
+}
+
 /* width */
-.search-results-overlay::-webkit-scrollbar {
+.search-results::-webkit-scrollbar {
   width: 12px;
 }
 
 /* Track */
-.search-results-overlay::-webkit-scrollbar-track {
+.search-results::-webkit-scrollbar-track {
   background: white;
 }
 
 /* Handle */
-.search-results-overlay::-webkit-scrollbar-thumb {
+.search-results::-webkit-scrollbar-thumb {
   background: rgba(var(--ion-color-primary-rgb), 0.5);
   border-radius: 4px;
 }
 
 /* Handle on hover */
-.search-results-overlay::-webkit-scrollbar-thumb:hover {
+.search-results::-webkit-scrollbar-thumb:hover {
   background: var(--ion-color-primary);
+}
+
+.advanced-search{
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 16px;
+  background: rgba(var(--ion-color-primary-rgb), 0.75);
+  color: white;
+  font-weight: bold;
+  font-size: 0.8em;
+  text-align: center;
+  text-decoration: none;
 }
 
 /* Menu */
@@ -131,23 +150,31 @@ ion-searchbar{
     display: none;
   }
   .search-results-overlay{
-    padding: 4px;
-    border-radius: 0 0 6px 6px;
     border: 2px solid var(--ion-color-primary);
     border-top: none;
+    border-radius: 0 0 6px 6px;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
   }
 
+  .search-results{
+    padding: 4px;
+  }
+
+  .advanced-search{
+    border: 2px solid var(--ion-color-primary);
+    background: var(--ion-color-primary);
+  }
+
   /* Handle */
-  .search-results-overlay::-webkit-scrollbar-thumb {
+  .search-results::-webkit-scrollbar-thumb {
     background: rgba(var(--ion-color-primary-rgb), 0.5);
     border-radius: 4px;
   }
 
   /* Handle on hover */
-  .search-results-overlay::-webkit-scrollbar-thumb:hover {
+  .search-results::-webkit-scrollbar-thumb:hover {
     background: var(--ion-color-primary);
   }
 }
