@@ -1,6 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 import {AuthService} from "../../../auth/providers/auth/auth.service";
 import {Router} from "@angular/router";
+import {SearchService} from "../../../data/providers/search/search.service";
 
 @Component({
   selector: 'app-toolbar',
@@ -10,10 +11,12 @@ import {Router} from "@angular/router";
 export class ToolbarComponent implements OnInit {
   @Input('backButton') backButton = false;
   @Input('href') href: string;
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService,
+              private router: Router,
+              private searchService: SearchService) { }
 
   ngOnInit() {
-    console.log(this.backButton);
+
   }
 
   logout() {
