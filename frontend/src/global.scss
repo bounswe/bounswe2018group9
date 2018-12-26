@@ -14,14 +14,6 @@
 
 /* Form elements */
 
-
-ion-input, ion-textarea, ion-datetime, ion-select{
-  border: 2px solid var(--ion-color-medium);
-  border-radius: 4px;
-  background-color: var(--ion-color-light);
-  padding-left: 8px!important;
-}
-
 ion-label{
   z-index: 1;
   font-size: 0.8em;
@@ -44,6 +36,14 @@ ion-textarea{
   word-wrap: break-word;
 }
 
+@media screen and (min-width: 576px){
+  ion-input, ion-textarea, ion-datetime, ion-select{
+    border: 2px solid var(--ion-color-medium);
+    border-radius: 4px;
+    background-color: var(--ion-color-light);
+    padding-left: 8px!important;
+  }
+}
 
 @media screen and (max-width: 576px){
   ion-content{
