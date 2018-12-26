@@ -24,8 +24,7 @@ export class FeedPage implements OnInit {
     private router: Router,
     private alertController: AlertController,
     private authService: AuthService,
-    private eventService: EventService,
-    private searchService: SearchService
+    private eventService: EventService
   ) {
     this.load();
   }
