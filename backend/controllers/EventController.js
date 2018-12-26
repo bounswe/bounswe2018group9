@@ -276,14 +276,16 @@ function vote(req,res,next){
     });
 }
 
-function getVote(req,res,next){
+function getVotes(req,res,next){
   const eventId = req.params.id;
 
   Event.find({_id: eventId})
     .exec()
     .then((event) => {
       res.status(200);
-      res.send({vote: event.vote});
+      res.send({vote: event.votes(), 
+                upvote: event.upvotes(), 
+                downvote: event.downvotes()});
     })
     .catch((err) => {
       res.status(500);
