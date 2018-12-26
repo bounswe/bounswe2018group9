@@ -268,6 +268,8 @@ function vote(req,res,next){
       User.findById(userId).exec().then((user) => {
         if(isUpvote) event.upvote(user);
         else event.downvote(user);
+        res.status(200);
+        res.send({votes: isUpvote});
       })
     })
     .catch((err) => {
@@ -293,7 +295,29 @@ function getVotes(req,res,next){
     });
 };
 
-function updateVote(req,res,next){
+function unvote(req,res,next){
+  const eventId = req.params.id;
+  const voterId = req.params.voterId;
+
+  Event.findBYID({ventId})
+    .exec()
+    .then((event) => {
+      User.findById(voterId)
+      .exec()
+      .then((user) => {
+        res.status(200);
+        res.send({vote: event.votes(), 
+                  upvote: event.upvotes(), 
+                  downvote: event.downvotes()});
+      })
+      
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
+};
+/*function updateVote(req,res,next){
   const eventId = req.params.id;
   const userId = req.body.user;
   const voteType = req.body.voteType;
@@ -309,7 +333,7 @@ function updateVote(req,res,next){
         res.status(500);
         res.send({err});
     });
-}
+}*/
 
 
 // MEDIA CONTROLLERS
