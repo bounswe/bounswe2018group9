@@ -90,29 +90,34 @@
   <ion-row>
     <ion-col offset-lg="3" size-lg="6">
       <div class="search-results-overlay" *ngIf="currentSearchResult">
-        <div *ngIf="currentSearchResult?.events" class="results-container">
-          <ion-card *ngFor="let event of currentSearchResult?.events" class="result">
-            <ion-item href="{{'/feed/' + event._id}}">
-              <ion-avatar slot="start">
-                <img [src]="event.medias[0]">
-              </ion-avatar>
-              <ion-label>{{event.name}}</ion-label>
-            </ion-item>
-          </ion-card>
+        <div class="search-results">
+          <div *ngIf="currentSearchResult?.events" class="results-container">
+            <ion-card *ngFor="let event of currentSearchResult?.events" class="result">
+              <ion-item href="{{'/feed/' + event._id}}">
+                <ion-avatar slot="start">
+                  <img [src]="event.medias[0]">
+                </ion-avatar>
+                <ion-label>{{event.name}}</ion-label>
+              </ion-item>
+            </ion-card>
+          </div>
+          <div *ngIf="currentSearchResult?.users" class="results-container">
+            <ion-card *ngFor="let user of currentSearchResult?.users" class="result">
+              <ion-item href="{{'/public/profile/' + user._id}}">
+                <ion-avatar *ngIf="user.images; else icon" slot="start">
+                  <img [src]="user.images?.avatar">
+                </ion-avatar>
+                <ng-template  #icon>
+                  <ion-icon name="contact"></ion-icon>
+                </ng-template>
+                <ion-label>{{user.name}}</ion-label>
+              </ion-item>
+            </ion-card>
+          </div>
         </div>
-        <div *ngIf="currentSearchResult?.users" class="results-container">
-          <ion-card *ngFor="let user of currentSearchResult?.users" class="result">
-            <ion-item href="{{'/public/profile/' + user._id}}">
-              <ion-avatar *ngIf="user.images; else icon" slot="start">
-                <img [src]="user.images?.avatar">
-              </ion-avatar>
-              <ng-template  #icon>
-                <ion-icon name="contact"></ion-icon>
-              </ng-template>
-              <ion-label>{{user.name}}</ion-label>
-            </ion-item>
-          </ion-card>
-        </div>
+        <a class="advanced-search" routerLink="/feed/search">
+          ADVANCED SEARCH
+        </a>
       </div>
     </ion-col>
   </ion-row>
