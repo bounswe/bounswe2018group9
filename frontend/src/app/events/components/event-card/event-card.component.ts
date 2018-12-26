@@ -21,16 +21,11 @@ export class EventCardComponent implements OnInit {
     let now = new Date();
     let eventCreated = new Date(this.event.created);
 
-    console.log(now);
-    console.log(eventCreated);
-
     let timeDiff_ms = now.getTime() - eventCreated.getTime();
 
     let timeDiff_m = timeDiff_ms / (60*1000);
     let timeDiff_h = timeDiff_ms / (60*60*1000);
     let timeDiff_d = timeDiff_ms / (24*60*60*1000);
-
-    console.log(timeDiff_m, timeDiff_h, timeDiff_d);
 
     if(timeDiff_m < 60){
       this.timeDiff = timeDiff_m;
