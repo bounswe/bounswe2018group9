@@ -7,6 +7,7 @@ import { Event } from '../../../interfaces';
 
 import { AuthService } from '../../../auth/providers/auth/auth.service';
 import { EventService } from '../../../data/providers/event/event.service';
+import {SearchService} from "../../../data/providers/search/search.service";
 
 @Component({
   selector: 'app-feed',
@@ -23,13 +24,13 @@ export class FeedPage implements OnInit {
     private router: Router,
     private alertController: AlertController,
     private authService: AuthService,
-    private eventService: EventService
+    private eventService: EventService,
+    private searchService: SearchService
   ) {
     this.load();
   }
 
   ngOnInit() {
-
   }
 
   /**

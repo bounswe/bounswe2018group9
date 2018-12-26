@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { EventService } from './providers/event/event.service';
 import { UploadService } from './providers/upload/upload.service';
+import {SearchService} from "./providers/search/search.service";
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { UploadService } from './providers/upload/upload.service';
   declarations: [],
   providers: [
     EventService,
-    UploadService
+    UploadService,
+    SearchService
   ]
 })
 export class DataModule {
@@ -22,7 +24,8 @@ export class DataModule {
       ngModule: DataModule,
       providers: [
         EventService,
-        UploadService
+        UploadService,
+        SearchService
       ]
     }
   }
