@@ -35,7 +35,7 @@ function addAnnotation(req, res, next) {
       if(annot.target[0].selector.start > annot.target[0].selector.end){
         res.status(500);
         res.send({
-          err: 'TextPositionSelector.start should be <= TextPositionSelector.end';
+          err: 'TextPositionSelector.start should be <= TextPositionSelector.end'
         });
       }
     }
@@ -45,7 +45,7 @@ function addAnnotation(req, res, next) {
         if(annot.target[0].selector.refinedBy.start > annot.target[0].selector.refinedBy.end){
           res.status(500);
           res.send({
-            err: 'TextPositionSelector.start should be <= TextPositionSelector.end';
+            err: 'TextPositionSelector.start should be <= TextPositionSelector.end'
           });
         }
       }
