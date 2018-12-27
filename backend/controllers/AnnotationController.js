@@ -4,11 +4,21 @@ const _= require("lodash");
 
 function getAnnotationsofPage(req,res,next)
 {
-  Annotation.find({"target.source": req.query.url})
-  .exec()
-  .then((annotations)=>{
+  let skipVar=0;
+  let limitVar=10;
+  if(req.query.skip)
+  {
+    skipVar=Number(req.query.skip);
+  }
+  if(req.query.limit)
+  {
+    limitVar=Number(req.query.limit);
+  }
+  Annotation.paginate({"target.source": req.query.url},{offset: skipVar, limit: limitVar})
+  .then((result)=>{
+    console.log(JSON.stringify(req.query.url+" "+req.query.offset+" "+req.query.limit));
     let hrefPrefix = 'http://46.101.223.116/api/annotations/';
-    let filteredAnnotations = _.map(annotations,(annotation) => {
+    let filteredAnnotations = _.map(result.docs,(annotation) => {
       annotation.id = hrefPrefix + annotation._id;
       return annotation;
     });  
@@ -54,8 +64,13 @@ function addAnnotation(req, res, next) {
   annot.save()
   .then((annot) => {
     let hrefPrefix = 'http://46.101.223.116/api/annotations/';
-    annot.id = hrefPrefix + annot._id;
-    _.omit(annot, ['_id']);
+    let orgId = annot._id;
+    let newAnnot;
+    console.log(JSON.stringify(_.omit(annot, ['_id'])));
+    newAnnot.id = hrefPrefix + orgId;
+
+    console.log(newAnnot);
+    
     res.status(201);
     res.send({annot});
   })
