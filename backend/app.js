@@ -13,13 +13,6 @@ require('./utils/passport');
 // Set mongoose promises to global promise
 mongoose.Promise = global.Promise;
 
-// Import routers. 
-var indexRouter = require('./routes/index');
-var authRouter = require('./routes/auth');
-const eventsRouter = require('./routes/events');
-const usersRouter = require('./routes/users');
-const annotationsRouter = require('./routes/annotations');
-
 var app = express();
 
 // Configure app
@@ -49,11 +42,6 @@ app.use('/static', express.static(path.join(__dirname, '/static')));
 // Serve client
 app.use(express.static(path.join(__dirname, '/www')));
 
-// Register API routers.
-app.use('/api/auth', authRouter);
-app.use('/api/events', passport.authenticate('jwt', {session: false}), eventsRouter);
-app.use('/api/users', passport.authenticate('jwt', {session: false}), usersRouter);
-app.use('/api/annotations',/* passport.authenticate('jwt', {session: false}),*/annotationsRouter);
 app.get('/*', function(req, res) {
   res.sendFile(__dirname + '/www/index.html');
 });

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+var mongoosePaginate = require("mongoose-paginate");
 //WE DO NOT ALLOW EXTERNAL RESOURCES AND SELECTORS FOR BODIES!!!!
 var BodySchema = new Schema({
      //TextualBody for texts, XXXXXXXXX for media
@@ -132,9 +132,10 @@ AnnotationSchema.path('body').discriminator('TextualBody', new Schema({
 AnnotationSchema.path('body').discriminator('Image', new Schema({
     id: {type:String, required:true}
 },{_id:false}));
+
+
+AnnotationSchema.plugin(mongoosePaginate);
+
 var Annotation = mongoose.model('Annotation', AnnotationSchema);
-
-
-
 
 module.exports = Annotation;
