@@ -1,6 +1,16 @@
 const mongoose = require("mongoose");
 const Annotation = require("../models/Annotation");
 const _= require("lodash");
+let hrefPrefix = 'http://46.101.223.116/api/annotations/';
+
+function changeId(annotation)
+{
+  let orgId=annotation._id;
+  let ret = _.omit(annotation.toObject(), ['_id']);
+  ret.id=hrefPrefix+orgId;
+  return ret;
+}
+
 
 function getAnnotationsofPage(req,res,next)
 {
@@ -16,16 +26,11 @@ function getAnnotationsofPage(req,res,next)
   }
   Annotation.paginate({"target.source": req.query.url},{offset: skipVar, limit: limitVar})
   .then((result)=>{
-    console.log(JSON.stringify(req.query.url+" "+req.query.offset+" "+req.query.limit));
-    let hrefPrefix = 'http://46.101.223.116/api/annotations/';
-    let filteredAnnotations = _.map(result.docs,(annotation) => {
-      annotation.id = hrefPrefix + annotation._id;
-      return annotation;
-    });  
-  
-    let returnedAnnotations = _.map(filteredAnnotations,(annotation) => {
-      return _.omit(annotation, ['_id']);
-    });
+   // let hrefPrefix = 'http://46.101.223.116/api/annotations/';
+   let returnedAnnotations = _.map(result.docs,(annotation) => {
+      return changeId(annotation);
+  });
+    
 
     res.status(200);
     res.send({'annotations': returnedAnnotations});
@@ -63,16 +68,9 @@ function addAnnotation(req, res, next) {
   }
   annot.save()
   .then((annot) => {
-    let hrefPrefix = 'http://46.101.223.116/api/annotations/';
-    let orgId = annot._id;
-    let newAnnot;
-    console.log(JSON.stringify(_.omit(annot, ['_id'])));
-    newAnnot.id = hrefPrefix + orgId;
-
-    console.log(newAnnot);
-    
+    let ret=changeId(annot);
     res.status(201);
-    res.send({annot});
+    res.send({ret});
   })
   .catch((err) => {
     res.status(500);
@@ -86,11 +84,9 @@ function getAnnotation(req, res, next){
   Annotation.findById(annotId)
   .exec()
   .then((annot)=>{
-    let hrefPrefix = 'http://46.101.223.116/api/annotations/';
-    annot.id = hrefPrefix + annot._id;
-    _.omit(annot, ['_id']);
+    let ret=changeId(annot);
     res.status(200);
-    res.send(annot);
+    res.send(ret);
   })
   .catch((err)=>{
     res.status(404);
@@ -107,11 +103,9 @@ function updateAnnotation(req, res, next)
   Annotation.findByIdAndUpdate(annotId,{ $set: newAnnot }, { new: true })
   .exec()
   .then((annot)=>{
-    let hrefPrefix = 'http://46.101.223.116/api/annotations/';
-    annot.id = hrefPrefix + annot._id;
-    _.omit(annot, ['_id']);
+    let ret=changeId(annot);
     res.status(200);
-    res.send({updatedAnnotation: annot})
+    res.send(ret);
   })
   .catch((err)=>{
     res.status(404);
