@@ -27,32 +27,6 @@ function getAnnotationsofPage(req,res,next)
 
 }
 
-function getAnnotationsofPage(req,res,next)
-{
-  Annotation.find({"target.source": req.query.url})
-  .exec()
-  .then((annotations)=>{
-    // Change this to full endpoint 
-    let hrefPrefix = 'http://46.101.223.116/api/annotations/';
-    let filteredAnnotations = _.map(annotations,(annotation) => {
-      annotation.id = hrefPrefix + annotation._id;
-      return annotation;
-    });  
-  
-    let returnedAnnotations = _.map(filteredAnnotations,(annotation) => {
-      return _.omit(annotation, ['_id']);
-    });
-
-    res.status(200);
-    res.send({'annotations': returnedAnnotations});
-  })
-  .catch((err)=>{
-      res.status(500);
-      res.send(err);
-  });
-
-}
-
 function addAnnotation(req, res, next) {
   let annot = new Annotation(req.body);
   if(annot.target[0].selector){
