@@ -53,6 +53,9 @@ function addAnnotation(req, res, next) {
   }
   annot.save()
   .then((annot) => {
+    let hrefPrefix = 'http://46.101.223.116/api/annotations/';
+    annot.id = hrefPrefix + annot._id;
+    _.omit(annot, ['_id']);
     res.status(200);
     res.send({annot});
   })
@@ -68,8 +71,11 @@ function getAnnotation(req, res, next){
   Annotation.findById(annotId)
   .exec()
   .then((annot)=>{
+    let hrefPrefix = 'http://46.101.223.116/api/annotations/';
+    annot.id = hrefPrefix + annot._id;
+    _.omit(annot, ['_id']);
     res.status(200);
-    res.send(annot)
+    res.send(annot);
   })
   .catch((err)=>{
     res.status(404);
