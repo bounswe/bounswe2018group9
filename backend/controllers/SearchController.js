@@ -5,6 +5,8 @@ const express = require('express');
 const Event = require('../models/Event')
 const User = require('../models/User'); 
 
+const _ = require('lodash');
+
 function search(req,res,next) {
     const searchQuery = req.query.search;
     let response = {};
@@ -123,8 +125,32 @@ function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 }
 
+function getFeed(req,res,next){
+
+    let events;
+    let userId = req.params.id;
+    let followedUsers;
+    let usr=User.findById(userId);
+    User.findById(userId)
+        .exec()
+        .then((user) => {
+            followedUsers=user.following;
+        })
+        .catch((err) => {
+            res.status(404);
+            res.send({err});
+        });
+    followedUsers.forEach((followed) => {
+        
+        
+    });
+    //let followedUsers=usr.following;
+    console.log();
+}
+
 module.exports = {
     search,
     advancedSearch,
-    locationSearch
-}
+    locationSearch,
+    getFeed
+} 

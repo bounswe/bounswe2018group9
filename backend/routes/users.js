@@ -3,7 +3,7 @@ var router = express.Router();
 
 //Import Controllers
 var UserController = require('../controllers/UserController');
-
+var SearchController = require('../controllers/SearchController');
 //Import Models
 var User = require('../models/User');
 
@@ -19,6 +19,7 @@ router.get('/:id', UserController.getUserById);//this should be last in code
 // User with the id follows someone.
 router.post('/:id/follow', UserController.follow);
 router.post('/:id/unfollow', UserController.unfollow);
+router.get('/:id/feed', SearchController.getFeed);
 
 // User with the id is followed by someone. These endpoints will be deleted after test. 
 // And will be called inside follow and unfollow.
