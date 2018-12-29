@@ -4,6 +4,7 @@ const express = require('express');
 // Data Models  
 const Event = require('../models/Event')
 const User = require('../models/User'); 
+const EventController = require('./EventController');
 
 const _ = require('lodash');
 
@@ -127,7 +128,7 @@ function escapeRegex(text) {
 
 function getFeed(req,res,next){
 
-    let events;
+    let events=[];
     let userId = req.params.id;
     let followedUsers;
     let usr=User.findById(userId);
@@ -135,17 +136,18 @@ function getFeed(req,res,next){
         .exec()
         .then((user) => {
             followedUsers=user.following;
+            followedUsers.forEach((followed) => {
+                events=events.concat(EventController.getRelatedEvents(followed));
+            });
+            events=events.concat(EventController.getRelatedEvents(userId));
+            res.status(200);
+            res.send(events);
         })
         .catch((err) => {
             res.status(404);
             res.send({err});
         });
-    followedUsers.forEach((followed) => {
-        
-        
-    });
-    //let followedUsers=usr.following;
-    console.log();
+
 }
 
 module.exports = {

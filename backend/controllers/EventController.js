@@ -303,6 +303,14 @@ function updateVote(req,res,next){
     });
 };
 
+function getRelatedEvents(userId)
+{
+    let ret=[];
+    ret=ret.concat(Event.find({ creator: userId}));
+    ret=ret.concat(Event.find({ attendance: { user: userId, attendanceType: 1}}));
+    return ret;
+}
+
 module.exports = {
   addEvent,
   updateEvent,
@@ -319,5 +327,6 @@ module.exports = {
   addComment,
   deleteComment,
   updateComment,
-  getComments
+  getComments,
+  getRelatedEvents
 };
