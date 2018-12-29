@@ -121,9 +121,10 @@ function deleteAnnotation(req, res, next)
     if (err) {
       return res.status(500).send(err);
     }
+    let ret=changeId(annot);
     const response = {
       message: "Annotation is succesfully deleted.",
-      annotation: annot
+      annotation: ret
     }
 
     return res.status(204).send(response);
