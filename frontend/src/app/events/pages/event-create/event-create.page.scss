@@ -1,3 +1,5 @@
+@import '../../events.module.scss';
+
 .event-form-container{
   padding: 10px;
   border: 2px solid gray;
@@ -36,9 +38,4 @@ ion-item{
     width: 1200px;
     margin: 0 auto;
   }
-}
-
-.media-container {
-  height: 300px;
-  max-height: 300px;
 }
