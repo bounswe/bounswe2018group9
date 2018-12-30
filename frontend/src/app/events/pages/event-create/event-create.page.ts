@@ -25,8 +25,6 @@ export class EventCreatePage implements OnInit {
   imageError = false;
   eventMinDate: string;
 
-  media: Media[] = [];
-
   constructor(
     private formBuilder: FormBuilder,
     private eventService: EventService,
@@ -38,6 +36,7 @@ export class EventCreatePage implements OnInit {
   ) {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
+      media: [[], [Validators.required]],
       date: ['', Validators.required],
       duration: this.formBuilder.group({
         length: ['', Validators.required],
@@ -146,6 +145,16 @@ export class EventCreatePage implements OnInit {
   }
   removeTag(index: number){
     this.tags.removeAt(index);
+  }
+
+  // media getter wrapper for form
+  get media(): Media[] {
+    return this.form.get('media').value as Media[];
+  }
+
+  // media setter wrapper for form
+  set media(media: Media[]) {
+    this.form.get('media').setValue(media);
   }
 
   /**
