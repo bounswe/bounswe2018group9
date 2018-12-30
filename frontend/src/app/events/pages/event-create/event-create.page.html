@@ -26,36 +26,6 @@
               </div>
 
               <ion-list lines="none">
-
-                <!--
-                <ion-item>
-                  <div class="event-image">
-                    <img #eventImage
-                         (error)="onImageError()"
-                         (load)="onImageLoad()"
-                         [src]="this.form.get('medias').value[0]"
-                         alt="Event image">
-                  </div>
-                </ion-item>
-                -->
-                <ion-item-group formArrayName="medias">
-                  <ion-item *ngFor="let media of medias.controls; let i = index">
-                    <ion-label position="stacked">
-                      Url of the image
-                      <span class="input-required">
-                  *
-                </span>
-                      <span class="input-error" *ngIf="media.dirty && !media.valid">
-                  (you should add an image link)
-                </span>
-                    </ion-label>
-                    <ion-input type="url"
-                               [formControlName]="i"
-                               class="form-input">
-                    </ion-input>
-                  </ion-item>
-                </ion-item-group>
-
                 <ion-item>
                   <ion-label position="stacked">
                     Name of the event
