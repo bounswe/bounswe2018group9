@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const Event = require("../models/Event");
 const User = require("../models/User");
 const EventSchema = Event.EventSchema;
-EventSchema.plugin('voting', { ref:'UserSchema' });
+const assert = require('assert') 
+
 const _ = require('lodash');
 
 function addEvent(req, res, next) {
@@ -259,17 +260,26 @@ function getComments(req,res,next){
 
 function vote(req,res,next){
   const eventId = req.params.id;
-  const senderId = req.params.voterId;
-  const isUpvote = req.params.isUpvote; 
-
+  const senderId = req.body.voterId;
+  const isUpvote = req.body.isUpvote; 
+  console.log(senderId);
   Event.findById(eventId)
     .exec()
     .then((event) => {
-      User.findById(userId).exec().then((user) => {
-        if(isUpvote) event.upvote(user);
-        else event.downvote(user);
+      User.findById(senderId)
+      .then((user) => {
+        if(isUpvote){
+          event.upvote(user, function(err, doc) {
+            assert.equal(doc, event);  // true
+          });
+        } 
+        else {
+          event.downvote(user, function(err, doc) {
+            assert.equal(doc, event);  // true
+          });
+        }
         res.status(200);
-        res.send({votes: isUpvote});
+        res.send("Voted succesfully.");
       })
     })
     .catch((err) => {
@@ -281,13 +291,15 @@ function vote(req,res,next){
 function getVotes(req,res,next){
   const eventId = req.params.id;
 
-  Event.find({_id: eventId})
+  Event.findById(eventId)
     .exec()
     .then((event) => {
       res.status(200);
-      res.send({vote: event.votes(), 
-                upvote: event.upvotes(), 
-                downvote: event.downvotes()});
+      res.send({
+        votes: event.votes(), 
+        upvotes: event.upvotes(), 
+        downvotes: event.downvotes()
+      });
     })
     .catch((err) => {
       res.status(500);
@@ -297,18 +309,21 @@ function getVotes(req,res,next){
 
 function unvote(req,res,next){
   const eventId = req.params.id;
-  const voterId = req.params.voterId;
+  const voterId = req.body.voterId;
 
-  Event.findBYID({ventId})
+  Event.findById(eventId)
     .exec()
     .then((event) => {
       User.findById(voterId)
       .exec()
       .then((user) => {
+        console.log(user);
+        event.unvote(user,(err,doc)=>{
+          assert.equal(doc, event);
+        });
         res.status(200);
-        res.send({vote: event.votes(), 
-                  upvote: event.upvotes(), 
-                  downvote: event.downvotes()});
+          res.send({vote : event.votes() });
+         
       })
       
     })
@@ -317,23 +332,6 @@ function unvote(req,res,next){
       res.send({err});
     });
 };
-/*function updateVote(req,res,next){
-  const eventId = req.params.id;
-  const userId = req.body.user;
-  const voteType = req.body.voteType;
-  const options = {new: true, upsert: true};
-
-  Event.findOneAndUpdate({"id": eventId, "vote.user": userId}, {$set: {voteType: voteType} }, options)
-    .exec()
-    .then((event)=>{
-        res.status(200);
-        res.send({vote: event.vote});
-    })
-    .catch((err)=>{
-        res.status(500);
-        res.send({err});
-    });
-}*/
 
 
 // MEDIA CONTROLLERS
@@ -409,9 +407,9 @@ module.exports = {
   addAttendance,
   getAttendance,
   updateAttendance,
-  addVote,
-  getVote,
-  updateVote,
+  getVotes,
+  unvote,
+  vote,
   addComment,
   deleteComment,
   updateComment,

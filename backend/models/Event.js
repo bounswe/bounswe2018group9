@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var mongoosePaginate = require("mongoose-paginate");
 var Schema = mongoose.Schema;
 var MediaSchema = require('./Media');
-
+const voting = require('mongoose-voting')
 
 const CommentSchema = new Schema({
     author: {
@@ -158,7 +158,7 @@ var EventSchema = new Schema({
 
         
 EventSchema.plugin(mongoosePaginate);
-
+EventSchema.plugin(voting,{ ref: 'UserSchema' });
 var Event = mongoose.model('Event', EventSchema);
 
 module.exports = Event
