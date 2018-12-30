@@ -6,16 +6,16 @@ const MediaSchema = new Schema({
   creator: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
+    required: false
   },
   source: {
     type: String,
-    required: true,
+    required: true
   },
   type: {
     type: Number,
     enum: [0, 1], // '0' for images, '1' for videos
-    default: 0,
+    default: 0
   },
 });
 
