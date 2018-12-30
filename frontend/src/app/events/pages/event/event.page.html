@@ -13,8 +13,8 @@
           </div>
           <div class="event-container">
             <div class="upper-container">
-              <div class="image-container">
-                <img src="{{e.medias[0]}}" alt="{{e.name}}">
+              <div class="media-container">
+                <app-slider [media]="e.media" [options]="{ empty: false, buttons: false }"></app-slider>
               </div>
               <div class="title-container">
                 <p class="date">
