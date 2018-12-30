@@ -1,13 +1,16 @@
 <ion-card *ngIf="event; let e">
-
   <ion-card-content>
-    <div class="image">
-      <img src="{{e.medias[0]}}" alt="{{e.name}}" #eventImage (error)="onImageError()">
-      <div class="price">
-        {{e.price.amount == 0 ? 'Free' : e.price.amount + ' ' + e.price.currency}}
+    <div class="preview-container">
+      <div class="tags-container">
+        <span *ngIf="e.artists?.length" class="tag">
+          {{e.artists[0] | titlecase}}
+        </span>
+        <span class="tag">
+          {{e.price.amount == 0 ? 'Free' : e.price.amount + ' ' + e.price.currency}}
+        </span>
       </div>
-      <div *ngIf="e.artists.length > 0" class="artist">
-        {{e.artists[0] | titlecase}}
+      <div class="media-container">
+        <app-slider [media]="e.media" [options]="{ empty: false, buttons: false }"></app-slider>
       </div>
     </div>
     <div class="date">
