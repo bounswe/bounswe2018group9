@@ -42,17 +42,28 @@ export class FileService {
 
       // event listeners
       let changeListener = (event: Event) => {
+        // remove event listeners
+        input.removeEventListener('change', changeListener);
+        window.removeEventListener('focus', focusListener);
+
+        document.body.removeChild(input);
         resolve(Array.from(<FileList>event.target['files']));
       };
-      let focusListener = (event: Event) => reject();
+      let focusListener = (event: Event) => {
+        // remove event listeners
+        input.removeEventListener('change', changeListener);
+        window.removeEventListener('focus', focusListener);
+
+        document.body.removeChild(input);
+        reject();
+      }
 
       // register listeners
-      input.addEventListener('change', changeListener, { once: true });
-      window.addEventListener('focus', focusListener, { once: true });
+      input.addEventListener('change', changeListener);
+      window.addEventListener('focus', focusListener);
 
       document.body.appendChild(input);
       input.click();
-      document.body.removeChild(input);
     });
   }
 }
