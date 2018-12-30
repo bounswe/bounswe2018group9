@@ -4,11 +4,11 @@ var router = express.Router();
 //Import Controllers
 const AnnotationController = require('../controllers/AnnotationController');
 
-router.post('/', AnnotationController.addAnnotation);
-router.get('/',AnnotationController.getAnnotationsofPage);
+router.post('/', passport.authenticate('jwt', {session: false}), AnnotationController.addAnnotation);
+router.get('/', AnnotationController.getAnnotationsofPage);
 router.get('/:id', AnnotationController.getAnnotation);
-router.put('/:id', AnnotationController.updateAnnotation);
-router.delete('/:id', AnnotationController.deleteAnnotation);
+router.put('/:id', passport.authenticate('jwt', {session: false}), AnnotationController.updateAnnotation);
+router.delete('/:id', passport.authenticate('jwt', {session: false}), AnnotationController.deleteAnnotation);
 
 
 module.exports = router;
