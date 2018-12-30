@@ -1,3 +1,8 @@
+@import '../../events.module.scss';
+@import '../../../../theme/variables';
+
+$ticket-container-height: 90px;
+
 $mainStyling : (
     'font' :
     (
@@ -22,23 +27,12 @@ ion-label
     color: map-get(map-get($mainStyling, 'colors'), 'title');
 }
 
-@import "../../../../theme/variables";
-
-$ticket-container-height: 90px;
-
 .event-container{
   margin-bottom: $ticket-container-height;
 }
 
-.image-container{
+.media-container{
   width: 100%;
-  height: 250px;
-}
-
-.image-container img{
-  width: 100%;
-  height: inherit;
-  object-fit: cover;
 }
 
 .title-container{
@@ -192,7 +186,7 @@ ion-textarea{
   background-color: white;
 }
 @media screen and (min-width: 600px){
-  .image-container{
+  .media-container{
     height: 350px;
   }
 }
@@ -224,7 +218,7 @@ ion-textarea{
     height: 600px;
   }
 
-  .image-container{
+  .media-container{
     height: 400px;
   }
 
@@ -267,7 +261,7 @@ ion-textarea{
     justify-content: space-around;
   }
 
-  .upper-container .image-container{
+  .upper-container .media-container{
     width: 70%;
   }
 
