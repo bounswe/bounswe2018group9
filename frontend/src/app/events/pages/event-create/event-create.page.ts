@@ -37,9 +37,6 @@ export class EventCreatePage implements OnInit {
     private uploadService: UploadService
   ) {
     this.form = this.formBuilder.group({
-      medias: this.formBuilder.array([
-        this.formBuilder.control('', Validators.required)
-      ]),
       name: ['', [Validators.required]],
       date: ['', Validators.required],
       duration: this.formBuilder.group({
@@ -72,6 +69,7 @@ export class EventCreatePage implements OnInit {
     let event: Event = this.form.value;
 
     event.creator = this.authService.getUserFromToken();
+    event.media = this.media;
 
     let attendance: Attendance = {
       user: this.authService.getUserId(),
@@ -148,9 +146,6 @@ export class EventCreatePage implements OnInit {
   }
   removeTag(index: number){
     this.tags.removeAt(index);
-  }
-  get medias(){
-    return this.form.get('medias') as FormArray;
   }
 
   /**
