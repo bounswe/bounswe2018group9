@@ -1,6 +1,6 @@
 @import '../../events.module.scss';
 
-.media-container {
+.container {
   display: flex;
   align-items: center;
   justify-content: start;
@@ -16,7 +16,7 @@
     object-fit: cover;
     vertical-align: middle;
     border: 0.1px solid lightgray;
-    border-radius: $border-radius;
-    max-height: $max-media-height;
+    border-radius: $media-border-radius;
+    max-height: $media-max-height;
   }
 }

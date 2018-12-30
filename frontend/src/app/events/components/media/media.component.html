@@ -1,4 +1,4 @@
-<div *ngIf="media" class="media-container">
+<div *ngIf="media" class="container">
   <div *ngIf="media.type == 0">
     <img *ngIf="media.source" [src]="source()">
     <h6 *ngIf="!media.source">Can't preview source</h6>
