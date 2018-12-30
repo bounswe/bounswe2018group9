@@ -1,2 +1,7 @@
-$border-radius: 5px;
-$max-media-height: 300px;
+@import '../../theme/custom_variables.scss';
+
+.media-container {
+  height: $media-max-height;
+  max-height: $media-max-height;
+  border-radius: $media-border-radius;
+}
