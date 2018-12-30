@@ -1,7 +1,6 @@
 @import '../../theme/custom_variables.scss';
 
 .media-container {
-  height: $media-max-height;
-  max-height: $media-max-height;
+  height: $media-default-height;
   border-radius: $media-border-radius;
 }
