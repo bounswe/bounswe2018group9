@@ -131,12 +131,13 @@ function getFeed(req,res,next){
     let events=[];
     let userId = req.params.id;
     let followedUsers;
-    let usr=User.findById(userId);
     User.findById(userId)
         .exec()
         .then((user) => {
             followedUsers=user.following;
+            //console.log(followedUsers);
             followedUsers.forEach((followed) => {
+                //console.log(followed);
                 events=events.concat(EventController.getRelatedEvents(followed));
             });
             events=events.concat(EventController.getRelatedEvents(userId));

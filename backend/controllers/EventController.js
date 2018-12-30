@@ -306,8 +306,23 @@ function updateVote(req,res,next){
 function getRelatedEvents(userId)
 {
     let ret=[];
-    ret=ret.concat(Event.find({ creator: userId}));
-    ret=ret.concat(Event.find({ attendance: { user: userId, attendanceType: 1}}));
+    let created;
+    Event.find({creator:userId}, (ev)=>{created=ev;});
+    let attending;
+    Event.find({attendance : {user: userId, attendanceType: 1}},(ev)=>{attending=ev;});
+    if(created)
+    {
+      ret=ret.concat(created);
+      if(userId=="5c27cbbe018d5c2bcb4d55b0")
+      {
+        console.log("here");
+        console.log(JSON.stringify(created[0]));
+      }
+    }
+    if(attending)
+    {
+      ret=ret.concat(attending);
+    }
     return ret;
 }
 
