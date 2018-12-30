@@ -20,5 +20,5 @@ export interface Event extends Object {
   artists?: Array<string>;
   tags: Array<String>;
   location: Location;
-  medias: Array<Media>;
+  media: Array<Media>;
 }
