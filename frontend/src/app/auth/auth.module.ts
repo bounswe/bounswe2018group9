@@ -19,6 +19,7 @@ import { environment } from '../../environments/environment';
 import { ForgotPasswordPage } from './pages/forgot-password/forgot-password.page';
 import { ChangePasswordPage } from './pages/change-password/change-password.page';
 import {NotFoundPage} from './pages/not-found/not-found.page';
+import {CanEditGuard} from "./guards/can-edit/can-edit.guard";
 
 @NgModule({
   imports: [
@@ -63,6 +64,7 @@ export class AuthModule {
         AuthService,
         AuthGuard,
         NoAuthGuard,
+        CanEditGuard,
         // JWT Interceptor
         {
           provide: HTTP_INTERCEPTORS,

@@ -41,6 +41,7 @@ export class FeedPage implements OnInit {
     this.eventService.get(null, { limit: count, skip: start })
       .subscribe((data: Event[]) => {
         this.events.push(...data);
+        this.eventService.cacheEvents(data);
         this.skip += count;
 
         if (event) { // finalize infinite-scroll animation
