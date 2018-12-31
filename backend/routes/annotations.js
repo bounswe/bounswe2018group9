@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const passport = require('passport');
 
 //Import Controllers
 const AnnotationController = require('../controllers/AnnotationController');
