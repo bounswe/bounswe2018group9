@@ -17,7 +17,8 @@ import {UploadService} from "../../../data/providers/upload/upload.service";
 export class EventFormComponent implements OnInit {
   @Input('event') event: Event;
   @Input('type') type: string; // edit or create
-  @Output('submit') submit = new EventEmitter<Event>();
+  @Output('edit') edit = new EventEmitter<Event>();
+  @Output('create') create = new EventEmitter<Event>();
 
   @ViewChild('eventImage') eventImage: ElementRef;
   eventPosted : boolean = false;
@@ -91,7 +92,11 @@ export class EventFormComponent implements OnInit {
       event.attendance = [attendance];
     }
 
-    this.submit.emit(event);
+    if(this.type === 'edit'){
+      this.edit.emit(event);
+    } else if(this.type === 'create'){
+      this.create.emit(event);
+    }
   }
 
 
