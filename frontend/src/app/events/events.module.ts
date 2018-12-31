@@ -19,6 +19,7 @@ import { MediaComponent } from './components/media/media.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { EventFormComponent } from './components/event-form/event-form.component';
 import {SearchPage} from "./pages/search/search.page";
+import {EventEditPage} from "./pages/event-edit/event-edit.page";
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import {SearchPage} from "./pages/search/search.page";
     CommentBoxComponent,
     MediaComponent,
     SliderComponent,
-    EventFormComponent
+    EventFormComponent,
+    EventEditPage
   ]
 })
 export class EventsModule { }

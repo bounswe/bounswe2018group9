@@ -7,12 +7,14 @@ import { EventCreatePage } from './pages/event-create/event-create.page';
 
 import { AuthGuard } from '../auth/guards/auth/auth.guard';
 import {SearchPage} from "./pages/search/search.page";
+import {EventEditPage} from "./pages/event-edit/event-edit.page";
 
 const routes: Routes = [
   { path: '', component: FeedPage, canActivate: [ AuthGuard ], pathMatch: 'full' },
   { path: 'create', component: EventCreatePage, canActivate: [ AuthGuard ] },
   { path: 'search', component: SearchPage},
-  { path: ':id', component: EventPage },
+  { path: ':id/edit', component: EventEditPage, canActivate: [ AuthGuard ] },
+  { path: ':id', component: EventPage }
 ];
 
 @NgModule({
