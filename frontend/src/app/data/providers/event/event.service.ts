@@ -10,6 +10,7 @@ import {Observable} from "rxjs/index";
 })
 export class EventService extends DataService<Event> {
   protected api = 'events';
+  cachedEvents: Array<Event> = [];
 
   constructor(protected http: HttpClient) {
     super(http);
@@ -25,6 +26,18 @@ export class EventService extends DataService<Event> {
 
   attend(event_id: string, attendance: Attendance){
     return this.http.post<Attendance>('/events/' + event_id + '/attendance', attendance);
+  }
+
+  cacheEvents(events: Array<Event>){
+    events.forEach(event => this.cachedEvents.push(event));
+  }
+
+  getCachedEvent(event_id): Event | null{
+    for(let i=0; i<this.cachedEvents.length; i++){
+      let e = this.cachedEvents[i];
+      if(e._id = event_id) return e;
+    }
+    return null;
   }
 
 }
