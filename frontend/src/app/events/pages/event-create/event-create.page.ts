@@ -29,10 +29,7 @@ export class EventCreatePage implements OnInit {
     private formBuilder: FormBuilder,
     private eventService: EventService,
     private router: Router,
-    private alertController: AlertController,
-    private authService: AuthService,
-    private mediaService: MediaService,
-    private uploadService: UploadService
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {}
