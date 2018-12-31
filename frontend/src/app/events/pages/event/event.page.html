@@ -3,6 +3,13 @@
 </ion-header>
 
 <ion-content no-padding>
+  <!-- fab placed to the bottom end -->
+  <ion-fab *ngIf="user && currentUser && user._id === currentUser._id" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/feed/{{event_id}}/edit">
+      EDIT
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-grid no-padding>
     <ion-row>
       <ion-col no-padding>
