@@ -43,7 +43,7 @@ export class EventCreatePage implements OnInit {
     this.eventService
       .post(eventCreated)
       .subscribe(
-        (message) => {
+        (message: any) => {
           this.router.navigate(['feed', message.event._id]);
           this.eventPosted = true;
         },
