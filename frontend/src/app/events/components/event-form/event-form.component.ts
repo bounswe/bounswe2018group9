@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {HttpErrorResponse} from "@angular/common/http";
 import {AuthService} from "../../../auth/providers/auth/auth.service";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -17,6 +17,7 @@ import {UploadService} from "../../../data/providers/upload/upload.service";
 export class EventFormComponent implements OnInit {
   @Input('event') event: Event;
   @Input('type') type: string; // edit or create
+  @Output('submit') submit = new EventEmitter<Event>();
 
   @ViewChild('eventImage') eventImage: ElementRef;
   eventPosted : boolean = false;
@@ -25,7 +26,8 @@ export class EventFormComponent implements OnInit {
   imageError = false;
   eventMinDate: string;
 
-  media: Media[] = [];
+  formTitle: string = 'Create your event';
+  submitButtonText: string = 'Share your experience';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,12 +37,15 @@ export class EventFormComponent implements OnInit {
     private authService: AuthService,
     private mediaService: MediaService,
     private uploadService: UploadService
-  ) {
+  ) {}
+
+  ngOnInit() {
+    let now = new Date();
+    this.eventMinDate = now.toISOString();
+
     this.form = this.formBuilder.group({
-      medias: this.formBuilder.array([
-        this.formBuilder.control('', Validators.required)
-      ]),
       name: ['', [Validators.required]],
+      media: [[], [Validators.required]],
       date: ['', Validators.required],
       duration: this.formBuilder.group({
         length: ['', Validators.required],
@@ -60,44 +65,33 @@ export class EventFormComponent implements OnInit {
     });
 
     if(this.type === 'edit' && this.event){
-      this.form.setValue(this.event);
+      let formValue = {
+        ...this.event,
+        isFree: this.event.price.amount === 0
+      };
+      this.media = this.event.media;
+      this.form.patchValue(formValue);
+      this.formTitle = 'Edit your event';
+      this.submitButtonText = 'Edit your event';
     }
   }
 
-  ngOnInit() {
-    let now = new Date();
-    this.eventMinDate = now.toISOString();
-
-    console.log('Event Form', this.type);
-  }
-
-  createEvent() {
-
-    console.log(this.form.value);
+  submitForm() {
 
     let event: Event = this.form.value;
 
     event.creator = this.authService.getUserFromToken();
+    event.media = this.media;
 
-    let attendance: Attendance = {
-      user: this.authService.getUserId(),
-      attendanceType: 1
-    };
+    if(this.type === 'create'){
+      let attendance: Attendance = {
+        user: this.authService.getUserId(),
+        attendanceType: 1
+      };
+      event.attendance = [attendance];
+    }
 
-    event.attendance = [attendance];
-
-    this.eventService
-      .post(event)
-      .subscribe(
-        message => {
-          this.router.navigate(['/feed']);
-          this.eventPosted = true;
-        },
-        error => {
-          this.handleError(error)
-        }
-      );
-
+    this.submit.emit(event);
   }
 
 
@@ -155,8 +149,15 @@ export class EventFormComponent implements OnInit {
   removeTag(index: number){
     this.tags.removeAt(index);
   }
-  get medias(){
-    return this.form.get('medias') as FormArray;
+
+  // media getter wrapper for form
+  get media(): Media[] {
+    return this.form.get('media').value as Media[];
+  }
+
+  // media setter wrapper for form
+  set media(media: Media[]) {
+    this.form.get('media').setValue(media);
   }
 
   /**
@@ -191,5 +192,4 @@ export class EventFormComponent implements OnInit {
         ...this.media.slice(event.slide + 1, this.media.length) ];
     }
   }
-
 }
