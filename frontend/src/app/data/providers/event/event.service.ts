@@ -16,8 +16,8 @@ export class EventService extends DataService<Event> {
     super(http);
   }
 
-  vote(id: string){
-    let path = '';
+  vote(event_id: string, isUpvote: boolean, voterId: string){
+    return this.http.post<Comment>('/events/' + event_id + '/vote', {isUpvote: isUpvote, voterId: voterId});
   }
 
   comment(event_id: string, comment: Comment){
