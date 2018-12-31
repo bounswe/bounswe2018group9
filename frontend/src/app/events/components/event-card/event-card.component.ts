@@ -1,6 +1,8 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Event} from "../../../interfaces";
 import {Router} from "@angular/router";
+import {EventService} from "../../../data/providers/event/event.service";
+import {AuthService} from "../../../auth/providers/auth/auth.service";
 
 @Component({
   selector: 'app-event-card',
@@ -15,7 +17,9 @@ export class EventCardComponent implements OnInit {
   timeDiffUnit;
   voted = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private eventService: EventService,
+              private authService: AuthService) { }
 
   ngOnInit() {
 
@@ -46,12 +50,20 @@ export class EventCardComponent implements OnInit {
 
   vote(event, vote: number){
     event.stopPropagation();
-    if(vote == 1){
-      this.event.vote.upvoteCount += 1;
-    } else if(vote == -1){
-      this.event.vote.downvoteCount -= 1;
-    }
-    this.voted = true;
+
+    this.eventService.vote(this.event._id, vote === 1, this.authService.getUserId())
+      .subscribe(
+        message => {
+          console.log(message);
+          if(vote == 1){
+            this.event.vote.upvoteCount += 1;
+          } else if(vote == -1){
+            this.event.vote.downvoteCount -= 1;
+          }
+          this.voted = true;
+        },
+        error => console.log(error)
+      );
   }
 
   goComments($event){
