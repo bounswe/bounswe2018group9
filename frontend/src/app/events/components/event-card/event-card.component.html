@@ -1,4 +1,4 @@
-<ion-card *ngIf="event; let e">
+<ion-card *ngIf="event; let e" [routerLink]="['/feed', e._id]">
   <ion-card-content>
     <div class="preview-container">
       <div class="tags-container">
@@ -31,13 +31,13 @@
           <ion-grid no-padding="">
             <ion-row no-padding>
               <ion-col size="6" no-padding>
-                <ion-button (click)="vote(1)" [disabled]="view || voted" color="success" fill="clear">
+                <ion-button (click)="vote($event, 1)" [disabled]="view || voted" color="success" fill="clear">
                   <ion-icon name="thumbs-up"></ion-icon>
                   <div>{{e.vote.upvoteCount}}</div>
                 </ion-button>
               </ion-col>
               <ion-col text-center size="6" no-padding>
-                <ion-button (click)="vote(-1)" [disabled]="view || voted" color="danger" fill="clear">
+                <ion-button (click)="vote($event, -1)" [disabled]="view || voted" color="danger" fill="clear">
                   <ion-icon name="thumbs-down"></ion-icon>
                   <div>{{e.vote.downvoteCount}}</div>
                 </ion-button>
@@ -46,7 +46,7 @@
           </ion-grid>
         </ion-col>
         <ion-col text-center size="6">
-          <ion-button [disabled]="view" color="secondary" fill="clear" [routerLink]="['/feed', e._id]" fragment="comments">
+          <ion-button [disabled]="view" color="secondary" fill="clear" (click)="goComments($event)">
             <ion-icon name="text"></ion-icon>
             <div>{{e.comments.length}} Comments</div>
           </ion-button>
@@ -57,13 +57,14 @@
           </div>
         </ion-col>
       </ion-row>
+      <!--
       <ion-row>
         <ion-col>
           <ion-button [disabled]="view" expand="full" [routerLink]="['/feed', e._id]">
             More Details
           </ion-button>
         </ion-col>
-      </ion-row>
+      </ion-row>-->
     </ion-grid>
 
 

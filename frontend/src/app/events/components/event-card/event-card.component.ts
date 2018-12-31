@@ -1,5 +1,6 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Event} from "../../../interfaces";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-event-card',
@@ -14,7 +15,7 @@ export class EventCardComponent implements OnInit {
   timeDiffUnit;
   voted = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
 
@@ -43,13 +44,19 @@ export class EventCardComponent implements OnInit {
 
   }
 
-  vote(vote: number){
+  vote(event, vote: number){
+    event.stopPropagation();
     if(vote == 1){
       this.event.vote.upvoteCount += 1;
     } else if(vote == -1){
       this.event.vote.downvoteCount -= 1;
     }
     this.voted = true;
+  }
+
+  goComments($event){
+    event.stopPropagation();
+    this.router.navigate(['feed', this.event._id], {fragment: 'comments'});
   }
 
   isUndefined(val) { return typeof val === 'undefined'; }
