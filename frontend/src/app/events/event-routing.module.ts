@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: '', component: FeedPage, canActivate: [ AuthGuard ], pathMatch: 'full' },
   { path: 'create', component: EventCreatePage, canActivate: [ AuthGuard ] },
   { path: 'search', component: SearchPage},
-  { path: ':id', component: EventPage }
+  { path: ':id', component: EventPage },
 ];
 
 @NgModule({
