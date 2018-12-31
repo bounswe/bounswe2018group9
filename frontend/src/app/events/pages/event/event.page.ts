@@ -16,7 +16,7 @@ import {map} from "rxjs/operators";
 })
 export class EventPage implements OnInit, OnDestroy, AfterViewInit{
   @ViewChild('profileImage') profileImage;
-  @ViewChild('comments') comments: ElementRef;
+  @ViewChild('content') content;
   form: FormGroup;
   event: Event | null = null;
   private sub: any;
@@ -82,18 +82,16 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
       .fragment
       .subscribe(
         fragment => {
-          console.log(fragment);
-          if (fragment) {
-            this.commentsSec = true;
+          if (fragment && fragment === 'comments') {
+            this.content.scrollToBottom();
+            console.log(this.content);
           }
         });
-
-    //setTimeout(this.goToComments(),2000)
-  }
+    }
 
   goToComments(){
     if(this.commentsSec){
-      this.comments.nativeElement.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('comments').scrollIntoView({ behavior: 'smooth' });
     }
   }
 

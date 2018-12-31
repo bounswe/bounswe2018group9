@@ -46,7 +46,7 @@
           </ion-grid>
         </ion-col>
         <ion-col text-center size="6">
-          <ion-button [disabled]="view" color="secondary" fill="clear">
+          <ion-button [disabled]="view" color="secondary" fill="clear" [routerLink]="['/feed', e._id]" fragment="comments">
             <ion-icon name="text"></ion-icon>
             <div>{{e.comments.length}} Comments</div>
           </ion-button>

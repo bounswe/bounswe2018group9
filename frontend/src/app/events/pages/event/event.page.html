@@ -2,7 +2,7 @@
   <app-toolbar [backButton]="true" [href]="'/feed'"></app-toolbar>
 </ion-header>
 
-<ion-content no-padding>
+<ion-content #content no-padding>
   <!-- fab placed to the bottom end -->
   <ion-fab *ngIf="user && currentUser && user._id === currentUser._id" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="/feed/{{event_id}}/edit">
@@ -106,7 +106,7 @@
             <div class="organizer-container">
 
             </div>
-            <div #comments>
+            <div>
               <ion-grid>
                 <div class="comments-container">
                   <h3 text-center>Comments</h3>
