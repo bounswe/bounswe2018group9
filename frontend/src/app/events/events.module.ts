@@ -17,6 +17,7 @@ import {SharedModule} from "../shared/shared.module";
 
 import { MediaComponent } from './components/media/media.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { EventFormComponent } from './components/event-form/event-form.component';
 import {SearchPage} from "./pages/search/search.page";
 
 @NgModule({
@@ -37,7 +38,8 @@ import {SearchPage} from "./pages/search/search.page";
     SearchComponent,
     CommentBoxComponent,
     MediaComponent,
-    SliderComponent
+    SliderComponent,
+    EventFormComponent
   ]
 })
 export class EventsModule { }
