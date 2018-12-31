@@ -15,6 +15,7 @@ export class EventCardComponent implements OnInit {
   @ViewChild('eventImage') eventImage: ElementRef;
   timeDiff;
   timeDiffUnit;
+  timeDiffText = 'ago';
   voted = false;
 
   constructor(private router: Router,
@@ -24,9 +25,14 @@ export class EventCardComponent implements OnInit {
   ngOnInit() {
 
     let now = new Date();
-    let eventCreated = new Date(this.event.created);
+    let eventCreated = new Date(this.event.date);
 
     let timeDiff_ms = now.getTime() - eventCreated.getTime();
+
+    if(timeDiff_ms < 0){
+      timeDiff_ms -= timeDiff_ms;
+      this.timeDiffText = 'remains';
+    }
 
     let timeDiff_m = timeDiff_ms / (60*1000);
     let timeDiff_h = timeDiff_ms / (60*60*1000);
