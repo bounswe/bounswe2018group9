@@ -54,15 +54,13 @@ function getEventbyId(req, res, next) {
     });
 };
 
-// needs params: id(owner id as string), skip(integer, default 0), limit(integer, default 10)
+
+
+// needs params: skip(integer, default 0), limit(integer, default 10)
 // will return array of event objects with <limit> elements starting from object number <skip> in the db 
-function getEventbyCreator(req,res,next) {
+function getEvents(req,res,next) {
+  
   var skipVar, limitVar;
-  if(!req.query.id)
-  {
-    res.send("Please provide owner id");
-  }
- 
   if(!req.query.skip)
   {
     skipVar=0;
@@ -71,7 +69,7 @@ function getEventbyCreator(req,res,next) {
   {
     skipVar=Number(req.query.skip);
   }
- 
+  
   if(!req.query.limit)
   {
     limitVar=10;
@@ -80,10 +78,12 @@ function getEventbyCreator(req,res,next) {
   {
     limitVar=Number(req.query.limit);
   }
-  Event.paginate({'owner' : req.params.id}, {offset: skipVar, limit: limitVar})
+  if(req.query.creator)
+  {
+    Event.paginate({'creator' : req.query.creator}, {offset: skipVar, limit: limitVar})
     .then((result) => {
       if (!result.docs){
-        res.send('No event found with creator id: ' + req.params.id);
+        res.send('No event found with creator id: ' + req.query.creator);
       } else {
         res.status(200);
         res.send(result.docs);
@@ -93,32 +93,10 @@ function getEventbyCreator(req,res,next) {
       res.status(500);
       res.send({err})
     });
-};
-
-// needs params: skip(integer, default 0), limit(integer, default 10)
-// will return array of event objects with <limit> elements starting from object number <skip> in the db 
-function getAllEvents(req,res,next) {
-  
-  var skipVar, limitVar;
-  if(!req.query.skip)
-  {
-    skipVar=0;
   }
   else
   {
-    skipVar=Number(req.query.skip);
-  }
-  
-  if(!req.query.limit)
-  {
-    limitVar=10;
-  }
-  else
-  {
-    limitVar=Number(req.query.limit);
-  }
-  
-  Event.paginate({}, {offset: skipVar, limit: limitVar})
+    Event.paginate({}, {offset: skipVar, limit: limitVar})
     .then((result) => {
       if (!result.docs){
         res.send('No events found');
@@ -131,6 +109,9 @@ function getAllEvents(req,res,next) {
       res.status(500);
       res.send({err})
     });
+  }
+  
+  
 };
 
 // This function deletes the event according to given id and returns the deleted event.
@@ -401,8 +382,7 @@ module.exports = {
   addEvent,
   updateEvent,
   getEventbyId,
-  getEventbyCreator,
-  getAllEvents,
+  getEvents,
   deleteEvent,
   addAttendance,
   getAttendance,
