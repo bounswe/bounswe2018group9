@@ -33,52 +33,15 @@ export class EventCreatePage implements OnInit {
     private authService: AuthService,
     private mediaService: MediaService,
     private uploadService: UploadService
-  ) {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      media: [[], [Validators.required]],
-      date: ['', Validators.required],
-      duration: this.formBuilder.group({
-        length: ['', Validators.required],
-        unit: ['', Validators.required]
-      }),
-      location: this.formBuilder.group({
-        name: ['', Validators.required]
-      }),
-      isFree: [true, Validators.required],
-      price: this.formBuilder.group({
-        amount: [0],
-        currency: ['X']
-      }),
-      description: ['', [Validators.required,Validators.minLength(20)]],
-      artists: this.formBuilder.array([]),
-      tags: this.formBuilder.array([])
-    });
-  }
+  ) {}
 
-  ngOnInit() {
-    let now = new Date();
-    this.eventMinDate = now.toISOString();
-  }
+  ngOnInit() {}
 
-  createEvent() {
+  createEvent(eventCreated) {
 
-    console.log(this.form.value);
-
-    let event: Event = this.form.value;
-
-    event.creator = this.authService.getUserFromToken();
-    event.media = this.media;
-
-    let attendance: Attendance = {
-      user: this.authService.getUserId(),
-      attendanceType: 1
-    };
-
-    event.attendance = [attendance];
-
+    console.log(eventCreated);
     this.eventService
-      .post(event)
+      .post(eventCreated)
       .subscribe(
         message => {
           this.router.navigate(['/feed']);
@@ -119,74 +82,6 @@ export class EventCreatePage implements OnInit {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       this.presentAlert(`${JSON.stringify(error.error)}`, true);
-    }
-  }
-  onImageError(){
-    this.imageError = true;
-    (<HTMLImageElement> this.eventImage.nativeElement).src= '../../../../assets/placeholder.png';
-  }
-  onImageLoad(){
-    this.imageError = false;
-  }
-  get artists(){
-    return this.form.get('artists') as FormArray;
-  }
-  addArtist(){
-    this.artists.push(this.formBuilder.control(''));
-  }
-  removeArtist(index: number){
-    this.artists.removeAt(index);
-  }
-  get tags(){
-    return this.form.get('tags') as FormArray;
-  }
-  addTag(){
-    this.tags.push(this.formBuilder.control(''));
-  }
-  removeTag(index: number){
-    this.tags.removeAt(index);
-  }
-
-  // media getter wrapper for form
-  get media(): Media[] {
-    return this.form.get('media').value as Media[];
-  }
-
-  // media setter wrapper for form
-  set media(media: Media[]) {
-    this.form.get('media').setValue(media);
-  }
-
-  /**
-   * Controls interaction with the media component
-   * @param {number }} event
-   */
-  async onEvent(event: { key: string, slide: number }) {
-    if (event.key == 'add') {
-      let media = await this.mediaService.get({ file: true })
-        .catch(error => {});
-
-      if (media) {
-        // add media
-        this.media = [ ...this.media.slice(0, event.slide),
-                       ...media,
-                       ...this.media.slice(event.slide, this.media.length) ];
-
-        // upload files
-        media.forEach(media => {
-          this.uploadService.upload(media.file)
-            .response.subscribe(result => {
-              media.source = result.body.file;
-          }, error => {
-            // TODO: Handle upload error
-            console.log(error);
-          });
-        })
-      }
-    } else if (event.key == 'remove') {
-      // remove media
-      this.media = [ ...this.media.slice(0, event.slide),
-                     ...this.media.slice(event.slide + 1, this.media.length) ];
     }
   }
 }

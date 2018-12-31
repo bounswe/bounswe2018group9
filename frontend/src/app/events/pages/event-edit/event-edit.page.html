@@ -3,6 +3,6 @@
 </ion-header>
 
 <ion-content>
-  <app-event-form *ngIf="event" type="edit" [event]="event" (submit)="editEvent($event)"></app-event-form>
+  <app-event-form *ngIf="event" type="edit" [event]="event" (edit)="editEvent($event)"></app-event-form>
 </ion-content>
 
