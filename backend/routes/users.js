@@ -3,6 +3,7 @@ var router = express.Router();
 
 //Import Controllers
 var UserController = require('../controllers/UserController');
+var TimelineController = require('../controllers/TimelineController');
 
 //Import Models
 var User = require('../models/User');
@@ -27,6 +28,8 @@ router.put('/:id/cover', UserController.updateCover);
 router.delete('/:id/avatar', UserController.deleteAvatar);
 router.delete('/:id/cover', UserController.deleteCover);
 
+// TIMELINE ENDPOINTS
+router.get('/:id/ownEvents', TimelineController.getOwnEvents);
 
 
 /* POST ENDPOINTS */
