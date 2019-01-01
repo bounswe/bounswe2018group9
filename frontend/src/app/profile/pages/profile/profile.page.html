@@ -2,9 +2,10 @@
     <app-toolbar></app-toolbar>
 </ion-header>
 <ion-content *ngIf="user">
+  <ion-card>
   <ion-grid>
     <ion-row>
-      <ion-col size-xs="12" offset-md="4" size-md="4">
+      <ion-col size-xs="12" offset-md="3" size-md="6">
         <div *ngIf="gotUserData" class="profile-container">
 
           <div class="top-container">
@@ -13,12 +14,11 @@
             </div>
             <h1>{{user.name}}</h1>
             <div class="detail">
-              {{user.details.birth}} in {{user.details.city}}
+              <b>{{user.details.nationality}}</b>, born at <b>{{user.details.birth}}</b>, from <b>{{user.details.city}}</b>
             </div>
-            <div class="detail">
-              From {{user.details.nationality}}
+            <div *ngIf="user.interests && user.interests.length > 0" class="interest-detail">
+              <span *ngFor="let i of user.interests">{{i}}</span>
             </div>
-
           </div>
           <div class="tabs-container clearfix">
             <div class="tab">
@@ -41,13 +41,13 @@
             </div>
           </div>
         </div>
-        <div class="content-container">
+        <div class="child-container">
           <router-outlet></router-outlet>
         </div>
         <ion-spinner *ngIf="!gotUserData" class="bubbles"></ion-spinner>
       </ion-col>
     </ion-row>
   </ion-grid>
-
+  </ion-card>
 </ion-content>
 
