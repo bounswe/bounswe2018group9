@@ -65,27 +65,29 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(
-        this.search.nativeElement.querySelector('.searchbar-input'),
-        { types: ['address'] }
-      );
-      autocomplete.addListener('place_changed', () => {
-         // get the place result
-        let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+    if (this.options.search) {
+      this.mapsAPILoader.load().then(() => {
+        let autocomplete = new google.maps.places.Autocomplete(
+          this.search.nativeElement.querySelector('.searchbar-input'),
+          { types: ['address'] }
+        );
+        autocomplete.addListener('place_changed', () => {
+           // get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
-        // verify result
-        if (place.geometry === undefined || place.geometry === null) {
-          return;
-        }
+          // verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
 
-        let coords = {
-          lat: place.geometry.location.lat(),
-          lng: place.geometry.location.lng()
-        };
-        this.setPosition(coords, place.formatted_address);
+          let coords = {
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng()
+          };
+          this.setPosition(coords, place.formatted_address);
+        });
       });
-    });
+    }
   }
 
   private setOptions() {
