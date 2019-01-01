@@ -16,9 +16,11 @@ ion-content, .child-container{
 }
 
 .image-container{
-  width: 30%;
+  width: 150px;
+  height: 150px;
   margin-left: 35%;
 }
+
 
 .top-container h1{
   text-align: center;
@@ -26,8 +28,10 @@ ion-content, .child-container{
 }
 
 .image-container img{
-  width: 100%;
   border-radius: 100%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .top-container .detail{

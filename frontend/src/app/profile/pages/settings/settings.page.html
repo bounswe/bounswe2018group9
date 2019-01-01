@@ -6,6 +6,10 @@
     <form class="settings-form" [formGroup]="form" (ngSubmit)="save()" (keyup.enter)="form.valid && save()">
       <h1>Settings</h1>
       <ion-list>
+        <ion-label position="stacked"><b>Profile Image</b></ion-label>
+        <div class="media-container">
+          <app-slider [media]="media" (onEvent)="onEvent($event)"></app-slider>
+        </div>
         <ion-item>
           <ion-label position="stacked"><b>Name</b></ion-label>
           <ion-input type="text" placeholder="Name" formControlName="name"> </ion-input>
