@@ -18,7 +18,7 @@ export class CanEditGuard implements CanActivate {
     let eventId = next.params['id'];
     let cachedEvent = this.eventService.getCachedEvent(eventId);
     if(cachedEvent !== null){
-      if(cachedEvent._id === this.authService.getUserId()){
+      if(cachedEvent.creator === this.authService.getUserId()){
         return true;
       }else{
         this.router.navigate(['feed', eventId]);
