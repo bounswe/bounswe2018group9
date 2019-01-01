@@ -54,9 +54,10 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
       if(params){
         this.event_id = params['id'];
         // Check whether the event is cached or not
-        this.event = this.eventService.getCachedEvent(this.event_id);
-        console.log('event', this.event)
-        if(this.event === null){ // If not cached
+        let eventCached;
+        eventCached = this.eventService.getCachedEvent(this.event_id);
+        console.log('event', this.event);
+        if(eventCached === null){ // If not cached
           this.eventService.get(this.event_id).subscribe(
             (next : Event) =>{
               this.event = next;
@@ -74,6 +75,7 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
               console.log(err);
             });
         } else{ // if cached
+          this.event = eventCached;
           this.authService.getUserData(String(this.event.creator))
             .subscribe(
               (user: User) => {
