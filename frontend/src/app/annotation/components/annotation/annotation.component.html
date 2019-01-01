@@ -1,0 +1,41 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <div text-center>
+        <ion-label position="fixed" color="primary"><b>Express your great ideas!</b> </ion-label>
+      </div>
+    </ion-row>
+    <ion-row >
+      <div text-center >
+        <ion-label position="fixed" color="primary"><b>Select to annotate</b> </ion-label>
+        <app-annotated-body  [annotations]="this.annotations" #annotatedBodyComponent [annotatedBodyText]="annotatedBodyText"></app-annotated-body>
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-button (click)="newAnnotationText = ''; annotatedBodyComponent.unselect()" *ngIf="annotatedBodyComponent.selected">Cancel Selection</ion-button>
+    </ion-row>
+    <ion-row>
+      <div text-center >
+        <ion-label position="fixed" color="secondary">Selected text: </ion-label>
+      </div>
+    </ion-row>
+    <ion-row  margin>
+      <div text-justify>
+        <textarea class="purpleBorder">{{annotatedBodyComponent.selectedText}} </textarea>
+      </div>
+    </ion-row>
+    <ion-row  *ngIf="annotatedBodyComponent.selected">
+      <ion-icon name="create"></ion-icon>
+      <ion-label position="stacked">Your annotation: </ion-label>
+    </ion-row>
+    <ion-row  margin *ngIf="annotatedBodyComponent.selected">
+      <div text-justify >
+        <ion-textarea [readonly]="true" [(ngModel)] ="newAnnotationText" ></ion-textarea>
+      </div>
+    </ion-row>
+    <ion-row *ngIf="annotatedBodyComponent.selected">
+      <ion-button (click)="save(annotatedBodyComponent.start,annotatedBodyComponent.end)">Save</ion-button>
+      <ion-button (click)="cancel()">Exit</ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -14,6 +14,7 @@ import { NativeModule } from './native/native.module';
 
 import { AppConfigModule } from './config/app-config.module';
 import { AppRoutingModule } from './app-routing.module';
+import {AnnotationModule} from './annotation/annotation.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { AppRoutingModule } from './app-routing.module';
     NativeModule.forRoot(),
     AppConfigModule,
     AppRoutingModule,
+    AnnotationModule
   ],
   providers: [
     StatusBar,

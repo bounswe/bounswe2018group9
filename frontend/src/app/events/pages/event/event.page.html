@@ -27,12 +27,12 @@
                 <p class="date">
                   {{e.date | date:'dd MMM'}}
                 </p>
-                <p class="price">
+                <p #priceAnnotate [annotate]="priceAnnotations" class="price">
                   <span *ngIf="e.price.amount == 0; else price_t">Free</span>
                   <ng-template #price_t>{{e.price.amount}} {{e.price.unit}}</ng-template>
                 </p>
                 <h1>{{e.name}}</h1>
-                <p *ngIf="user; let u">
+                <p #organizerAnnotate [annotate]="organizerAnnotations"  *ngIf="user; let u">
                   Organized by {{u.name}}
                 </p>
               </div>
@@ -60,7 +60,7 @@
               </div>
               <div class="inner-container">
                 <h3>Performers</h3>
-                <div *ngFor="let artist of e.artists" class="artist">
+                <div #artistAnnotate [annotate]="artistAnnotations" *ngFor="let artist of e.artists" class="artist">
                   {{artist}}
                 </div>
               </div>
@@ -72,10 +72,10 @@
               <div class="inner-container">
                 <h3>Date and Time</h3>
                 <p></p>
-                <p>
+                <p #dateAnnotate [annotate]="dateAnnotations">
                   {{e.date | date:'dd MMMM EEEE HH:mm, yyyy'}}
                 </p>
-                <p>
+                <p #durationAnnotate [annotate]="durationAnnotations">
                   {{e.duration.length}} {{e.duration.length <= 1 ? e.duration.unit : e.duration.unit + 's'}}
                 </p>
               </div>
@@ -84,7 +84,7 @@
               <div class="icon-container">
                 <ion-icon name="map"></ion-icon>
               </div>
-              <div class="inner-container">
+              <div #locationAnnotate [annotate]="locationAnnotations" class="inner-container">
                 <h3>Location</h3>
                 {{e.location?.name}}
               </div>
@@ -93,7 +93,7 @@
               <div class="icon-container">
                 <ion-icon name="document"></ion-icon>
               </div>
-              <div class="inner-container">
+              <div #descriptionAnnotate [annotate]="descriptionAnnotations" class="inner-container">
                 <h3>Description</h3>
                 {{e.description}}
               </div>
@@ -105,7 +105,7 @@
               </div>
               <div class="inner-container">
                 <h3>Tags</h3>
-                <span class="tag" *ngFor="let tag of e.tags">
+                <span #tagAnnotate [annotate]="tagAnnotations" class="tag" *ngFor="let tag of e.tags">
                   {{tag}}
                 </span>
               </div>

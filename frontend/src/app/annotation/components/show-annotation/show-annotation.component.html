@@ -1,0 +1,18 @@
+<div *ngIf="annotationClicked && annotationClicked.data.user">
+  <b>{{ annotationClicked.data.value | json}}</b>
+<br>
+<div>
+  <b>Annotation:</b>
+  <br>
+  <img *ngIf="annotationClicked.data.profileImage" src="{{annotationClicked.data.profileImage}}" alt="">
+  <p>by <a target="_blank" routerLink="profile/public/{{annotationClicked.data.user.id}}">{{annotationClicked.data.user.name}}</a>
+  </p>
+</div>
+</div>
+<div *ngIf="annotationClicked && !annotationClicked.data.user">
+  <b>Annotation:</b>
+  <br>
+  <b>{{ annotationClicked.data.value | json}}</b>
+  <br>
+  <p>by User unknown</p>
+</div>
