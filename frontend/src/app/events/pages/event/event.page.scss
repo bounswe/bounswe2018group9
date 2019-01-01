@@ -170,11 +170,17 @@ ion-label
   color: #797979;
 }
 
+.comment .user{
+  text-align: center;
+}
+
 .comment .user img{
-  width: 60%;
+  width: 60px;
+  height: 60px;
   margin: 4px 20%;
   border-radius: 100%;
   border: 2px solid var(--ion-color-dark);
+  object-fit: cover;
 }
 /* */
 
@@ -209,6 +215,10 @@ ion-textarea{
     --height : 100px;
     --width: 100px;
     font-weight: bold;
+  }
+  .comment .user img{
+    width: 80px;
+    height: 80px;
   }
 }
 @media screen and (min-width: 960px){
@@ -322,5 +332,10 @@ ion-textarea{
 
   .ticket-container ion-button{
     font-size: 1em;
+  }
+
+  .comment .user img{
+    width: 100px;
+    height: 100px;
   }
 }
