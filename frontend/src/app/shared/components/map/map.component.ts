@@ -2,9 +2,14 @@ import { Inject, Component, OnInit, AfterViewInit, Input, Output, EventEmitter, 
 
 import { Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { LatLng, AgmMarker, MapsAPILoader } from '@agm/core';
+import { LatLng, LatLngBounds, AgmMarker, MapsAPILoader } from '@agm/core';
 
 import { Location as Loc } from '../../../interfaces';
+
+export interface ILatLng {
+  lat: number;
+  lng: number;
+};
 
 @Component({
   selector: 'app-map',
@@ -27,6 +32,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   @Output('onSelectMarker') onSelectMarker = new EventEmitter<number>();
   @Output('onSelectLocation') onSelectLocation = new EventEmitter<Loc>();
+  @Output('onBoundaryChange') onBoundaryChange = new EventEmitter<{ leftBottom: ILatLng, rightTop: ILatLng }>();
 
   @ViewChild('search', { read: ElementRef }) search: ElementRef;
   @ViewChild('select') select: AgmMarker;
@@ -116,6 +122,18 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   onMapClick(event) {
     this.setPosition(event.coords);
+  }
+
+  onMapChange(bounds: LatLngBounds) {
+    let leftBottom = {
+      lat: bounds.getSouthWest().lat(),
+      lng: bounds.getSouthWest().lng()
+    };
+    let rightTop = {
+      lat: bounds.getNorthEast().lat(),
+      lng: bounds.getNorthEast().lng()
+    };
+    this.onBoundaryChange.emit({ leftBottom: leftBottom, rightTop: rightTop });
   }
 
   onMarkerClick(marker) {

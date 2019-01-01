@@ -4,7 +4,7 @@
       <!--<input #search autocomplete="off" autocorrect="off" spellcheck="off" type="text">-->
     </ion-searchbar>
   </div>
-  <agm-map [latitude]="options?.center?.lat" [longitude]="options?.center?.lng" [zoom]="options?.zoom" (mapClick)="onMapClick($event)">
+  <agm-map [latitude]="options?.center?.lat" [longitude]="options?.center?.lng" [zoom]="options?.zoom" (mapClick)="onMapClick($event)" (boundsChange)="onBoundsChange($event)">
     <agm-marker #select *ngIf="options?.select" [latitude]="position.coords.lat" [longitude]="position.coords.lng" [markerDraggable]="true" (dragEnd)="onSelectDrag($event)">
       <agm-info-window>
         {{ position.address }}
