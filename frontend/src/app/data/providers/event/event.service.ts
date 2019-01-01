@@ -30,6 +30,7 @@ export class EventService extends DataService<Event> {
 
   cacheEvents(events: Array<Event>){
     events.forEach(event => this.cachedEvents.push(event));
+    console.log('events', this.cachedEvents);
   }
 
   getCachedEvent(event_id): Event | null{
