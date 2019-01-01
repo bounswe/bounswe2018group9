@@ -40,12 +40,9 @@ export class AnnotationDirective implements OnInit{
   ngOnInit(){
     // console.log(this.el);
     this.rnd.setStyle(this.el.nativeElement,"border-bottom", "2px solid teal");
-    this.icon = this.rnd.createElement('ion-icon');
-    this.rnd.setAttribute(this.icon,'name','create');
-    this.rnd.insertBefore(this.rnd.parentNode(this.el.nativeElement),this.icon,this.rnd.nextSibling(this.el.nativeElement));
     setTimeout(()=>{
       this.loaded = true;
-    },2000);
+    },3000);
   }
 
   async presentModal(ev: any) {
