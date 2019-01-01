@@ -52,7 +52,7 @@ export class AnnotatedBodyComponent implements OnInit {
       console.log(this.end);
       console.log(this.selectedText);
     }else{
-      alert('Please select empty parts or click an annotation to update it');
+      alert('Please select empty parts.');
     }
 
     }

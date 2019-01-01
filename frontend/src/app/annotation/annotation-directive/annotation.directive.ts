@@ -14,19 +14,23 @@ import {ModalController, PopoverController} from '@ionic/angular';
 export class AnnotationDirective implements OnInit{
   icon : ElementRef;
   @Input('annotate') annotations;
-  @HostListener('select',['$event']) select(event : Event){
-    console.log(event);
-  }
+  loaded : boolean;
 
   @HostListener('click',['$event']) click(event : Event){
-    this.presentModal(event);
+    if(this.loaded){
+      this.presentModal(event);
+    }
   }
 
   @HostListener('mouseenter',['$event']) mouseLeave(event : Event){
-    this.rnd.setStyle(this.el.nativeElement,"border-bottom","2px solid red");
+    if(this.loaded){
+      this.rnd.setStyle(this.el.nativeElement,"border-bottom","2px solid red");
+    }
   }
   @HostListener('mouseleave',['$event']) mouseEnter(event : Event){
-    this.rnd.setStyle(this.el.nativeElement,"border-bottom","2px solid teal");
+    if(this.loaded){
+      this.rnd.setStyle(this.el.nativeElement,"border-bottom","2px solid teal");
+    }
   }
 
   constructor(private el : ElementRef,
@@ -39,7 +43,9 @@ export class AnnotationDirective implements OnInit{
     this.icon = this.rnd.createElement('ion-icon');
     this.rnd.setAttribute(this.icon,'name','create');
     this.rnd.insertBefore(this.rnd.parentNode(this.el.nativeElement),this.icon,this.rnd.nextSibling(this.el.nativeElement));
-
+    setTimeout(()=>{
+      this.loaded = true;
+    },2000);
   }
 
   async presentModal(ev: any) {
