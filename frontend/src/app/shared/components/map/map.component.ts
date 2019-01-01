@@ -96,7 +96,6 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.position.address = 'Loading...';
 
       this.mapsAPILoader.load().then(() => {
-        alert(google.maps);
         let geocoder = new google.maps.Geocoder();
         geocoder.geocode({ location: coords }, (results, status) => {
           if (status == google.maps.GeocoderStatus.OK) {

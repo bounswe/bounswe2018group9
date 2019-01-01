@@ -22,7 +22,7 @@ import { MapComponent } from './components/map/map.component';
     FormsModule,
     AgmCoreModule.forRoot({
       apiKey: environment.googleApiKey,
-      libraries: [ 'places', 'geocoder' ]
+      libraries: [ 'places' ]
     })
   ],
   declarations: [
