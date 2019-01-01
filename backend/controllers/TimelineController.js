@@ -4,6 +4,24 @@ const User = require("../models/User");
 
 const _ = require('lodash');
 
+function getWillAttendEvents(req,res,next) {
+    
+    let userId = req.params.id;
+
+    User.findById(userId)
+        .exec()
+        .then((user) => {
+            res.status(200);
+            res.send({
+                willAttendEvents: user.willAttendEvents
+            });
+        })
+        .catch(() => {
+            res.status(404);
+            res.send("You haven't attended to any events yet");
+        });
+}
+
 function getOwnEvents(req,res,next)
 {
     let skip, limit;
@@ -18,7 +36,8 @@ function getOwnEvents(req,res,next)
     if(!req.query.limit)
     {
         limit = 0;
-    } else {
+    } 
+    else {
         limit = Number.req.query.limit;
     }
 
@@ -40,24 +59,6 @@ function getOwnEvents(req,res,next)
     });
 }
 
-
-function getWillAttendEvents(req,res,next) {
-    let userId = req.params.id;
-
-    User.findById(userId)
-        .exec()
-        .then((user) => {
-            res.status(200);
-            res.send({
-                willAttendEvents: user.willAttendEvents
-            });
-        })
-        .catch(() => {
-            res.status(404);
-            res.send("You haven't attended to any events yet");
-        });
-}
-
 function getWillNotAttendEvents(req,res,next) {
     let userId = req.params.id;
 
@@ -75,8 +76,26 @@ function getWillNotAttendEvents(req,res,next) {
         });
 }
 
+function getMayAttendEvents(req,res,next) {
+    let userId = req.params.id;
+
+    User.findById(userId)
+        .exec()
+        .then((user) => {
+            res.status(200);
+            res.send({
+                mayAttendEvents: user.mayAttendEvents
+            });
+        })
+        .catch(() => {
+            res.status(404);
+            res.send("There is no event that you may be attending.");
+        });
+}
+
 module.exports = {
     getOwnEvents,
     getWillAttendEvents,
-    getWillNotAttendEvents
+    getWillNotAttendEvents,
+    getMayAttendEvents
 };
