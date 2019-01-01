@@ -65,6 +65,13 @@ ion-searchbar{
   overflow: auto;
 }
 
+/* When keyboard is open */
+@media screen and (min-height: 450px){
+  .search-results{
+    min-height: 240px;
+  }
+}
+
 /* width */
 .search-results::-webkit-scrollbar {
   width: 12px;
