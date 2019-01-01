@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../../interfaces';
 import {AuthService} from '../../../auth/providers/auth/auth.service';
+import {UploadService} from "../../../data/providers/upload/upload.service";
 
 @Component({
   selector: 'app-profile',
@@ -20,13 +21,19 @@ export class ProfilePage implements OnInit {
   private sub : any;
   user: User | null;
   userId : string | null;
-  constructor(private auth : AuthService, private router : Router,
-              private route: ActivatedRoute) { }
+  avatarImageURL: string;
+  constructor(private auth : AuthService,
+              private router : Router,
+              private route: ActivatedRoute,
+              private uploadService:UploadService) { }
 
   ngOnInit() {
     this.userId = this.getUserId();
     this.sub = this.auth.getUserData(this.userId).subscribe((res : User)=>{
       this.user = res;
+      if(this.user.images && this.user.images.avatar){
+        this.avatarImageURL = this.uploadService.getUrl(this.user.images.avatar);
+      }
       this.gotUserData = true;
     },(err)=>{
       console.log(err);

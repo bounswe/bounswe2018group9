@@ -1,9 +1,11 @@
 import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
-import {User} from '../../../interfaces';
+import {Media, User} from '../../../interfaces';
 import {AuthService} from '../../../auth/providers/auth/auth.service';
 import {Datetime} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MediaService} from "../../../native/providers/media/media.service";
+import {UploadService} from "../../../data/providers/upload/upload.service";
 
 @Component({
   selector: 'profile-settings',
@@ -37,12 +39,18 @@ export class SettingsPage implements OnInit {
     ,'Turkish Folk Music'
     ,'Concert'
   ];
+  profileImage: {avatar?: string; cover?: string;};
+  media = [];
   interestsSelected : string[];
   user: User | null;
   private sub : any;
   userId : string | null = null;
-  constructor(private authController: AuthService, private router:
-  Router, private formBuilder : FormBuilder, private ref: ChangeDetectorRef) {
+  constructor(private authController: AuthService,
+              private router: Router,
+              private formBuilder : FormBuilder,
+              private ref: ChangeDetectorRef,
+              private mediaService: MediaService,
+              private uploadService: UploadService) {
     this.form = this.formBuilder.group(
       {
         name: ['', [Validators.required]],
@@ -68,6 +76,13 @@ export class SettingsPage implements OnInit {
       this.displayBirth = this.user.details.birth;
       this.interestsSelected = this.user.interests;
       this.gotUserData = true;
+      this.profileImage = this.user.images === undefined ? {avatar: '', cover: ''} : this.user.images;
+      if(this.profileImage.avatar){
+        this.media.push({source: this.profileImage.avatar, type: 0})
+      }
+      if(this.profileImage.cover){
+        this.media.push({source: this.profileImage.cover, type: 0});
+      }
       this.ref.detectChanges();
     },(err)=>{
       console.log(err);
@@ -84,7 +99,6 @@ export class SettingsPage implements OnInit {
     header: 'Select your interests',
   };
 
-  a
   getUserId() : string {
     if(this.authController.isAuthenticated()){
       return this.authController.getUserId();
@@ -104,9 +118,10 @@ export class SettingsPage implements OnInit {
       },
       followers: this.user.followers,
       following: this.user.following,
-      interests: this.interestsSelected
+      interests: this.interestsSelected,
+      images: this.profileImage
     };
-    console.log(this.userId + ': ' + JSON.stringify(newUser));
+    console.log(this.userId, newUser);
 
     this.authController.updateUser(this.user._id, newUser).subscribe((res)=>{
        alert('Saved');
@@ -124,5 +139,44 @@ export class SettingsPage implements OnInit {
   }
   updateInterestsLocally(newSelectedInterests: string[]){
     this.interestsSelected = newSelectedInterests;
+  }
+
+  /**
+   * Controls interaction with the media component
+   * @param {number }} event
+   */
+  async onEvent(event: { key: string, slide: number }) {
+    if (event.key == 'add') {
+      let media = await this.mediaService.get({ file: true })
+        .catch(error => {});
+
+      if (media) {
+        // add media
+        this.media = [ ...this.media.slice(0, event.slide),
+          ...media,
+          ...this.media.slice(event.slide, this.media.length) ];
+
+        // upload files
+        media.forEach(media => {
+          this.uploadService.upload(media.file)
+            .response.subscribe(result => {
+              media.source = result.body.file;
+              if(event.slide === 0){
+                this.profileImage.avatar = result.body.file;
+              } else if(event.slide === 1){
+                this.profileImage.cover = result.body.file;
+              }
+              console.log(this.media);
+          }, error => {
+            // TODO: Handle upload error
+            console.log(error);
+          });
+        })
+      }
+    } else if (event.key == 'remove') {
+      // remove media
+      this.media = [ ...this.media.slice(0, event.slide),
+        ...this.media.slice(event.slide + 1, this.media.length) ];
+    }
   }
 }
