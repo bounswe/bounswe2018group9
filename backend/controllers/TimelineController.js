@@ -40,6 +40,25 @@ function getOwnEvents(req,res,next)
     });
 }
 
+
+function getWillAttendEvents(req,res,next) {
+    let userId = req.params.id;
+
+    User.findById(userId)
+        .exec()
+        .then((user) => {
+            res.status(200);
+            res.send({
+                willAttendEvents: user.willAttendEvents
+            });
+        })
+        .catch(() => {
+            res.status(404);
+            res.send("You haven't attended to any events yet");
+        });
+}
+
 module.exports = {
-    getOwnEvents
+    getOwnEvents,
+    getWillAttendEvents
 };
