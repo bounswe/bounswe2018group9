@@ -62,9 +62,25 @@
 }
 
 .comment .user img{
-  width: 60%;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
   margin: 4px 20%;
   border-radius: 100%;
   border: 2px solid var(--ion-color-dark);
 }
 /* */
+
+@media screen and (min-width: 600px) {
+  .comment .user img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .comment .user img {
+    width: 100px;
+    height: 100px;
+  }
+}
