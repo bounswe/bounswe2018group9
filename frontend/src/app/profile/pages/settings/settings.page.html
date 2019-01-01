@@ -1,10 +1,5 @@
 <ion-header>
   <app-toolbar [backButton]="true" [href]="'/feed'"></app-toolbar>
-  <!--
-  <ion-toolbar>
-    <ion-button color= "light" slot="start" shape ="round" routerLink="/profile">Go to profile</ion-button>
-    <ion-title>Settings</ion-title>
-  </ion-toolbar>-->
 </ion-header>
 
 <ion-content *ngIf="!gotUserData">
@@ -12,44 +7,55 @@
 </ion-content>
 
 <ion-content *ngIf="gotUserData" padding>
-  <form [formGroup]="form" (ngSubmit)="save()" (keyup.enter)="form.valid && save()">
-    <ion-list>
-      <ion-item>
-        <ion-label position="stacked"><b>Name</b></ion-label>
-        <ion-input type="text" placeholder="Name" formControlName="name"> </ion-input>
-      </ion-item>
-      <ion-label text-wrap class="notify" *ngIf="this.form.get('name').dirty && !this.form.get('name').valid">Your name should consist of only alphabet characters.</ion-label>
-      <ion-item>
-        <ion-label position="stacked"><b>Email</b></ion-label>
-        <ion-input type="email" placeholder="Email" formControlName="email" ></ion-input>
-      </ion-item>
-      <ion-label text-wrap class="notify" *ngIf="this.form.get('email').dirty && !this.form.get('email').valid">Your e-mail should include a name, @ sign, and a domain afterwards.</ion-label>
-      <ion-item>
-        <ion-label position="stacked"><b>Nationality</b></ion-label>
-        <ion-input type="text" placeholder="Nationality" formControlName="nationality" ></ion-input>
-      </ion-item>
-      <ion-label text-wrap class="notify" *ngIf="this.form.get('nationality').dirty && !this.form.get('nationality').valid">Your nationality should consist of only alphabet characters.</ion-label>
-      <ion-item>
-        <ion-label position="stacked"><b>City</b></ion-label>
-        <ion-input type="text" placeholder="City" formControlName="city"  ></ion-input>
-      </ion-item>
-      <ion-label text-wrap class="notify" *ngIf="this.form.get('city').dirty && !this.form.get('city').valid">Your city should consist of only alphabet characters.</ion-label>
-      <ion-item>
-        <ion-label  position="stacked" ><b>Birthday</b></ion-label>
-        <ion-datetime [(ngModel)]="displayBirth" [ngModelOptions]="{standalone: true}" display-format="DD-MM-YYYY" ></ion-datetime>
-      </ion-item>
-    </ion-list>
-    <ion-button type="submit" [disabled]="!form.valid" expand="block">Save</ion-button>
-  </form>
-
-
-     <ion-label>Privacy Options</ion-label>
-     <ion-select [interfaceOptions]="customPopoverOptionsPrivacy" interface="popover" placeholder="Select who can see your events">
-       <ion-select-option value="0">Allow friends</ion-select-option>
-       <ion-select-option value="1">Allow everyone</ion-select-option>
-     </ion-select>
-       <ion-label>Your Interests:</ion-label>
-       <ion-select #select (ionChange)="updateInterestsLocally(select.value)" [interfaceOptions]="customPopoverOptionsInterests" multiple="true">
-         <ion-select-option *ngFor="let interest of interests" [selected]="isSelected(interest)" [value]="interest">{{interest}}</ion-select-option>
-       </ion-select>
+  <ion-grid>
+    <ion-row justify-content-center no-padding>
+      <ion-col size-xs="12" size-md="8" size-lg="6">
+        <form class="settings-form" [formGroup]="form" (ngSubmit)="save()" (keyup.enter)="form.valid && save()">
+          <h1>Settings</h1>
+          <ion-list>
+            <ion-item>
+              <ion-label position="stacked"><b>Name</b></ion-label>
+              <ion-input type="text" placeholder="Name" formControlName="name"> </ion-input>
+            </ion-item>
+            <ion-label text-wrap class="notify" *ngIf="this.form.get('name').dirty && !this.form.get('name').valid">Your name should consist of only alphabet characters.</ion-label>
+            <ion-item>
+              <ion-label position="stacked"><b>Email</b></ion-label>
+              <ion-input type="email" placeholder="Email" formControlName="email" ></ion-input>
+            </ion-item>
+            <ion-label text-wrap class="notify" *ngIf="this.form.get('email').dirty && !this.form.get('email').valid">Your e-mail should include a name, @ sign, and a domain afterwards.</ion-label>
+            <ion-item>
+              <ion-label position="stacked"><b>Nationality</b></ion-label>
+              <ion-input type="text" placeholder="Nationality" formControlName="nationality" ></ion-input>
+            </ion-item>
+            <ion-label text-wrap class="notify" *ngIf="this.form.get('nationality').dirty && !this.form.get('nationality').valid">Your nationality should consist of only alphabet characters.</ion-label>
+            <ion-item>
+              <ion-label position="stacked"><b>City</b></ion-label>
+              <ion-input type="text" placeholder="City" formControlName="city"  ></ion-input>
+            </ion-item>
+            <ion-label text-wrap class="notify" *ngIf="this.form.get('city').dirty && !this.form.get('city').valid">Your city should consist of only alphabet characters.</ion-label>
+            <ion-item>
+              <ion-label  position="stacked" ><b>Birthday</b></ion-label>
+              <ion-datetime [(ngModel)]="displayBirth" [ngModelOptions]="{standalone: true}" display-format="DD-MM-YYYY" ></ion-datetime>
+            </ion-item>
+          </ion-list>
+          <ion-button type="submit" [disabled]="!form.valid" expand="block">Save</ion-button>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center no-padding>
+      <ion-col size-xs="12" size-md="8" size-lg="6">
+        <div class="privacy-container">
+          <ion-label>Privacy Options</ion-label>
+          <ion-select [interfaceOptions]="customPopoverOptionsPrivacy" interface="popover" placeholder="Select who can see your events">
+            <ion-select-option value="0">Allow friends</ion-select-option>
+            <ion-select-option value="1">Allow everyone</ion-select-option>
+          </ion-select>
+          <ion-label>Your Interests:</ion-label>
+          <ion-select #select (ionChange)="updateInterestsLocally(select.value)" [interfaceOptions]="customPopoverOptionsInterests" multiple="true">
+            <ion-select-option *ngFor="let interest of interests" [selected]="isSelected(interest)" [value]="interest">{{interest}}</ion-select-option>
+          </ion-select>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
