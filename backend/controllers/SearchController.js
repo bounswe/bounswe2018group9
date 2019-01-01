@@ -31,10 +31,23 @@ function search(req,res,next) {
 function locationSearch(req,res,next) {
     const latLower = req.query.latLower;
     const latHigher = req.query.latHigher;
-    const longHigher = req.query.longLower;
-    const longLower = req.query.longLower;
+    const lngHigher = req.query.lngLower;
+    const lngLower = req.query.lngLower;
 
-    Event.find({ location: { coordinates: { lat: { $gte: latLower, $lte: latHigher}, long:{ $gte: longLower, $lte: longHigher}}}})
+    Event.find({ 
+        location: { 
+            coordinates: { 
+                lat: { 
+                    $gte: latLower, 
+                    $lte: latHigher
+                }, 
+                lng:{ 
+                    $gte: lngLower, 
+                    $lte: lngHigher
+                }
+            }
+        }
+        })
         .exec()
         .then((events) => {
             res.status(200);
@@ -59,8 +72,8 @@ function advancedSearch(req,res,next){
     // Location
     const latLower = req.query.latLower;
     const latHigher = req.query.latHigher;
-    const longHigher = req.query.longLower;
-    const longLower = req.query.longLower;
+    const lngHigher = req.query.lngLower;
+    const lngLower = req.query.lngLower;
 
     // Time
     const beforeThan = req.query.beforeThan;
@@ -71,17 +84,20 @@ function advancedSearch(req,res,next){
     const highPrice = req.query.highPrice;
     const currency = req.query.currency;
 
+    // Tags
+    const tags = req.query.tags.split(',');
+
     // Construct the search params object
-    if (latLower && latHigher && longHigher && longLower){
+    if (latLower && latHigher && lngHigher && lngLower){
         searchParams.location = { 
             coordinates: { 
                 lat: { 
                     $gte: latLower, 
                     $lte: latHigher
                 }, 
-                long:{ 
-                    $gte: longLower, 
-                    $lte: longHigher
+                lng:{ 
+                    $gte: lngLower, 
+                    $lte: lngHigher
                 }
             }
         };
@@ -107,8 +123,17 @@ function advancedSearch(req,res,next){
         };
     }
 
+    // Tag Search
+    if (tags) {
+        searchParams.tags = {
+            $in: tags
+        }
+    }
+
     // Finally get the events 
     Event.find(searchParams)
+        .populate('creator')
+        .populate('attendance.user')
         .exec()
         .then((events) => {
             res.status(200);
