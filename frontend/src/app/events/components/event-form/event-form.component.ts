@@ -52,9 +52,7 @@ export class EventFormComponent implements OnInit {
         length: ['', Validators.required],
         unit: ['', Validators.required]
       }),
-      location: this.formBuilder.group({
-        name: ['', Validators.required]
-      }),
+      location: [null , Validators.required],
       isFree: [true, Validators.required],
       price: this.formBuilder.group({
         amount: [0],
@@ -196,5 +194,13 @@ export class EventFormComponent implements OnInit {
       this.media = [ ...this.media.slice(0, event.slide),
         ...this.media.slice(event.slide + 1, this.media.length) ];
     }
+  }
+
+  /**
+   * Listens the location selection in map component and changes the value of the form
+   * @param {Location} location location selected within the map
+   */
+  async onSelectLocation(location: Location) {
+    this.form.get('location').setValue(location);
   }
 }
