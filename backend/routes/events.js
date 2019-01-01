@@ -8,7 +8,7 @@ router.get('/', EventController.getAllEvents);
 
 router.post('/', EventController.addEvent);
 
-//Media endpoints
+// Media endpoints
 router.post('/:id/media', EventController.addMedia);
 router.get('/:id/media', EventController.getMedia);
 router.put('/:id/media/:mediaId', EventController.updateMedia);
