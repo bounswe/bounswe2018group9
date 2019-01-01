@@ -120,29 +120,30 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
         fragment => {
           if (fragment && fragment === 'comments') {
             this.content.scrollToBottom();
-            console.  log(this.content);
+            console.log(this.content);
           }
         });
 
     this.dateRef.changes.subscribe((comps: QueryList<ElementRef>) =>
     {
       if(comps.first && comps.first.nativeElement){
-        console.log('Loaded xpath of date');
         this.xpaths['date'] = this.getElementTreeXPath(comps.first.nativeElement);
       }
     });
     this.priceRef.changes.subscribe((comps: QueryList<ElementRef>) =>
     {
       if(comps.first && comps.first.nativeElement){
-        console.log('Loaded xpath of price');
-        this.xpaths['price'] = this.getElementTreeXPath(comps.first.nativeElement);
+        this.xpaths['priceOne'] = this.getElementTreeXPath(comps.first.nativeElement);
       }
+      if(comps.last && comps.last.nativeElement){
+        this.xpaths['priceTwo'] = this.getElementTreeXPath(comps.first.nativeElement);
+      }
+
 
     });
     this.organizerRef.changes.subscribe((comps: QueryList<ElementRef>) =>
     {
       if(comps.first && comps.first.nativeElement){
-        console.log('Loaded xpath of organizer');
         this.xpaths['organizer'] = this.getElementTreeXPath(comps.first.nativeElement);
       }
 
@@ -150,7 +151,6 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
     this.artistRef.changes.subscribe((comps: QueryList<ElementRef>) =>
     {
       if(comps.first && comps.first.nativeElement){
-        console.log('Loaded xpath of artist');
         this.xpaths['artist'] = this.getElementTreeXPath(comps.first.nativeElement);
       }
 
@@ -158,7 +158,6 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
     this.durationRef.changes.subscribe((comps: QueryList<ElementRef>) =>
     {
       if(comps.first && comps.first.nativeElement){
-        console.log('Loaded xpath of duration');
         this.xpaths['duration'] = this.getElementTreeXPath(comps.first.nativeElement);
       }
 
@@ -166,7 +165,6 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
     this.locationRef.changes.subscribe((comps: QueryList<ElementRef>) =>
     {
       if(comps.first && comps.first.nativeElement){
-        console.log('Loaded xpath of location');
         this.xpaths['location'] = this.getElementTreeXPath(comps.first.nativeElement);
       }
 
@@ -174,7 +172,6 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
     this.descriptionRef.changes.subscribe((comps: QueryList<ElementRef>) =>
     {
       if(comps.first && comps.first.nativeElement){
-        console.log('Loaded xpath of desc');
         this.xpaths['description'] = this.getElementTreeXPath(comps.first.nativeElement);
       }
 
@@ -182,7 +179,6 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
     this.tagRef.changes.subscribe((comps: QueryList<ElementRef>) =>
     {
       if(comps.first && comps.first.nativeElement){
-        console.log('Loaded xpath of tag');
         this.xpaths['tag'] = this.getElementTreeXPath(comps.first.nativeElement);
       }
     });
@@ -292,7 +288,7 @@ addAnnotations(){
               case this.xpaths['date']:
                 this.dateAnnotations.push(annot);
                 break;
-              case this.xpaths['price']:
+              case this.xpaths['priceOne'] || this.xpaths['priceTwo']:
                 this.priceAnnotations.push(annot);
                 break;
               case this.xpaths['organizer']:
@@ -304,7 +300,7 @@ addAnnotations(){
               case this.xpaths['location']:
                 this.locationAnnotations.push(annot);
                 break;
-              case this.xpaths['duraton']:
+              case this.xpaths['duration']:
                 this.durationAnnotations.push(annot);
                 break;
               case this.xpaths['description']:
