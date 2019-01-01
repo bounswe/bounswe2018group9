@@ -2,45 +2,46 @@
     <app-toolbar></app-toolbar>
 </ion-header>
 <ion-content *ngIf="user">
-  <ion-card>
   <ion-grid>
     <ion-row>
       <ion-col size-xs="12" offset-md="3" size-md="6">
-        <div *ngIf="gotUserData" class="profile-container">
+        <ion-card>
+          <div *ngIf="gotUserData" class="profile-container">
 
-          <div class="top-container">
-            <div class="image-container">
-              <img src="../../../../assets/profile.jpg" alt="{{user.name}}">
+            <div class="top-container">
+              <div class="image-container">
+                <img src="../../../../assets/profile.jpg" alt="{{user.name}}">
+              </div>
+              <h1>{{user.name}}</h1>
+              <div class="detail">
+                <b>{{user.details.nationality}}</b>, born at <b>{{user.details.birth}}</b>, from <b>{{user.details.city}}</b>
+              </div>
+              <div *ngIf="user.interests && user.interests.length > 0" class="interest-detail">
+                <span *ngFor="let i of user.interests">{{i}}</span>
+              </div>
             </div>
-            <h1>{{user.name}}</h1>
-            <div class="detail">
-              <b>{{user.details.nationality}}</b>, born at <b>{{user.details.birth}}</b>, from <b>{{user.details.city}}</b>
-            </div>
-            <div *ngIf="user.interests && user.interests.length > 0" class="interest-detail">
-              <span *ngFor="let i of user.interests">{{i}}</span>
+            <div class="tabs-container clearfix">
+              <div class="tab">
+                <a routerLink="timeline">
+                  <ion-icon name="calendar"></ion-icon>
+                  Timeline
+                </a>
+              </div>
+              <div class="tab">
+                <a routerLink="settings">
+                  <ion-icon name="settings"></ion-icon>
+                  Settings
+                </a>
+              </div>
+              <div class="tab">
+                <a [routerLink]="['public', userId]">
+                  <ion-icon name="contacts"></ion-icon>
+                  Public Page
+                </a>
+              </div>
             </div>
           </div>
-          <div class="tabs-container clearfix">
-            <div class="tab">
-              <a routerLink="settings">
-                <ion-icon name="settings"></ion-icon>
-                Settings
-              </a>
-            </div>
-            <div class="tab">
-              <a routerLink="timeline">
-                <ion-icon name="calendar"></ion-icon>
-                Timeline
-              </a>
-            </div>
-            <div class="tab">
-              <a [routerLink]="['public', userId]">
-                <ion-icon name="contacts"></ion-icon>
-                Public Page
-              </a>
-            </div>
-          </div>
-        </div>
+        </ion-card>
         <div class="child-container">
           <router-outlet></router-outlet>
         </div>
@@ -48,6 +49,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  </ion-card>
+
 </ion-content>
 
