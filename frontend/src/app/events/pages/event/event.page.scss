@@ -91,6 +91,7 @@ ion-label
 }
 
 .ticket-container ion-button{
+  font-size: 0.8em;
 }
 .ticket-container p{
   text-align: center;
@@ -257,7 +258,7 @@ ion-textarea{
   }
 
   .ticket-container ion-button{
-    width: 30%;
+    font-weight: bold;
   }
 
   .event-wrapper{
@@ -317,5 +318,9 @@ ion-textarea{
     bottom: 24px;
     left: 24px;
     font-size: 1.2em;
+  }
+
+  .ticket-container ion-button{
+    font-size: 1em;
   }
 }

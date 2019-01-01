@@ -141,10 +141,10 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
       );
   }
 
-  attendEvent(){
+  attendEvent(attendanceType){
     let attendance: Attendance = {
       user: this.user,
-      attendanceType: 1
+      attendanceType: attendanceType
     };
     console.log(attendance);
 
