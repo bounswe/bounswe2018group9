@@ -109,23 +109,6 @@
                 </ion-grid>
               </ion-item-group>
 
-              <ion-item formGroupName="location">
-                <ion-label position="stacked">
-                  Where it will happen
-                  <span class="input-required">
-                  *
-                </span>
-                  <span class="input-error" *ngIf="this.form.get('location').get('name').dirty && !this.form.get('location').get('name').valid">
-                  (you should specify location name)
-                </span>
-                </ion-label>
-                <ion-input
-                  type="text"
-                  formControlName="name"
-                  class="form-input">
-                </ion-input>
-              </ion-item>
-
               <ion-item-group>
                 <ion-item>
                   <ion-label>
@@ -238,16 +221,15 @@
                   </ion-grid>
                 </ion-item>
               </ion-item-group>
+              <div class="map-container">
+                <app-map (onSelectLocation)="onSelectLocation($event)"></app-map>
+              </div>
               <ion-button expand="block" type="submit" [disabled]="!form.valid">
                 <ion-icon name="share"></ion-icon>
                 {{submitButtonText}}
               </ion-button>
             </ion-list>
-
           </form>
-          <div class="map-container">
-            <app-map></app-map>
-          </div>
         </ion-card>
       </ion-col>
       <ion-col size-xs="12" size-md="6">
