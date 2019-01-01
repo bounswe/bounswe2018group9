@@ -9,6 +9,7 @@ import {PublicPage} from './pages/public/public.page';
 const routes: Routes = [
   { path: '', component: ProfilePage,
     children: [
+      { path: '', redirectTo: 'timeline'},
       { path: 'timeline', component: TimelinePage },
       { path: 'settings', component: SettingsPage }
       ]},
