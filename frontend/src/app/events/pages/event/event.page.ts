@@ -29,7 +29,6 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
   currentUser: User;
   event_id: string;
   commentsSec = false;
-
   dateAnnotations : HighlightTag[] = [];
   priceAnnotations : HighlightTag[]=[];
   organizerAnnotations : HighlightTag[]=[];
@@ -321,7 +320,6 @@ addAnnotations(){
       }
     }
   });
-
 }
 getElementTreeXPath(element) {
   let paths = [];

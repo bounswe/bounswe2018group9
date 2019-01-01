@@ -1,4 +1,6 @@
-<b>Annotation:</b>
+<div class="yellowishBackColor" padding>
+<ion-label color="primary">Annotation:</ion-label>
+  <hr size="5">
 <div *ngIf="annotationClicked && annotationClicked.data.user">
   <b>{{ annotationClicked.data.value | json}}</b>
 <br>
@@ -11,5 +13,6 @@
 <div *ngIf="annotationClicked && !annotationClicked.data.user">
   <b>{{ annotationClicked.data.value | json}}</b>
   <br>
-  <p>by User unknown</p>
+  <p>by Anonymous</p>
+</div>
 </div>
