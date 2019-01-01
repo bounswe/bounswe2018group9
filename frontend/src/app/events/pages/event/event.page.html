@@ -15,8 +15,8 @@
       <ion-col no-padding>
 
         <div class="event-wrapper" *ngIf="event; let e">
-          <div class="event-bg">
-            <img src="{{e.media[0]}}" alt="{{e.name}}">
+          <div class="event-bg" *ngIf="e.media && e.media.length > 0">
+            <img src="{{uploadService.getUrl(e.media[0].source)}}" alt="{{e.name}}">
           </div>
           <div class="event-container">
             <div class="upper-container">

@@ -36,7 +36,7 @@ export class EventService extends DataService<Event> {
   getCachedEvent(event_id): Event | null{
     for(let i=0; i<this.cachedEvents.length; i++){
       let e = this.cachedEvents[i];
-      if(e._id = event_id) return e;
+      if(e._id === event_id) return e;
     }
     return null;
   }
