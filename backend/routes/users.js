@@ -4,6 +4,7 @@ var router = express.Router();
 //Import Controllers
 var UserController = require('../controllers/UserController');
 var TimelineController = require('../controllers/TimelineController');
+const AttendanceController = require('../controllers/utils/AttendanceController');
 
 //Import Models
 var User = require('../models/User');
@@ -39,6 +40,11 @@ router.get('/:id/mayAttendEvents', TimelineController.getMayAttendEvents);
 // User with the id follows someone.
 router.post('/:id/follow', UserController.follow);
 router.post('/:id/unfollow', UserController.unfollow);
+
+// Attendance Endpoints
+router.post('/:id/willAttend', AttendanceController.willAttend);
+router.post('/:id/willNotAttend', AttendanceController.willNotAttend);
+router.post('/:id/mayAttend', AttendanceController.mayAttend);
 
 // User with the id is followed by someone. These endpoints will be deleted after test. 
 // And will be called inside follow and unfollow.

@@ -9,6 +9,7 @@ function getWillAttendEvents(req,res,next) {
     let userId = req.params.id;
 
     User.findById(userId)
+        .populate('willAttendEvents')
         .exec()
         .then((user) => {
             res.status(200);
@@ -63,6 +64,7 @@ function getWillNotAttendEvents(req,res,next) {
     let userId = req.params.id;
 
     User.findById(userId)
+        .populate('willNotAttendEvents')
         .exec()
         .then((user) => {
             res.status(200);
@@ -80,6 +82,7 @@ function getMayAttendEvents(req,res,next) {
     let userId = req.params.id;
 
     User.findById(userId)
+        .populate('mayAttendEvents')
         .exec()
         .then((user) => {
             res.status(200);
