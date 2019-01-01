@@ -1,106 +1,127 @@
-import { Inject, Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Inject, Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LatLng, AgmMarker, MapsAPILoader } from '@agm/core';
 
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapOptions,
-  GoogleMapsEvent,
-  GoogleMapsAnimation,
-  Marker,
-  MyLocation,
-  ILatLng,
-  Geocoder,
-  GeocoderRequest,
-  GeocoderResult,
-  Environment
-} from '@ionic-native/google-maps/ngx';
+import { Location } from '../../../interfaces';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
-  map: GoogleMap;
-  marker: Marker;
-  mapReady: boolean = false;
+export class MapComponent implements OnInit, AfterViewInit {
+  static options = {
+    center: {
+      lat: 41.085587,
+      lng: 29.044715
+    },
+    zoom: 15,
+    search: true,
+    select: true
+  };
 
-  @Output('location') location = new EventEmitter<ILatLng>();
+  @Input('options') options;
+  @Input('locations') locations: Location[];
 
-  constructor(@Inject('GOOGLE_API_KEY') private key: string, private platform: Platform) { }
+  @Output('onSelectMarker') onSelectMarker = new EventEmitter<number>();
+  @Output('onSelectLocation') onSelectLocation = new EventEmitter<Location>();
 
-  async ngOnInit() {
-    await this.platform.ready();
-    await this.load();
+  @ViewChild('search', { read: ElementRef }) search: ElementRef;
+  @ViewChild('select') select: AgmMarker;
+
+  position: Location = {
+    coords: MapComponent.options.center,
+    address: 'Lounge, BM, Kuzey Kampüs, Boğaziçi Üniversitesi'
+  };
+
+  constructor(private platform: Platform, private geolocation: Geolocation, private mapsAPILoader: MapsAPILoader) { }
+
+  ngOnInit() {
+    this.setOptions();
+
+    this.platform.ready().then(() => {
+      this.geolocation.getCurrentPosition().then((response) => {
+        this.setPosition({
+          lat: response.coords.latitude,
+          lng: response.coords.longitude
+        });
+      }).catch((error) => {
+        this.setPosition(this.options.center);
+        console.log('Geolocation error: ' + error);
+      });
+    });
   }
 
-  load() {
-    if (!this.platform.is('mobile')) {
-      Environment.setEnv({
-        'API_KEY_FOR_BROWSER_RELEASE': this.key,
-        'API_KEY_FOR_BROWSER_DEBUG': this.key
+  ngOnChanges() {
+    this.setOptions();
+  }
+
+  ngAfterViewInit() {
+    /*
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(
+        this.search.nativeElement.querySelector('.searchbar-input'),
+        { types: ['address'] }
+      );
+      autocomplete.addListener('place_changed', () => {
+         // get the place result
+        let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+        // verify result
+        if (place.geometry === undefined || place.geometry === null) {
+          return;
+        }
+
+        let coords = {
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng()
+        };
+        this.setPosition(coords, place.formatted_address);
       });
-    }
-
-    let mapOptions: GoogleMapOptions = {
-      camera: {
-         target: {
-           lat: 41.085587,
-           lng: 29.044715
-         },
-         zoom: 18,
-         tilt: 30
-       },
-       controls: {
-         myLocation: true,
-         myLocationButton: true,
-         zoom: true
-       }
-    };
-
-    this.map = GoogleMaps.create('map', mapOptions);
-    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
-      this.mapReady = true;
-
-      this.map.getMyLocation()
-        .then((location: MyLocation) => {
-          this.map.animateCamera({
-            target: location.latLng,
-            duration: 0
-          });
-
-          this.marker = this.map.addMarkerSync({
-            position: location.latLng,
-            animation: GoogleMapsAnimation.DROP
-          });
-          this.location.emit(this.marker.getPosition());
-
-          this.map.on(GoogleMapsEvent.MAP_LONG_CLICK).subscribe((data) => {
-            this.marker.setPosition(data[0]);
-            this.location.emit(this.marker.getPosition());
-
-            Geocoder.geocode({ position: this.marker.getPosition() })
-              .then((results: GeocoderResult[]) => {
-                let address: any = [
-                  results[0].subThoroughfare || "",
-                  results[0].thoroughfare || "",
-                  results[0].locality || "",
-                  results[0].adminArea || "",
-                  results[0].postalCode || "",
-                  results[0].country || ""].join(", ");
-
-                this.marker.setTitle(address);
-                this.marker.showInfoWindow();
-              })
-          });
-        })
-        .catch((error) => {
-          // TODO: Handle error
-        });
-    }).catch((error) => {
-      // TODO: Handle error
     });
+    */
+  }
+
+  private setOptions() {
+    this.options = { ...MapComponent.options, ...this.options };
+  }
+
+  private setPosition(coords, address = null) {
+    this.position.coords = coords;
+    this.options.center = this.position.coords;
+
+    if (!address) {
+      this.position.address = 'Loading...';
+
+      this.mapsAPILoader.load().then(() => {
+        alert(google.maps);
+        let geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ location: coords }, (results, status) => {
+          if (status == google.maps.GeocoderStatus.OK) {
+            let result = results[0];
+            this.position.address = result.formatted_address;
+          } else {
+            this.position.address = 'Couldn\'t geocode location';
+          }
+          this.onSelectLocation.emit(this.position);
+        });
+      });
+    } else {
+      this.onSelectLocation.emit(this.position);
+    }
+  }
+
+  onSelectDrag(event) {
+    this.setPosition(event.coords);
+  }
+
+  onMapClick(event) {
+    this.setPosition(event.coords);
+  }
+
+  onMarkerClick(marker) {
+    this.onSelectMarker.emit(parseInt(marker._id));
   }
 }
