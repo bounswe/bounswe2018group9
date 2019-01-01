@@ -6,7 +6,7 @@ const _ = require("lodash");
 
 function willAttend(req,res,next){
     let userId = req.params.id;
-    let eventId = req.params.eventId;
+    let eventId = req.body.eventId;
 
     User.findById(userId)
         .exec()
@@ -16,6 +16,7 @@ function willAttend(req,res,next){
             // Subtract the event if it is in one of the other lists.
 
             user.willAttendEvents = _.filter(user.willAttendEvents, (element) => {
+                console.log('8888', element);
                 return !element === eventId;
             });
 
@@ -28,12 +29,9 @@ function willAttend(req,res,next){
             });
 
             // Now add it to the new place
-
-            let newAttendance = {
-                eventId: mongoose.Types.ObjectId(eventId)
-            }
-
-            user.willAttendEvents.push(newAttendance);
+            let valueToAdd = mongoose.Types.ObjectId(eventId);
+            
+            user.willAttendEvents.push(valueToAdd);
             return user.save();
         })
         .then((user) => {
@@ -48,11 +46,12 @@ function willAttend(req,res,next){
 
 function mayAttend(req,res,next){
     let userId = req.params.id;
-    let eventId = req.params.eventId;
+    let eventId = req.body.eventId;
 
     User.findById(userId)
         .exec()
         .then((user) => {
+            
             
             // Subtract the event if it is in one of the other lists.
 
@@ -70,11 +69,9 @@ function mayAttend(req,res,next){
 
             // Now add it to the new place
 
-            let newAttendance = {
-                eventId: mongoose.Types.ObjectId(eventId)
-            }
+            let valueToAdd = mongoose.Types.ObjectId(eventId);
 
-            user.mayAttendEvents.push(newAttendance);
+            user.mayAttendEvents.push(valueToAdd);
             return user.save();
         })
         .then((user) => {
@@ -89,7 +86,7 @@ function mayAttend(req,res,next){
 
 function willNotAttend(req,res,next){
     let userId = req.params.id;
-    let eventId = req.params.eventId;
+    let eventId = req.body.eventId;
 
     User.findById(userId)
         .exec()
@@ -112,11 +109,9 @@ function willNotAttend(req,res,next){
 
             // Now add it to the new place
 
-            let newAttendance = {
-                eventId: mongoose.Types.ObjectId(eventId)
-            }
+            let valueToAdd = mongoose.Types.ObjectId(eventId);
 
-            user.willNotAttendEvents.push(newAttendance);
+            user.willNotAttendEvents.push(valueToAdd);
             return user.save();
         })
         .then((user) => {
