@@ -4,7 +4,7 @@ import { Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LatLng, AgmMarker, MapsAPILoader } from '@agm/core';
 
-import { Location } from '../../../interfaces';
+import { Location as Loc } from '../../../interfaces';
 
 @Component({
   selector: 'app-map',
@@ -23,15 +23,15 @@ export class MapComponent implements OnInit, AfterViewInit {
   };
 
   @Input('options') options;
-  @Input('locations') locations: Location[];
+  @Input('locations') locations: Loc[];
 
   @Output('onSelectMarker') onSelectMarker = new EventEmitter<number>();
-  @Output('onSelectLocation') onSelectLocation = new EventEmitter<Location>();
+  @Output('onSelectLocation') onSelectLocation = new EventEmitter<Loc>();
 
   @ViewChild('search', { read: ElementRef }) search: ElementRef;
   @ViewChild('select') select: AgmMarker;
 
-  position: Location = {
+  position: Loc = {
     coords: MapComponent.options.center,
     address: 'Lounge, BM, Kuzey Kampüs, Boğaziçi Üniversitesi'
   };
@@ -59,7 +59,6 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    /*
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(
         this.search.nativeElement.querySelector('.searchbar-input'),
@@ -81,7 +80,6 @@ export class MapComponent implements OnInit, AfterViewInit {
         this.setPosition(coords, place.formatted_address);
       });
     });
-    */
   }
 
   private setOptions() {
