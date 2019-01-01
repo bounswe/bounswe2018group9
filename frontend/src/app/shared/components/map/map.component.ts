@@ -1,4 +1,4 @@
-import { Inject, Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Inject, Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
@@ -16,7 +16,7 @@ export interface ILatLng {
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class MapComponent implements OnInit {
   static options = {
     center: {
       lat: 41.085587,
@@ -62,9 +62,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   ngOnChanges() {
     this.setOptions();
-  }
 
-  ngAfterViewInit() {
     if (this.options.search) {
       this.mapsAPILoader.load().then(() => {
         let autocomplete = new google.maps.places.Autocomplete(
