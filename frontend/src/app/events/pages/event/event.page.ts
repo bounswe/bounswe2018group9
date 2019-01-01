@@ -8,6 +8,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {AuthService} from "../../../auth/providers/auth/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {map} from "rxjs/operators";
+import {UploadService} from "../../../data/providers/upload/upload.service";
 
 @Component({
   selector: 'app-event',
@@ -31,7 +32,8 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
               private loadingController : LoadingController,
               private alertController : AlertController,
               private authService: AuthService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              public uploadService: UploadService) {
     this.form = this.formBuilder.group({
       body: ['', [Validators.required, Validators.minLength(10)]]
     });
