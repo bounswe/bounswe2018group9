@@ -87,9 +87,9 @@ const UserSchema = new Schema({
   
   willAttendEvents: {
     type: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-      }
+          type: Schema.Types.ObjectId,
+          ref: 'Event',
+        }
     ],
     default: []
   },
@@ -97,7 +97,7 @@ const UserSchema = new Schema({
   mayAttendEvents: {
     type: [{
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Event',
       }
     ],
     default: []
@@ -106,7 +106,7 @@ const UserSchema = new Schema({
   willNotAttendEvents: {
     type: [{
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Event',
       }
     ],
     default: []

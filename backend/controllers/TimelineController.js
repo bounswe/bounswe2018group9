@@ -19,7 +19,9 @@ function getWillAttendEvents(req,res,next) {
         })
         .catch(() => {
             res.status(404);
-            res.send("You haven't attended to any events yet");
+            res.send({
+                msg:"You haven't attended to any events yet"
+            });
         });
 }
 
@@ -48,7 +50,7 @@ function getOwnEvents(req,res,next)
     .then((result) => {
       if (!result.docs){
         res.status(404);
-        res.send('No event found with creator id: ' + userId);
+        res.send({msg: 'No event found with creator id: ' + userId});
       } else {
         res.status(200);
         res.send(result.docs);
