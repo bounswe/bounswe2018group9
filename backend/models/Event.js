@@ -138,13 +138,13 @@ var EventSchema = new Schema({
     
     location:{
         type: {
-            name:{
+            address: {
                 type: String,
                 required: true
             },
-            coordinates: {
+            coords: {
                 lat: Number,
-                long: Number
+                lng: Number
             }
         },
         required: false

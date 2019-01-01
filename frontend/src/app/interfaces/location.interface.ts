@@ -1,4 +1,7 @@
 export interface Location {
-  name: string;
-  coordinates: {lat: number, long: number};
+  address: string;
+  coords: {
+    lat: number,
+    lng: number
+  };
 }
