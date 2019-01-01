@@ -4,9 +4,9 @@
 
 <ion-content #content no-padding>
   <!-- fab placed to the bottom end -->
-  <ion-fab *ngIf="user && currentUser && user._id === currentUser._id" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/feed/{{event_id}}/edit">
-      EDIT
+  <ion-fab class="edit-fab" *ngIf="user && currentUser && user._id === currentUser._id" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button class="edit-button" routerLink="/feed/{{event_id}}/edit">
+      <ion-icon size="large" name="brush"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 

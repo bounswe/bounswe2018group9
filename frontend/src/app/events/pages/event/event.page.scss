@@ -185,9 +185,29 @@ ion-label
 ion-textarea{
   background-color: white;
 }
+
+.edit-fab{
+  bottom: 62px;
+  right: 10px;
+}
+
+.edit-button{
+  --height : 56px;
+  --width: 56px;
+}
+
 @media screen and (min-width: 600px){
   .media-container{
     height: 350px;
+  }
+  .edit-fab{
+    bottom: 60px;
+    right: 60px;
+  }
+  .edit-button{
+    --height : 100px;
+    --width: 100px;
+    font-weight: bold;
   }
 }
 @media screen and (min-width: 960px){
