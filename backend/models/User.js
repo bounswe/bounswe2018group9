@@ -11,6 +11,7 @@ const UserSchema = new Schema({
     text: true,
     required: true
   },
+  
   email: {
     type: String,
     required: true,
@@ -18,10 +19,12 @@ const UserSchema = new Schema({
       unique: true,
     },
   },
+  
   password: {
     type: String,
     required: true,
   },
+  
   images: {
     type: {
       avatar: {
@@ -34,20 +37,25 @@ const UserSchema = new Schema({
       }
     }
   },
+  
   details: {
     type: {
+      
       birth: {
         type: Date,
         required: false,
       },
+      
       nationality: {
         type: String,
         required: false,
       },
+      
       city: {
         type: String,
         required: false,
       },
+      
       bio: {
         type: String,
         required: false,
@@ -55,6 +63,7 @@ const UserSchema = new Schema({
     },
     default: {}
   },
+  
   followers: {
     type: [{
       type: Schema.Types.ObjectId,
@@ -62,6 +71,7 @@ const UserSchema = new Schema({
     }],
     default: [],
   },
+  
   following: {
     type: [{
       type: Schema.Types.ObjectId,
@@ -69,10 +79,12 @@ const UserSchema = new Schema({
     }],
     default: [],
   },
+  
   interests: {
     type: [String],
     default: [],
   },
+  
   willAttendEvents: {
     type: [{
         type: Schema.Types.ObjectId,
@@ -81,6 +93,7 @@ const UserSchema = new Schema({
     ],
     default: []
   },
+  
   mayAttendEvents: {
     type: [{
         type: Schema.Types.ObjectId,
@@ -89,6 +102,7 @@ const UserSchema = new Schema({
     ],
     default: []
   },
+  
   willNotAttendEvents: {
     type: [{
         type: Schema.Types.ObjectId,
