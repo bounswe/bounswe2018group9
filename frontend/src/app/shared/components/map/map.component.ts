@@ -126,7 +126,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.setPosition(event.coords);
   }
 
-  onMapChange(bounds: LatLngBounds) {
+  onBoundsChange(bounds: LatLngBounds) {
     let leftBottom = {
       lat: bounds.getSouthWest().lat(),
       lng: bounds.getSouthWest().lng()
