@@ -55,7 +55,8 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
               private formBuilder: FormBuilder,
               public uploadService: UploadService,
               private router : Router,
-              private annotationService : AnnotationService,) {
+              private annotationService : AnnotationService,
+              private auth : AuthService) {
     this.form = this.formBuilder.group({
       body: ['', [Validators.required, Validators.minLength(10)]]
     });
