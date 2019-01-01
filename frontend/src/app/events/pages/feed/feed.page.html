@@ -5,9 +5,9 @@
   <div *ngIf="!events">
     <ion-spinner name="bubbles"></ion-spinner>
   </div>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/feed/create">
-      <ion-icon name="add"></ion-icon>
+  <ion-fab class="edit-fab" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button class="edit-button" routerLink="/feed/create">
+      <ion-icon size="large" name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
   <div class="events-container" *ngIf="events">
