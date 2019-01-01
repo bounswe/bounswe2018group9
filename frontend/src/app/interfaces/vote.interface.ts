@@ -4,6 +4,8 @@ import { User } from './user.interface';
 export interface Vote extends Object {
   upvoteCount: number,
   downvoteCount: number,
+  positive: Array<string>,
+  negative: Array<string>,
   votes: {user: User, voteType: number} //0=downvote 1=upvote 2=not voted
 }
 

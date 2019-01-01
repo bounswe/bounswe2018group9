@@ -33,13 +33,13 @@
               <ion-col size="6" no-padding>
                 <ion-button (click)="vote($event, 1)" [disabled]="view || voted" color="success" fill="clear">
                   <ion-icon name="thumbs-up"></ion-icon>
-                  <div>{{e.vote.upvoteCount}}</div>
+                  <div>{{e.vote.positive.length}}</div>
                 </ion-button>
               </ion-col>
               <ion-col text-center size="6" no-padding>
                 <ion-button (click)="vote($event, -1)" [disabled]="view || voted" color="danger" fill="clear">
                   <ion-icon name="thumbs-down"></ion-icon>
-                  <div>{{e.vote.downvoteCount}}</div>
+                  <div>{{e.vote.negative.length}}</div>
                 </ion-button>
               </ion-col>
             </ion-row>
