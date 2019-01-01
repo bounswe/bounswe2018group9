@@ -58,7 +58,25 @@ function getWillAttendEvents(req,res,next) {
         });
 }
 
+function getWillNotAttendEvents(req,res,next) {
+    let userId = req.params.id;
+
+    User.findById(userId)
+        .exec()
+        .then((user) => {
+            res.status(200);
+            res.send({
+                willNotAttendEvents: user.willNotAttendEvents
+            });
+        })
+        .catch(() => {
+            res.status(404);
+            res.send("There is something wrong");
+        });
+}
+
 module.exports = {
     getOwnEvents,
-    getWillAttendEvents
+    getWillAttendEvents,
+    getWillNotAttendEvents
 };
