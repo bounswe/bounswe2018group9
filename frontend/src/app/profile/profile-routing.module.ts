@@ -7,12 +7,13 @@ import {PublicPage} from './pages/public/public.page';
 
 
 const routes: Routes = [
-  { path: 'timeline', component: TimelinePage },
-  { path: 'settings', component: SettingsPage },
-  { path: 'welcome', component: ProfilePage},
-  { path: 'public/:id', component: PublicPage},
-  { path: '', redirectTo: 'welcome', pathMatch: 'full'}
-];
+  { path: '', component: ProfilePage,
+    children: [
+      { path: 'timeline', component: TimelinePage },
+      { path: 'settings', component: SettingsPage }
+      ]},
+  { path: 'public/:id', component: PublicPage}
+  ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
