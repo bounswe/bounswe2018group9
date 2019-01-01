@@ -161,4 +161,4 @@ EventSchema.plugin(mongoosePaginate);
 EventSchema.plugin(voting,{ ref: 'UserSchema' });
 var Event = mongoose.model('Event', EventSchema);
 
-module.exports = Event
+module.exports = Event;
