@@ -94,9 +94,12 @@
           <div *ngIf="currentSearchResult?.events" class="results-container">
             <ion-card *ngFor="let event of currentSearchResult?.events" class="result">
               <ion-item href="{{'/feed/' + event._id}}">
-                <ion-avatar slot="start">
-                  <img [src]="event.media[0]">
+                <ion-avatar slot="start" *ngIf="event.media && event.media.length > 0; else image">
+                  <img [src]="uploadService.getUrl(event.media[0].source)">
                 </ion-avatar>
+                <ng-template  #image>
+                  <ion-icon name="image"></ion-icon>
+                </ng-template>
                 <ion-label>{{event.name}}</ion-label>
               </ion-item>
             </ion-card>
