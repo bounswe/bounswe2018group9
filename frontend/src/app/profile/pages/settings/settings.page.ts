@@ -45,10 +45,10 @@ export class SettingsPage implements OnInit {
   Router, private formBuilder : FormBuilder, private ref: ChangeDetectorRef) {
     this.form = this.formBuilder.group(
       {
-        name: ['', [Validators.required, Validators.pattern('[ a-zA-Z]*')]],
+        name: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
-        nationality: ['', [Validators.pattern('[ a-zA-Z]*')]],
-        city: ['', [Validators.pattern('[ a-zA-Z]*')]]
+        nationality: [''],
+        city: ['']
       }
     );
   }
