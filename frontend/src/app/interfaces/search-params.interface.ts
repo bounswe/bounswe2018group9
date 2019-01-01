@@ -9,4 +9,5 @@ export interface SearchParams {
   lowPrice?: string;
   highPrice?: string;
   currency?: string;
+  tags?: string[];
 }
