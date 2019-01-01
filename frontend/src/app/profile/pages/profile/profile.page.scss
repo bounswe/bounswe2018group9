@@ -1,7 +1,44 @@
+@import '../../../../theme/custom_variables';
+
 ion-label{
   font-size: 2em;
 }
 
+ion-content, .child-container{
+  margin-bottom: $menu-height;
+}
+
+.top-container{
+  background-color: var(--ion-color-primary);
+  color: white;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.image-container{
+  width: 30%;
+  margin-left: 35%;
+}
+
+.top-container h1{
+  text-align: center;
+  font-weight: bold;
+}
+
+.image-container img{
+  width: 100%;
+  border-radius: 100%;
+}
+
+.top-container .detail{
+  text-align: center;
+}
+
+.interest-detail span{
+  padding: 4px;
+  border-radius: 4px;
+  background-color: rgba(var(--ion-color-tertiary), 0.5);
+}
 .tabs-container{
   width: 100%;
 }
