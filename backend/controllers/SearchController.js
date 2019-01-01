@@ -34,15 +34,15 @@ function locationSearch(req,res,next) {
     const lngHigher = req.query.lngLower;
     const lngLower = req.query.lngLower;
 
-    Event.find({ 
-        location: { 
-            coordinates: { 
-                lat: { 
-                    $gte: latLower, 
+    Event.find({
+        location: {
+            coords: {
+                lat: {
+                    $gte: latLower,
                     $lte: latHigher
-                }, 
-                lng:{ 
-                    $gte: lngLower, 
+                },
+                lng:{
+                    $gte: lngLower,
                     $lte: lngHigher
                 }
             }
