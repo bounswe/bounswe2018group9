@@ -6,24 +6,19 @@
     <ion-row>
       <ion-col size-xs="12" offset-md="4" size-md="4">
         <div *ngIf="gotUserData" class="profile-container">
-          <!--
-          <ion-label>{{user.name}}</ion-label>
-          <hr>
-          <ion-button slot="start" shape="round" routerLink="/profile/settings">
-            Settings
-          </ion-button>
-          <hr>
-          <ion-button  slot="end" shape="round" routerLink="/profile/timeline">
-            Timeline
-          </ion-button>
-          <hr>
-          <ion-button slot="end" shape="round" routerLink="/profile/public/{{userId}}"> Go to my public page</ion-button>
-          <hr> -->
 
           <div class="top-container">
             <div class="image-container">
-              <img src="../../../../assets/profile.jpg" alt="">
+              <img src="../../../../assets/profile.jpg" alt="{{user.name}}">
             </div>
+            <h1>{{user.name}}</h1>
+            <div class="detail">
+              {{user.details.birth}} in {{user.details.city}}
+            </div>
+            <div class="detail">
+              From {{user.details.nationality}}
+            </div>
+
           </div>
           <div class="tabs-container clearfix">
             <div class="tab">
