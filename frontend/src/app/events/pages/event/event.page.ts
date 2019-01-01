@@ -19,7 +19,7 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
   @ViewChild('profileImage') profileImage;
   @ViewChild('content') content;
   form: FormGroup;
-  event: Event | null = null;
+  event: Event | null;
   private sub: any;
   private fragmentSub;
   user: User;
@@ -56,7 +56,6 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
         // Check whether the event is cached or not
         let eventCached;
         eventCached = this.eventService.getCachedEvent(this.event_id);
-        console.log('event', this.event);
         if(eventCached === null){ // If not cached
           this.eventService.get(this.event_id).subscribe(
             (next : Event) =>{
