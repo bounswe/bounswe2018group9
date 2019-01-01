@@ -38,9 +38,6 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
   }
 
   ngOnInit() {
-    //this.presentLoading();
-    //this.currentUser = this.authService.getUserFromToken();
-
     this.authService.getUserData(this.authService.getUserId())
        .subscribe(
          (user: User) => {
@@ -51,27 +48,40 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
          }
        );
 
-    this.sub = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       if(params){
         this.event_id = params['id'];
-        this.eventService.get(this.event_id).subscribe(
-          (next : Event) =>{
-            this.event = next;
-            console.log(this.event);
-
-            this.authService.getUserData(String(this.event.creator))
-              .subscribe(
-                (user: User) => {
-                  this.user = user;
-                },
-                error => {
-                  console.log('An error occurred while getting user');
-                }
-              );
-          },(err)=>{
-            console.log(err);
-          }
-        );
+        // Check whether the event is cached or not
+        this.event = this.eventService.getCachedEvent(this.event_id);
+        console.log('event', this.event)
+        if(this.event === null){ // If not cached
+          this.eventService.get(this.event_id).subscribe(
+            (next : Event) =>{
+              this.event = next;
+              console.log('event', this.event)
+              this.authService.getUserData(String(this.event.creator))
+                .subscribe(
+                  (user: User) => {
+                    this.user = user;
+                  },
+                  error => {
+                    console.log('An error occurred while getting user');
+                  }
+                );
+            },(err)=>{
+              console.log(err);
+            });
+        } else{ // if cached
+          this.authService.getUserData(String(this.event.creator))
+            .subscribe(
+              (user: User) => {
+                this.user = user;
+              },
+              error => {
+                console.log('An error occurred while getting user');
+              }
+            );
+        };
       }
     });
   }
@@ -96,7 +106,6 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
     this.fragmentSub.unsubscribe();
   }
 
