@@ -72,6 +72,30 @@ const UserSchema = new Schema({
   interests: {
     type: [String],
     default: [],
+  },
+  willAttendEvents: {
+    type: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      }
+    ],
+    default: []
+  },
+  mayAttendEvents: {
+    type: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      }
+    ],
+    default: []
+  },
+  willNotAttendEvents: {
+    type: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      }
+    ],
+    default: []
   }
 }, { minimize: false });
 

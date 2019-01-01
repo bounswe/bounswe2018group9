@@ -30,7 +30,7 @@ router.delete('/:id/cover', UserController.deleteCover);
 
 // TIMELINE ENDPOINTS
 router.get('/:id/ownEvents', TimelineController.getOwnEvents);
-
+router.get('/:id/willAttendEvents', TimelineController.getWillAttendEvents);
 
 /* POST ENDPOINTS */
 // Following and follower endpoints
