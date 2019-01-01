@@ -21,7 +21,7 @@
     </ion-row>
     <ion-row  margin>
       <div text-justify>
-        <textarea class="purpleBorder">{{annotatedBodyComponent.selectedText}} </textarea>
+        <textarea readonly class="purpleBorder">{{annotatedBodyComponent.selectedText}} </textarea>
       </div>
     </ion-row>
     <ion-row  *ngIf="annotatedBodyComponent.selected">
@@ -30,7 +30,7 @@
     </ion-row>
     <ion-row  margin *ngIf="annotatedBodyComponent.selected">
       <div text-justify >
-        <ion-textarea [readonly]="true" [(ngModel)] ="newAnnotationText" ></ion-textarea>
+        <ion-textarea [(ngModel)] ="newAnnotationText" ></ion-textarea>
       </div>
     </ion-row>
     <ion-row *ngIf="annotatedBodyComponent.selected">
