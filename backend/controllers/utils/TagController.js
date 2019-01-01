@@ -23,7 +23,7 @@ let tags = [
 
 function getTags(req,res,next) {
     res.status(200);
-    res.send({tags: tags})
+    res.send(tags);
 }
 
 module.exports = {
