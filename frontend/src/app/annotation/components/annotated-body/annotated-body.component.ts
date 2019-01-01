@@ -48,9 +48,6 @@ export class AnnotatedBodyComponent implements OnInit {
     if(valid){
       this.selectedText = this.text.slice(this.start,this.end);
       this.selected = true;
-      console.log(this.start);
-      console.log(this.end);
-      console.log(this.selectedText);
     }else{
       alert('Please select empty parts.');
     }
