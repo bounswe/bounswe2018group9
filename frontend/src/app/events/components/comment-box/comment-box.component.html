@@ -3,7 +3,7 @@
     <ion-col *ngIf="user; let author" size="3" offset-md="1" size-md="2">
       <a routerLink="/profile/public/{{comment.author}}">
         <div class="user" *ngIf="!isUndefined(author.name) && !isUndefined(author.images); else noUser">
-          <img src="{{author.images.avatar}}" #profileImage (error)="onProfileImageError()" alt="{{author.name}}">
+          <img src="{{uploadService.getUrl(author.images.avatar)}}" #profileImage (error)="onProfileImageError()" alt="{{author.name}}">
           <span class="username">{{author.name}}</span>
         </div>
       </a>
