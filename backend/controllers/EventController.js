@@ -6,7 +6,6 @@ const assert = require('assert')
 
 const _ = require('lodash');
 
-
 function addEvent(req, res, next) {
   var event = new Event(req.body);
 
@@ -26,6 +25,7 @@ function updateEvent(req, res, next){
 
   const updateOptions = { new: true};
 
+  //Tried to just owner can update 
   Event.findByIdAndUpdate( {'owner' : req.params.id},{ $set: req.body }, updateOptions)
     .exec()
     .then((updatedEvent) => {
@@ -57,22 +57,27 @@ function getEventbyId(req, res, next) {
 // needs params: id(owner id as string), skip(integer, default 0), limit(integer, default 10)
 // will return array of event objects with <limit> elements starting from object number <skip> in the db 
 function getEventbyCreator(req,res,next) {
-  let skipVar, limitVar;
-  if(!req.query.id){
+  var skipVar, limitVar;
+  if(!req.query.id)
+  {
     res.send("Please provide owner id");
   }
  
-  if(!req.query.skip){
+  if(!req.query.skip)
+  {
     skipVar=0;
   }
-  else{
+  else
+  {
     skipVar=Number(req.query.skip);
   }
  
-  if(!req.query.limit){
+  if(!req.query.limit)
+  {
     limitVar=10;
   }
-  else{
+  else
+  {
     limitVar=Number(req.query.limit);
   }
   Event.paginate({'owner' : req.params.id}, {offset: skipVar, limit: limitVar})
@@ -95,17 +100,21 @@ function getEventbyCreator(req,res,next) {
 function getAllEvents(req,res,next) {
   
   var skipVar, limitVar;
-  if(!req.query.skip){
+  if(!req.query.skip)
+  {
     skipVar=0;
   }
-  else{
+  else
+  {
     skipVar=Number(req.query.skip);
   }
   
-  if(!req.query.limit){
+  if(!req.query.limit)
+  {
     limitVar=10;
   }
-  else {
+  else
+  {
     limitVar=Number(req.query.limit);
   }
   
@@ -178,10 +187,7 @@ function getAttendance(req,res,next){
 function updateAttendance(req,res,next){
   const eventId = req.params.id;
   const userId = req.body.user;
-  const options = {
-    new: true, 
-    upsert: true
-  };
+  const options = {new: true, upsert: true};
 
   Event.findOneAndUpdate({"_id": eventId, "attendance.user": userId}, {"$set": {"attendance.$": req.body} }, options)
     .exec()
@@ -199,12 +205,12 @@ function addComment(req,res,next) {
   Event.findOneAndUpdate({_id: req.params.id}, {$push: {comments: req.body}}, {new: true})
     .exec()
     .then((event)=>{
-      res.status(200);
-      res.send({comments: event.comments});
+        res.status(200);
+        res.send({comments: event.comments});
     })
     .catch((err)=>{
-      res.status(500);
-      res.send(err);
+        res.status(500);
+        res.send(err);
     });
 }
 
@@ -224,11 +230,7 @@ function deleteComment(req,res,next) {
 function updateComment(req,res,next) {
   const eventId = req.params.id;
   const commentId = req.params.commentId;
-  const options = { 
-    upsert: true, 
-    new: true 
-  };
-  
+  const options = { upsert: true, new: true };
   Event.findOneAndUpdate({"_id": eventId, "comments._id": commentId}, {"$set": {"comments.$": req.body} }, options)
     .exec()
     .then((event)=>{
@@ -260,8 +262,7 @@ function vote(req,res,next){
   const eventId = req.params.id;
   const senderId = req.body.voterId;
   const isUpvote = req.body.isUpvote; 
-  
-
+  console.log(senderId);
   Event.findById(eventId)
     .exec()
     .then((event) => {
@@ -381,10 +382,9 @@ function updateMedia(req,res,next) {
   const eventId = req.params.id;
   const mediaId = req.params.mediaId;
   const options = { upsert: true, new: true };
-  
   Event.findOneAndUpdate({"_id": eventId, "media._id": mediaId}, {"$set": {"media.$": req.body} }, options)
     .exec()
-    .then((event)=>{  
+    .then((event)=>{
         res.status(200);
         res.send({media: event.media});
     })
@@ -393,6 +393,8 @@ function updateMedia(req,res,next) {
         res.send(err);
     });
 }
+
+
 
 
 module.exports = {
@@ -416,4 +418,5 @@ module.exports = {
   deleteMedia,
   updateMedia,
   getMedia
+  //getAllMedia
 };
