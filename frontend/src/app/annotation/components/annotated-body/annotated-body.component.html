@@ -1,0 +1,28 @@
+<ion-grid>
+
+  <ion-row>
+    <div mwlTextInputHighlightContainer margin>
+    <textarea
+      class="blackBorder"
+      mwlTextInputElement
+      class="form-control"
+      rows="6"
+      (select)="select($event)"
+      (input)="enter($event)"
+      #textarea
+    >{{text}}</textarea>
+      <mwl-text-input-highlight
+        [textInputElement]="textarea"
+        [tags]="annotations"
+        [tagCssClass]="'bg-blue'"
+        (tagMouseEnter)="addDarkClass($event.target)"
+        (tagMouseLeave)="removeDarkClass($event.target)"
+        (tagClick)="annotationClicked = $event.tag; popOverAnnotation($event)">
+      </mwl-text-input-highlight>
+    </div>
+  </ion-row>
+  <ion-row>
+    <ion-label color="danger" *ngIf="!activated"><b>Please press any keyboard button to be able to see annotations.</b></ion-label>
+    <ion-label color="secondary" *ngIf="activated"><b>You can see now!</b></ion-label>
+  </ion-row>
+</ion-grid>

@@ -17,6 +17,7 @@ import {SharedModule} from "../shared/shared.module";
 import { EventFormComponent } from './components/event-form/event-form.component';
 import {SearchPage} from "./pages/search/search.page";
 import {EventEditPage} from "./pages/event-edit/event-edit.page";
+import {AnnotationModule} from '../annotation/annotation.module';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import {EventEditPage} from "./pages/event-edit/event-edit.page";
     ReactiveFormsModule,
     EventRoutingModule,
     FormsModule,
+    AnnotationModule,
     SharedModule
   ],
   declarations: [
