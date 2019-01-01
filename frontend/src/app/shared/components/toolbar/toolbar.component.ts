@@ -3,6 +3,7 @@ import {AuthService} from "../../../auth/providers/auth/auth.service";
 import {Router} from "@angular/router";
 import {SearchService} from "../../../data/providers/search/search.service";
 import {SearchResult} from "../../../interfaces/search-result.interface";
+import {UploadService} from "../../../data/providers/upload/upload.service";
 
 @Component({
   selector: 'app-toolbar',
@@ -16,7 +17,8 @@ export class ToolbarComponent implements OnInit {
   queryText: string;
   constructor(private authService: AuthService,
               private router: Router,
-              private searchService: SearchService) { }
+              private searchService: SearchService,
+              public uploadService: UploadService) { }
 
   ngOnInit() {
 
