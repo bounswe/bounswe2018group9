@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var User = require("../models/User");
+const Event = require("../models/Event");
 
 var jwt = require("jsonwebtoken");
 var secretkey = 'gjkNLnkjBKADJnaldkNADEJMLsmellycat';
@@ -56,6 +57,9 @@ function getUserById(req,res,next) {
     const id = req.params.id;
 
     User.findById(id)
+        .populate('mayAttendEvents')
+        .populate('willAttendEvents')
+        .populate('willNotAttendEvents')
         .exec()
         .then((user) => {
             res.status(200);

@@ -9,23 +9,31 @@ function willAttend(req,res,next){
     let eventId = req.body.eventId;
 
     User.findById(userId)
+        .populate('willAttendEvents')
         .exec()
         .then((user) => {
             let newUser = user;
             
             // Subtract the event if it is in one of the other lists.
-
-            user.willAttendEvents = _.filter(user.willAttendEvents, (element) => {
-                console.log('8888', element);
-                return !element === eventId;
+            /*user.willAttendEvents = _.filter(user.willAttendEvents, (element) => {
+                return element.id === eventId;
             });
 
             user.willNotAttendEvents = _.filter(user.willNotAttendEvents, (element) => {
-                return !element === eventId;
+                return element.id === eventId;
             });
 
             user.mayAttendEvents = _.filter(user.mayAttendEvents, (element) => {
-                return !element === eventId;
+                return element.id === eventId;
+            });*/
+            _.remove(user.willAttendEvents, (element) => {
+                return element.id === eventId;
+            });
+            _.remove(user.willNotAttendEvents, (element) => {
+                return element.id === eventId;
+            });
+            _.remove(user.mayAttendEvents, (element) => {
+                return element.id === eventId;
             });
 
             // Now add it to the new place
@@ -48,23 +56,35 @@ function mayAttend(req,res,next){
     let userId = req.params.id;
     let eventId = req.body.eventId;
 
+    console.log('9999', eventId);
     User.findById(userId)
+        .populate('mayAttendEvents')
         .exec()
         .then((user) => {
             
             
             // Subtract the event if it is in one of the other lists.
-
+/*
             user.willAttendEvents = _.filter(user.willAttendEvents, (element) => {
-                return !element === eventId;
+                return element.id === eventId;
             });
 
             user.willNotAttendEvents = _.filter(user.willNotAttendEvents, (element) => {
-                return !element === eventId;
+                return element.id === eventId;
             });
 
             user.mayAttendEvents = _.filter(user.mayAttendEvents, (element) => {
-                return !element === eventId;
+                return element.id === eventId;
+            });*/
+
+            _.remove(user.willAttendEvents, (element) => {
+                return element.id === eventId;
+            });
+            _.remove(user.willNotAttendEvents, (element) => {
+                return element.id === eventId;
+            });
+            _.remove(user.mayAttendEvents, (element) => {
+                return element.id === eventId;
             });
 
             // Now add it to the new place
@@ -89,22 +109,33 @@ function willNotAttend(req,res,next){
     let eventId = req.body.eventId;
 
     User.findById(userId)
+        .populate('willNotAttendEvents')
         .exec()
         .then((user) => {
             let newUser = user;
             
             // Subtract the event if it is in one of the other lists.
-
+/*
             user.willAttendEvents = _.filter(user.willAttendEvents, (element) => {
-                return !element === eventId;
+                return element.id === eventId;
             });
 
             user.willNotAttendEvents = _.filter(user.willNotAttendEvents, (element) => {
-                return !element === eventId;
+                return element.id === eventId;
             });
 
             user.mayAttendEvents = _.filter(user.mayAttendEvents, (element) => {
-                return !element === eventId;
+                return element.id === eventId;
+            });*/
+
+            _.remove(user.willAttendEvents, (element) => {
+                return element.id === eventId;
+            });
+            _.remove(user.willNotAttendEvents, (element) => {
+                return element.id === eventId;
+            });
+            _.remove(user.mayAttendEvents, (element) => {
+                return element.id === eventId;
             });
 
             // Now add it to the new place
@@ -116,7 +147,9 @@ function willNotAttend(req,res,next){
         })
         .then((user) => {
             res.status(200);
-            res.send({willNotAttendEvents: user.willNotAttendEvents});
+            res.send({
+                willNotAttendEvents: user.willNotAttendEvents
+            });
         })
         .catch((err) => {
             res.status(500);
