@@ -152,6 +152,24 @@ function advancedSearch(req,res,next){
         });
 }
 
+function userSearch(req,res,next) {
+    const searchQuery = req.query.search;
+    let response = {};
+
+    const regexedSearchQuery = new RegExp(escapeRegex(searchQuery), 'gi');
+
+    User.find({ "name" : regexedSearchQuery })
+        .exec()
+        .then((users) => {
+            res.status(200);
+            res.send(users);
+        })
+        .catch((err) => {
+            res.status(500);
+            res.send(err);
+        });
+}
+
 // Escapes the search query strings for bad input. 
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
@@ -160,5 +178,6 @@ function escapeRegex(text) {
 module.exports = {
     search,
     advancedSearch,
-    locationSearch
+    locationSearch,
+    userSearch
 }
