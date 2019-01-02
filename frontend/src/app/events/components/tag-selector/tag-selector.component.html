@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-list>
+  <ion-list lines="none">
     <ion-item *ngFor="let tag of tags">
       <ion-label>{{tag}}</ion-label>
       <ion-checkbox [checked]="checked(tag)" (ionChange)="toggle($event, tag)"></ion-checkbox>
