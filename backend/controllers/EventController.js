@@ -247,6 +247,7 @@ function getComments(req,res,next){
   const eventId = req.params.id;
 
   Event.findById(eventId)
+    .populate('comments.author')
     .exec()
     .then((event) => {
       res.status(200);
