@@ -575,5 +575,5 @@ We are using several tools for different areas of our development process from c
     * Mongo Db: We are using mongodb nosql database to hold our models and all kinds of data. After a discussion we decided that using a nosql database would be much better for horizontal scaling.
     * Mongoose: Mongoose is the npm package that we use for database object relation model. Mongoose makes it easy for us to interact with the database collections. (Save,delete,find etc.)
     * Passport Js: We use passport to handle the authentication, passport is a middleware npm package that can be used with different auth strategies (facebook, local, twitter etc), which makes the auth scalable.
-    * mLab: Mlab is a cloud database hosting service. We use it to speed up development and also it makes database easily maintainable.
+    * mLab: Mlab is a cloud database hosting service. We use it to speed up development and also it makes database easily maintainable. 
     
