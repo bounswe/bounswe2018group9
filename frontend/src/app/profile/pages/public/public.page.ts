@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {User} from '../../../interfaces';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../../auth/providers/auth/auth.service';
+import {UploadService} from '../../../data/providers/upload/upload.service';
 
 @Component({
   selector: 'app-public',
@@ -19,7 +20,11 @@ export class PublicPage implements OnInit {
   errorMessage : string;
   error : boolean = false;
   sameUser : boolean = false;
-  constructor(private route : ActivatedRoute, private auth : AuthService, private ref: ChangeDetectorRef) { }
+  avatarImageURL: string;
+  constructor(private route : ActivatedRoute,
+              private auth : AuthService,
+              private ref: ChangeDetectorRef,
+              public uploadService: UploadService) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -28,6 +33,8 @@ export class PublicPage implements OnInit {
         this.auth.getUserData(this.userId).subscribe(
           (res)=>{
             this.user = res;
+            console.log(res);
+            this.avatarImageURL = this.uploadService.getUrl(this.user.images.avatar);
           },(err)=>{
             this.errorMessage = JSON.stringify(err);
             this.error = true;
@@ -46,10 +53,8 @@ export class PublicPage implements OnInit {
         console.log(err);
       });
     }
-
   }
   follow(){
-    console.log('follow');
     if(this.signedInUser){
       this.auth.follow(this.signedInId,this.userId).subscribe(
         (res)=>{

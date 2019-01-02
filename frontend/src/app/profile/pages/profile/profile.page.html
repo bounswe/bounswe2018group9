@@ -7,8 +7,7 @@
       <ion-col size-xs="12" offset-md="3" size-md="6">
         <ion-card>
           <div *ngIf="gotUserData" class="profile-container">
-
-            <div class="top-container">
+            <div  class="top-container">
               <div class="image-container">
                 <img *ngIf="user.images && user.images.avatar; else imageExists" src="{{avatarImageURL}}" alt="{{user.name}}">
                 <ng-template #imageExists>
@@ -16,10 +15,20 @@
                 </ng-template>
               </div>
               <h1>{{user.name}}</h1>
-              <div class="detail">
-                <b>{{user.details.nationality}}</b>, born at <b>{{user.details.birth}}</b>, from <b>{{user.details.city}}</b>
+              <div *ngIf="user.details.nationality" class="detail">
+                Nationality: <b>{{user.details.nationality}}</b>
               </div>
-              <div *ngIf="user.interests && user.interests.length > 0" class="interest-detail">
+              <hr>
+              <div *ngIf="user.details.birth" class="detail">
+                Born at: <b>{{user.details.birth}}</b>
+              </div>
+              <hr>
+              <div *ngIf="user.details.city" class="detail">
+                From city: <b>{{user.details.city}}</b>
+              </div>
+              <hr>
+              <div text-center *ngIf="user.interests && user.interests.length > 0" class="interest-detail">
+                <span>Interests:</span>
                 <span *ngFor="let i of user.interests">{{i}}</span>
               </div>
             </div>
