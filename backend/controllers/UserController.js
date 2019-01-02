@@ -159,6 +159,34 @@ function unfollow(req,res,next) {
         });
 }
 
+function getFollowers(req,res,next){
+    userId = req.params.id;
+    ser.findById(id)
+        .exec()
+        .then((user) => {
+            res.status(200);
+            res.send(user.followers);
+        })
+        .catch((err) => {
+            res.status(404);
+            res.send({err});
+        });
+}
+
+function getFollowing(req,res,next){
+    userId = req.params.id;
+    ser.findById(id)
+        .exec()
+        .then((user) => {
+            res.status(200);
+            res.send(user.following);
+        })
+        .catch((err) => {
+            res.status(404);
+            res.send({err});
+        });
+}
+
 function deleteUser(req,res,next) {
     User.findOneAndDelete({_id: req.params.id})
         .exec()
