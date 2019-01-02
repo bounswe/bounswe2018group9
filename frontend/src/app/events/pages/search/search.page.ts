@@ -27,6 +27,10 @@ export class SearchPage implements OnInit {
   };
 
   boundary: any = null;
+  mapCenter: any  = {
+    lat: 41.085587,
+    lng: 29.044715
+  };
   mapChanged: boolean = true;
 
   locations: Loc[] = [];
@@ -114,7 +118,6 @@ export class SearchPage implements OnInit {
 
     this.searchService.advanced(params)
       .subscribe((events: Event[]) => {
-        console.log(this.events);
         this.events = events;
         this.locations = this.events.map((event) => {
           return event.location;
@@ -131,6 +134,10 @@ export class SearchPage implements OnInit {
   async filter(filter: string) {
     if (this.filters[filter]) {
       this.filters[filter] = null;
+
+      if (filter == 'location') {
+        this.mapChanged = true;
+      }
       return;
     }
 
@@ -185,5 +192,9 @@ export class SearchPage implements OnInit {
   onBoundaryChange(boundary) {
     this.mapChanged = true;
     this.boundary = boundary;
+  }
+
+  onHover(event) {
+    this.mapCenter = event.location.coords;
   }
 }

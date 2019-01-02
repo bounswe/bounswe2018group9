@@ -37,3 +37,29 @@ span {
     width: 100%;
   }
 }
+
+/*
+app-event-card:hover, app-event-card:focus {
+  left: -1px;
+  right: -1px;
+  border: 5px solid var(--ion-color-primary);
+  border-radius: 5px;
+}
+*/
+
+ion-grid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.fluid-container {
+  flex: 1;
+}
+
+.events-container {
+  min-height: 300px;
+  overflow-y: scroll;
+}
