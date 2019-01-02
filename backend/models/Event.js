@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var mongoosePaginate = require("mongoose-paginate");
 var Schema = mongoose.Schema;
+var MediaSchema = require('./Media');
+const voting = require('mongoose-voting')
 
 const CommentSchema = new Schema({
     author: {
@@ -25,6 +27,7 @@ const CommentSchema = new Schema({
 var EventSchema = new Schema({
     name: {
         type: String,
+        text: true,
         required: true
     },
     
@@ -41,6 +44,7 @@ var EventSchema = new Schema({
 
     description: {
         type: String,
+        text: true,
         required: true
     },
 
@@ -134,28 +138,27 @@ var EventSchema = new Schema({
     
     location:{
         type: {
-            name:{
+            address: {
                 type: String,
                 required: true
             },
-            coordinates: {
+            coords: {
                 lat: Number,
-                long: Number
+                lng: Number
             }
         },
         required: false
     },
 
-    medias: {
-        type: [String],
-        required: true,
+    media: {
+        type: [MediaSchema],
         default: []
     }
 });
 
         
 EventSchema.plugin(mongoosePaginate);
-
+EventSchema.plugin(voting,{ ref: 'UserSchema' });
 var Event = mongoose.model('Event', EventSchema);
 
 module.exports = Event;

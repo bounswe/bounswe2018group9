@@ -12,6 +12,12 @@ import { EventCreatePage } from './pages/event-create/event-create.page';
 import { EventCardComponent } from './components/event-card/event-card.component';
 import {SearchComponent} from './components/search/search.component';
 import { CommentBoxComponent } from './components/comment-box/comment-box.component';
+import {SharedModule} from "../shared/shared.module";
+
+import { EventFormComponent } from './components/event-form/event-form.component';
+import {SearchPage} from "./pages/search/search.page";
+import {EventEditPage} from "./pages/event-edit/event-edit.page";
+import {AnnotationModule} from '../annotation/annotation.module';
 
 @NgModule({
   imports: [
@@ -19,15 +25,20 @@ import { CommentBoxComponent } from './components/comment-box/comment-box.compon
     IonicModule,
     ReactiveFormsModule,
     EventRoutingModule,
-    FormsModule
+    FormsModule,
+    AnnotationModule,
+    SharedModule
   ],
   declarations: [
     FeedPage,
     EventPage,
     EventCreatePage,
+    SearchPage,
     EventCardComponent,
     SearchComponent,
-    CommentBoxComponent
+    CommentBoxComponent,
+    EventFormComponent,
+    EventEditPage
   ]
 })
 export class EventsModule { }

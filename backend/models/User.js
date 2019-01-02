@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const MediaSchema = require('./Media');
 const bcrypt = require('bcrypt');
 
 const { Schema } = mongoose;
@@ -7,8 +8,10 @@ const SALT_WORK_FACTOR = 10;
 const UserSchema = new Schema({
   name: {
     type: String,
+    text: true,
     required: true
   },
+  
   email: {
     type: String,
     required: true,
@@ -16,36 +19,43 @@ const UserSchema = new Schema({
       unique: true,
     },
   },
+  
   password: {
     type: String,
     required: true,
   },
+  
   images: {
     type: {
       avatar: {
-        type: String,
+        type: MediaSchema,
         required: false
       },
       cover: {
-        type: String,
+        type: MediaSchema,
         required: false
       }
     }
   },
+  
   details: {
     type: {
+      
       birth: {
         type: Date,
         required: false,
       },
+      
       nationality: {
         type: String,
         required: false,
       },
+      
       city: {
         type: String,
         required: false,
       },
+      
       bio: {
         type: String,
         required: false,
@@ -53,6 +63,7 @@ const UserSchema = new Schema({
     },
     default: {}
   },
+  
   followers: {
     type: [{
       type: Schema.Types.ObjectId,
@@ -60,6 +71,7 @@ const UserSchema = new Schema({
     }],
     default: [],
   },
+  
   following: {
     type: [{
       type: Schema.Types.ObjectId,
@@ -67,9 +79,37 @@ const UserSchema = new Schema({
     }],
     default: [],
   },
+  
   interests: {
     type: [String],
     default: [],
+  },
+  
+  willAttendEvents: {
+    type: [{
+          type: Schema.Types.ObjectId,
+          ref: 'Event',
+        }
+    ],
+    default: []
+  },
+  
+  mayAttendEvents: {
+    type: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Event',
+      }
+    ],
+    default: []
+  },
+  
+  willNotAttendEvents: {
+    type: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Event',
+      }
+    ],
+    default: []
   }
 }, { minimize: false });
 

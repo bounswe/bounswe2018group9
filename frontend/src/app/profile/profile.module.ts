@@ -7,6 +7,7 @@ import { TimelinePage } from './pages/timeline/timeline.page';
 import {ProfilePage} from './pages/profile/profile.page';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PublicPage} from './pages/public/public.page';
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import {PublicPage} from './pages/public/public.page';
     ProfileRoutingModule,
     IonicModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [
     SettingsPage,

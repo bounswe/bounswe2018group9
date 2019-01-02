@@ -9,18 +9,11 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import "../node_modules/angular-text-input-highlight/text-input-highlight.css";
 
 @import "./theme/custom_variables";
 
 /* Form elements */
-
-
-ion-input, ion-textarea, ion-datetime, ion-select{
-  border: 2px solid var(--ion-color-medium);
-  border-radius: 4px;
-  background-color: var(--ion-color-light);
-  padding-left: 8px!important;
-}
 
 ion-label{
   z-index: 1;
@@ -35,6 +28,9 @@ ion-textarea{
 .ng-valid:not(form)  {
 
 }
+.modalClass{
+  background: #FFFF99;
+}
 
 .ng-dirty.ng-invalid:not(form)  {
 
@@ -43,3 +39,27 @@ ion-textarea{
   font-size: 0.8em;
   word-wrap: break-word;
 }
+
+@media screen and (min-width: 576px){
+  ion-input, ion-textarea, ion-datetime, ion-select{
+    border: 2px solid var(--ion-color-medium);
+    border-radius: 4px;
+    background-color: var(--ion-color-light);
+    padding-left: 8px!important;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 576px){
+  ion-content{
+    --padding-bottom: $menu-height;
+  }
+}
+
+ion-item{
+  --highlight-color-focused: transparent;
+  --border-color: transparent;
+  --highlight-color-invalid: transparent;
+  --highlight-color-valid: transparent;
+}
+

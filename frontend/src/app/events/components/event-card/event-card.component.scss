@@ -1,3 +1,5 @@
+@import '../../events.module.scss';
+
 .ago-container{
   text-align: right;
   font-size: 1em;
@@ -8,13 +10,41 @@
   justify-content: center;
 }
 
-.image{
-  margin-bottom: 10px;
+.preview-container {
   position: relative;
-}
-
-.image img{
   border: 2px solid var(--ion-color-medium);
+  margin-bottom: 10px;
+
+  .tags-container {
+    position: absolute;
+    right: 0px;
+    margin-top: 5px;
+    margin-right: 5px;
+    z-index: 1;
+
+    .tag {
+      display: block;
+      float: right;
+      clear: both;
+      background-color: rgba(var(--ion-color-secondary-rgb), 0.9);
+      color: white;
+      padding: 6px 8px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+  }
+
+  .media-container {
+    position: relative;
+    z-index: 0;
+  }
+
+  .date, .location{
+    font-size: 1em;
+    margin: 5px 0;
+  }
 }
 
 h2{
@@ -22,35 +52,8 @@ h2{
   margin: 10px 0;
 }
 
-.date, .location{
-  font-size: 1em;
-  margin: 5px 0;
-}
-
-.price, .artist{
-  position: absolute;
-  background-color: rgba(var(--ion-color-primary-rgb), 0.8);
-  color: black;
-  right: 4px;
-  display: inline-block;
-  padding: 2px 4px;
-  margin-bottom: 8px;
-  border-radius: 4px;
-  font-size: 0.9em;
-  font-weight: bold;
-}
-
-.price{
-  top: 40px;
-}
-
-.artist{
-  top: 10px;
-}
-
 @media screen and (min-width: 768px){
   .price, .artist{
-    background-color: rgba(var(--ion-color-primary-rgb), 0.8);
     padding: 4px 8px;
     margin-bottom: 16px;
     right: 8px;

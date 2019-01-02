@@ -13,7 +13,7 @@ fi
 echo "ENV: $ENV"
 
 # TODO: do scp with tar for efficiency
-scp -r backend $HOST:~/$ENV
+scp -r backend/* $HOST:~/$ENV
 
 DEPLOY_TASK="screen -XS 'actopus:"$ENV"' quit; screen -dmS 'actopus:"$ENV"' bash -c 'cd "$ENV" && npm install && sudo npm run start:"$ENV"'; exit"
 echo "$DEPLOY_TASK"

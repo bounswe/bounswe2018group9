@@ -1,0 +1,128 @@
+<ion-toolbar class="toolbar-content">
+  <ion-buttons slot="start" *ngIf="backButton">
+    <ion-back-button
+      [text]="'BACK'"
+      [icon]="'arrow-back'"
+      defaultHref="{{href}}">
+    </ion-back-button>
+  </ion-buttons>
+  <!--
+  <ion-buttons slot="primary" *ngIf="!backButton">
+    <ion-button>
+      <ion-icon slot="icon-only" name="search"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  -->
+  <!--
+  <ion-title>
+    <a routerLink="/feed" class="logo-link">
+      <img src="../../../../assets/logo_small.png" alt="Actopus">
+    </a>
+  </ion-title>-->
+  <div class="toolbar-content">
+    <ion-row align-items-center>
+      <!--
+      <ion-col offset-xs="8" size-xs="8" offset-md="1" size-md="4" size-lg="3" size-xl="2" class="logo" *ngIf="!backButton; else back">
+        <a routerLink="/feed">
+          <img src="../../../../assets/logo_small.png" alt="Actopus">
+        </a>
+      </ion-col>-->
+      <ion-col offset-xs="0" size-xs="3" offset-md="0" size-md="2" offset-lg="3" size-lg="3" size-xl="2" class="logo" *ngIf="!backButton; else back">
+        <a class="logo-small-icon" routerLink="/feed">
+          <img class="menu-mobile" src="../../../../assets/logo_small_oct.png" alt="Actopus">
+          <img class="menu-desktop" src="../../../../assets/logo_small.png" alt="Actopus">
+        </a>
+      </ion-col>
+      <ion-col offset-xs="0" size-xs="21" size-md="22" offset-lg="2" size-lg="6" *ngIf="!backButton">
+        <ion-searchbar [(ngModel)]="queryText" (ionChange)="onSearchChange()"  debounce="250" autocomplete="on" *ngIf="!backButton" placeholder="Search Favorites"></ion-searchbar>
+      </ion-col>
+      <ion-col offset-lg="1" size-lg="6" *ngIf="!backButton">
+        <!-- Desktop menu is shown for width larger than 992px which means lg and xl in ionic grid system-->
+        <div class="menu-container menu-desktop">
+          <a class="menu-item" routerLink="/feed" routerLinkActive="active">
+            <div>
+              <div>Feed</div>
+            </div>
+          </a>
+          <a class="menu-item" routerLink="/profile" routerLinkActive="active">
+            <div>
+              <div>Profile</div>
+            </div>
+          </a>
+          <a class="menu-item" (click)="logout()">
+            <div class="signout">
+              <div>Sign Out</div>
+            </div>
+          </a>
+        </div>
+      </ion-col>
+      <ng-template #back>
+        <ion-col offset-xs="8" size-xs="8" offset-md="10" size-md="4" size-lg="3" offset-xl="11" size-xl="2" class="logo">
+          <a routerLink="/feed">
+            <img src="../../../../assets/logo_small.png" alt="Actopus">
+          </a>
+        </ion-col>
+      </ng-template>
+    </ion-row>
+  </div>
+</ion-toolbar>
+<div class="menu-container menu-mobile">
+  <a class="menu-item" routerLink="/feed" routerLinkActive="active">
+    <div>
+      <ion-icon name="home"></ion-icon>
+      <div>Feed</div>
+    </div>
+  </a>
+  <a class="menu-item" routerLink="/profile" routerLinkActive="active">
+    <div>
+      <ion-icon name="person"></ion-icon>
+      <div>Profile</div>
+    </div>
+  </a>
+  <a class="menu-item" routerLink="/profile">
+    <div class="signout">
+      <ion-icon name="exit"></ion-icon>
+      <div>Sign Out</div>
+    </div>
+  </a>
+</div>
+<ion-grid>
+  <ion-row>
+    <ion-col offset-lg="3" size-lg="6">
+      <div class="search-results-overlay" *ngIf="currentSearchResult">
+        <div class="search-results">
+          <div *ngIf="currentSearchResult?.events" class="results-container">
+            <ion-card *ngFor="let event of currentSearchResult?.events" class="result">
+              <ion-item href="{{'/feed/' + event._id}}">
+                <ion-avatar slot="start" *ngIf="event.media && event.media.length > 0; else image">
+                  <img [src]="uploadService.getUrl(event.media[0].source)">
+                </ion-avatar>
+                <ng-template  #image>
+                  <ion-icon name="image"></ion-icon>
+                </ng-template>
+                <ion-label>{{event.name}}</ion-label>
+              </ion-item>
+            </ion-card>
+          </div>
+          <div *ngIf="currentSearchResult?.users" class="results-container">
+            <ion-card *ngFor="let user of currentSearchResult?.users" class="result">
+              <ion-item href="{{'/public/profile/' + user._id}}">
+                <ion-avatar *ngIf="user.images; else icon" slot="start">
+                  <img [src]="uploadService.getUrl(user.images?.avatar)">
+                </ion-avatar>
+                <ng-template  #icon>
+                  <ion-icon name="contact"></ion-icon>
+                </ng-template>
+                <ion-label>{{user.name}}</ion-label>
+              </ion-item>
+            </ion-card>
+          </div>
+        </div>
+        <a class="advanced-search" routerLink="/feed/search">
+          ADVANCED SEARCH
+        </a>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+

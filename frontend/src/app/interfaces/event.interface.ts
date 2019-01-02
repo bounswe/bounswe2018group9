@@ -1,9 +1,10 @@
 import { Object } from './object.interface';
-import {User} from "./user.interface";
-import {Comment} from "./comment.interface";
-import {Location} from "./location.interface";
-import {Attendance} from "./attendance.interface";
-import {Vote} from "./vote.interface";
+import { User } from './user.interface';
+import { Comment } from './comment.interface';
+import { Location } from './location.interface';
+import { Attendance } from './attendance.interface';
+import { Vote } from './vote.interface';
+import { Media } from './media.interface';
 
 export interface Event extends Object {
   name: string;
@@ -19,5 +20,5 @@ export interface Event extends Object {
   artists?: Array<string>;
   tags: Array<String>;
   location: Location;
-  medias: Array<String>;
+  media: Array<Media>;
 }

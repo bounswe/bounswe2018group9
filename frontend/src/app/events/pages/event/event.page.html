@@ -1,50 +1,58 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/feed"></ion-back-button>
-    </ion-buttons>
-    <ion-title>
-      Event
-    </ion-title>
-  </ion-toolbar>
+  <app-toolbar [backButton]="true" [href]="'/feed'"></app-toolbar>
 </ion-header>
 
-<ion-content no-padding>
+<ion-content #content no-padding>
+  <!-- fab placed to the bottom end -->
+  <ion-fab class="edit-fab" *ngIf="user && currentUser && user._id === currentUser._id" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button class="edit-button" routerLink="/feed/{{event_id}}/edit">
+      <ion-icon size="large" name="brush"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-grid no-padding>
     <ion-row>
       <ion-col no-padding>
 
         <div class="event-wrapper" *ngIf="event; let e">
-          <div class="event-bg">
-            <img src="{{e.medias[0]}}" alt="{{e.name}}">
+          <div class="event-bg" *ngIf="e.media && e.media.length > 0">
+            <img src="{{uploadService.getUrl(e.media[0].source)}}" alt="{{e.name}}">
           </div>
           <div class="event-container">
             <div class="upper-container">
-              <div class="image-container">
-                <img src="{{e.medias[0]}}" alt="{{e.name}}">
+              <div class="media-container">
+                <app-slider [media]="e.media" [options]="{ empty: false, buttons: false }"></app-slider>
               </div>
               <div class="title-container">
                 <p class="date">
                   {{e.date | date:'dd MMM'}}
                 </p>
-                <p class="price">
+                <p #priceAnnotate [annotate]="priceAnnotations" class="price">
                   <span *ngIf="e.price.amount == 0; else price_t">Free</span>
                   <ng-template #price_t>{{e.price.amount}} {{e.price.unit}}</ng-template>
                 </p>
                 <h1>{{e.name}}</h1>
-                <p *ngIf="user; let u">
+                <p #organizerAnnotate [annotate]="organizerAnnotations"  *ngIf="user; let u">
                   Organized by {{u.name}}
                 </p>
               </div>
             </div>
             <div class="ticket-container">
-              <p class="price" *ngIf="e.price.amount == 0; else price">Free</p>
+              <p #priceAnnotate [annotate]="priceAnnotations" class="price" *ngIf="e.price.amount == 0; else price">Free</p>
               <ng-template #price>
                 <p class="price">
                   {{e.price.amount}} {{e.price.unit}}
                 </p>
               </ng-template>
-              <ion-button (click)="attendEvent()" expand="block" color="secondary">Attend</ion-button>
+              <ion-button (click)="attendEvent(1)" expand="fill" color="success">
+                <ion-icon size="large" name="done-all"></ion-icon> Attend
+              </ion-button>
+              <ion-button (click)="attendEvent(2)" expand="fill" color="warning">
+                <ion-icon size="large" name="checkmark"></ion-icon> May Attend
+              </ion-button>
+              <ion-button (click)="attendEvent(0)" expand="fill" color="danger">
+                <ion-icon size="large" name="close"></ion-icon> Not Attend
+              </ion-button>
             </div>
             <div *ngIf="e.artists && e.artists.length > 0" class="detail-container performer">
               <div class="icon-container">
@@ -52,7 +60,7 @@
               </div>
               <div class="inner-container">
                 <h3>Performers</h3>
-                <div *ngFor="let artist of e.artists" class="artist">
+                <div #artistAnnotate [annotate]="artistAnnotations" *ngFor="let artist of e.artists" class="artist">
                   {{artist}}
                 </div>
               </div>
@@ -64,10 +72,10 @@
               <div class="inner-container">
                 <h3>Date and Time</h3>
                 <p></p>
-                <p>
+                <p #dateAnnotate [annotate]="dateAnnotations">
                   {{e.date | date:'dd MMMM EEEE HH:mm, yyyy'}}
                 </p>
-                <p>
+                <p #durationAnnotate [annotate]="durationAnnotations">
                   {{e.duration.length}} {{e.duration.length <= 1 ? e.duration.unit : e.duration.unit + 's'}}
                 </p>
               </div>
@@ -76,16 +84,16 @@
               <div class="icon-container">
                 <ion-icon name="map"></ion-icon>
               </div>
-              <div class="inner-container">
+              <div #locationAnnotate [annotate]="locationAnnotations" class="inner-container">
                 <h3>Location</h3>
-                {{e.location.name}}
+                {{e.location?.name}}
               </div>
             </div>
             <div class="detail-container description">
               <div class="icon-container">
                 <ion-icon name="document"></ion-icon>
               </div>
-              <div class="inner-container">
+              <div #descriptionAnnotate [annotate]="descriptionAnnotations" class="inner-container">
                 <h3>Description</h3>
                 {{e.description}}
               </div>
@@ -97,7 +105,7 @@
               </div>
               <div class="inner-container">
                 <h3>Tags</h3>
-                <span class="tag" *ngFor="let tag of e.tags">
+                <span #tagAnnotate [annotate]="tagAnnotations" class="tag" *ngFor="let tag of e.tags">
                   {{tag}}
                 </span>
               </div>
@@ -106,7 +114,7 @@
             <div class="organizer-container">
 
             </div>
-            <div #comments>
+            <div>
               <ion-grid>
                 <div class="comments-container">
                   <h3 text-center>Comments</h3>
@@ -133,8 +141,8 @@
                         </form>
                       </ion-col>
                       <ion-col size="3" size-md="2">
-                        <div class="user" *ngIf="currentUser">
-                          <img src="{{currentUser.images.avatar}}" alt="{{currentUser.name}}">
+                        <div class="user" *ngIf="currentUser && currentUser.images">
+                          <img src="{{uploadService.getUrl(currentUser.images.avatar)}}" alt="{{currentUser.name}}">
                           <span class="username">{{currentUser.name}}</span>
                         </div>
                       </ion-col>

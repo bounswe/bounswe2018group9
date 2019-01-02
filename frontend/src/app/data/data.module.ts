@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { EventService } from './providers/event/event.service';
+import { UploadService } from './providers/upload/upload.service';
+import {SearchService} from "./providers/search/search.service";
 
 @NgModule({
   imports: [
@@ -11,14 +13,20 @@ import { EventService } from './providers/event/event.service';
   ],
   declarations: [],
   providers: [
-    EventService
+    EventService,
+    UploadService,
+    SearchService
   ]
 })
 export class DataModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: DataModule,
-      providers: [ EventService ]
+      providers: [
+        EventService,
+        UploadService,
+        SearchService
+      ]
     }
   }
 }

@@ -1,0 +1,21 @@
+@import '../../../../theme/custom_variables.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  & > div {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  img {
+    overflow: hidden;
+    object-fit: cover;
+    vertical-align: middle;
+    border: 0.1px solid lightgray;
+    border-radius: $media-border-radius;
+  }
+}

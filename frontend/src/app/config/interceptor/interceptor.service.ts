@@ -21,8 +21,7 @@ export class InterceptorService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const req = request.clone({
-      url: this.endpoint + request.url,
-      headers: request.headers.set('Content-Type', 'application/json')
+      url: this.endpoint + request.url
     });
 
     return next.handle(req).pipe(

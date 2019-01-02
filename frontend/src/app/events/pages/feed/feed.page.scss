@@ -1,3 +1,4 @@
+@import '../../../../theme/custom_variables';
 
 .load-error{
   font-size: 2em;
@@ -7,6 +8,30 @@
   display: none;
 }
 
+@media screen and (min-width: 576px){
+  .edit-fab{
+    bottom: 60px;
+    right: 60px;
+  }
+  .edit-button{
+    --height : 100px;
+    --width: 100px;
+    font-weight: bold;
+  }
+}
+
+@media screen and (max-width: 576px){
+  .events-container{
+    margin-bottom: $menu-height;
+  }
+  .edit-button{
+    --height : 56px;
+    --width: 56px;
+  }
+  .edit-fab{
+    bottom: $menu-height + 4px;
+  }
+}
 
 @media screen and (min-width: 768px){
   .search-desktop{

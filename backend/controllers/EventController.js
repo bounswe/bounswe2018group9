@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 const Event = require("../models/Event");
+const User = require("../models/User");
+const EventSchema = Event.EventSchema;
+const assert = require('assert') 
 
 const _ = require('lodash');
 
@@ -20,9 +23,10 @@ function addEvent(req, res, next) {
 function updateEvent(req, res, next){
   /* Validation here */
 
-  const updateOptions = { new: true };
+  const updateOptions = { new: true};
 
-  Event.findByIdAndUpdate(req.params.id,{ $set: req.body }, updateOptions)
+  //Tried to just owner can update 
+  Event.findByIdAndUpdate( {'owner' : req.params.id},{ $set: req.body }, updateOptions)
     .exec()
     .then((updatedEvent) => {
       res.status(200);
@@ -150,7 +154,7 @@ function deleteEvent(req,res,next) {
 
 function addAttendance(req,res,next){
   const eventId = req.params.id;
-  const options = {new: true};
+  const options = {new: true, upsert: true};
 
   Event.findOneAndUpdate({_id: eventId}, {$push: {attendance: req.body}}, options)
     .exec()
@@ -163,6 +167,7 @@ function addAttendance(req,res,next){
       res.send(err);
     });
 };
+
 
 function getAttendance(req,res,next){
   const eventId = req.params.id;
@@ -182,10 +187,9 @@ function getAttendance(req,res,next){
 function updateAttendance(req,res,next){
   const eventId = req.params.id;
   const userId = req.body.user;
-  const attendanceType = req.body.attendanceType;
   const options = {new: true, upsert: true};
 
-  Event.findOneAndUpdate({"id": eventId, "attendance.user": userId}, {$set: {attendanceType: attendanceType} }, options)
+  Event.findOneAndUpdate({"_id": eventId, "attendance.user": userId}, {"$set": {"attendance.$": req.body} }, options)
     .exec()
     .then((event)=>{
         res.status(200);
@@ -254,15 +258,48 @@ function getComments(req,res,next){
     });
 };
 
-function addVote(req,res,next){
+function vote(req,res,next){
   const eventId = req.params.id;
-  const options = {new: true};
+  const senderId = req.body.voterId;
+  const isUpvote = req.body.isUpvote; 
+  console.log(senderId);
+  Event.findById(eventId)
+    .exec()
+    .then((event) => {
+      User.findById(senderId)
+      .then((user) => {
+        if(isUpvote){
+          event.upvote(user, function(err, doc) {
+            assert.equal(doc, event);  // true
+          });
+        } 
+        else {
+          event.downvote(user, function(err, doc) {
+            assert.equal(doc, event);  // true
+          });
+        }
+        res.status(200);
+        res.send("Voted succesfully.");
+      })
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({err});
+    });
+}
 
-  Event.findOneAndUpdate({_id: eventId}, {$push: {vote: req.body}}, options)
+function getVotes(req,res,next){
+  const eventId = req.params.id;
+
+  Event.findById(eventId)
     .exec()
     .then((event) => {
       res.status(200);
-      res.send({updatedVote: event.vote});
+      res.send({
+        votes: event.votes(), 
+        upvotes: event.upvotes(), 
+        downvotes: event.downvotes()
+      });
     })
     .catch((err) => {
       res.status(500);
@@ -270,14 +307,25 @@ function addVote(req,res,next){
     });
 };
 
-function getVote(req,res,next){
+function unvote(req,res,next){
   const eventId = req.params.id;
+  const voterId = req.body.voterId;
 
-  Event.find({_id: eventId})
+  Event.findById(eventId)
     .exec()
     .then((event) => {
-      res.status(200);
-      res.send({vote: event.vote});
+      User.findById(voterId)
+      .exec()
+      .then((user) => {
+        console.log(user);
+        event.unvote(user,(err,doc)=>{
+          assert.equal(doc, event);
+        });
+        res.status(200);
+          res.send({vote : event.votes() });
+         
+      })
+      
     })
     .catch((err) => {
       res.status(500);
@@ -285,23 +333,69 @@ function getVote(req,res,next){
     });
 };
 
-function updateVote(req,res,next){
-  const eventId = req.params.id;
-  const userId = req.body.user;
-  const voteType = req.body.voteType;
-  const options = {new: true, upsert: true};
 
-  Event.findOneAndUpdate({"id": eventId, "vote.user": userId}, {$set: {voteType: voteType} }, options)
+// MEDIA CONTROLLERS
+function addMedia(req,res,next){
+  Event.findOneAndUpdate({_id: req.params.id}, {$push: {media: req.body}}, {new: true})
     .exec()
     .then((event)=>{
         res.status(200);
-        res.send({vote: event.vote});
+        res.send({media: event.media});
     })
     .catch((err)=>{
         res.status(500);
-        res.send({err});
+        res.send(err);
     });
-};
+}
+
+function getMedia(req,res,next){
+  const eventId = req.params.id;
+
+  Event.findById(eventId)
+    .exec()
+    .then((event) => {
+      res.status(200);
+      res.send({media: event.media});
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send(err);
+    });
+
+}
+
+
+function deleteMedia(req,res,next) {
+  Event.findOneAndUpdate({_id: req.params.id}, {$pull: {media: { _id:req.params.mediaId }}}, {new: true})
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({media: event.media});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send(err);
+    });
+}
+
+function updateMedia(req,res,next) {
+  const eventId = req.params.id;
+  const mediaId = req.params.mediaId;
+  const options = { upsert: true, new: true };
+  Event.findOneAndUpdate({"_id": eventId, "media._id": mediaId}, {"$set": {"media.$": req.body} }, options)
+    .exec()
+    .then((event)=>{
+        res.status(200);
+        res.send({media: event.media});
+    })
+    .catch((err)=>{
+        res.status(500);
+        res.send(err);
+    });
+}
+
+
+
 
 module.exports = {
   addEvent,
@@ -313,11 +407,16 @@ module.exports = {
   addAttendance,
   getAttendance,
   updateAttendance,
-  addVote,
-  getVote,
-  updateVote,
+  getVotes,
+  unvote,
+  vote,
   addComment,
   deleteComment,
   updateComment,
-  getComments
+  getComments,
+  addMedia,
+  deleteMedia,
+  updateMedia,
+  getMedia
+  //getAllMedia
 };
