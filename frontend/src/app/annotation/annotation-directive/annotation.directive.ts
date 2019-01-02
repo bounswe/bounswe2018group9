@@ -23,12 +23,12 @@ export class AnnotationDirective implements OnInit{
   }
 
   @HostListener('mouseenter',['$event']) mouseLeave(event : Event){
-    if(this.loaded){
+    if(this.loaded && this.annotations.show){
       this.rnd.setStyle(this.el.nativeElement,"border-bottom","2px solid red");
     }
   }
   @HostListener('mouseleave',['$event']) mouseEnter(event : Event){
-    if(this.loaded){
+    if(this.loaded && this.annotations.show){
       this.rnd.setStyle(this.el.nativeElement,"border-bottom","2px solid teal");
     }
   }
@@ -38,11 +38,16 @@ export class AnnotationDirective implements OnInit{
               private modalController: ModalController) { }
 
   ngOnInit(){
-    // console.log(this.el);
-    this.rnd.setStyle(this.el.nativeElement,"border-bottom", "2px solid teal");
     setTimeout(()=>{
       this.loaded = true;
     },3000);
+  }
+  ngOnChanges(){
+    if(this.annotations.show){
+      this.rnd.setStyle(this.el.nativeElement,"border-bottom", "2px solid teal");
+    }else{
+      this.rnd.setStyle(this.el.nativeElement,'border-bottom','0px');
+    }
   }
 
   async presentModal(ev: any) {
@@ -51,7 +56,7 @@ export class AnnotationDirective implements OnInit{
       componentProps: {
         modalContr : this.modalController,
         nativeElement: this.el.nativeElement,
-        annotations: this.annotations},
+        annotations: this.annotations.annotation},
     keyboardClose:true,
     animated: true,
     mode:'md',

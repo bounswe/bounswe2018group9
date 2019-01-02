@@ -340,3 +340,16 @@ ion-textarea{
     height: 100px;
   }
 }
+
+.only-desktop{
+  display: none;
+}
+
+@media screen and (min-width: 992px){
+  .only-desktop{
+    display: block;
+  }
+}
+
+
+
