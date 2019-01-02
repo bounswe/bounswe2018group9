@@ -160,12 +160,11 @@ function unfollow(req,res,next) {
 }
 
 function getFollowers(req,res,next){
-    userId = req.params.id;
-    ser.findById(id)
+    User.findById(req.params.id)
         .exec()
         .then((user) => {
             res.status(200);
-            res.send(user.followers);
+            res.send({following: user.followers});
         })
         .catch((err) => {
             res.status(404);
@@ -174,12 +173,11 @@ function getFollowers(req,res,next){
 }
 
 function getFollowing(req,res,next){
-    userId = req.params.id;
-    ser.findById(id)
+    User.findById(req.params.id)
         .exec()
         .then((user) => {
             res.status(200);
-            res.send(user.following);
+            res.send({following: user.following});
         })
         .catch((err) => {
             res.status(404);
@@ -240,5 +238,7 @@ module.exports = {
     follow,
     unfollow,
     deleteUser,
-    updateUser
+    updateUser,
+    getFollowers,
+    getFollowing
 }
