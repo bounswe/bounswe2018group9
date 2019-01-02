@@ -1,5 +1,6 @@
 @import '../../events.module.scss';
 @import '../../../../theme/variables';
+@import '../../../../theme/custom_variables';
 
 $ticket-container-height: 90px;
 
@@ -80,7 +81,7 @@ ion-label
   position: fixed;
   background-color: white;
   border-top: 2px solid var(--ion-color-medium);
-  bottom: 0;
+  bottom: $menu-height;
   width: 100%;
   border-bottom: 2px solid var(--ion-color-medium);
 }
@@ -91,7 +92,7 @@ ion-label
 }
 
 .ticket-container ion-button{
-  font-size: 0.8em;
+  font-size: 0.75em;
 }
 .ticket-container p{
   text-align: center;
@@ -194,7 +195,7 @@ ion-textarea{
 }
 
 .edit-fab{
-  bottom: 62px;
+  bottom: 62px + $menu-height;
   right: 10px;
 }
 
