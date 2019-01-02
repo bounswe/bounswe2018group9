@@ -15,7 +15,10 @@ const feedRouter = require('./feed');
 router.use('/auth', authRouter);
 router.use('/events', eventsRouter);
 router.use('/users', usersRouter);
-router.use('/upload', uploadRouter);
-router.use('/api/search', searchRouter);
+router.use('/upload',  uploadRouter);
+router.use('/search',searchRouter);
 router.use('/annotations', annotationsRouter);
+router.use('/utils', utilsRouter);
+router.use('/feed', feedRouter);
+
 module.exports = router;
