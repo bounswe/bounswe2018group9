@@ -72,7 +72,7 @@ function advancedSearch(req,res,next){
     // Location
     const latLower = req.query.latLower;
     const latHigher = req.query.latHigher;
-    const lngHigher = req.query.lngLower;
+    const lngHigher = req.query.lngHigher;
     const lngLower = req.query.lngLower;
 
     // Time
