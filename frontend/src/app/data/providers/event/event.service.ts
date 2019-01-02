@@ -24,8 +24,14 @@ export class EventService extends DataService<Event> {
     return this.http.post<Comment>('/events/' + event_id + '/comments', comment);
   }
 
-  attend(event_id: string, attendance: Attendance){
-    return this.http.post<Attendance>('/events/' + event_id + '/attendance', attendance);
+  attend(user_id: string, body: {eventId: string}, type){
+    if(type === 0){
+      return this.http.post<Attendance>('/users/' + user_id + '/willNotAttend', body);
+    } else if(type === 1){
+      return this.http.post<Attendance>('/users/' + user_id + '/willAttend', body);
+    } else{
+      return this.http.post<Attendance>('/users/' + user_id + '/mayAttend', body);
+    }
   }
 
   cacheEvents(events: Array<Event>){

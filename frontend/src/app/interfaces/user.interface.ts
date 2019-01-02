@@ -1,5 +1,6 @@
 import { Object } from './object.interface';
 import {Datetime} from '@ionic/angular';
+import {Event} from "./event.interface";
 
 export interface User extends Object {
   name?: string;
@@ -16,4 +17,7 @@ export interface User extends Object {
   followers? : string[];
   following? : string[];
   interests? : string[];
+  willAttendEvents?: Event[],
+  mayAttendEvents?: Event[],
+  willNotAttendEvents?: Event[]
 }
