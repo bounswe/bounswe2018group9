@@ -262,7 +262,6 @@ function vote(req,res,next){
   const eventId = req.params.id;
   const senderId = req.body.voterId;
   const isUpvote = req.body.isUpvote; 
-  console.log(senderId);
   Event.findById(eventId)
     .exec()
     .then((event) => {
@@ -270,12 +269,12 @@ function vote(req,res,next){
       .then((user) => {
         if(isUpvote){
           event.upvote(user, function(err, doc) {
-            assert.equal(doc, event);  // true
+            assert.equal(doc, event);  
           });
         } 
         else {
           event.downvote(user, function(err, doc) {
-            assert.equal(doc, event);  // true
+            assert.equal(doc, event);  
           });
         }
         res.status(200);
