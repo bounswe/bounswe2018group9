@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../../auth/providers/auth/auth.service";
-import {User} from "../../../interfaces";
+import {Event, User} from "../../../interfaces";
 
 @Component({
   selector: 'app-timeline',
@@ -17,6 +17,10 @@ export class TimelinePage implements OnInit {
         user => this.currentUser = user,
         error => console.log(error)
       )
+  }
+
+  sortFunction(e1: Event, e2: Event){
+    return e1.date > e2.date;
   }
 
 }
