@@ -2,16 +2,16 @@
   <app-toolbar [backButton]="true" [href]="'/feed'"></app-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-grid margin>
-    <ion-row margin>
-      <ion-col>
+<ion-content no-padding no-bounce>
+  <ion-grid no-padding no-margin>
+    <ion-row margin-start margin-top>
+      <ion-col padding-start padding-top>
         <input class="search-input" placeholder="Search anything..." [(ngModel)]="name" (keyup.enter)="search()">
       </ion-col>
     </ion-row>
 
-    <ion-row margin>
-      <ion-col>
+    <ion-row margin-start margin-top>
+      <ion-col padding-start>
         <ion-badge [color]="filters.location ?  'primary' : 'light'" (click)="filter('location')">
           {{filters.location ? 'Map Area' : 'Location'}}
           <ion-icon [name]="filters.location ? 'close' : 'arrow-dropdown'"></ion-icon>
@@ -30,8 +30,8 @@
       </ion-col>
     </ion-row>
 
-    <ion-row margin>
-      <ion-col>
+    <ion-row margin-start margin-top>
+      <ion-col padding-start>
         <span>TAGS:</span>
         <ion-badge *ngFor="let tag of filters?.tags" color="primary" (click)="removeTag(tag)">
           {{ tag }}
@@ -43,18 +43,20 @@
       </ion-col>
     </ion-row>
 
-    <ion-row margin>
+    <ion-row margin-top no-padding class="fluid-container">
       <ion-col size-xs="12" size-md="6" push-md="6">
         <div class="map-container">
-          <app-map [locations]="locations" [options]="{ search: false, select: false }" (onBoundaryChange)="onBoundaryChange($event)"></app-map>
+          <app-map [locations]="locations" [options]="{ search: false, select: false, center: mapCenter }" (onBoundaryChange)="onBoundaryChange($event)"></app-map>
           <div text-center class="button-container">
             <ion-button *ngIf="mapChanged" (click)="searchLocation()">Search this area</ion-button>
           </div>
         </div>
       </ion-col>
-      <ion-col size-xs="12" size-md="6" pull-md="6">
+      <ion-col *ngIf="events" size-xs="12" size-md="6" pull-md="6" class="events-container">
         <ion-row justify-content-center no-padding>
-          <app-event-card *ngFor="let event of events" [event]="event"></app-event-card>
+          <ion-virtual-scroll>
+            <app-event-card *ngFor="let event of events" [event]="event" (mouseenter)="onHover(event)"></app-event-card>
+          </ion-virtual-scroll>
         </ion-row>
       </ion-col>
     </ion-row>
