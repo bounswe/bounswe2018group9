@@ -12,7 +12,7 @@
               <div class="image-container">
                 <img *ngIf="user.images && user.images.avatar; else imageExists" src="{{avatarImageURL}}" alt="{{user.name}}">
                 <ng-template #imageExists>
-                  <img *ngIf="user.images && user.images.avatar; else imageExists" src="../../../../assets/profile.jpg" alt="{{user.name}}">
+                  <img src="../../../../assets/profile.jpg" alt="{{user.name}}">
                 </ng-template>
               </div>
               <h1>{{user.name}}</h1>
