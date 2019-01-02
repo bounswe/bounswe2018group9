@@ -7,14 +7,18 @@ var secretkey = 'gjkNLnkjBKADJnaldkNADEJMLsmellycat';
 
 function getAllUsers(req,res,next) {
     
-    User.find({}, (err,users)=>{
-        if (err) {
-            res.status(500);
-            res.send({err});
-        } else {
+    User.find({})
+        .populate('follower')
+        .populate('following')
+        .exec()
+        .then((users) => {
+            res.status(200);
             res.send(users);
-        }
-    })
+        })
+        .catch((err) => {
+            res.status(500);
+            res.send(err);
+        })
 }
 
 function getUser(email,password) {
@@ -71,6 +75,7 @@ function getUserById(req,res,next) {
         });
 }
 
+// TODO: BURAYA BAK BIR SEY BOZULURSA
 function addUser(req,res,next) {
     var user = new User({
         name: req.body.name,
@@ -96,6 +101,7 @@ function addUser(req,res,next) {
 // This will be private later. Only will be used from follow and unfollow.
 function addFollower(req,res,next){
     User.findOneAndUpdate({_id: req.params.id}, {$push: {follower: req.body.id}}, {new: true})
+        .populate('follower')
         .exec()
         .then((user)=>{
             res.status(200);
@@ -110,6 +116,7 @@ function addFollower(req,res,next){
 // This will be private later. Only will be used from follow and unfollow.
 function removeFollower(req,res,next) {
     User.update({_id:req.params.id}, {$pull: {follower: req.body.id}}, {new: true})
+        .populate('follower')
         .exec()
         .then((user)=>{
             res.status(200);
@@ -123,6 +130,7 @@ function removeFollower(req,res,next) {
 
 function follow(req,res,next){
     User.findOneAndUpdate({_id: req.params.id}, {$push: {following: req.body.id}}, {new: true})
+        .populate('following')
         .exec()
         .then((user)=>{
             res.status(200);
@@ -136,6 +144,7 @@ function follow(req,res,next){
 
 function unfollow(req,res,next) {
     User.update({_id:req.params.id}, {$pull: {following: req.body.id}}, {new: true})
+        .populate('following')
         .exec()
         .then((user)=>{
             res.status(200);
