@@ -27,31 +27,34 @@
                 <p class="date">
                   {{e.date | date:'dd MMM'}}
                 </p>
-                <p #priceAnnotate [annotate]="priceAnnotations" class="price">
+                <p #priceAnnotate [annotate]="{show: this.showAnnotations,annotation: priceAnnotations}" class="price">
                   <span *ngIf="e.price.amount == 0; else price_t">Free</span>
                   <ng-template #price_t>{{e.price.amount}} {{e.price.currency}}</ng-template>
                 </p>
                 <h1>{{e.name}}</h1>
-                <p #organizerAnnotate [annotate]="organizerAnnotations"  *ngIf="user; let u">
+                <p #organizerAnnotate [annotate]="{show: this.showAnnotations,annotation:organizerAnnotations}"  *ngIf="user; let u">
                   Organized by {{u.name}}
                 </p>
               </div>
             </div>
             <div class="ticket-container">
-              <p #priceAnnotate [annotate]="priceAnnotations" class="price" *ngIf="e.price.amount == 0; else price">Free</p>
+              <p #priceAnnotate [annotate]="{show: this.showAnnotations,annotation:priceAnnotations}" class="price" *ngIf="e.price.amount == 0; else price">Free</p>
               <ng-template #price>
                 <p class="price">
                   {{e.price.amount}} {{e.price.unit}}
                 </p>
               </ng-template>
               <ion-button (click)="attendEvent(1)" expand="fill" color="success" [disabled]="attendType === 1">
-                <ion-icon size="large" name="done-all"></ion-icon> Attend
+                <ion-icon size="large" name="done-all"></ion-icon> <span class="only-desktop">Attend</span>
               </ion-button>
               <ion-button (click)="attendEvent(2)" expand="fill" color="warning" [disabled]="attendType === 2">
-                <ion-icon size="large" name="checkmark"></ion-icon> May Attend
+                <ion-icon size="large" name="checkmark"></ion-icon> <span class="only-desktop">May Attend</span>
               </ion-button>
               <ion-button (click)="attendEvent(0)" expand="fill" color="danger" [disabled]="attendType === 0">
-                <ion-icon size="large" name="close"></ion-icon> Not Attend
+                <ion-icon size="large" name="close"></ion-icon> <span class="only-desktop">Not Attend</span>
+              </ion-button>
+              <ion-button (click)="this.showAnnotations = !this.showAnnotations" expand="fill" color="tertiary">
+                <ion-icon size="large" name="create"></ion-icon> <span class="only-desktop">Toggle Annotate</span>
               </ion-button>
             </div>
             <div *ngIf="e.artists && e.artists.length > 0" class="detail-container performer">
@@ -60,7 +63,7 @@
               </div>
               <div class="inner-container">
                 <h3>Performers</h3>
-                <div #artistAnnotate [annotate]="artistAnnotations" *ngFor="let artist of e.artists" class="artist">
+                <div #artistAnnotate [annotate]="{show: this.showAnnotations,annotation:artistAnnotations}" *ngFor="let artist of e.artists" class="artist">
                   {{artist}}
                 </div>
               </div>
@@ -72,10 +75,10 @@
               <div class="inner-container">
                 <h3>Date and Time</h3>
                 <p></p>
-                <p #dateAnnotate [annotate]="dateAnnotations">
+                <p #dateAnnotate [annotate]="{show: this.showAnnotations,annotation: dateAnnotations}">
                   {{e.date | date:'dd MMMM EEEE HH:mm, yyyy'}}
                 </p>
-                <p #durationAnnotate [annotate]="durationAnnotations">
+                <p #durationAnnotate [annotate]="{show: this.showAnnotations, annotation: durationAnnotations}">
                   {{e.duration.length}} {{e.duration.length <= 1 ? e.duration.unit : e.duration.unit + 's'}}
                 </p>
               </div>
@@ -84,7 +87,7 @@
               <div class="icon-container">
                 <ion-icon name="document"></ion-icon>
               </div>
-              <div #descriptionAnnotate [annotate]="descriptionAnnotations" class="inner-container">
+              <div #descriptionAnnotate [annotate]="{show: this.showAnnotations, annotation: descriptionAnnotations}" class="inner-container">
                 <h3>Description</h3>
                 {{e.description}}
               </div>
@@ -96,7 +99,7 @@
               </div>
               <div class="inner-container">
                 <h3>Tags</h3>
-                <span #tagAnnotate [annotate]="tagAnnotations" class="tag" *ngFor="let tag of e.tags">
+                <span #tagAnnotate [annotate]="{show: this.showAnnotations, annotation: tagAnnotations}" class="tag" *ngFor="let tag of e.tags">
                   {{tag}}
                 </span>
               </div>

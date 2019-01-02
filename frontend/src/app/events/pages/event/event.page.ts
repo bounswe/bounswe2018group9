@@ -46,6 +46,7 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
   @ViewChildren('descriptionAnnotate') descriptionRef : QueryList<ElementRef>;
   @ViewChildren('tagAnnotate') tagRef : QueryList<ElementRef>;
   xpaths = {};
+  showAnnotations : boolean = false;
 
   attendType: number;
 
