@@ -6,8 +6,6 @@ import {ToolbarComponent} from "./components/toolbar/toolbar.component";
 import {IonicModule, Slide} from "@ionic/angular";
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
-import {SliderComponent} from "./components/slider/slider.component";
-import {MediaComponent} from "./components/media/media.component";
 
 import { AgmCoreModule } from '@agm/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
