@@ -18,7 +18,7 @@ router.delete('/:id/media/:mediaId', passport.authenticate('jwt', {session: fals
 
 // Adds an attendance to an event
 router.post('/:id/attendance', passport.authenticate('jwt', {session: false}), EventController.addAttendance);
-router.get('/:id/attendance', passport.authenticate('jwt', {session: false}), EventController.getAttendance);
+router.get('/:id/attendance', EventController.getAttendance);
 router.put('/:id/attendance', passport.authenticate('jwt', {session: false}), EventController.updateAttendance);
 
 //Adds a vote to event
