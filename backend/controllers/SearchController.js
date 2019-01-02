@@ -91,7 +91,7 @@ function advancedSearch(req,res,next){
     const currency = req.query.currency;
 
     // Tags
-    const tags = null;
+    var tags = null;
     if (req.query.tags) {
         tags = req.query.tags.split(',');
     }
