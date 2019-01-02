@@ -2,90 +2,61 @@
   <app-toolbar [backButton]="true" [href]="'/feed'"></app-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-row>
-    <ion-col size-xs="12" offset-md="2" size-md="4">
-      <div class="search-form">
-        <form [formGroup]="form" (ngSubmit)="search()">
-          <ion-item>
-            <ion-input
-              type="text"
-              formControlName="search"
-              placeholder="Search for a keyword"
-              class="form-input">
-            </ion-input>
-          </ion-item>
-          <ion-item-group>
-            <ion-item>
-              <ion-datetime
-                display-format="DD MMMM DDDD HH:mm, YYYY"
-                picker-format="DD MMM HH mm YYYY"
-                formControlName="afterThan"
-                placeholder="Events starting after..."
-                class="form-input">
-              </ion-datetime>
-            </ion-item>
-            <ion-item>
-              <ion-datetime
-                display-format="DD MMMM DDDD HH:mm, YYYY"
-                picker-format="DD MMM HH mm YYYY"
-                formControlName="beforeThan"
-                placeholder="Events starting before..."
-                class="form-input">
-              </ion-datetime>
-            </ion-item>
-          </ion-item-group>
-          <ion-item-group>
-            <ion-row>
-              <ion-col size="4">
-                <ion-item>
-                  <ion-input
-                    type="number"
-                    formControlName="lowPrice"
-                    placeholder="Min price"
-                    class="form-input">
-                  </ion-input>
-                </ion-item>
-              </ion-col>
-              <ion-col size="4">
-                <ion-item>
-                  <ion-input
-                    type="number"
-                    formControlName="highPrice"
-                    placeholder="Max price"
-                    class="form-input">
-                  </ion-input>
-                </ion-item>
-              </ion-col>
-              <ion-col size="4">
-                <ion-select class="form-input form-select" formControlName="currency" mode="md" placeholder="Currency">
-                  <ion-select-option value ='₺' >Turkish Lira</ion-select-option>
-                  <ion-select-option value ='$' >Dollars</ion-select-option>
-                  <ion-select-option value ='€' >Euro</ion-select-option>
-                </ion-select>
-              </ion-col>
-            </ion-row>
-          </ion-item-group>
-          <ion-button expand="block" type="submit" [disabled]="!form.valid">
-            <ion-icon name="search"></ion-icon>
-            Search
-          </ion-button>
-        </form>
-      </div>
-    </ion-col>
-    <ion-col size-xs="12" size-md="4">
-        <div class="search-results-overlay">
-          <div *ngIf="currentSearchResult" class="results-container">
-            <ion-card *ngFor="let event of currentSearchResult" class="result">
-              <ion-item href="{{'/feed/' + event._id}}">
-                <ion-avatar slot="start">
-                  <img [src]="event.medias[0]">
-                </ion-avatar>
-                <ion-label>{{event.name}}</ion-label>
-              </ion-item>
-            </ion-card>
+<ion-content padding>
+  <ion-grid margin>
+    <ion-row margin>
+      <ion-col>
+        <input class="search-input" placeholder="Search anything..." [(ngModel)]="name">
+      </ion-col>
+    </ion-row>
+
+    <ion-row margin>
+      <ion-col>
+        <ion-badge [color]="filters.location ?  'primary' : 'light'" (click)="filter('location')">
+          {{filters.location ? 'Map Area' : 'Location'}}
+          <ion-icon [name]="filters.location ? 'close' : 'arrow-dropdown'"></ion-icon>
+        </ion-badge>
+        <ion-badge [color]="filters.date ?  'primary' : 'light'" (click)="filter('date')">
+          {{ filters.date ? date() : 'Date' }}
+          <ion-icon [name]="filters.date ? 'close' : 'arrow-dropdown'"></ion-icon>
+        </ion-badge>
+        <ion-badge [color]="filters.price ?  'primary' : 'light'" (click)="filter('price')">
+          {{ filters.price ? price() : 'Price' }}
+          <ion-icon [name]="filters.price ? 'close' : 'arrow-dropdown'"></ion-icon>
+        </ion-badge>
+      </ion-col>
+      <ion-col>
+        <ion-button color="primary" (click)="search()">Search</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row margin>
+      <ion-col>
+        <span>TAGS:</span>
+        <ion-badge *ngFor="let tag of filters?.tags" color="primary" (click)="removeTag(tag)">
+          {{ tag }}
+          <ion-icon name="close"></ion-icon>
+        </ion-badge>
+        <ion-badge color="light" (click)="addTag()">
+          <ion-icon name="add"></ion-icon>
+        </ion-badge>
+      </ion-col>
+    </ion-row>
+
+    <ion-row margin>
+      <ion-col size-xs="12" size-md="6" push-md="6">
+        <div class="map-container">
+          <app-map [locations]="locations" [options]="{ search: false, select: false }" (onBoundaryChange)="onBoundaryChange($event)"></app-map>
+          <div text-center class="button-container">
+            <ion-button *ngIf="mapChanged" (click)="searchLocation()">Search this area</ion-button>
           </div>
         </div>
-    </ion-col>
-  </ion-row>
+      </ion-col>
+      <ion-col size-xs="12" size-md="6" pull-md="6">
+        <ion-row justify-content-center no-padding>
+          <app-event-card *ngFor="let event of events" [event]="event"></app-event-card>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

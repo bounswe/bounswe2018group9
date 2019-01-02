@@ -1,24 +1,39 @@
-.search-results-overlay{
+@import '../../events.module.scss';
+
+.search-input {
   width: 100%;
+  max-width: 600px;
+  font-size: 2em;
+  font-weight: bolder;
 }
 
-.search-results{
-  width: 100%;
+.search-input, .search-input:focus {
+  border: 0;
+  outline: none;
 }
 
-.form-input{
-  margin: 4px 2px;
-}
-
-.search-form{
-  margin: 6px;
+ion-badge {
   padding: 10px;
-  border: 4px solid rgba(var(--ion-color-light-rgb), 0.9);
-  border-radius: 6px;
+  margin: 5px;
+  font-size: 1.1em;
 }
 
-@media screen and (min-width: 992px){
-  .form-input{
-    margin: 12px 2px;
+ion-button {
+  font-weight: bold;
+}
+
+span {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.map-container {
+  min-width: 300px;
+  position: relative;
+
+  & > .button-container {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
   }
 }
