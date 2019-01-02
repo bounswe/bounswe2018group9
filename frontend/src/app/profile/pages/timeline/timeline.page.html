@@ -1,14 +1,16 @@
+<div>
 <div class="timeline-container" *ngIf="currentUser">
+  <h2 *ngIf="currentUser.willAttendEvents.length > 0">Will attend:</h2>
   <div *ngFor="let e of currentUser.willAttendEvents.sort(sortFunction)">
-    <h2>You will attend</h2>
     <app-event-card [event]="e"></app-event-card>
   </div>
+  <h2 *ngIf="currentUser.mayAttendEvents.length > 0">May attend:</h2>
   <div *ngFor="let e of currentUser.mayAttendEvents.sort(sortFunction)">
-    <h2>You may attend</h2>
     <app-event-card [event]="e"></app-event-card>
   </div>
+  <h2 *ngIf="currentUser.willNotAttendEvents.length > 0">Will not attend:</h2>
   <div *ngFor="let e of currentUser.willNotAttendEvents.sort(sortFunction)">
-    <h2>You will not attend</h2>
     <app-event-card [event]="e"></app-event-card>
   </div>
+</div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from "../../../auth/providers/auth/auth.service";
 import {Event, User} from "../../../interfaces";
 
@@ -9,14 +9,23 @@ import {Event, User} from "../../../interfaces";
 })
 export class TimelinePage implements OnInit {
   currentUser: User;
+  @Input('user') user: User;
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.getUserData(this.authService.getUserId())
-      .subscribe(
-        user => this.currentUser = user,
-        error => console.log(error)
-      )
+    if(this.user){
+      this.currentUser = this.user;
+    } else {
+      this.authService.getUserData(this.authService.getUserId())
+        .subscribe(
+          user => {
+            this.currentUser = user;
+            console.log(user);
+          },
+          error => console.log(error)
+        )
+    }
+
   }
 
   sortFunction(e1: Event, e2: Event){
