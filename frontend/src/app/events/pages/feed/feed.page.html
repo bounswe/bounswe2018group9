@@ -24,7 +24,11 @@
         </ion-col>
         -->
       </ion-row>
-      <ion-infinite-scroll threshold="100px" (ionInfinite)="load($event)">
+      <ion-row *ngIf="!loaded" justify-content-center padding-top>
+        <ion-chip *ngIf="interests && interests.length === 0" color="primary" (click)="stateInterests()">State your interests to find out more events!</ion-chip>
+        <ion-chip (click)="refresh()">Refresh</ion-chip>
+      </ion-row>
+      <ion-infinite-scroll *ngIf="loaded" threshold="200px" (ionInfinite)="load($event)">
         <ion-infinite-scroll-content
           loadingSpinner="bubbles"
           loadingText="Loading more entries...">
