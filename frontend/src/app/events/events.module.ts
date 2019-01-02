@@ -9,7 +9,6 @@ import { FeedPage } from './pages/feed/feed.page';
 import { EventPage } from './pages/event/event.page';
 import { EventCreatePage } from './pages/event-create/event-create.page';
 
-import { EventCardComponent } from './components/event-card/event-card.component';
 import {SearchComponent} from './components/search/search.component';
 import { CommentBoxComponent } from './components/comment-box/comment-box.component';
 import {SharedModule} from "../shared/shared.module";
@@ -44,7 +43,6 @@ import { PriceSelectorComponent } from './components/price-selector/price-select
     EventPage,
     EventCreatePage,
     SearchPage,
-    EventCardComponent,
     SearchComponent,
     CommentBoxComponent,
     EventFormComponent,

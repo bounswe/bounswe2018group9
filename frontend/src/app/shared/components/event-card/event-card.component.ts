@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {Event} from "../../../interfaces";
+import {Event} from "../../../interfaces/index";
 import {Router} from "@angular/router";
 import {EventService} from "../../../data/providers/event/event.service";
 import {AuthService} from "../../../auth/providers/auth/auth.service";
