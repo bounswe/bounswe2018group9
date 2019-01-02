@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { User, Event } from '../../../interfaces';
 
 import { AuthService } from '../../../auth/providers/auth/auth.service';
-import { EventService } from '../../../data/providers/event/event.service';
+import { FeedService } from '../../../data/providers/feed/feed.service';
 import {SearchService} from "../../../data/providers/search/search.service";
 
 import { TagSelectorComponent } from '../../components/tag-selector/tag-selector.component';
@@ -30,7 +30,7 @@ export class FeedPage implements OnInit {
     private popoverController: PopoverController,
     private alertController: AlertController,
     private authService: AuthService,
-    private eventService: EventService
+    private feedService: FeedService
   ) {
     this.load();
   }
@@ -49,7 +49,7 @@ export class FeedPage implements OnInit {
    * @param {number} count the desired count for the load batch
    */
   load(event: any = null, start: number = this.skip, count: number = FeedPage.count) {
-    this.eventService.get(null, { limit: count, skip: start })
+    this.feedService.get(this.authService.getUserId(), { limit: count, skip: start })
       .subscribe((data: Event[]) => {
         if (!data || data.length === 0) {
           this.loaded = false;

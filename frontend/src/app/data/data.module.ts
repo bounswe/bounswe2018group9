@@ -6,6 +6,7 @@ import { EventService } from './providers/event/event.service';
 import { UploadService } from './providers/upload/upload.service';
 import {SearchService} from "./providers/search/search.service";
 import { TagService } from './providers/tag/tag.service';
+import { FeedService } from './providers/feed/feed.service';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { TagService } from './providers/tag/tag.service';
     EventService,
     UploadService,
     SearchService,
-    TagService
+    TagService,
+    FeedService
   ]
 })
 export class DataModule {
@@ -28,7 +30,8 @@ export class DataModule {
         EventService,
         UploadService,
         SearchService,
-        TagService
+        TagService,
+        FeedService
       ]
     }
   }
