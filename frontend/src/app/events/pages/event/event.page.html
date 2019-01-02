@@ -44,13 +44,13 @@
                   {{e.price.amount}} {{e.price.unit}}
                 </p>
               </ng-template>
-              <ion-button (click)="attendEvent(1)" expand="fill" color="success">
+              <ion-button (click)="attendEvent(1)" expand="fill" color="success" [disabled]="attendType === 1">
                 <ion-icon size="large" name="done-all"></ion-icon> Attend
               </ion-button>
-              <ion-button (click)="attendEvent(2)" expand="fill" color="warning">
+              <ion-button (click)="attendEvent(2)" expand="fill" color="warning" [disabled]="attendType === 2">
                 <ion-icon size="large" name="checkmark"></ion-icon> May Attend
               </ion-button>
-              <ion-button (click)="attendEvent(0)" expand="fill" color="danger">
+              <ion-button (click)="attendEvent(0)" expand="fill" color="danger" [disabled]="attendType === 0">
                 <ion-icon size="large" name="close"></ion-icon> Not Attend
               </ion-button>
             </div>

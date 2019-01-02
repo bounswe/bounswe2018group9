@@ -47,6 +47,8 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
   @ViewChildren('tagAnnotate') tagRef : QueryList<ElementRef>;
   xpaths = {};
 
+  attendType: number;
+
   private guest: boolean = false;
 
   constructor(private route: ActivatedRoute,
@@ -70,6 +72,13 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
        .subscribe(
          (user: User) => {
            this.currentUser = user;
+           if(this.currentUser.willAttendEvents.map(event => event._id).includes(this.event_id)){
+             this.attendType = 1;
+           } else if(this.currentUser.willNotAttendEvents.map(event => event._id).includes(this.event_id)){
+             this.attendType = 0;
+           } else if(this.currentUser.mayAttendEvents.map(event => event._id).includes(this.event_id)){
+             this.attendType = 2;
+           }
          },
          error => {
            console.log('An error occurred while getting current user');
@@ -114,6 +123,7 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
       }
     });
   }
+
 
   ngAfterViewInit(){
     // Capture the fragment if available
@@ -274,9 +284,10 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
       user: this.user,
       attendanceType: attendanceType
     };
-    console.log(attendance);
 
-    this.eventService.attend(this.event_id, attendance)
+    this.attendType = attendanceType;
+
+    this.eventService.attend(this.currentUser._id, {eventId: this.event_id}, attendanceType)
       .subscribe(
         data => {
           this.event.attendance.push(attendance);
