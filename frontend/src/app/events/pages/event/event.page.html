@@ -29,7 +29,7 @@
                 </p>
                 <p #priceAnnotate [annotate]="priceAnnotations" class="price">
                   <span *ngIf="e.price.amount == 0; else price_t">Free</span>
-                  <ng-template #price_t>{{e.price.amount}} {{e.price.unit}}</ng-template>
+                  <ng-template #price_t>{{e.price.amount}} {{e.price.currency}}</ng-template>
                 </p>
                 <h1>{{e.name}}</h1>
                 <p #organizerAnnotate [annotate]="organizerAnnotations"  *ngIf="user; let u">
