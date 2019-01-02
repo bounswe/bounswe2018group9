@@ -10,6 +10,7 @@ const uploadRouter = require('./upload');
 const searchRouter = require('./search');
 const annotationsRouter = require('./annotations');
 const utilsRouter = require('./utils');
+const feedRouter = require('./feed');
 
 // Register API routers
 router.use('/auth', authRouter);
@@ -19,5 +20,6 @@ router.use('/upload', passport.authenticate('jwt', {session: false}), uploadRout
 router.use('/search', passport.authenticate('jwt', {session: false}), searchRouter);
 router.use('/annotations', passport.authenticate('jwt', {session: false}), annotationsRouter);
 router.use('/utils', passport.authenticate('jwt', {session: false}), utilsRouter);
+router.use('/feed',passport.authenticate('jwt', {session: false}), feedRouter);
 
 module.exports = router;
