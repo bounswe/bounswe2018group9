@@ -20,6 +20,7 @@ import {EventEditPage} from "./pages/event-edit/event-edit.page";
 import {AnnotationModule} from '../annotation/annotation.module';
 
 import { TagSelectorComponent } from './components/tag-selector/tag-selector.component';
+import { DateSelectorComponent } from './components/date-selector/date-selector.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { TagSelectorComponent } from './components/tag-selector/tag-selector.com
     SharedModule
   ],
   entryComponents: [
-    TagSelectorComponent
+    TagSelectorComponent,
+    DateSelectorComponent
   ],
   declarations: [
     FeedPage,
@@ -44,7 +46,8 @@ import { TagSelectorComponent } from './components/tag-selector/tag-selector.com
     CommentBoxComponent,
     EventFormComponent,
     EventEditPage,
-    TagSelectorComponent
+    TagSelectorComponent,
+    DateSelectorComponent
   ]
 })
 export class EventsModule { }
