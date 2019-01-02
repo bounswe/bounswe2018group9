@@ -6,7 +6,9 @@ const _ = require("lodash");
 
 function getFeedForUserWithId(req,res,next) {
     let userId = req.params.id
-    
+    let skip = req.query.skip;
+    let limit = req.query.limit;
+
     let response = [];
 
     // First get the events that he created.
@@ -27,7 +29,7 @@ function getFeedForUserWithId(req,res,next) {
         .then((user) => {
             console.log('2 - User', user);
             let followedUsers = user.following;
-            return Event.find({ creator: { $in: followedUsers }})
+            return Event.find({ creator: { $in: followedUsers }, tags: { $in: user.interests }})
                 //.populate('comments.author')
                 .exec()
         })
@@ -55,6 +57,11 @@ function getFeedForUserWithId(req,res,next) {
             console.log('Response: ', response);
             // Delete the duplicate elements
             response = _.uniqBy(response, '_id');
+            response = response.slice(skip, skip + limit);
+            console.log(response);
+            
+            console.log(skip, limit);
+            
             res.status(200);
             res.send(response);
         })
