@@ -1,0 +1,29 @@
+<ion-content padding-bottom padding-top>
+  <ion-item>
+    <ion-label>Range?</ion-label>
+    <ion-checkbox [(ngModel)]="options.range"></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-label>Hours?</ion-label>
+    <ion-checkbox [(ngModel)]="options.hours"></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-datetime
+      [displayFormat]="options.hours ? 'HH:mm, DD MMMM YYYY' : 'DD MMMM YYYY'"
+      [(ngModel)]="date.after"
+      placeholder="Events starting after...">
+    </ion-datetime>
+  </ion-item>
+  <ion-item *ngIf="options.range">
+    <ion-datetime
+      [displayFormat]="options.hours ? 'HH:mm, DD MMMM YYYY' : 'DD MMMM YYYY'"
+      [(ngModel)]="date.before"
+      placeholder="Events starting before...">
+    </ion-datetime>
+  </ion-item>
+</ion-content>
+<ion-footer>
+  <ion-toolbar text-center>
+    <ion-button [disabled]="!date.after || !(options.range && !date.before)" (click)="save()">Filter</ion-button>
+  </ion-toolbar>
+</ion-footer>
