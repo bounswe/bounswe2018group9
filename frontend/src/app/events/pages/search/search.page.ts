@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { formatDate } from '@angular/common';
 
 import { NavParams, PopoverController, ToastController } from '@ionic/angular';
-//import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { TagService } from '../../../data/providers/tag/tag.service';
 import { SearchService } from '../../../data/providers/search/search.service';
@@ -18,7 +18,7 @@ import { PriceSelectorComponent } from '../../components/price-selector/price-se
   styleUrls: ['./search.page.scss'],
 })
 export class SearchPage implements OnInit {
-  name: string;
+  name: string = '';
   filters: any = {
     date: false,
     price: false,
@@ -33,38 +33,18 @@ export class SearchPage implements OnInit {
   events: Event[] = [];
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private popoverController: PopoverController,
     private toastController: ToastController,
     private searchService: SearchService
   ) { }
 
   ngOnInit() {
-    /*
-    if(this.route.snapshot.queryParams['query']){
-      let query = this.route.snapshot.queryParams['query'];
-      this.searchService.get(query)
-        .subscribe(
-          result => this.currentSearchResult = result,
-          error => console.log('An error occurred while getting search results for', query, error)
-        )
+    if (this.route.snapshot.params['text']) {
+      this.name = this.route.snapshot.params['text'];
+      this.search();
     }
-    this.route.queryParams.subscribe(
-      (queries) => {
-        console.log(queries);
-        if(queries['query']){
-          this.searchService.get(queries['query'])
-            .subscribe(
-              (result) => {
-                this.currentSearchResult = result;
-              },
-              error => console.log('An error occurred while getting search results for', queries['query'], error)
-            )
-        }
-      }
-    )
-    let now = new Date();
-    this.eventCurrentDate = now.toISOString();
-    */
   }
 
   parseDate(date) {

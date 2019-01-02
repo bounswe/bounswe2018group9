@@ -6,7 +6,7 @@
   <ion-grid margin>
     <ion-row margin>
       <ion-col>
-        <input class="search-input" placeholder="Search anything..." [(ngModel)]="name">
+        <input class="search-input" placeholder="Search anything..." [(ngModel)]="name" (keyup.enter)="search()">
       </ion-col>
     </ion-row>
 
