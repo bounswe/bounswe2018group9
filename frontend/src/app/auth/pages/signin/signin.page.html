@@ -5,7 +5,7 @@
     </div>
 
     <div class="form-container" margin padding>
-      <form [formGroup]="form" (ngSubmit)="login()" (keyup.enter)="form.valid && login()">
+      <form [formGroup]="form">
         <ion-list>
           <ion-item>
             <ion-label position="stacked"><b>Email</b></ion-label>
@@ -22,12 +22,12 @@
           </ion-item>
           <ion-label text-wrap class="notify" *ngIf="this.form.get('password').dirty && !this.form.get('password').valid">Your password should consist of at least 8 characters.</ion-label>
         </ion-list>
-        <ion-button type="submit" [disabled]="!form.valid" expand="block">Sign in</ion-button>
+        <ion-button expand="block" [disabled]="!form.valid" (click)="login()">Sign in</ion-button>
       </form>
     </div>
 
     <div class="form-container" margin>
-      <p text-center class="auth-text">New to Actopus? <a color="secondary" routerLink="/signup">Create an account.</a></p>
+      <p text-center class="auth-text">New to Actopus? <a color="secondary" (click)="register()">Create an account.</a></p>
     </div>
 
     <p text-center padding class="auth-text">Copyright 2018 @Actopus</p>

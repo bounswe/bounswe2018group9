@@ -26,4 +26,9 @@
   ion-label > a {
     pointer-events: all !important;
   }
+
+  a {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }

@@ -13,9 +13,13 @@ import {AlertController, LoadingController} from "@ionic/angular";
 export class SigninPage implements OnInit {
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute,
-              private authService: AuthService,
-              private alertController: AlertController) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    private alertController: AlertController
+  ) {
     this.form = this.formBuilder.group(
       {
         email: ['',  [Validators.required, Validators.email]],
@@ -28,19 +32,24 @@ export class SigninPage implements OnInit {
   }
 
   login() {
-
     this.authService
       .login(this.form.value)
       .subscribe(response => {
         this.route.queryParams
           .subscribe(params => {
-            this.router.navigate([ ( params['return'], '/feed' ) ]);
+            this.router.navigate([ params['return'] ? params['return'] : '/feed' ]);
           });
-
       }, error => {
         console.log(error);
       });
   }
 
-
+  register() {
+    this.route.queryParams
+      .subscribe(params => {
+        this.router.navigate(['/signup'], {
+          queryParams: params ? params : null
+        })
+      });
+  }
 }

@@ -3,7 +3,7 @@ import {Event, User, Comment, Attendance} from '../../../interfaces';
 import {ActivatedRoute, Router} from '@angular/router';
 import { EventService } from '../../../data/providers/event/event.service';
 
-import {AlertController, LoadingController} from "@ionic/angular";
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import {HttpErrorResponse} from "@angular/common/http";
 import {AuthService} from "../../../auth/providers/auth/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -47,10 +47,13 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
   @ViewChildren('tagAnnotate') tagRef : QueryList<ElementRef>;
   xpaths = {};
 
+  private guest: boolean = false;
+
   constructor(private route: ActivatedRoute,
               private eventService: EventService,
               private loadingController : LoadingController,
               private alertController : AlertController,
+              private toastController: ToastController,
               private authService: AuthService,
               private formBuilder: FormBuilder,
               public uploadService: UploadService,
@@ -189,6 +192,28 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
     },3000);
   }
 
+  async checkGuest() {
+    if (this.guest) return;
+
+    if (!this.authService.isAuthenticated()) {
+      this.guest = true;
+      this.router.navigate(['/signin'], {
+        queryParams: {
+          return: this.router.routerState.snapshot.url
+        }
+      });
+      let toast = await this.toastController.create({
+        message: 'Sign-in to use Actopus!',
+        duration: 2000,
+        position: 'bottom',
+        showCloseButton: true
+      });
+      await toast.present();
+      return true;
+    }
+    return false;
+  }
+
   goToComments(){
     if(this.commentsSec){
       document.getElementById('comments').scrollIntoView({ behavior: 'smooth' });
@@ -219,7 +244,9 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
     (<HTMLImageElement>this.profileImage.nativeElement).src='../../../../assets/profile.jpg';
   }
 
-  createComment(){
+  async createComment(){
+    if (await this.checkGuest()) { return; }
+
     let comment: Comment = this.form.value;
 
     comment.parentId = this.event_id;
@@ -240,7 +267,9 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
       );
   }
 
-  attendEvent(attendanceType){
+  async attendEvent(attendanceType){
+    if (await this.checkGuest()) { return; }
+
     let attendance: Attendance = {
       user: this.user,
       attendanceType: attendanceType
@@ -262,7 +291,9 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
 
 
 
-addAnnotations(){
+async addAnnotations(){
+  if (await this.checkGuest()) { return; }
+
   this.annotationService.getAnnotationsByPage(this.router.url).subscribe((next)=>{
     if(Array.isArray(next["annotations"])){
       while(next["annotations"].length  != 0 ){
