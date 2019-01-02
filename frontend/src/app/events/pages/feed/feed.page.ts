@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { User, Event } from '../../../interfaces';
 
 import { AuthService } from '../../../auth/providers/auth/auth.service';
+import { EventService } from '../../../data/providers/event/event.service';
 import { FeedService } from '../../../data/providers/feed/feed.service';
 import {SearchService} from "../../../data/providers/search/search.service";
 
@@ -30,7 +31,8 @@ export class FeedPage implements OnInit {
     private popoverController: PopoverController,
     private alertController: AlertController,
     private authService: AuthService,
-    private feedService: FeedService
+    private feedService: FeedService,
+    private eventService: EventService
   ) {
     this.load();
   }
