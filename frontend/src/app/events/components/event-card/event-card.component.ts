@@ -16,7 +16,8 @@ export class EventCardComponent implements OnInit {
   timeDiff;
   timeDiffUnit;
   timeDiffText = 'ago';
-  voted = false;
+  upVoted = false;
+  downVoted = false;
 
   constructor(private router: Router,
               private eventService: EventService,
@@ -51,6 +52,14 @@ export class EventCardComponent implements OnInit {
 
     this.timeDiff = Math.floor(this.timeDiff);
 
+    let userId = this.authService.getUserId();
+    if(this.event.vote.positive.includes(userId)){
+      this.upVoted = true;
+    }
+    if(this.event.vote.negative.includes(userId)){
+      this.downVoted = true;
+    }
+
 
   }
 
@@ -61,12 +70,13 @@ export class EventCardComponent implements OnInit {
       .subscribe(
         message => {
           console.log(message);
-          if(vote == 1){
+          if(vote == 1 && !this.upVoted){
             this.event.vote.upvoteCount += 1;
-          } else if(vote == -1){
+            this.upVoted = true;
+          } else if(vote == -1 && !this.downVoted){
             this.event.vote.downvoteCount -= 1;
+            this.downVoted = true;
           }
-          this.voted = true;
         },
         error => console.log(error)
       );
