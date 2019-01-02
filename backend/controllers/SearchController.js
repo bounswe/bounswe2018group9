@@ -63,14 +63,14 @@ function advancedSearch(req,res,next){
     let searchQuery = "";
     let regexedSearchQuery="";
 
+    let response = {}
+    let searchParams = {}
     if(req.query.search)
     {
         searchQuery=req.query.search;
         regexedSearchQuery = new RegExp(escapeRegex(searchQuery),'gi');
         searchParams.name = regexedSearchQuery;
     }
-    let response = {}
-    let searchParams = {}
 
     
 
