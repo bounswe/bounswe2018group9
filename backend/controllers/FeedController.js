@@ -29,7 +29,7 @@ function getFeedForUserWithId(req,res,next) {
         .then((user) => {
             console.log('2 - User', user);
             let followedUsers = user.following;
-            return Event.find({ creator: { $in: followedUsers }, "tags.$": { $in: user.interests }})
+            return Event.find({ $or: [{creator: { $in: followedUsers }}, {tags: { $in: user.interests }}]})
                 //.populate('comments.author')
                 .exec()
         })
