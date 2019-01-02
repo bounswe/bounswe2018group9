@@ -1,13 +1,13 @@
 <ion-content padding-bottom padding-top>
-  <ion-item>
+  <ion-item lines="none">
     <ion-label position="fixed">Min Price</ion-label>
     <ion-input type="number" [min]="0" [max]="price.max" [(ngModel)]="price.min"></ion-input>
   </ion-item>
-  <ion-item>
+  <ion-item lines="none">
     <ion-label position="fixed">Max Price</ion-label>
     <ion-input type="number" [min]="price.min" [(ngModel)]="price.max"></ion-input>
   </ion-item>
-  <ion-item>
+  <ion-item lines="none">
     <ion-label position="fixed">Currency</ion-label>
     <ion-select [(ngModel)]="price.currency">
       <ion-select-option value="">All</ion-select-option>
