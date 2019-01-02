@@ -24,6 +24,6 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar text-center>
-    <ion-button [disabled]="!date.after || !(options.range && !date.before)" (click)="save()">Filter</ion-button>
+    <ion-button [disabled]="!date.after || (options.range && !date.before)" (click)="save()">Filter</ion-button>
   </ion-toolbar>
 </ion-footer>
