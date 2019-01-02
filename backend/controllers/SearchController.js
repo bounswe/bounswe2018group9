@@ -60,13 +60,19 @@ function locationSearch(req,res,next) {
 }
 
 function advancedSearch(req,res,next){
-    const searchQuery = req.query.search;
-    const regexedSearchQuery = new RegExp(escapeRegex(searchQuery),'gi');
+    const searchQuery = "";
+    const regexedSearchQuery="";
 
+    if(req.query.search)
+    {
+        searchQuery=req.query.search;
+        regexedSearchQuery = new RegExp(escapeRegex(searchQuery),'gi');
+        searchParams.name = regexedSearchQuery;
+    }
     let response = {}
     let searchParams = {}
 
-    searchParams.name = regexedSearchQuery;
+    
 
     // Get query params
     // Location
@@ -93,18 +99,15 @@ function advancedSearch(req,res,next){
 
     // Construct the search params object
     if (latLower && latHigher && lngHigher && lngLower){
-        searchParams.location = { 
-            coordinates: { 
-                lat: { 
-                    $gte: latLower, 
-                    $lte: latHigher
-                }, 
-                lng:{ 
-                    $gte: lngLower, 
-                    $lte: lngHigher
-                }
-            }
-        };
+        searchParams['location.coords.lat'] = {
+            $gte: Number(latLower), 
+            $lte: Number(latHigher)     
+        }
+        searchParams['location.coords.lng']={
+            $gte: Number(lngLower), 
+            $lte: Number(lngHigher)
+        }
+        
     }
 
     // Time
