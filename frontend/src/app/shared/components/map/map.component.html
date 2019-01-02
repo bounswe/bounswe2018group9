@@ -5,12 +5,12 @@
     </ion-searchbar>
   </div>
   <agm-map [latitude]="options?.center?.lat" [longitude]="options?.center?.lng" [zoom]="options?.zoom" (mapClick)="onMapClick($event)" (boundsChange)="onBoundsChange($event)">
-    <agm-marker #select *ngIf="options?.select" [latitude]="position.coords.lat" [longitude]="position.coords.lng" [markerDraggable]="true" (dragEnd)="onSelectDrag($event)">
+    <agm-marker #select *ngIf="options?.select" [latitude]="position?.coords?.lat" [longitude]="position?.coords?.lng" [markerDraggable]="true" (dragEnd)="onSelectDrag($event)">
       <agm-info-window>
         {{ position.address }}
       </agm-info-window>
     </agm-marker>
-    <agm-marker *ngFor="let location of locations" [latitude]="location.coords.lat" [longitude]="location.coords.lng" [title]="location.address" (markerClick)="onMarkerClick($event)">
+    <agm-marker *ngFor="let location of locations" [latitude]="location.coords?.lat" [longitude]="location.coords?.lng" [title]="location.address" (markerClick)="onMarkerClick($event)">
       <agm-info-window>
         {{ location.address }}
       </agm-info-window>
