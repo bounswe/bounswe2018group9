@@ -16,10 +16,88 @@
 
 .image-container img{
   border-radius: 100%;
-  width: 100%;
+  object-fit: cover;
 }
 
 .profile-container{
   border: 2px solid var(--ion-color-medium);
   text-align: center;
+}
+.big{
+  font-size: 2em;
+}
+
+@import '../../../../theme/custom_variables';
+
+ion-label{
+  font-size: 2em;
+}
+
+ion-content, .child-container{
+  margin-bottom: $menu-height + 20px;
+}
+
+.top-container{
+  background-color: var(--ion-color-primary);
+  color: white;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container{
+  width: 150px;
+  height: 150px;
+}
+
+
+.top-container h1{
+  text-align: center;
+  font-weight: bold;
+}
+
+.image-container img{
+  border-radius: 100%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.top-container .detail{
+  text-align: center;
+}
+
+.interest-detail span{
+  padding: 4px;
+  border-radius: 4px;
+  background-color: rgba(var(--ion-color-tertiary), 0.5);
+}
+.tabs-container{
+  width: 100%;
+}
+
+.tab{
+  width: calc(100%/3);
+  float: left;
+  box-sizing: border-box;
+  background-color: var(--ion-color-primary);
+  padding: 10px 0;
+  text-align: center;
+}
+
+.tab a{
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.tab:first-child{
+  border-right: 2px solid white;
+}
+
+.tab:last-child{
+  border-left: 2px solid white;
 }
