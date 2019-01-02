@@ -65,15 +65,16 @@ export class SearchPage implements OnInit {
   }
 
   price() {
+    let currency = (this.filters.price.currency ? this.filters.price.currency : '');
     var res;
     if (this.filters.price.min && this.filters.price.max) {
-      res = this.filters.price.min + ' - ' + this.filters.price.max;
+      res = this.filters.price.min + currency + ' - ' + this.filters.price.max + currency;
     } else if (this.filters.prices.min) {
-      res = '> ' + this.filters.price.min;
+      res = '> ' + this.filters.price.min + currency;
     } else if (this.filters.prices.max) {
-      res = '< ' + this.filters.price.max;
+      res = '< ' + this.filters.price.max + currency;
     }
-    return res + (this.filters.price.currency ? ' ' + this.filters.price.currency : '');
+    return res;
   }
 
   search() {
