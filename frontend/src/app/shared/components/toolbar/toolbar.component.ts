@@ -15,6 +15,9 @@ export class ToolbarComponent implements OnInit {
   @Input('href') href: string;
   currentSearchResult: SearchResult = null;
   queryText: string;
+
+  navigated: boolean = false;
+
   constructor(private authService: AuthService,
               private router: Router,
               private searchService: SearchService,
@@ -32,7 +35,17 @@ export class ToolbarComponent implements OnInit {
       })
   }
 
-  onSearchChange(){
+  onSearchChange() {
+    if (this.navigated) return;
+
+    this.navigated = true;
+    this.router.navigate(['/feed/search', { text: this.queryText }]).then(() => {
+      // allow changes after 1 sec
+      setTimeout(() => {
+        this.navigated = false;
+      }, 1000);
+    });
+    /*
     if(this.queryText.length == 0) {this.currentSearchResult = null;}
     else{
       this.searchService.get(this.queryText)
@@ -41,6 +54,7 @@ export class ToolbarComponent implements OnInit {
           error => console.log('An error occurred while getting search results for', this.queryText, error)
         )
     }
+    */
   }
 
 }
