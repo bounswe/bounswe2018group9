@@ -61,8 +61,8 @@ function getUserById(req,res,next) {
     const id = req.params.id;
 
     User.findById(id)
-        .populate('mayAttendEvents')
         .populate('willAttendEvents')
+        .populate('mayAttendEvents')
         .populate('willNotAttendEvents')
         .exec()
         .then((user) => {

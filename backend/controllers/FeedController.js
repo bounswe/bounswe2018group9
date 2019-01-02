@@ -11,36 +11,63 @@ function getFeedForUserWithId(req,res,next) {
 
     // First get the events that he created.
     // If we need populate here append it .
-    Event.find({creator: userId})
+    Event.find({ creator: userId})
         //.populate('comments.author')
         .exec()
-        .then((events) => {
+        .then((createdEvents) => {
             // Append the events to the response array.
-            response.concat(events);
-            return User.findOne({id: userId})
+            console.log('1 - Created Events: ', createdEvents);
+            response = response.concat(createdEvents);
+
+            return User.findById(userId)
                 .populate('following')
                 .exec();
         })
         // Now append the events that they created.
         .then((user) => {
+            console.log('2 - User', user);
             let followedUsers = user.following;
-            
             return Event.find({ creator: { $in: followedUsers }})
                 //.populate('comments.author')
                 .exec()
         })
         // Concat the events that the followed users have created.
-        // And then return the ones 
-        .then((events) => {
-            response.concat(events);
-            // TODO I LEFT THIS PLACE
+        // And then return the ones that the user is attending 
+        // And the ones that he may attend.
+        // But not the ones that he cant attend
+        .then((followedUsersCreatedEvents) => {
+            console.log('3 - Followed Users Created Events: ', followedUsersCreatedEvents);
+            response = response.concat(followedUsersCreatedEvents);
+            return User.findById(userId)
+                .populate('mayAttendEvents')
+                .populate('willAttendEvents')
+                .exec()
         })
-        // Concat the events that the followed users have created.
-        // And then return the ones 
-        .then((events) => {
-            response.concat(events);
-            // TODO I LEFT THIS PLACE
+        // Append the attended and may attend events
+        // And return the events that the friends are attending
+        .then((populatedUser) => {
+            console.log('4 - User Will Attend Events: ', populatedUser.willAttendEvents);
+            console.log('4 - User May Attend Events: ', populatedUser.mayAttendEvents);
+            response = response.concat(populatedUser.willAttendEvents);
+            response = response.concat(populatedUser.mayAttendEvents);
+            // response = uniqueArray(response);
+            
+            console.log('Response: ', response);
+            // Delete the duplicate elements
+            response = _.uniqBy(response, '_id');
+            res.status(200);
+            res.send(response);
         })
+        .catch((err) => {
+            res.status(500);
+            res.send(err);
+        });
+}
+
+const uniqueArray = (arrArg) => {
+    return arrArg.filter((elem, pos, arr) => {
+      return arr.indexOf(elem) == pos;
+    });
 }
 
 module.exports = {
