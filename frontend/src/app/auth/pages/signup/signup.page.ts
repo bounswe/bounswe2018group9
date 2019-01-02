@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import {AlertController, LoadingController} from '@ionic/angular';
 
@@ -15,7 +15,7 @@ export class SignupPage implements OnInit {
   form: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService
+  constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private authService: AuthService
               , private loadingController :LoadingController, private alertController : AlertController) {
     this.form = this.formBuilder.group(
       {
@@ -33,14 +33,28 @@ export class SignupPage implements OnInit {
   register() {
     this.presentLoading();
     let data = { name: this.form.value['name'], email: this.form.value['email'], password: this.form.value['password'] };
-    this.authService
-      .register(data)
+    this.authService.register(data)
       .subscribe(response => {
-        this.router.navigate(['/signin']);
-        this.loadingController.dismiss();
+        this.authService.login({ email: data.email, password: data.password })
+          .subscribe(response => {
+            this.route.queryParams
+              .subscribe(params => {
+                this.loadingController.dismiss();
+                this.router.navigate([ params['return'] ? params['return'] : '/feed' ]);
+              });
+          });
       }, error => {
         console.log(error);
         this.loadingController.dismiss();
+      });
+  }
+
+   login() {
+    this.route.queryParams
+      .subscribe(params => {
+        this.router.navigate(['/signin'], {
+          queryParams: params ? params : null
+        })
       });
   }
 
