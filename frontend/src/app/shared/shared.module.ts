@@ -13,6 +13,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { MediaComponent } from './components/media/media.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { MapComponent } from './components/map/map.component';
+import {EventCardComponent} from "./components/event-card/event-card.component";
 
 @NgModule({
   imports: [
@@ -26,7 +27,10 @@ import { MapComponent } from './components/map/map.component';
     })
   ],
   declarations: [
-    ToolbarComponent, SliderComponent, MediaComponent,
+    ToolbarComponent,
+    SliderComponent,
+    MediaComponent,
+    EventCardComponent,
     MapComponent
   ],
   providers: [
@@ -36,7 +40,8 @@ import { MapComponent } from './components/map/map.component';
     ToolbarComponent,
     MediaComponent,
     SliderComponent,
-    MapComponent
+    MapComponent,
+    EventCardComponent
   ]
 })
 export class SharedModule { }
