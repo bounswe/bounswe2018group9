@@ -21,6 +21,7 @@ import {AnnotationModule} from '../annotation/annotation.module';
 
 import { TagSelectorComponent } from './components/tag-selector/tag-selector.component';
 import { DateSelectorComponent } from './components/date-selector/date-selector.component';
+import { PriceSelectorComponent } from './components/price-selector/price-selector.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { DateSelectorComponent } from './components/date-selector/date-selector.
   ],
   entryComponents: [
     TagSelectorComponent,
-    DateSelectorComponent
+    DateSelectorComponent,
+    PriceSelectorComponent
   ],
   declarations: [
     FeedPage,
@@ -47,7 +49,8 @@ import { DateSelectorComponent } from './components/date-selector/date-selector.
     EventFormComponent,
     EventEditPage,
     TagSelectorComponent,
-    DateSelectorComponent
+    DateSelectorComponent,
+    PriceSelectorComponent
   ]
 })
 export class EventsModule { }
