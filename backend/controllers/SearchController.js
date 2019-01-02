@@ -60,8 +60,8 @@ function locationSearch(req,res,next) {
 }
 
 function advancedSearch(req,res,next){
-    const searchQuery = "";
-    const regexedSearchQuery="";
+    let searchQuery = "";
+    let regexedSearchQuery="";
 
     if(req.query.search)
     {
@@ -91,7 +91,7 @@ function advancedSearch(req,res,next){
     const currency = req.query.currency;
 
     // Tags
-    var tags = null;
+    let tags = null;
     if (req.query.tags) {
         tags = req.query.tags.split(',');
     }
