@@ -1,4 +1,5 @@
 <div class="timeline-container" *ngIf="currentUser">
-  <div>
+  <div *ngFor="let e of currentUser.willAttendEvents.sort(sortFunction)">
+    You are attending
   </div>
 </div>
