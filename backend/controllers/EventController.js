@@ -280,7 +280,7 @@ function vote(req,res,next){
           });
         }
         res.status(200);
-        res.send("Voted succesfully.");
+        res.send({message: "Voted succesfully."});
       })
     })
     .catch((err) => {
