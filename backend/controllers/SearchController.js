@@ -85,7 +85,11 @@ function advancedSearch(req,res,next){
     const currency = req.query.currency;
 
     // Tags
-    const tags = req.query.tags.split(',');
+    const tags = null;
+    if (req.query.tags) {
+        tags = req.query.tags.split(',');
+    }
+    
 
     // Construct the search params object
     if (latLower && latHigher && lngHigher && lngLower){
