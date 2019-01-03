@@ -1,8 +1,10 @@
 # ![image](http://46.101.223.116/assets/logo_small.png) 
-<a href="https://github.com/bounswe/bounswe2018group9/wiki">
-  <img src="https://img.shields.io/badge/build-passing-green.svg" alt="build">
+ [![Watch on GitHub][github-watch-badge]][github-watch]
+ [![Star on GitHub][github-star-badge]][github-star]
+ [![Fork on GitHub][github-fork-badge]][github-fork]
+ [![Tweet][twitter-badge]][twitter]
   </br>
-
+  
 <p align="center">
   <a href = "https://github.com/bounswe/bounswe2018group9/blob/master/wiki/images/logo.png">
     <img src="wiki/images/logo.png" width="450px" height="300px">
@@ -32,7 +34,7 @@
 </a>
 
 ## :clipboard:Description
-
+```
 This project aims to create a social platform for people who like to attend
 cultural activities. It lets people control, share, and follow cultural
 activities, namely going to theater plays, musicals, exhibitions, museums,
@@ -40,21 +42,26 @@ and traveling abroad or home, in a single platform (note that you are welcome
 to add other cultural activities to the project). It will be an interactive
 platform that allows users to share their experiences, get recommendations
 and notifications.
+```
 
 **[Checkout Wiki for Further Information](https://github.com/bounswe/bounswe2018group9/wiki)**
 
 ## :open_file_folder:Contributing
 
 * **[Contribution Guide](https://github.com/bounswe/bounswe2018group9/wiki/Contribution-Guide)**
-* **[Development Manual for Actopus Backend](https://github.com/bounswe/bounswe2018group9/blob/master/backend/CONTRIBUTING.md)**
-* **[Development Manual for Actopus Frontend](https://github.com/bounswe/bounswe2018group9/blob/master/frontend/CONTRIBUTING.md)**
+* **[Development Manual for Actopus Backend](https://github.com/bounswe/bounswe2018group9/tree/master/backend)**
+* **[Development Manual for Actopus Frontend](https://github.com/bounswe/bounswe2018group9/tree/master/frontend)**
 
 ## :link:Credits
-
-This is our project repository for the courses CMPE352 and CMPE451 in Boğaziçi University. All rights reserved. 
-
+```
+This is our project repository for the courses CMPE352 and CMPE451 in Boğaziçi University. 
+```
 
 ## :mortar_board:Authors
+* Frontend      ---> :art:
+* Backend       ---> :wrench:
+* Code          ---> :computer:
+* Documentation ---> :book:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
@@ -62,3 +69,12 @@ This is our project repository for the courses CMPE352 and CMPE451 in Boğaziçi
 | :---: | :---: | :---: | :---: | :---: |
 | [<img src="https://avatars0.githubusercontent.com/u/23294453?s=460&v=4)](https://github.com/bounswe/bounswe2018group9/wiki/Nazmican-%C3%87al%C4%B1k" width="150px;"/><br /><sub><b>Yusuf Kalaycı</b></sub>](https://github.com/bounswe/bounswe2018group9/wiki/Yusuf-Kalayc%C4%B1)<br /> [🔧]("Backend") [💻]("Code") [📖]("Documentation")  | [<img src="https://avatars0.githubusercontent.com/u/32355782?s=400&v=4" width="150px;"/><br /><sub><b>Serkan Özel</b></sub>](https://github.com/bounswe/bounswe2018group9/wiki/Serkan-%C3%96zel)<br /> [🎨]("Frontend") [💻]("Code") [📖]("Documentation") | [<img src="https://avatars0.githubusercontent.com/u/14013649?s=400&v=4" width="150px;"/><br /><sub><b>Kemal Tulum</b></sub>](https://github.com/bounswe/bounswe2018group9/wiki/Kemal-Tulum)<br /> [🎨]("Frontend") [💻]("Code") [📖]("Documentation")| [<img src="https://avatars0.githubusercontent.com/u/36168341?s=400&v=4" width="150px;"/><br /><sub><b>Galip Ümit Yolcu</b></sub>](https://github.com/bounswe/bounswe2018group9/wiki/Galip-%C3%9Cmit-Yolcu)<br /> [🔧]("Backend") [💻]("Code") [📖]("Documentation") | [<img src="https://avatars0.githubusercontent.com/u/21365309?s=400&v=4" width="150px;"/><br /><sub><b>Oğuz Kaan Yüksel</b></sub>](https://github.com/bounswe/bounswe2018group9/wiki/O%C4%9Fuz-Kaan-Y%C3%BCksel)<br /> [🎨]("Frontend") [🔧]("Backend") [💻]("Code") [📖]("Documentation")| 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+[github-watch-badge]:https://img.shields.io/github/watchers/bounswe/bounswe2018group9.svg?label=Watch&style=social
+[github-watch]:https://github.com/bounswe/bounswe2018group9/watchers
+[github-star-badge]:https://img.shields.io/github/stars/bounswe/bounswe2018group9.svg?label=Stars&style=social
+[github-star]:https://github.com/bounswe/bounswe2018group9/stargazers
+[github-fork-badge]:https://img.shields.io/github/forks/bounswe/bounswe2018group9.svg?label=Fork&style=social
+[github-fork]:https://github.com/bounswe/bounswe2018group9/network/members
+[twitter-badge]:https://img.shields.io/twitter/url/https/github.com/bounswe/bounswe2018group9.svg?style=social
+[twitter]:https://twitter.com/bounactopus
