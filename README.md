@@ -78,3 +78,6 @@ This is our project repository for the courses CMPE352 and CMPE451 in Boğaziçi
 [github-fork]:https://github.com/bounswe/bounswe2018group9/network/members
 [twitter-badge]:https://img.shields.io/twitter/url/https/github.com/bounswe/bounswe2018group9.svg?style=social
 [twitter]:https://twitter.com/bounactopus
+<p align="center">
+Actopus-- culture, adrenalin and friendship project for web and android 2018  :copyright: 
+</p>
