@@ -86,10 +86,17 @@ function advancedSearch(req,res,next){
     const afterThan = req.query.afterThan;
 
     // Price
-    const lowPrice = req.query.lowPrice;
-    const highPrice = req.query.highPrice;
+    let lowPrice = req.query.lowPrice;
+    let highPrice = req.query.highPrice;
     const currency = req.query.currency;
-
+    if(!lowPrice)
+    {
+        lowPrice=0;
+    }
+    if(!highPrice)
+    {
+        highPrice=9999;
+    }
     // Tags
     let tags = null;
     if (req.query.tags) {
@@ -120,14 +127,15 @@ function advancedSearch(req,res,next){
     }
 
     // Price
-    if (lowPrice && highPrice && currency){
-        searchParams.price = {
-            amount: {
-                $gte: afterThan, 
-                $lte: beforeThan
-            },
-            currency: currency
+    if (lowPrice || highPrice){
+        searchParams['price.amount']= {
+            $gte: Number(lowPrice), 
+            $lte: Number(highPrice)
         };
+    }
+    if(currency)
+    {
+        searchParams['price.currency'] = currency;
     }
 
     // Tag Search
