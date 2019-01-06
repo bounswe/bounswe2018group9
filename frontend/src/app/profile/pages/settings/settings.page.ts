@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MediaService} from "../../../native/providers/media/media.service";
 import {UploadService} from "../../../data/providers/upload/upload.service";
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'profile-settings',
@@ -50,7 +51,8 @@ export class SettingsPage implements OnInit {
               private formBuilder : FormBuilder,
               private ref: ChangeDetectorRef,
               private mediaService: MediaService,
-              private uploadService: UploadService) {
+              private uploadService: UploadService,
+              public toastController: ToastController) {
     this.form = this.formBuilder.group(
       {
         name: ['', [Validators.required]],
@@ -124,7 +126,8 @@ export class SettingsPage implements OnInit {
     console.log(this.userId, newUser);
 
     this.authController.updateUser(this.user._id, newUser).subscribe((res)=>{
-       alert('Saved');
+      this.presentToast();
+
      },(err)=>{
       console.log(err);
      });
@@ -179,4 +182,14 @@ export class SettingsPage implements OnInit {
         ...this.media.slice(event.slide + 1, this.media.length) ];
     }
   }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      position: 'top',
+      message: 'Settings have been changed.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
 }

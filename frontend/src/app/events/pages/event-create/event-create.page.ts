@@ -9,6 +9,7 @@ import { AuthService } from '../../../auth/providers/auth/auth.service';
 import { EventService } from '../../../data/providers/event/event.service';
 import { UploadService } from '../../../data/providers/upload/upload.service';
 import { MediaService } from '../../../native/providers/media/media.service';
+import { ToastController } from '@ionic/angular';
 
 import { Attendance, Event, Media } from '../../../interfaces';
 
@@ -29,7 +30,8 @@ export class EventCreatePage implements OnInit {
     private formBuilder: FormBuilder,
     private eventService: EventService,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    public toastController: ToastController
   ) {}
 
   ngOnInit() {}
@@ -43,12 +45,23 @@ export class EventCreatePage implements OnInit {
         (message: any) => {
           this.router.navigate(['feed', message.event._id]);
           this.eventPosted = true;
+          this.presentToast();
+
         },
         error => {
           this.handleError(error)
         }
       );
 
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      position: 'top',
+      message: 'Event has been created.',
+      duration: 2000
+    });
+    toast.present();
   }
 
 
