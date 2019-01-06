@@ -6,7 +6,7 @@ function getFeed(req,res,next) {
     const user = req.user;
     const after = req.query.after || 0;
     const before = req.query.before || Date.now();
-    const event = req.query.event;
+    const event = req.query.event || null;
     const limit = parseInt(req.query.limit);
 
     Event.find({
@@ -16,7 +16,12 @@ function getFeed(req,res,next) {
             { tags: { $in: user.interests } }
         ],
         $or: [
-            { date: { $gte: after, $le: before } },
+            {
+                $and: [
+                    { date: { $gte: after, $lte: before  } },
+                    { date: { $ne: before } }
+                ]
+            },
             { date: before, _id: { $gte: event} }
         ]
     })
@@ -28,12 +33,6 @@ function getFeed(req,res,next) {
     })
     .catch(err => {
         return res.status(500).send(err);
-    });
-}
-
-const uniqueArray = (arrArg) => {
-    return arrArg.filter((elem, pos, arr) => {
-      return arr.indexOf(elem) == pos;
     });
 }
 
