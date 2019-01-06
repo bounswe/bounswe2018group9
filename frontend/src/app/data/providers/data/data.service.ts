@@ -21,7 +21,7 @@ export abstract class DataService<T> {
   constructor(protected http: HttpClient) { }
 
   private path(id: string = '') {
-    return '/' + this.api + '/' + id + (this.sub.length ? ('/' + this.sub) : '');
+    return '/' + this.api + (id ? ('/' + id + (this.sub.length ? ('/' + this.sub) : '')) : '');
   }
 
   get(id: string = '', params: DataParams = this.params): Observable<T | T[]> {
