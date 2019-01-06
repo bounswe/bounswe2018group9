@@ -1,1 +1,0 @@
-{"_id":{"$oid":"5c29763c1c6b5a9d650e28a6"},"vote":0,"creator":{"$oid":"5c20c8668e50cf7d25859a72"},"reference":{"model":"Event","object":"5c2945652fbfd37018d9086c"},"createdAt":{"$date":"2018-12-31T01:51:56.640Z"},"updatedAt":{"$date":"2018-12-31T01:51:56.640Z"},"__v":0}
