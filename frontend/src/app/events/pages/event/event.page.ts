@@ -304,8 +304,6 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
 
 
 async addAnnotations(){
-  if (await this.checkGuest()) { return; }
-
   this.annotationService.getAnnotationsByPage(this.router.url).subscribe((next)=>{
     if(Array.isArray(next["annotations"])){
       while(next["annotations"].length  != 0 ){
