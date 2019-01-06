@@ -6,6 +6,6 @@ var router = express.Router();
 //Import Controllers
 const FeedController = require('../controllers/FeedController');
 
-router.get('/:id', passport.authenticate('jwt', {session: false}), FeedController.getFeedForUserWithId);
+router.get('/', passport.authenticate('jwt', {session: false}), FeedController.getFeed);
 
 module.exports = router;
