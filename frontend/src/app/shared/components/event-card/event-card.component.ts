@@ -24,14 +24,28 @@ export class EventCardComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit() {
+    this.calculateTimeDiff();
 
+    let userId = this.authService.getUserId();
+    if(this.event.vote.positive.includes(userId)){
+      this.upVoted = true;
+    }
+    if(this.event.vote.negative.includes(userId)){
+      this.downVoted = true;
+    }
+  }
+
+  /**
+   * Calculate time difference text
+   */
+  calculateTimeDiff() {
     let now = new Date();
     let eventCreated = new Date(this.event.date);
 
     let timeDiff_ms = now.getTime() - eventCreated.getTime();
 
     if(timeDiff_ms < 0){
-      timeDiff_ms -= timeDiff_ms;
+      timeDiff_ms = -timeDiff_ms;
       this.timeDiffText = 'remains';
     }
 
@@ -51,16 +65,6 @@ export class EventCardComponent implements OnInit {
     }
 
     this.timeDiff = Math.floor(this.timeDiff);
-
-    let userId = this.authService.getUserId();
-    if(this.event.vote.positive.includes(userId)){
-      this.upVoted = true;
-    }
-    if(this.event.vote.negative.includes(userId)){
-      this.downVoted = true;
-    }
-
-
   }
 
   vote(event, vote: number){
