@@ -203,8 +203,11 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
     },3000);
   }
 
+  /**
+   * Checks whether the current user exist or not (guest), and handles guest redirecting
+   */
   async checkGuest() {
-    if (this.guest) return;
+    if (this.guest) return true;
 
     if (!this.authService.isAuthenticated()) {
       this.guest = true;
