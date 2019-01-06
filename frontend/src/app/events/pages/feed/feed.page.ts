@@ -19,7 +19,7 @@ import { TagSelectorComponent } from '../../components/tag-selector/tag-selector
 })
 export class FeedPage implements OnInit {
   private static count = 3;
-  private before;
+  private after;
 
   user: User;
   events: Event[] = [];
@@ -50,9 +50,9 @@ export class FeedPage implements OnInit {
    * @param {number} before the start index of will-be-loaded events
    * @param {number} count the desired count for the load batch
    */
-  load(event: any = null, before: any = this.before, count: number = FeedPage.count) {
+  load(event: any = null, after: any = this.after, count: number = FeedPage.count) {
     let query: any = { limit: count };
-    if (before) query.before = before;
+    if (after) query.after = after;
     if (this.events && this.events.length) query.event = this.events[this.events.length-1]._id;
 
     this.feedService.get(null, query)
@@ -61,9 +61,11 @@ export class FeedPage implements OnInit {
           this.loaded = false;
         }
 
+        console.log(data);
+
         this.events.push(...data);
         this.eventService.cacheEvents(data);
-        this.before = this.events[this.events.length-1].date;
+        this.after = this.events[this.events.length-1].date;
 
         if (event) { // finalize infinite-scroll animation
           event.target.complete();
@@ -109,7 +111,7 @@ export class FeedPage implements OnInit {
   }
 
   async refresh() {
-    this.before = null;
+    this.after = null;
     this.events = [];
     this.loaded = true;
   }

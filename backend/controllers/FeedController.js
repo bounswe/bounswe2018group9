@@ -2,12 +2,20 @@ const mongoose = require('mongoose');
 const Event = require('../models/Event');
 const User = require('../models/User');
 
+const min = new Date(0).getTime();
+const max = new Date(8640000000000000).getTime();
+
 function getFeed(req,res,next) {
     const user = req.user;
-    const after = req.query.after || 0;
-    const before = req.query.before || Date.now();
+    const after = req.query.after || min;
+    const before = req.query.before || max;
     const event = req.query.event || null;
     const limit = parseInt(req.query.limit);
+
+    console.log('AFTER: ' + after);
+    console.log('BEFORE: ' + before);
+    console.log('EVENT: ' + event);
+    console.log('LIMIT: ' + limit);
 
     Event.find({
         $or: [
@@ -29,6 +37,7 @@ function getFeed(req,res,next) {
     .sort([['date', 1], ['_id', 1]])
     .exec()
     .then(docs => {
+        console.log(docs);
         return res.status(200).send(docs || []);
     })
     .catch(err => {
