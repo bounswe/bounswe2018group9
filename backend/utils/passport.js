@@ -29,11 +29,9 @@ passport.use(new JWTStrategy({
     secretOrKey   : secretkey
     },
     function (jwtPayload, cb) {
-
         // We can remove this if we want to store user in the payload.
-        return User.findOne({id: jwtPayload.id})
+        return User.findOne({ _id: jwtPayload._id } )
             .then(user => {
-                console.log(user);
                 return cb(null, user);
             })
             .catch(err => {
