@@ -6,24 +6,32 @@ Actopus frontend contains the website and cross platform mobile application. The
 
 1. You should have `npm` and `node` installed.
 
-2. You should install Ionic CLI which is an extended version of Angular CLI.
+2. You should change your directory and install dependencies
+```
+cd frontend
+npm install
+
+```
+3. You should install Ionic CLI which is an extended version of Angular CLI for easy development
 
 ```
 npm install -g ionic@latest
 ```
 
-3. Serve/test the application on your local browser with **cloud version** of `Actopus Backend` with:
+4. Serve the Ionic application for development
 
 
 ```
-npm start
+ionic serve
 ```
 
-Or, if you wish to serve the application with a local copy of `Actopus Backend`, you can use:
+5. You can build the project running
 
 ```
-npm run start:local
+ionic build --prod --aot
 ```
+
+This will bundle all the code and moves it to `backend/www` folder
 
 ## Coding Style
 We will be writing good code with commments when needed and structured properly.
