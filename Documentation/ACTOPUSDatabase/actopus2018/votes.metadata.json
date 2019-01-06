@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"actopus2018.votes"},{"v":2,"unique":true,"key":{"creator":1,"reference.object":1},"name":"creator_1_reference.object_1","ns":"actopus2018.votes","background":true}],"uuid":"bcb60894af984186ab4f7eb13838db3b"}
