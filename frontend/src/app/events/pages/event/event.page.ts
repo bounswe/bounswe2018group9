@@ -215,6 +215,8 @@ export class EventPage implements OnInit, OnDestroy, AfterViewInit{
         queryParams: {
           return: this.router.routerState.snapshot.url
         }
+      }).then(() => {
+        this.guest = false; // reset in case of return back from browser
       });
       let toast = await this.toastController.create({
         message: 'Sign-in to use Actopus!',
