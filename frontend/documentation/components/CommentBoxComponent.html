@@ -1,0 +1,827 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">frontend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>CommentBoxComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/events/components/comment-box/comment-box.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-comment-box</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./comment-box.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./comment-box.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#profileImage">profileImage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#uploadService">uploadService</a>
+                            </li>
+                            <li>
+                                <a href="#user">user</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#isUndefined">isUndefined</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onProfileImageError">onProfileImageError</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#comment">comment</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(authService: <a href="../injectables/AuthService.html">AuthService</a>, uploadService: <a href="../injectables/UploadService.html">UploadService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/events/components/comment-box/comment-box.component.ts:14</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>uploadService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/UploadService.html" target="_self" >UploadService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="comment"></a>
+                        <code>comment</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/events/components/comment-box/comment-box.component.ts:13</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isUndefined"></a>
+                        <span class="name">
+                            <b>
+                            isUndefined
+                            </b>
+                            <a href="#isUndefined"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>isUndefined(val)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/events/components/comment-box/comment-box.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>val</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/events/components/comment-box/comment-box.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onProfileImageError"></a>
+                        <span class="name">
+                            <b>
+                            onProfileImageError
+                            </b>
+                            <a href="#onProfileImageError"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onProfileImageError(element)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/events/components/comment-box/comment-box.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>element</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="profileImage"></a>
+                        <span class="name">
+                            <b>
+                            profileImage
+                            </b>
+                            <a href="#profileImage"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>profileImage:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;profileImage&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/events/components/comment-box/comment-box.component.ts:12</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="uploadService"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            uploadService
+                            </b>
+                            <a href="#uploadService"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>uploadService:     <code><a href="../injectables/UploadService.html" target="_self" >UploadService</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../injectables/UploadService.html" target="_self" >UploadService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/events/components/comment-box/comment-box.component.ts:16</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="user"></a>
+                        <span class="name">
+                            <b>
+                            user
+                            </b>
+                            <a href="#user"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>user:     <code><a href="../interfaces/User.html" target="_self" >User</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/User.html" target="_self" >User</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/events/components/comment-box/comment-box.component.ts:14</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, Input, OnInit, ViewChild} from &#x27;@angular/core&#x27;;
+import {AuthService} from &quot;../../../auth/providers/auth/auth.service&quot;;
+import {User} from &quot;../../../interfaces&quot;;
+import {UploadService} from &quot;../../../data/providers/upload/upload.service&quot;;
+
+@Component({
+  selector: &#x27;app-comment-box&#x27;,
+  templateUrl: &#x27;./comment-box.component.html&#x27;,
+  styleUrls: [&#x27;./comment-box.component.scss&#x27;]
+})
+export class CommentBoxComponent implements OnInit {
+  @ViewChild(&#x27;profileImage&#x27;) profileImage;
+  @Input(&#x27;comment&#x27;) comment;
+  user: User;
+  constructor(private authService: AuthService,
+              public uploadService: UploadService) { }
+
+  ngOnInit() {
+    console.log(this.comment);
+    this.authService.getUserData(this.comment.author)
+      .subscribe(
+        user &#x3D;&gt; {
+          this.user &#x3D; user;
+          console.log(user);
+        },
+        error &#x3D;&gt; {
+          console.log(error);
+        }
+      )
+  }
+
+  isUndefined(val) { return typeof val &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27;; }
+
+  onProfileImageError(element){
+    (&lt;HTMLImageElement&gt;this.profileImage.nativeElement).src &#x3D; &#x27;../../../../assets/profile.jpg&#x27;;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;comment&quot;&gt;
+  &lt;ion-row &gt;
+    &lt;ion-col *ngIf&#x3D;&quot;user; let author&quot; size&#x3D;&quot;3&quot; offset-md&#x3D;&quot;1&quot; size-md&#x3D;&quot;2&quot;&gt;
+      &lt;a routerLink&#x3D;&quot;/profile/public/{{comment.author}}&quot;&gt;
+        &lt;div class&#x3D;&quot;user&quot; *ngIf&#x3D;&quot;!isUndefined(author.name) &amp;&amp; !isUndefined(author.images); else noUser&quot;&gt;
+          &lt;img src&#x3D;&quot;{{uploadService.getUrl(author.images.avatar)}}&quot; #profileImage (error)&#x3D;&quot;onProfileImageError()&quot; alt&#x3D;&quot;{{author.name}}&quot;&gt;
+          &lt;span class&#x3D;&quot;username&quot;&gt;{{author.name}}&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/a&gt;
+      &lt;ng-template #noUser&gt;
+        &lt;a routerLink&#x3D;&quot;/profile/public/{{comment.author}}&quot;&gt;
+          &lt;div class&#x3D;&quot;user&quot;&gt;
+            &lt;img src&#x3D;&quot;../../../../assets/profile.jpg&quot; alt&#x3D;&quot;&quot;&gt;
+            &lt;span class&#x3D;&quot;username&quot;&gt;{{author.name}}&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+      &lt;/ng-template&gt;
+    &lt;/ion-col&gt;
+    &lt;ion-col size&#x3D;&quot;9&quot; size-md&#x3D;&quot;8&quot; *ngIf&#x3D;&quot;!isUndefined(comment.body)&quot;&gt;
+      &lt;div class&#x3D;&quot;comment-box&quot;&gt;
+        &lt;div class&#x3D;&quot;comment-body&quot;&gt;
+                      &lt;span class&#x3D;&quot;tip tip-left&quot;&gt;
+                      &lt;/span&gt;
+          &lt;div class&#x3D;&quot;comment-message&quot;&gt;
+            &lt;span&gt;{{comment.body}}&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+    &lt;/ion-col&gt;
+  &lt;/ion-row&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./comment-box.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* Comment Section */
+.tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid var(--ion-color-medium);
+}
+
+.tip-up {
+  top: -25px; /* Same as body margin top + border */
+  left: 10px;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+.tip-down {
+  bottom: -25px;
+  left: 10px;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.tip-left {
+  top: 10px;
+  left: -25px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.tip-right {
+  top: 10px;
+  right: -25px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.comment-box .comment-body {
+  position: relative;
+  height: auto;
+  margin: 20px 10px;
+  padding: 5px;
+  background-color: var(--ion-color-light);
+  border-radius: 3px;
+  border: 5px solid var(--ion-color-medium);
+}
+
+.comment-body .comment-message {
+  min-height: 30px;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #797979;
+}
+
+.comment .user{
+  text-align: center;
+}
+
+.comment .user img{
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin: 4px 20%;
+  border-radius: 100%;
+  border: 2px solid var(--ion-color-dark);
+}
+/* */
+
+@media screen and (min-width: 600px) {
+  .comment .user img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .comment .user img {
+    width: 100px;
+    height: 100px;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="comment">  <ion-row >    <ion-col *ngIf="user; let author" size="3" offset-md="1" size-md="2">      <a routerLink="/profile/public/{{comment.author}}">        <div class="user" *ngIf="!isUndefined(author.name) && !isUndefined(author.images); else noUser">          <img src="{{uploadService.getUrl(author.images.avatar)}}" #profileImage (error)="onProfileImageError()" alt="{{author.name}}">          <span class="username">{{author.name}}</span>        </div>      </a>      <ng-template #noUser>        <a routerLink="/profile/public/{{comment.author}}">          <div class="user">            <img src="../../../../assets/profile.jpg" alt="">            <span class="username">{{author.name}}</span>          </div>        </a>      </ng-template>    </ion-col>    <ion-col size="9" size-md="8" *ngIf="!isUndefined(comment.body)">      <div class="comment-box">        <div class="comment-body">                      <span class="tip tip-left">                      </span>          <div class="comment-message">            <span>{{comment.body}}</span>          </div>        </div>      </div>    </ion-col>  </ion-row></div></div>'
+    var COMPONENTS = [{'name': 'AnnotatedBodyComponent', 'selector': 'app-annotated-body'},{'name': 'AnnotationComponent', 'selector': 'app-annotation-component'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'CommentBoxComponent', 'selector': 'app-comment-box'},{'name': 'DateSelectorComponent', 'selector': 'app-date-selector'},{'name': 'EventCardComponent', 'selector': 'app-event-card'},{'name': 'EventCreatePage', 'selector': 'app-event-create'},{'name': 'EventEditPage', 'selector': 'app-event-edit'},{'name': 'EventFormComponent', 'selector': 'app-event-form'},{'name': 'EventPage', 'selector': 'app-event'},{'name': 'FeedPage', 'selector': 'app-feed'},{'name': 'ForgotPasswordPage', 'selector': 'app-forgotpassword'},{'name': 'MapComponent', 'selector': 'app-map'},{'name': 'MediaComponent', 'selector': 'app-media'},{'name': 'NotFoundPage', 'selector': 'app-not-found'},{'name': 'PriceSelectorComponent', 'selector': 'app-price-selector'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'PublicPage', 'selector': 'app-public'},{'name': 'SearchComponent', 'selector': 'app-search-form'},{'name': 'SearchPage', 'selector': 'app-search'},{'name': 'SettingsPage', 'selector': 'profile-settings'},{'name': 'ShowAnnotationComponent', 'selector': 'app-show-annotation'},{'name': 'SigninPage', 'selector': 'app-signin'},{'name': 'SignupPage', 'selector': 'app-signup'},{'name': 'SliderComponent', 'selector': 'app-slider'},{'name': 'TagSelectorComponent', 'selector': 'app-tag-selector'},{'name': 'TimelinePage', 'selector': 'app-timeline'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'}];
+    var DIRECTIVES = [{'name': 'AnnotationDirective', 'selector': '[annotate]'}];
+    var ACTUAL_COMPONENT = {'name': 'CommentBoxComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CommentBoxComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

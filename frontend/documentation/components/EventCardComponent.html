@@ -1,0 +1,1219 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">frontend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>EventCardComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/shared/components/event-card/event-card.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-event-card</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./event-card.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./event-card.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#downVoted">downVoted</a>
+                            </li>
+                            <li>
+                                <a href="#eventImage">eventImage</a>
+                            </li>
+                            <li>
+                                <a href="#timeDiff">timeDiff</a>
+                            </li>
+                            <li>
+                                <a href="#timeDiffText">timeDiffText</a>
+                            </li>
+                            <li>
+                                <a href="#timeDiffUnit">timeDiffUnit</a>
+                            </li>
+                            <li>
+                                <a href="#upVoted">upVoted</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#calculateTimeDiff">calculateTimeDiff</a>
+                            </li>
+                            <li>
+                                <a href="#goComments">goComments</a>
+                            </li>
+                            <li>
+                                <a href="#isUndefined">isUndefined</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onImageError">onImageError</a>
+                            </li>
+                            <li>
+                                <a href="#vote">vote</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#event">event</a>
+                            </li>
+                            <li>
+                                <a href="#view">view</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, eventService: <a href="../injectables/EventService.html">EventService</a>, authService: <a href="../injectables/AuthService.html">AuthService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>eventService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/EventService.html" target="_self" >EventService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="event"></a>
+                        <code>event</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code><a href="../interfaces/Event.html" target="_self" >Event</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:13</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="view"></a>
+                        <code>view</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:14</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="calculateTimeDiff"></a>
+                        <span class="name">
+                            <b>
+                            calculateTimeDiff
+                            </b>
+                            <a href="#calculateTimeDiff"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>calculateTimeDiff()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Calculate time difference text</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="goComments"></a>
+                        <span class="name">
+                            <b>
+                            goComments
+                            </b>
+                            <a href="#goComments"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>goComments($event)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:89</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>$event</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isUndefined"></a>
+                        <span class="name">
+                            <b>
+                            isUndefined
+                            </b>
+                            <a href="#isUndefined"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>isUndefined(val)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:94</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>val</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onImageError"></a>
+                        <span class="name">
+                            <b>
+                            onImageError
+                            </b>
+                            <a href="#onImageError"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onImageError()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:96</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="vote"></a>
+                        <span class="name">
+                            <b>
+                            vote
+                            </b>
+                            <a href="#vote"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>vote(event, vote: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:70</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                        <td>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>vote</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="downVoted"></a>
+                        <span class="name">
+                            <b>
+                            downVoted
+                            </b>
+                            <a href="#downVoted"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>downVoted:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="eventImage"></a>
+                        <span class="name">
+                            <b>
+                            eventImage
+                            </b>
+                            <a href="#eventImage"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>eventImage:     <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;eventImage&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:15</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="timeDiff"></a>
+                        <span class="name">
+                            <b>
+                            timeDiff
+                            </b>
+                            <a href="#timeDiff"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>timeDiff:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:16</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="timeDiffText"></a>
+                        <span class="name">
+                            <b>
+                            timeDiffText
+                            </b>
+                            <a href="#timeDiffText"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>timeDiffText:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;ago&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="timeDiffUnit"></a>
+                        <span class="name">
+                            <b>
+                            timeDiffUnit
+                            </b>
+                            <a href="#timeDiffUnit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>timeDiffUnit:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="upVoted"></a>
+                        <span class="name">
+                            <b>
+                            upVoted
+                            </b>
+                            <a href="#upVoted"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>upVoted:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/components/event-card/event-card.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, ElementRef, Input, OnInit, ViewChild} from &#x27;@angular/core&#x27;;
+import {Event} from &quot;../../../interfaces/index&quot;;
+import {Router} from &quot;@angular/router&quot;;
+import {EventService} from &quot;../../../data/providers/event/event.service&quot;;
+import {AuthService} from &quot;../../../auth/providers/auth/auth.service&quot;;
+
+@Component({
+  selector: &#x27;app-event-card&#x27;,
+  templateUrl: &#x27;./event-card.component.html&#x27;,
+  styleUrls: [&#x27;./event-card.component.scss&#x27;]
+})
+export class EventCardComponent implements OnInit {
+  @Input(&#x27;event&#x27;) event: Event;
+  @Input(&#x27;view&#x27;) view &#x3D; false;
+  @ViewChild(&#x27;eventImage&#x27;) eventImage: ElementRef;
+  timeDiff;
+  timeDiffUnit;
+  timeDiffText &#x3D; &#x27;ago&#x27;;
+  upVoted &#x3D; false;
+  downVoted &#x3D; false;
+
+  constructor(private router: Router,
+              private eventService: EventService,
+              private authService: AuthService) { }
+
+  ngOnInit() {
+    this.calculateTimeDiff();
+
+    let userId &#x3D; this.authService.getUserId();
+    if(this.event.vote.positive.includes(userId)){
+      this.upVoted &#x3D; true;
+    }
+    if(this.event.vote.negative.includes(userId)){
+      this.downVoted &#x3D; true;
+    }
+  }
+
+  /**
+   * Calculate time difference text
+   */
+  calculateTimeDiff() {
+    let now &#x3D; new Date();
+    let eventCreated &#x3D; new Date(this.event.date);
+
+    let timeDiff_ms &#x3D; now.getTime() - eventCreated.getTime();
+
+    if(timeDiff_ms &lt; 0){
+      timeDiff_ms &#x3D; -timeDiff_ms;
+      this.timeDiffText &#x3D; &#x27;remains&#x27;;
+    }
+
+    let timeDiff_m &#x3D; timeDiff_ms / (60*1000);
+    let timeDiff_h &#x3D; timeDiff_ms / (60*60*1000);
+    let timeDiff_d &#x3D; timeDiff_ms / (24*60*60*1000);
+
+    if(timeDiff_m &lt; 60){
+      this.timeDiff &#x3D; timeDiff_m;
+      this.timeDiffUnit &#x3D; &#x27;m&#x27;;
+    } else if(timeDiff_h &lt; 24){
+      this.timeDiffUnit &#x3D; &#x27;h&#x27;;
+      this.timeDiff &#x3D; timeDiff_h;
+    } else{
+      this.timeDiffUnit &#x3D; &#x27;d&#x27;;
+      this.timeDiff &#x3D; timeDiff_d;
+    }
+
+    this.timeDiff &#x3D; Math.floor(this.timeDiff);
+  }
+
+  vote(event, vote: number){
+    event.stopPropagation();
+
+    this.eventService.vote(this.event._id, vote &#x3D;&#x3D;&#x3D; 1, this.authService.getUserId())
+      .subscribe(
+        message &#x3D;&gt; {
+          console.log(message);
+          if(vote &#x3D;&#x3D; 1 &amp;&amp; !this.upVoted){
+            this.event.vote.upvoteCount +&#x3D; 1;
+            this.upVoted &#x3D; true;
+          } else if(vote &#x3D;&#x3D; -1 &amp;&amp; !this.downVoted){
+            this.event.vote.downvoteCount -&#x3D; 1;
+            this.downVoted &#x3D; true;
+          }
+        },
+        error &#x3D;&gt; console.log(error)
+      );
+  }
+
+  goComments($event){
+    event.stopPropagation();
+    this.router.navigate([&#x27;feed&#x27;, this.event._id], {fragment: &#x27;comments&#x27;});
+  }
+
+  isUndefined(val) { return typeof val &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27;; }
+
+  onImageError(){
+    (&lt;HTMLImageElement&gt;this.eventImage.nativeElement).src &#x3D; &#x27;../../../../assets/placeholder.png&#x27;;
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ion-card *ngIf&#x3D;&quot;event; let e&quot; [routerLink]&#x3D;&quot;[&#x27;/feed&#x27;, e._id]&quot;&gt;
+  &lt;ion-card-content&gt;
+    &lt;div class&#x3D;&quot;preview-container&quot;&gt;
+      &lt;div class&#x3D;&quot;tags-container&quot;&gt;
+        &lt;span *ngIf&#x3D;&quot;e.artists?.length&quot; class&#x3D;&quot;tag&quot;&gt;
+          {{e.artists[0] | titlecase}}
+        &lt;/span&gt;
+        &lt;span class&#x3D;&quot;tag&quot;&gt;
+          {{e.price.amount &#x3D;&#x3D; 0 ? &#x27;Free&#x27; : e.price.amount + &#x27; &#x27; + e.price.currency}}
+        &lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;media-container&quot;&gt;
+        &lt;app-slider [media]&#x3D;&quot;e.media&quot; [options]&#x3D;&quot;{ empty: false, buttons: false }&quot;&gt;&lt;/app-slider&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;date&quot;&gt;
+      {{e.date | date:&#x27;dd MMM&#x27;}}
+    &lt;/div&gt;
+    &lt;h2&gt;
+      {{e.name}}
+    &lt;/h2&gt;
+    &lt;div class&#x3D;&quot;location&quot;&gt;
+      {{e.location?.name}}
+    &lt;/div&gt;
+  &lt;/ion-card-content&gt;
+
+  &lt;ion-card-content *ngIf&#x3D;&quot;!isUndefined(e.vote)&quot;&gt;
+    &lt;ion-grid no-padding&gt;
+      &lt;ion-row&gt;
+        &lt;ion-col size&#x3D;&quot;3&quot;&gt;
+          &lt;ion-grid no-padding&#x3D;&quot;&quot;&gt;
+            &lt;ion-row no-padding&gt;
+              &lt;ion-col size&#x3D;&quot;6&quot; no-padding&gt;
+                &lt;ion-button (click)&#x3D;&quot;vote($event, 1)&quot; [disabled]&#x3D;&quot;view || upVoted&quot; color&#x3D;&quot;success&quot; fill&#x3D;&quot;clear&quot;&gt;
+                  &lt;ion-icon name&#x3D;&quot;thumbs-up&quot;&gt;&lt;/ion-icon&gt;
+                  &lt;div&gt;{{e.vote.positive.length}}&lt;/div&gt;
+                &lt;/ion-button&gt;
+              &lt;/ion-col&gt;
+              &lt;ion-col text-center size&#x3D;&quot;6&quot; no-padding&gt;
+                &lt;ion-button (click)&#x3D;&quot;vote($event, -1)&quot; [disabled]&#x3D;&quot;view || downVoted&quot; color&#x3D;&quot;danger&quot; fill&#x3D;&quot;clear&quot;&gt;
+                  &lt;ion-icon name&#x3D;&quot;thumbs-down&quot;&gt;&lt;/ion-icon&gt;
+                  &lt;div&gt;{{e.vote.negative.length}}&lt;/div&gt;
+                &lt;/ion-button&gt;
+              &lt;/ion-col&gt;
+            &lt;/ion-row&gt;
+          &lt;/ion-grid&gt;
+        &lt;/ion-col&gt;
+        &lt;ion-col text-center size&#x3D;&quot;6&quot;&gt;
+          &lt;ion-button [disabled]&#x3D;&quot;view&quot; color&#x3D;&quot;secondary&quot; fill&#x3D;&quot;clear&quot; (click)&#x3D;&quot;goComments($event)&quot;&gt;
+            &lt;ion-icon name&#x3D;&quot;text&quot;&gt;&lt;/ion-icon&gt;
+            &lt;div&gt;{{e.comments.length}} Comments&lt;/div&gt;
+          &lt;/ion-button&gt;
+        &lt;/ion-col&gt;
+        &lt;ion-col class&#x3D;&quot;ago-container&quot; size&#x3D;&quot;3&quot;&gt;
+          &lt;div&gt;
+            {{timeDiff}} {{timeDiffUnit}} {{timeDiffText}}
+          &lt;/div&gt;
+        &lt;/ion-col&gt;
+      &lt;/ion-row&gt;
+      &lt;!--
+      &lt;ion-row&gt;
+        &lt;ion-col&gt;
+          &lt;ion-button [disabled]&#x3D;&quot;view&quot; expand&#x3D;&quot;full&quot; [routerLink]&#x3D;&quot;[&#x27;/feed&#x27;, e._id]&quot;&gt;
+            More Details
+          &lt;/ion-button&gt;
+        &lt;/ion-col&gt;
+      &lt;/ion-row&gt;--&gt;
+    &lt;/ion-grid&gt;
+
+
+  &lt;/ion-card-content&gt;
+
+&lt;/ion-card&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./event-card.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;../../../events/events.module&#x27;;
+
+.ago-container{
+  text-align: right;
+  font-size: 1em;
+  color: var(--ion-color-medium);
+  vertical-align: bottom;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-container {
+  position: relative;
+  border: 2px solid var(--ion-color-medium);
+  margin-bottom: 10px;
+
+  .tags-container {
+    position: absolute;
+    right: 0px;
+    margin-top: 5px;
+    margin-right: 5px;
+    z-index: 1;
+
+    .tag {
+      display: block;
+      float: right;
+      clear: both;
+      background-color: rgba(var(--ion-color-secondary-rgb), 0.9);
+      color: white;
+      padding: 6px 8px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+  }
+
+  .media-container {
+    position: relative;
+    z-index: 0;
+  }
+
+  .date, .location{
+    font-size: 1em;
+    margin: 5px 0;
+  }
+}
+
+h2{
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+@media screen and (min-width: 768px){
+  .price, .artist{
+    padding: 4px 8px;
+    margin-bottom: 16px;
+    right: 8px;
+    font-size: 1em;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-card *ngIf="event; let e" [routerLink]="[\'/feed\', e._id]">  <ion-card-content>    <div class="preview-container">      <div class="tags-container">        <span *ngIf="e.artists?.length" class="tag">          {{e.artists[0] | titlecase}}        </span>        <span class="tag">          {{e.price.amount == 0 ? \'Free\' : e.price.amount + \' \' + e.price.currency}}        </span>      </div>      <div class="media-container">        <app-slider [media]="e.media" [options]="{ empty: false, buttons: false }"></app-slider>      </div>    </div>    <div class="date">      {{e.date | date:\'dd MMM\'}}    </div>    <h2>      {{e.name}}    </h2>    <div class="location">      {{e.location?.name}}    </div>  </ion-card-content>  <ion-card-content *ngIf="!isUndefined(e.vote)">    <ion-grid no-padding>      <ion-row>        <ion-col size="3">          <ion-grid no-padding="">            <ion-row no-padding>              <ion-col size="6" no-padding>                <ion-button (click)="vote($event, 1)" [disabled]="view || upVoted" color="success" fill="clear">                  <ion-icon name="thumbs-up"></ion-icon>                  <div>{{e.vote.positive.length}}</div>                </ion-button>              </ion-col>              <ion-col text-center size="6" no-padding>                <ion-button (click)="vote($event, -1)" [disabled]="view || downVoted" color="danger" fill="clear">                  <ion-icon name="thumbs-down"></ion-icon>                  <div>{{e.vote.negative.length}}</div>                </ion-button>              </ion-col>            </ion-row>          </ion-grid>        </ion-col>        <ion-col text-center size="6">          <ion-button [disabled]="view" color="secondary" fill="clear" (click)="goComments($event)">            <ion-icon name="text"></ion-icon>            <div>{{e.comments.length}} Comments</div>          </ion-button>        </ion-col>        <ion-col class="ago-container" size="3">          <div>            {{timeDiff}} {{timeDiffUnit}} {{timeDiffText}}          </div>        </ion-col>      </ion-row>      <!--      <ion-row>        <ion-col>          <ion-button [disabled]="view" expand="full" [routerLink]="[\'/feed\', e._id]">            More Details          </ion-button>        </ion-col>      </ion-row>-->    </ion-grid>  </ion-card-content></ion-card></div>'
+    var COMPONENTS = [{'name': 'AnnotatedBodyComponent', 'selector': 'app-annotated-body'},{'name': 'AnnotationComponent', 'selector': 'app-annotation-component'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'CommentBoxComponent', 'selector': 'app-comment-box'},{'name': 'DateSelectorComponent', 'selector': 'app-date-selector'},{'name': 'EventCardComponent', 'selector': 'app-event-card'},{'name': 'EventCreatePage', 'selector': 'app-event-create'},{'name': 'EventEditPage', 'selector': 'app-event-edit'},{'name': 'EventFormComponent', 'selector': 'app-event-form'},{'name': 'EventPage', 'selector': 'app-event'},{'name': 'FeedPage', 'selector': 'app-feed'},{'name': 'ForgotPasswordPage', 'selector': 'app-forgotpassword'},{'name': 'MapComponent', 'selector': 'app-map'},{'name': 'MediaComponent', 'selector': 'app-media'},{'name': 'NotFoundPage', 'selector': 'app-not-found'},{'name': 'PriceSelectorComponent', 'selector': 'app-price-selector'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'PublicPage', 'selector': 'app-public'},{'name': 'SearchComponent', 'selector': 'app-search-form'},{'name': 'SearchPage', 'selector': 'app-search'},{'name': 'SettingsPage', 'selector': 'profile-settings'},{'name': 'ShowAnnotationComponent', 'selector': 'app-show-annotation'},{'name': 'SigninPage', 'selector': 'app-signin'},{'name': 'SignupPage', 'selector': 'app-signup'},{'name': 'SliderComponent', 'selector': 'app-slider'},{'name': 'TagSelectorComponent', 'selector': 'app-tag-selector'},{'name': 'TimelinePage', 'selector': 'app-timeline'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'}];
+    var DIRECTIVES = [{'name': 'AnnotationDirective', 'selector': '[annotate]'}];
+    var ACTUAL_COMPONENT = {'name': 'EventCardComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'EventCardComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
