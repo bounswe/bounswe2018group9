@@ -1,0 +1,1366 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">frontend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>SearchComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/events/components/search/search.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-search-form</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./search.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./search.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#content">content</a>
+                            </li>
+                            <li>
+                                <a href="#fitOnes">fitOnes</a>
+                            </li>
+                            <li>
+                                <a href="#fromTime">fromTime</a>
+                            </li>
+                            <li>
+                                <a href="#interests">interests</a>
+                            </li>
+                            <li>
+                                <a href="#location">location</a>
+                            </li>
+                            <li>
+                                <a href="#searchingUsers">searchingUsers</a>
+                            </li>
+                            <li>
+                                <a href="#selectedTags">selectedTags</a>
+                            </li>
+                            <li>
+                                <a href="#tags">tags</a>
+                            </li>
+                            <li>
+                                <a href="#timeForm">timeForm</a>
+                            </li>
+                            <li>
+                                <a href="#toTime">toTime</a>
+                            </li>
+                            <li>
+                                <a href="#username">username</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addToSelected">addToSelected</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#removeSelectedTag">removeSelectedTag</a>
+                            </li>
+                            <li>
+                                <a href="#search">search</a>
+                            </li>
+                            <li>
+                                <a href="#searchByTags">searchByTags</a>
+                            </li>
+                            <li>
+                                <a href="#searchLocation">searchLocation</a>
+                            </li>
+                            <li>
+                                <a href="#searchTime">searchTime</a>
+                            </li>
+                            <li>
+                                <a href="#searchUser">searchUser</a>
+                            </li>
+                            <li>
+                                <a href="#updateFitOnes">updateFitOnes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/events/components/search/search.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="addToSelected"></a>
+                        <span class="name">
+                            <b>
+                            addToSelected
+                            </b>
+                            <a href="#addToSelected"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>addToSelected(newTag: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/events/components/search/search.component.ts:66</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>newTag</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/events/components/search/search.component.ts:46</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="removeSelectedTag"></a>
+                        <span class="name">
+                            <b>
+                            removeSelectedTag
+                            </b>
+                            <a href="#removeSelectedTag"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>removeSelectedTag(toBeRemoved: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/events/components/search/search.component.ts:69</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>toBeRemoved</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="search"></a>
+                        <span class="name">
+                            <b>
+                            search
+                            </b>
+                            <a href="#search"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>search()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/events/components/search/search.component.ts:57</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchByTags"></a>
+                        <span class="name">
+                            <b>
+                            searchByTags
+                            </b>
+                            <a href="#searchByTags"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>searchByTags()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/events/components/search/search.component.ts:48</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchLocation"></a>
+                        <span class="name">
+                            <b>
+                            searchLocation
+                            </b>
+                            <a href="#searchLocation"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>searchLocation()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/events/components/search/search.component.ts:51</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchTime"></a>
+                        <span class="name">
+                            <b>
+                            searchTime
+                            </b>
+                            <a href="#searchTime"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>searchTime()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/events/components/search/search.component.ts:54</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchUser"></a>
+                        <span class="name">
+                            <b>
+                            searchUser
+                            </b>
+                            <a href="#searchUser"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>searchUser()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/events/components/search/search.component.ts:60</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateFitOnes"></a>
+                        <span class="name">
+                            <b>
+                            updateFitOnes
+                            </b>
+                            <a href="#updateFitOnes"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>updateFitOnes()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/events/components/search/search.component.ts:63</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="content"></a>
+                        <span class="name">
+                            <b>
+                            content
+                            </b>
+                            <a href="#content"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>content:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new FormControl(&#x27;&#x27;,  [Validators.required])</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/events/components/search/search.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fitOnes"></a>
+                        <span class="name">
+                            <b>
+                            fitOnes
+                            </b>
+                            <a href="#fitOnes"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>fitOnes:     <code>string[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>string[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/events/components/search/search.component.ts:10</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fromTime"></a>
+                        <span class="name">
+                            <b>
+                            fromTime
+                            </b>
+                            <a href="#fromTime"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>fromTime:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new FormControl(&#x27;&#x27;,  [Validators.required])</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/events/components/search/search.component.ts:38</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="interests"></a>
+                        <span class="name">
+                            <b>
+                            interests
+                            </b>
+                            <a href="#interests"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>interests:     <code>string[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>string[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+    &#x27;Movie&#x27;
+    ,&#x27;Music&#x27;
+    ,&#x27;Jazz&#x27;
+    ,&#x27;Biennial&#x27;
+    ,&#x27;Theater&#x27;
+    ,&#x27;Exhibition&#x27;
+    ,&#x27;Modern Art&#x27;
+    ,&#x27;Art Movie&#x27;
+    ,&#x27;Photography&#x27;
+    ,&#x27;Travel&#x27;
+    ,&#x27;Festival&#x27;
+    ,&#x27;Museum&#x27;
+    ,&#x27;Workshop&#x27;
+    ,&#x27;Ballet&#x27;
+    ,&#x27;Dance&#x27;
+    ,&#x27;Classical Music&#x27;
+    ,&#x27;Opera&#x27;
+    ,&#x27;Blues&#x27;
+    ,&#x27;Turkish Folk Music&#x27;
+    ,&#x27;Concert&#x27;
+  ]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/events/components/search/search.component.ts:11</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="location"></a>
+                        <span class="name">
+                            <b>
+                            location
+                            </b>
+                            <a href="#location"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>location:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new FormControl(&#x27;&#x27;,  [Validators.required])</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/events/components/search/search.component.ts:37</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchingUsers"></a>
+                        <span class="name">
+                            <b>
+                            searchingUsers
+                            </b>
+                            <a href="#searchingUsers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>searchingUsers:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/events/components/search/search.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedTags"></a>
+                        <span class="name">
+                            <b>
+                            selectedTags
+                            </b>
+                            <a href="#selectedTags"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>selectedTags:     <code>string[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>string[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/events/components/search/search.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tags"></a>
+                        <span class="name">
+                            <b>
+                            tags
+                            </b>
+                            <a href="#tags"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>tags:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new FormControl(&#x27;&#x27;,  [Validators.required])</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/events/components/search/search.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="timeForm"></a>
+                        <span class="name">
+                            <b>
+                            timeForm
+                            </b>
+                            <a href="#timeForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>timeForm:     <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/events/components/search/search.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="toTime"></a>
+                        <span class="name">
+                            <b>
+                            toTime
+                            </b>
+                            <a href="#toTime"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>toTime:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new FormControl(&#x27;&#x27;,  [Validators.required])</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/events/components/search/search.component.ts:39</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="username"></a>
+                        <span class="name">
+                            <b>
+                            username
+                            </b>
+                            <a href="#username"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>username:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new FormControl(&#x27;&#x27;,  [Validators.required])</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/events/components/search/search.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import {FormBuilder, FormControl, FormGroup, Validators} from &#x27;@angular/forms&#x27;;
+
+@Component({
+  selector: &#x27;app-search-form&#x27;,
+  templateUrl: &#x27;./search.component.html&#x27;,
+  styleUrls: [&#x27;./search.component.scss&#x27;]
+})
+export class SearchComponent implements OnInit {
+  fitOnes : string[] &#x3D; [];
+  interests : string[] &#x3D; [
+    &#x27;Movie&#x27;
+    ,&#x27;Music&#x27;
+    ,&#x27;Jazz&#x27;
+    ,&#x27;Biennial&#x27;
+    ,&#x27;Theater&#x27;
+    ,&#x27;Exhibition&#x27;
+    ,&#x27;Modern Art&#x27;
+    ,&#x27;Art Movie&#x27;
+    ,&#x27;Photography&#x27;
+    ,&#x27;Travel&#x27;
+    ,&#x27;Festival&#x27;
+    ,&#x27;Museum&#x27;
+    ,&#x27;Workshop&#x27;
+    ,&#x27;Ballet&#x27;
+    ,&#x27;Dance&#x27;
+    ,&#x27;Classical Music&#x27;
+    ,&#x27;Opera&#x27;
+    ,&#x27;Blues&#x27;
+    ,&#x27;Turkish Folk Music&#x27;
+    ,&#x27;Concert&#x27;
+  ];
+  selectedTags : string[] &#x3D; [];
+  searchingUsers : boolean &#x3D; false;
+  tags  &#x3D; new FormControl(&#x27;&#x27;,  [Validators.required]);
+  content &#x3D; new FormControl(&#x27;&#x27;,  [Validators.required]);
+  location &#x3D; new FormControl(&#x27;&#x27;,  [Validators.required]);
+  fromTime &#x3D; new FormControl(&#x27;&#x27;,  [Validators.required]);
+  toTime &#x3D; new FormControl(&#x27;&#x27;,  [Validators.required]);
+  username &#x3D; new FormControl(&#x27;&#x27;,  [Validators.required]);
+  timeForm : FormGroup;
+  constructor(private formBuilder : FormBuilder) {
+    this.timeForm &#x3D; this.formBuilder.group([this.fromTime,this.toTime]);
+  }
+
+  ngOnInit() {
+  }
+  searchByTags(){
+    alert(&#x27;searching semantically, tags: &#x27;+ this.selectedTags);
+  }
+  searchLocation(){
+    alert(&#x27;searching locationally, location is: &#x27; + this.location.value);
+  }
+  searchTime(){
+    alert(&#x27;Searching between times: &#x27; + this.fromTime.value+ &#x27; and &#x27; + this.toTime.value);
+  }
+  search(){
+    alert(&#x27;searching content based, content: &#x27;+ this.content.value);
+  }
+  searchUser(){
+    alert(&#x27;searching users, username is: &#x27; + this.username.value);
+  }
+  updateFitOnes(){
+    this.fitOnes &#x3D; this.interests.filter(value &#x3D;&gt; value.toLowerCase().startsWith(this.tags.value.toString().toLowerCase()));
+  }
+  addToSelected(newTag : string){
+    if(!this.selectedTags.includes(newTag))this.selectedTags.push(newTag);
+  }
+  removeSelectedTag(toBeRemoved :string){
+    if(this.selectedTags.includes(toBeRemoved)){
+      this.selectedTags.splice(this.selectedTags.indexOf(toBeRemoved),1);
+    }
+  }
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ion-toolbar&gt;
+  &lt;ion-title&gt;
+    &lt;ion-label *ngIf&#x3D;&quot;searchingUsers&quot;&gt;Search User&lt;/ion-label&gt;
+    &lt;ion-label *ngIf&#x3D;&quot;!searchingUsers&quot;&gt;Search Event&lt;/ion-label&gt;
+  &lt;/ion-title&gt;
+  &lt;ion-item&gt;
+    &lt;ion-label position&#x3D;&quot;fixed&quot;&gt;Event/User&lt;/ion-label&gt;
+    &lt;ion-toggle slot&#x3D;&quot;start&quot; [(ngModel)]&#x3D;&quot;searchingUsers&quot;&gt;&lt;/ion-toggle&gt;
+  &lt;/ion-item&gt;
+&lt;/ion-toolbar&gt;
+&lt;ion-content padding *ngIf &#x3D;&quot;searchingUsers&quot;&gt;
+  &lt;ion-label position&#x3D;&quot;fixed&quot;&gt;Search Users&lt;/ion-label&gt;
+  &lt;hr&gt;
+  &lt;ion-label position&#x3D;&quot;stacked&quot;&gt;Enter name:&lt;/ion-label&gt;
+  &lt;ion-searchbar  [formControl]&#x3D;&quot;username&quot; placeholder&#x3D;&quot;Name to search:&quot;&gt;&lt;/ion-searchbar&gt;
+  &lt;a routerLink&#x3D;&quot;/profile/public/5c044e75eb42a65599b562c5&quot;&gt;Kemal Tulum&lt;/a&gt;
+  &lt;hr&gt;
+  &lt;ion-button [disabled]&#x3D;&quot;!(username.dirty &amp;&amp; username.valid)&quot; (click) &#x3D;&quot;searchUser()&quot;&gt;Search&lt;/ion-button&gt;
+&lt;/ion-content&gt;
+&lt;ion-content padding *ngIf &#x3D;&quot;!searchingUsers&quot;&gt;
+  &lt;ion-tabs&gt;
+  &lt;ion-tab label&#x3D;&quot;Semantic&quot; tab&#x3D;&quot;semantic&quot; icon&#x3D;&quot;pricetag&quot;&gt;
+    &lt;div&gt;
+      &lt;ion-label&gt;Semantic Search&lt;/ion-label&gt;
+      &lt;hr&gt;
+        &lt;ion-label *ngFor&#x3D;&quot;let selectedTag of selectedTags;&quot;  class&#x3D;&quot;selectedTags&quot;  (click)&#x3D;&quot;removeSelectedTag(selectedTag)&quot;&gt;{{selectedTag}}&lt;ion-icon class&#x3D;&quot;close&quot; name&#x3D;&quot;close&quot;&gt;&lt;/ion-icon&gt;&lt;/ion-label&gt;
+      &lt;ion-searchbar (ionChange)&#x3D;&quot;updateFitOnes()&quot; slot&#x3D;&quot;start&quot; okText&#x3D;&quot;Okay&quot; cancelText&#x3D;&quot;Dismiss&quot; [formControl]&#x3D;&quot;tags&quot;&gt;
+      &lt;/ion-searchbar&gt;
+      &lt;ion-button [disabled]&#x3D;&quot;!tags.dirty || !tags.valid&quot; (click)&#x3D;&quot;searchByTags()&quot; &gt;Search&lt;/ion-button&gt;
+      &lt;ion-list&gt;
+        &lt;ion-item (click)&#x3D;&quot;addToSelected(i)&quot; *ngFor&#x3D;&quot;let i of fitOnes&quot; &gt;{{i}}&lt;/ion-item&gt;
+      &lt;/ion-list&gt;
+    &lt;/div&gt;
+  &lt;/ion-tab&gt;
+  &lt;ion-tab label&#x3D;&quot;Content&quot; tab&#x3D;&quot;content&quot; icon&#x3D;&quot;book&quot;&gt;
+    &lt;div&gt;
+      &lt;ion-label position&#x3D;&quot;stacked&quot;&gt;Content Search&lt;/ion-label&gt;
+      &lt;ion-searchbar slot&#x3D;&quot;start&quot; [formControl]&#x3D;&quot;content&quot; placeholder&#x3D;&quot;Enter keyword(s):&quot;&gt;&lt;/ion-searchbar&gt;
+      &lt;ion-button [disabled]&#x3D;&quot;!(content.dirty &amp;&amp; content.valid)&quot; (click)&#x3D;&quot;search()&quot;&gt;Search&lt;/ion-button&gt;
+    &lt;/div&gt;
+  &lt;/ion-tab&gt;
+  &lt;ion-tab label&#x3D;&quot;Location&quot; tab&#x3D;&quot;location&quot; icon&#x3D;&quot;map&quot;&gt;
+    &lt;div&gt;
+      &lt;ion-label position&#x3D;&quot;stacked&quot;&gt;Location Based Search &lt;/ion-label&gt;
+      &lt;ion-searchbar  [formControl]&#x3D;&quot;location&quot; placeholder&#x3D;&quot;Select a location:&quot;&gt;&lt;/ion-searchbar&gt;
+      &lt;ion-button [disabled]&#x3D;&quot;!(location.dirty &amp;&amp; location.valid)&quot; (click)&#x3D;&quot;searchLocation()&quot;&gt;Search&lt;/ion-button&gt;
+    &lt;/div&gt;
+  &lt;/ion-tab&gt;
+  &lt;ion-tab label&#x3D;&quot;Time&quot; tab&#x3D;&quot;time&quot; icon&#x3D;&quot;time&quot;&gt;
+      &lt;form [formGroup]&#x3D;&quot;timeForm&quot; (ngSubmit)&#x3D;&quot;searchTime()&quot; (keyup.enter)&#x3D;&quot;timeForm.valid ? searchTime() : showErrorTime()&quot; &gt;
+        &lt;ion-label&gt;Time Search&lt;/ion-label&gt;
+        &lt;hr&gt;
+        &lt;ion-label position &#x3D; &quot;fixed&quot;&gt;From:&lt;/ion-label&gt;&lt;ion-datetime [formControl]&#x3D;&quot;fromTime&quot;&gt;&lt;/ion-datetime&gt;
+        &lt;ion-label position &#x3D; &quot;fixed&quot;&gt;To: &lt;/ion-label&gt;&lt;ion-datetime [formControl]&#x3D;&quot;toTime&quot;&gt;&lt;/ion-datetime&gt;
+        &lt;ion-button  type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;!timeForm.dirty || !timeForm.valid&quot; expand&#x3D;&quot;block&quot;&gt;Search&lt;/ion-button&gt;
+      &lt;/form&gt;
+  &lt;/ion-tab&gt;
+  &lt;ion-tab-bar slot&#x3D;&quot;top&quot;&gt;
+    &lt;ion-tab-button tab&#x3D;&quot;semantic&quot;&gt;
+     &lt;ion-label&gt;Semantic&lt;/ion-label&gt;
+      &lt;ion-icon name&#x3D;&quot;pricetag&quot;&gt;&lt;/ion-icon&gt;
+    &lt;/ion-tab-button&gt;
+     &lt;ion-tab-button tab&#x3D;&quot;content&quot;&gt;
+      &lt;ion-label&gt;Content&lt;/ion-label&gt;
+      &lt;ion-icon name&#x3D;&quot;book&quot;&gt;&lt;/ion-icon&gt;
+    &lt;/ion-tab-button&gt;
+      &lt;ion-tab-button tab&#x3D;&quot;location&quot;&gt;
+        &lt;ion-label&gt;Location&lt;/ion-label&gt;
+        &lt;ion-icon name&#x3D;&quot;map&quot;&gt;&lt;/ion-icon&gt;
+      &lt;/ion-tab-button&gt;
+      &lt;ion-tab-button tab&#x3D;&quot;time&quot;&gt;
+        &lt;ion-label&gt;Time&lt;/ion-label&gt;
+        &lt;ion-icon name&#x3D;&quot;time&quot;&gt;&lt;/ion-icon&gt;
+      &lt;/ion-tab-button&gt;
+  &lt;/ion-tab-bar&gt;
+  &lt;/ion-tabs&gt;
+&lt;/ion-content&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./search.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.selectedTags{
+  color: #0cd1e8;
+  font-size: 1.2em;
+}
+.close{
+  color: #000000;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-toolbar>  <ion-title>    <ion-label *ngIf="searchingUsers">Search User</ion-label>    <ion-label *ngIf="!searchingUsers">Search Event</ion-label>  </ion-title>  <ion-item>    <ion-label position="fixed">Event/User</ion-label>    <ion-toggle slot="start" [(ngModel)]="searchingUsers"></ion-toggle>  </ion-item></ion-toolbar><ion-content padding *ngIf ="searchingUsers">  <ion-label position="fixed">Search Users</ion-label>  <hr>  <ion-label position="stacked">Enter name:</ion-label>  <ion-searchbar  [formControl]="username" placeholder="Name to search:"></ion-searchbar>  <a routerLink="/profile/public/5c044e75eb42a65599b562c5">Kemal Tulum</a>  <hr>  <ion-button [disabled]="!(username.dirty && username.valid)" (click) ="searchUser()">Search</ion-button></ion-content><ion-content padding *ngIf ="!searchingUsers">  <ion-tabs>  <ion-tab label="Semantic" tab="semantic" icon="pricetag">    <div>      <ion-label>Semantic Search</ion-label>      <hr>        <ion-label *ngFor="let selectedTag of selectedTags;"  class="selectedTags"  (click)="removeSelectedTag(selectedTag)">{{selectedTag}}<ion-icon class="close" name="close"></ion-icon></ion-label>      <ion-searchbar (ionChange)="updateFitOnes()" slot="start" okText="Okay" cancelText="Dismiss" [formControl]="tags">      </ion-searchbar>      <ion-button [disabled]="!tags.dirty || !tags.valid" (click)="searchByTags()" >Search</ion-button>      <ion-list>        <ion-item (click)="addToSelected(i)" *ngFor="let i of fitOnes" >{{i}}</ion-item>      </ion-list>    </div>  </ion-tab>  <ion-tab label="Content" tab="content" icon="book">    <div>      <ion-label position="stacked">Content Search</ion-label>      <ion-searchbar slot="start" [formControl]="content" placeholder="Enter keyword(s):"></ion-searchbar>      <ion-button [disabled]="!(content.dirty && content.valid)" (click)="search()">Search</ion-button>    </div>  </ion-tab>  <ion-tab label="Location" tab="location" icon="map">    <div>      <ion-label position="stacked">Location Based Search </ion-label>      <ion-searchbar  [formControl]="location" placeholder="Select a location:"></ion-searchbar>      <ion-button [disabled]="!(location.dirty && location.valid)" (click)="searchLocation()">Search</ion-button>    </div>  </ion-tab>  <ion-tab label="Time" tab="time" icon="time">      <form [formGroup]="timeForm" (ngSubmit)="searchTime()" (keyup.enter)="timeForm.valid ? searchTime() : showErrorTime()" >        <ion-label>Time Search</ion-label>        <hr>        <ion-label position = "fixed">From:</ion-label><ion-datetime [formControl]="fromTime"></ion-datetime>        <ion-label position = "fixed">To: </ion-label><ion-datetime [formControl]="toTime"></ion-datetime>        <ion-button  type="submit" [disabled]="!timeForm.dirty || !timeForm.valid" expand="block">Search</ion-button>      </form>  </ion-tab>  <ion-tab-bar slot="top">    <ion-tab-button tab="semantic">     <ion-label>Semantic</ion-label>      <ion-icon name="pricetag"></ion-icon>    </ion-tab-button>     <ion-tab-button tab="content">      <ion-label>Content</ion-label>      <ion-icon name="book"></ion-icon>    </ion-tab-button>      <ion-tab-button tab="location">        <ion-label>Location</ion-label>        <ion-icon name="map"></ion-icon>      </ion-tab-button>      <ion-tab-button tab="time">        <ion-label>Time</ion-label>        <ion-icon name="time"></ion-icon>      </ion-tab-button>  </ion-tab-bar>  </ion-tabs></ion-content></div>'
+    var COMPONENTS = [{'name': 'AnnotatedBodyComponent', 'selector': 'app-annotated-body'},{'name': 'AnnotationComponent', 'selector': 'app-annotation-component'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'CommentBoxComponent', 'selector': 'app-comment-box'},{'name': 'DateSelectorComponent', 'selector': 'app-date-selector'},{'name': 'EventCardComponent', 'selector': 'app-event-card'},{'name': 'EventCreatePage', 'selector': 'app-event-create'},{'name': 'EventEditPage', 'selector': 'app-event-edit'},{'name': 'EventFormComponent', 'selector': 'app-event-form'},{'name': 'EventPage', 'selector': 'app-event'},{'name': 'FeedPage', 'selector': 'app-feed'},{'name': 'ForgotPasswordPage', 'selector': 'app-forgotpassword'},{'name': 'MapComponent', 'selector': 'app-map'},{'name': 'MediaComponent', 'selector': 'app-media'},{'name': 'NotFoundPage', 'selector': 'app-not-found'},{'name': 'PriceSelectorComponent', 'selector': 'app-price-selector'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'PublicPage', 'selector': 'app-public'},{'name': 'SearchComponent', 'selector': 'app-search-form'},{'name': 'SearchPage', 'selector': 'app-search'},{'name': 'SettingsPage', 'selector': 'profile-settings'},{'name': 'ShowAnnotationComponent', 'selector': 'app-show-annotation'},{'name': 'SigninPage', 'selector': 'app-signin'},{'name': 'SignupPage', 'selector': 'app-signup'},{'name': 'SliderComponent', 'selector': 'app-slider'},{'name': 'TagSelectorComponent', 'selector': 'app-tag-selector'},{'name': 'TimelinePage', 'selector': 'app-timeline'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'}];
+    var DIRECTIVES = [{'name': 'AnnotationDirective', 'selector': '[annotate]'}];
+    var ACTUAL_COMPONENT = {'name': 'SearchComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SearchComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

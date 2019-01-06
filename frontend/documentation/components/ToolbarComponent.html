@@ -1,0 +1,1088 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">frontend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ToolbarComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/shared/components/toolbar/toolbar.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-toolbar</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./toolbar.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./toolbar.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentSearchResult">currentSearchResult</a>
+                            </li>
+                            <li>
+                                <a href="#navigated">navigated</a>
+                            </li>
+                            <li>
+                                <a href="#queryText">queryText</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#uploadService">uploadService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#logout">logout</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSearchChange">onSearchChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#backButton">backButton</a>
+                            </li>
+                            <li>
+                                <a href="#href">href</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(authService: <a href="../injectables/AuthService.html">AuthService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, searchService: <a href="../injectables/SearchService.html">SearchService</a>, uploadService: <a href="../injectables/UploadService.html">UploadService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/components/toolbar/toolbar.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>searchService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/SearchService.html" target="_self" >SearchService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>uploadService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/UploadService.html" target="_self" >UploadService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="backButton"></a>
+                        <code>backButton</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/shared/components/toolbar/toolbar.component.ts:14</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="href"></a>
+                        <code>href</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/shared/components/toolbar/toolbar.component.ts:15</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="logout"></a>
+                        <span class="name">
+                            <b>
+                            logout
+                            </b>
+                            <a href="#logout"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>logout()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/shared/components/toolbar/toolbar.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/shared/components/toolbar/toolbar.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onSearchChange"></a>
+                        <span class="name">
+                            <b>
+                            onSearchChange
+                            </b>
+                            <a href="#onSearchChange"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onSearchChange()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/shared/components/toolbar/toolbar.component.ts:38</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentSearchResult"></a>
+                        <span class="name">
+                            <b>
+                            currentSearchResult
+                            </b>
+                            <a href="#currentSearchResult"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>currentSearchResult:     <code><a href="../interfaces/SearchResult.html" target="_self" >SearchResult</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/SearchResult.html" target="_self" >SearchResult</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/shared/components/toolbar/toolbar.component.ts:16</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="navigated"></a>
+                        <span class="name">
+                            <b>
+                            navigated
+                            </b>
+                            <a href="#navigated"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>navigated:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/components/toolbar/toolbar.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="queryText"></a>
+                        <span class="name">
+                            <b>
+                            queryText
+                            </b>
+                            <a href="#queryText"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>queryText:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/components/toolbar/toolbar.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="uploadService"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            uploadService
+                            </b>
+                            <a href="#uploadService"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>uploadService:     <code><a href="../injectables/UploadService.html" target="_self" >UploadService</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../injectables/UploadService.html" target="_self" >UploadService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/shared/components/toolbar/toolbar.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input} from &#x27;@angular/core&#x27;;
+import {AuthService} from &quot;../../../auth/providers/auth/auth.service&quot;;
+import {Router} from &quot;@angular/router&quot;;
+import {SearchService} from &quot;../../../data/providers/search/search.service&quot;;
+import {SearchResult} from &quot;../../../interfaces/search-result.interface&quot;;
+import {UploadService} from &quot;../../../data/providers/upload/upload.service&quot;;
+
+@Component({
+  selector: &#x27;app-toolbar&#x27;,
+  templateUrl: &#x27;./toolbar.component.html&#x27;,
+  styleUrls: [&#x27;./toolbar.component.scss&#x27;]
+})
+export class ToolbarComponent implements OnInit {
+  @Input(&#x27;backButton&#x27;) backButton &#x3D; false;
+  @Input(&#x27;href&#x27;) href: string;
+  currentSearchResult: SearchResult &#x3D; null;
+  queryText: string;
+
+  navigated: boolean &#x3D; false;
+
+  constructor(private authService: AuthService,
+              private router: Router,
+              private searchService: SearchService,
+              public uploadService: UploadService) { }
+
+  ngOnInit() {
+
+  }
+
+  logout() {
+    this.authService
+      .logout()
+      .subscribe(response &#x3D;&gt; {
+        this.router.navigate([&#x27;/signin&#x27;]);
+      })
+  }
+
+  onSearchChange() {
+    if (this.navigated) return;
+
+    this.navigated &#x3D; true;
+    this.router.navigate([&#x27;/feed/search&#x27;, { text: this.queryText }]).then(() &#x3D;&gt; {
+      // allow changes after 1 sec
+      setTimeout(() &#x3D;&gt; {
+        this.navigated &#x3D; false;
+      }, 1000);
+    });
+    /*
+    if(this.queryText.length &#x3D;&#x3D; 0) {this.currentSearchResult &#x3D; null;}
+    else{
+      this.searchService.get(this.queryText)
+        .subscribe(
+          result &#x3D;&gt; this.currentSearchResult &#x3D; result,
+          error &#x3D;&gt; console.log(&#x27;An error occurred while getting search results for&#x27;, this.queryText, error)
+        )
+    }
+    */
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ion-toolbar class&#x3D;&quot;toolbar-content&quot;&gt;
+  &lt;ion-buttons slot&#x3D;&quot;start&quot; *ngIf&#x3D;&quot;backButton&quot;&gt;
+    &lt;ion-back-button
+      [text]&#x3D;&quot;&#x27;BACK&#x27;&quot;
+      [icon]&#x3D;&quot;&#x27;arrow-back&#x27;&quot;
+      defaultHref&#x3D;&quot;{{href}}&quot;&gt;
+    &lt;/ion-back-button&gt;
+  &lt;/ion-buttons&gt;
+  &lt;!--
+  &lt;ion-buttons slot&#x3D;&quot;primary&quot; *ngIf&#x3D;&quot;!backButton&quot;&gt;
+    &lt;ion-button&gt;
+      &lt;ion-icon slot&#x3D;&quot;icon-only&quot; name&#x3D;&quot;search&quot;&gt;&lt;/ion-icon&gt;
+    &lt;/ion-button&gt;
+  &lt;/ion-buttons&gt;
+  --&gt;
+  &lt;!--
+  &lt;ion-title&gt;
+    &lt;a routerLink&#x3D;&quot;/feed&quot; class&#x3D;&quot;logo-link&quot;&gt;
+      &lt;img src&#x3D;&quot;../../../../assets/logo_small.png&quot; alt&#x3D;&quot;Actopus&quot;&gt;
+    &lt;/a&gt;
+  &lt;/ion-title&gt;--&gt;
+  &lt;div class&#x3D;&quot;toolbar-content&quot;&gt;
+    &lt;ion-row align-items-center&gt;
+      &lt;!--
+      &lt;ion-col offset-xs&#x3D;&quot;8&quot; size-xs&#x3D;&quot;8&quot; offset-md&#x3D;&quot;1&quot; size-md&#x3D;&quot;4&quot; size-lg&#x3D;&quot;3&quot; size-xl&#x3D;&quot;2&quot; class&#x3D;&quot;logo&quot; *ngIf&#x3D;&quot;!backButton; else back&quot;&gt;
+        &lt;a routerLink&#x3D;&quot;/feed&quot;&gt;
+          &lt;img src&#x3D;&quot;../../../../assets/logo_small.png&quot; alt&#x3D;&quot;Actopus&quot;&gt;
+        &lt;/a&gt;
+      &lt;/ion-col&gt;--&gt;
+      &lt;ion-col offset-xs&#x3D;&quot;0&quot; size-xs&#x3D;&quot;3&quot; offset-md&#x3D;&quot;0&quot; size-md&#x3D;&quot;2&quot; offset-lg&#x3D;&quot;3&quot; size-lg&#x3D;&quot;3&quot; size-xl&#x3D;&quot;2&quot; class&#x3D;&quot;logo&quot; *ngIf&#x3D;&quot;!backButton; else back&quot;&gt;
+        &lt;a class&#x3D;&quot;logo-small-icon&quot; routerLink&#x3D;&quot;/feed&quot;&gt;
+          &lt;img class&#x3D;&quot;menu-mobile&quot; src&#x3D;&quot;../../../../assets/logo_small_oct.png&quot; alt&#x3D;&quot;Actopus&quot;&gt;
+          &lt;img class&#x3D;&quot;menu-desktop&quot; src&#x3D;&quot;../../../../assets/logo_small.png&quot; alt&#x3D;&quot;Actopus&quot;&gt;
+        &lt;/a&gt;
+      &lt;/ion-col&gt;
+      &lt;ion-col offset-xs&#x3D;&quot;0&quot; size-xs&#x3D;&quot;21&quot; size-md&#x3D;&quot;22&quot; offset-lg&#x3D;&quot;2&quot; size-lg&#x3D;&quot;6&quot; *ngIf&#x3D;&quot;!backButton&quot;&gt;
+        &lt;ion-searchbar [(ngModel)]&#x3D;&quot;queryText&quot; (ionChange)&#x3D;&quot;onSearchChange()&quot;  debounce&#x3D;&quot;250&quot; autocomplete&#x3D;&quot;on&quot; *ngIf&#x3D;&quot;!backButton&quot; placeholder&#x3D;&quot;Search Favorites&quot;&gt;&lt;/ion-searchbar&gt;
+      &lt;/ion-col&gt;
+      &lt;ion-col offset-lg&#x3D;&quot;1&quot; size-lg&#x3D;&quot;6&quot; *ngIf&#x3D;&quot;!backButton&quot;&gt;
+        &lt;!-- Desktop menu is shown for width larger than 992px which means lg and xl in ionic grid system--&gt;
+        &lt;div class&#x3D;&quot;menu-container menu-desktop&quot;&gt;
+          &lt;a class&#x3D;&quot;menu-item&quot; routerLink&#x3D;&quot;/feed&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;
+            &lt;div&gt;
+              &lt;div&gt;Feed&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/a&gt;
+          &lt;a class&#x3D;&quot;menu-item&quot; routerLink&#x3D;&quot;/profile&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;
+            &lt;div&gt;
+              &lt;div&gt;Profile&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/a&gt;
+          &lt;a class&#x3D;&quot;menu-item&quot; (click)&#x3D;&quot;logout()&quot;&gt;
+            &lt;div class&#x3D;&quot;signout&quot;&gt;
+              &lt;div&gt;Sign Out&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/ion-col&gt;
+      &lt;ng-template #back&gt;
+        &lt;ion-col offset-xs&#x3D;&quot;8&quot; size-xs&#x3D;&quot;8&quot; offset-md&#x3D;&quot;10&quot; size-md&#x3D;&quot;4&quot; size-lg&#x3D;&quot;3&quot; offset-xl&#x3D;&quot;11&quot; size-xl&#x3D;&quot;2&quot; class&#x3D;&quot;logo&quot;&gt;
+          &lt;a routerLink&#x3D;&quot;/feed&quot;&gt;
+            &lt;img src&#x3D;&quot;../../../../assets/logo_small.png&quot; alt&#x3D;&quot;Actopus&quot;&gt;
+          &lt;/a&gt;
+        &lt;/ion-col&gt;
+      &lt;/ng-template&gt;
+    &lt;/ion-row&gt;
+  &lt;/div&gt;
+&lt;/ion-toolbar&gt;
+&lt;div class&#x3D;&quot;menu-container menu-mobile&quot;&gt;
+  &lt;a class&#x3D;&quot;menu-item&quot; routerLink&#x3D;&quot;/feed&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;
+    &lt;div&gt;
+      &lt;ion-icon name&#x3D;&quot;home&quot;&gt;&lt;/ion-icon&gt;
+      &lt;div&gt;Feed&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+  &lt;a class&#x3D;&quot;menu-item&quot; routerLink&#x3D;&quot;/profile&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;
+    &lt;div&gt;
+      &lt;ion-icon name&#x3D;&quot;person&quot;&gt;&lt;/ion-icon&gt;
+      &lt;div&gt;Profile&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+  &lt;a class&#x3D;&quot;menu-item&quot; routerLink&#x3D;&quot;/profile&quot;&gt;
+    &lt;div class&#x3D;&quot;signout&quot;&gt;
+      &lt;ion-icon name&#x3D;&quot;exit&quot;&gt;&lt;/ion-icon&gt;
+      &lt;div&gt;Sign Out&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+&lt;ion-grid&gt;
+  &lt;ion-row&gt;
+    &lt;ion-col offset-lg&#x3D;&quot;3&quot; size-lg&#x3D;&quot;6&quot;&gt;
+      &lt;div class&#x3D;&quot;search-results-overlay&quot; *ngIf&#x3D;&quot;currentSearchResult&quot;&gt;
+        &lt;div class&#x3D;&quot;search-results&quot;&gt;
+          &lt;div *ngIf&#x3D;&quot;currentSearchResult?.events&quot; class&#x3D;&quot;results-container&quot;&gt;
+            &lt;ion-card *ngFor&#x3D;&quot;let event of currentSearchResult?.events&quot; class&#x3D;&quot;result&quot;&gt;
+              &lt;ion-item href&#x3D;&quot;{{&#x27;/feed/&#x27; + event._id}}&quot;&gt;
+                &lt;ion-avatar slot&#x3D;&quot;start&quot; *ngIf&#x3D;&quot;event.media &amp;&amp; event.media.length &gt; 0; else image&quot;&gt;
+                  &lt;img [src]&#x3D;&quot;uploadService.getUrl(event.media[0].source)&quot;&gt;
+                &lt;/ion-avatar&gt;
+                &lt;ng-template  #image&gt;
+                  &lt;ion-icon name&#x3D;&quot;image&quot;&gt;&lt;/ion-icon&gt;
+                &lt;/ng-template&gt;
+                &lt;ion-label&gt;{{event.name}}&lt;/ion-label&gt;
+              &lt;/ion-item&gt;
+            &lt;/ion-card&gt;
+          &lt;/div&gt;
+          &lt;div *ngIf&#x3D;&quot;currentSearchResult?.users&quot; class&#x3D;&quot;results-container&quot;&gt;
+            &lt;ion-card *ngFor&#x3D;&quot;let user of currentSearchResult?.users&quot; class&#x3D;&quot;result&quot;&gt;
+              &lt;ion-item href&#x3D;&quot;{{&#x27;/public/profile/&#x27; + user._id}}&quot;&gt;
+                &lt;ion-avatar *ngIf&#x3D;&quot;user.images; else icon&quot; slot&#x3D;&quot;start&quot;&gt;
+                  &lt;img [src]&#x3D;&quot;uploadService.getUrl(user.images?.avatar)&quot;&gt;
+                &lt;/ion-avatar&gt;
+                &lt;ng-template  #icon&gt;
+                  &lt;ion-icon name&#x3D;&quot;contact&quot;&gt;&lt;/ion-icon&gt;
+                &lt;/ng-template&gt;
+                &lt;ion-label&gt;{{user.name}}&lt;/ion-label&gt;
+              &lt;/ion-item&gt;
+            &lt;/ion-card&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;a class&#x3D;&quot;advanced-search&quot; routerLink&#x3D;&quot;/feed/search&quot;&gt;
+          ADVANCED SEARCH
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/ion-col&gt;
+  &lt;/ion-row&gt;
+&lt;/ion-grid&gt;
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./toolbar.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">ion-toolbar{
+
+  --ion-grid-columns:               24;
+  --background: white;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(187,7,59,0.55);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(187,7,59,0.55);
+  box-shadow: 0px 3px 5px 0px rgba(187,7,59,0.55);
+}
+
+ion-buttons{
+  position: absolute;
+}
+
+
+ion-back-button{
+  --color: #BB073B;
+}
+
+ion-title{
+  --color: var(--ion-color-primary);
+}
+
+ion-title a.logo-link{
+
+}
+
+.logo{
+
+}
+
+.logo img{
+  width: 100%;
+}
+
+.logo-small-icon{
+  padding: 5px;
+  display: block;
+  text-align: center;
+}
+
+.logo-small-icon img{
+  width: 100%;
+}
+
+ion-searchbar{
+  padding: 5px;
+  --background: rgba(var(--ion-color-primary-rgb), 0.15);
+  --icon-color: var(--ion-color-primary);
+}
+
+/* Search Results */
+.search-results-overlay{
+  position: absolute;
+  padding-bottom: 16px;
+  width: 100%;
+  background: white;
+  -webkit-box-shadow: 0px 8px 20px 0px rgba(255,255,255,1);
+  -moz-box-shadow: 0px 8px 20px 0px rgba(255,255,255,1);
+  box-shadow: 0px 8px 20px 0px rgba(255,255,255,1);
+}
+
+.search-results{
+  width: 100%;
+  max-height: 42vh;
+  overflow: auto;
+}
+
+/* When keyboard is open */
+@media screen and (min-height: 450px){
+  .search-results{
+    min-height: 240px;
+  }
+}
+
+/* width */
+.search-results::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+.search-results::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+.search-results::-webkit-scrollbar-thumb {
+  background: rgba(var(--ion-color-primary-rgb), 0.5);
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+.search-results::-webkit-scrollbar-thumb:hover {
+  background: var(--ion-color-primary);
+}
+
+.advanced-search{
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 16px;
+  background: rgba(var(--ion-color-primary-rgb), 0.75);
+  color: white;
+  font-weight: bold;
+  font-size: 0.8em;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Menu */
+
+@import &#x27;../../../../theme/custom_variables&#x27;;
+
+.menu-container{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 11;
+  height: $menu-height;
+  border-top: 2px solid var(--ion-color-primary);
+}
+
+.menu-item{
+  width: 32%;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+}
+
+.signout{
+  color: var(--ion-color-danger-tint);
+}
+
+.active{
+  font-weight: bold;
+}
+
+.menu-desktop{
+  display: none;
+}
+
+@media screen and (min-width: 992px){
+  .menu-container{
+    position: static;
+    border-top: none;
+  }
+  .menu-desktop{
+    display: flex;
+  }
+  .menu-mobile{
+    display: none;
+  }
+  .search-results-overlay{
+    border: 2px solid var(--ion-color-primary);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .search-results{
+    padding: 4px;
+  }
+
+  .advanced-search{
+    border: 2px solid var(--ion-color-primary);
+    background: var(--ion-color-primary);
+  }
+
+  /* Handle */
+  .search-results::-webkit-scrollbar-thumb {
+    background: rgba(var(--ion-color-primary-rgb), 0.5);
+    border-radius: 4px;
+  }
+
+  /* Handle on hover */
+  .search-results::-webkit-scrollbar-thumb:hover {
+    background: var(--ion-color-primary);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-toolbar class="toolbar-content">  <ion-buttons slot="start" *ngIf="backButton">    <ion-back-button      [text]="\'BACK\'"      [icon]="\'arrow-back\'"      defaultHref="{{href}}">    </ion-back-button>  </ion-buttons>  <!--  <ion-buttons slot="primary" *ngIf="!backButton">    <ion-button>      <ion-icon slot="icon-only" name="search"></ion-icon>    </ion-button>  </ion-buttons>  -->  <!--  <ion-title>    <a routerLink="/feed" class="logo-link">      <img src="../../../../assets/logo_small.png" alt="Actopus">    </a>  </ion-title>-->  <div class="toolbar-content">    <ion-row align-items-center>      <!--      <ion-col offset-xs="8" size-xs="8" offset-md="1" size-md="4" size-lg="3" size-xl="2" class="logo" *ngIf="!backButton; else back">        <a routerLink="/feed">          <img src="../../../../assets/logo_small.png" alt="Actopus">        </a>      </ion-col>-->      <ion-col offset-xs="0" size-xs="3" offset-md="0" size-md="2" offset-lg="3" size-lg="3" size-xl="2" class="logo" *ngIf="!backButton; else back">        <a class="logo-small-icon" routerLink="/feed">          <img class="menu-mobile" src="../../../../assets/logo_small_oct.png" alt="Actopus">          <img class="menu-desktop" src="../../../../assets/logo_small.png" alt="Actopus">        </a>      </ion-col>      <ion-col offset-xs="0" size-xs="21" size-md="22" offset-lg="2" size-lg="6" *ngIf="!backButton">        <ion-searchbar [(ngModel)]="queryText" (ionChange)="onSearchChange()"  debounce="250" autocomplete="on" *ngIf="!backButton" placeholder="Search Favorites"></ion-searchbar>      </ion-col>      <ion-col offset-lg="1" size-lg="6" *ngIf="!backButton">        <!-- Desktop menu is shown for width larger than 992px which means lg and xl in ionic grid system-->        <div class="menu-container menu-desktop">          <a class="menu-item" routerLink="/feed" routerLinkActive="active">            <div>              <div>Feed</div>            </div>          </a>          <a class="menu-item" routerLink="/profile" routerLinkActive="active">            <div>              <div>Profile</div>            </div>          </a>          <a class="menu-item" (click)="logout()">            <div class="signout">              <div>Sign Out</div>            </div>          </a>        </div>      </ion-col>      <ng-template #back>        <ion-col offset-xs="8" size-xs="8" offset-md="10" size-md="4" size-lg="3" offset-xl="11" size-xl="2" class="logo">          <a routerLink="/feed">            <img src="../../../../assets/logo_small.png" alt="Actopus">          </a>        </ion-col>      </ng-template>    </ion-row>  </div></ion-toolbar><div class="menu-container menu-mobile">  <a class="menu-item" routerLink="/feed" routerLinkActive="active">    <div>      <ion-icon name="home"></ion-icon>      <div>Feed</div>    </div>  </a>  <a class="menu-item" routerLink="/profile" routerLinkActive="active">    <div>      <ion-icon name="person"></ion-icon>      <div>Profile</div>    </div>  </a>  <a class="menu-item" routerLink="/profile">    <div class="signout">      <ion-icon name="exit"></ion-icon>      <div>Sign Out</div>    </div>  </a></div><ion-grid>  <ion-row>    <ion-col offset-lg="3" size-lg="6">      <div class="search-results-overlay" *ngIf="currentSearchResult">        <div class="search-results">          <div *ngIf="currentSearchResult?.events" class="results-container">            <ion-card *ngFor="let event of currentSearchResult?.events" class="result">              <ion-item href="{{\'/feed/\' + event._id}}">                <ion-avatar slot="start" *ngIf="event.media && event.media.length > 0; else image">                  <img [src]="uploadService.getUrl(event.media[0].source)">                </ion-avatar>                <ng-template  #image>                  <ion-icon name="image"></ion-icon>                </ng-template>                <ion-label>{{event.name}}</ion-label>              </ion-item>            </ion-card>          </div>          <div *ngIf="currentSearchResult?.users" class="results-container">            <ion-card *ngFor="let user of currentSearchResult?.users" class="result">              <ion-item href="{{\'/public/profile/\' + user._id}}">                <ion-avatar *ngIf="user.images; else icon" slot="start">                  <img [src]="uploadService.getUrl(user.images?.avatar)">                </ion-avatar>                <ng-template  #icon>                  <ion-icon name="contact"></ion-icon>                </ng-template>                <ion-label>{{user.name}}</ion-label>              </ion-item>            </ion-card>          </div>        </div>        <a class="advanced-search" routerLink="/feed/search">          ADVANCED SEARCH        </a>      </div>    </ion-col>  </ion-row></ion-grid></div>'
+    var COMPONENTS = [{'name': 'AnnotatedBodyComponent', 'selector': 'app-annotated-body'},{'name': 'AnnotationComponent', 'selector': 'app-annotation-component'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'CommentBoxComponent', 'selector': 'app-comment-box'},{'name': 'DateSelectorComponent', 'selector': 'app-date-selector'},{'name': 'EventCardComponent', 'selector': 'app-event-card'},{'name': 'EventCreatePage', 'selector': 'app-event-create'},{'name': 'EventEditPage', 'selector': 'app-event-edit'},{'name': 'EventFormComponent', 'selector': 'app-event-form'},{'name': 'EventPage', 'selector': 'app-event'},{'name': 'FeedPage', 'selector': 'app-feed'},{'name': 'ForgotPasswordPage', 'selector': 'app-forgotpassword'},{'name': 'MapComponent', 'selector': 'app-map'},{'name': 'MediaComponent', 'selector': 'app-media'},{'name': 'NotFoundPage', 'selector': 'app-not-found'},{'name': 'PriceSelectorComponent', 'selector': 'app-price-selector'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'PublicPage', 'selector': 'app-public'},{'name': 'SearchComponent', 'selector': 'app-search-form'},{'name': 'SearchPage', 'selector': 'app-search'},{'name': 'SettingsPage', 'selector': 'profile-settings'},{'name': 'ShowAnnotationComponent', 'selector': 'app-show-annotation'},{'name': 'SigninPage', 'selector': 'app-signin'},{'name': 'SignupPage', 'selector': 'app-signup'},{'name': 'SliderComponent', 'selector': 'app-slider'},{'name': 'TagSelectorComponent', 'selector': 'app-tag-selector'},{'name': 'TimelinePage', 'selector': 'app-timeline'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'}];
+    var DIRECTIVES = [{'name': 'AnnotationDirective', 'selector': '[annotate]'}];
+    var ACTUAL_COMPONENT = {'name': 'ToolbarComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ToolbarComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

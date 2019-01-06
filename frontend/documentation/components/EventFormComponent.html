@@ -1,0 +1,2184 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">frontend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>EventFormComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/events/components/event-form/event-form.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-event-form</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./event-form.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./event-form.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#eventImage">eventImage</a>
+                            </li>
+                            <li>
+                                <a href="#eventMinDate">eventMinDate</a>
+                            </li>
+                            <li>
+                                <a href="#eventPosted">eventPosted</a>
+                            </li>
+                            <li>
+                                <a href="#form">form</a>
+                            </li>
+                            <li>
+                                <a href="#formTitle">formTitle</a>
+                            </li>
+                            <li>
+                                <a href="#imageError">imageError</a>
+                            </li>
+                            <li>
+                                <a href="#isFree">isFree</a>
+                            </li>
+                            <li>
+                                <a href="#submitButtonText">submitButtonText</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addArtist">addArtist</a>
+                            </li>
+                            <li>
+                                <a href="#addTag">addTag</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#handleError">handleError</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onEvent">onEvent</a>
+                            </li>
+                            <li>
+                                <a href="#onImageError">onImageError</a>
+                            </li>
+                            <li>
+                                <a href="#onImageLoad">onImageLoad</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onSelectLocation">onSelectLocation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#presentAlert">presentAlert</a>
+                            </li>
+                            <li>
+                                <a href="#removeArtist">removeArtist</a>
+                            </li>
+                            <li>
+                                <a href="#removeTag">removeTag</a>
+                            </li>
+                            <li>
+                                <a href="#submitForm">submitForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#event">event</a>
+                            </li>
+                            <li>
+                                <a href="#type">type</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#create">create</a>
+                            </li>
+                            <li>
+                                <a href="#edit">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#artists">artists</a>
+                                </li>
+                                <li>
+                                    <a href="#tags">tags</a>
+                                </li>
+                                <li>
+                                    <a href="#media">media</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, eventService: <a href="../injectables/EventService.html">EventService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, alertController: AlertController, authService: <a href="../injectables/AuthService.html">AuthService</a>, mediaService: <a href="../injectables/MediaService.html">MediaService</a>, uploadService: <a href="../injectables/UploadService.html">UploadService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>eventService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/EventService.html" target="_self" >EventService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>alertController</td>
+                                                  
+                                                        <td>
+                                                                    <code>AlertController</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>mediaService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/MediaService.html" target="_self" >MediaService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>uploadService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/UploadService.html" target="_self" >UploadService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="event"></a>
+                        <code>event</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code><a href="../interfaces/Event.html" target="_self" >Event</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:18</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="type"></a>
+                        <code>type</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:19</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="create"></a>
+                        <code>create</code>
+                    </td>
+                    <td class="col-md-10">
+                        <em><code>$event</code> Type:</em>    <code><a href="../interfaces/Event.html" target="_self" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:21</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="edit"></a>
+                        <code>edit</code>
+                    </td>
+                    <td class="col-md-10">
+                        <em><code>$event</code> Type:</em>    <code><a href="../interfaces/Event.html" target="_self" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:20</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="addArtist"></a>
+                        <span class="name">
+                            <b>
+                            addArtist
+                            </b>
+                            <a href="#addArtist"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>addArtist()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:140</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="addTag"></a>
+                        <span class="name">
+                            <b>
+                            addTag
+                            </b>
+                            <a href="#addTag"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>addTag()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:149</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="handleError"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            handleError
+                            </b>
+                            <a href="#handleError"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>handleError(error: <a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank">HttpErrorResponse</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:120</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>error</td>
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank" >HttpErrorResponse</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:43</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onEvent"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            onEvent
+                            </b>
+                            <a href="#onEvent"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>onEvent(event: literal type)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:170</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Controls interaction with the media component</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                        <td>
+                                                                    <code>literal type</code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onImageError"></a>
+                        <span class="name">
+                            <b>
+                            onImageError
+                            </b>
+                            <a href="#onImageError"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onImageError()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:130</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onImageLoad"></a>
+                        <span class="name">
+                            <b>
+                            onImageLoad
+                            </b>
+                            <a href="#onImageLoad"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onImageLoad()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:134</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onSelectLocation"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            onSelectLocation
+                            </b>
+                            <a href="#onSelectLocation"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>onSelectLocation(location: <a href="../interfaces/Location.html">Location</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:203</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Listens the location selection in map component and changes the value of the form</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>location</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/Location.html" target="_self" >Location</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>location selected within the map</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="presentAlert"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            presentAlert
+                            </b>
+                            <a href="#presentAlert"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>presentAlert(errMessage, backendError: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:101</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>errMessage</td>
+                                                        <td>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>backendError</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="removeArtist"></a>
+                        <span class="name">
+                            <b>
+                            removeArtist
+                            </b>
+                            <a href="#removeArtist"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>removeArtist(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:143</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>index</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="removeTag"></a>
+                        <span class="name">
+                            <b>
+                            removeTag
+                            </b>
+                            <a href="#removeTag"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>removeTag(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:152</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>index</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="submitForm"></a>
+                        <span class="name">
+                            <b>
+                            submitForm
+                            </b>
+                            <a href="#submitForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>submitForm()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:78</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="eventImage"></a>
+                        <span class="name">
+                            <b>
+                            eventImage
+                            </b>
+                            <a href="#eventImage"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>eventImage:     <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;eventImage&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:23</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="eventMinDate"></a>
+                        <span class="name">
+                            <b>
+                            eventMinDate
+                            </b>
+                            <a href="#eventMinDate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>eventMinDate:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="eventPosted"></a>
+                        <span class="name">
+                            <b>
+                            eventPosted
+                            </b>
+                            <a href="#eventPosted"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>eventPosted:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="form"></a>
+                        <span class="name">
+                            <b>
+                            form
+                            </b>
+                            <a href="#form"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>form:     <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formTitle"></a>
+                        <span class="name">
+                            <b>
+                            formTitle
+                            </b>
+                            <a href="#formTitle"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>formTitle:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;Create your event&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="imageError"></a>
+                        <span class="name">
+                            <b>
+                            imageError
+                            </b>
+                            <a href="#imageError"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>imageError:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isFree"></a>
+                        <span class="name">
+                            <b>
+                            isFree
+                            </b>
+                            <a href="#isFree"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>isFree:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="submitButtonText"></a>
+                        <span class="name">
+                            <b>
+                            submitButtonText
+                            </b>
+                            <a href="#submitButtonText"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>submitButtonText:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;Share your experience&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="artists"></a>
+                        <span class="name"><b>artists</b><a href="#artists"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>artists()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:137</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tags"></a>
+                        <span class="name"><b>tags</b><a href="#tags"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>tags()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:146</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="media"></a>
+                        <span class="name"><b>media</b><a href="#media"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>media()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:157</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>media(media: [])</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/app/events/components/event-form/event-form.component.ts:162</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>media</td>
+                                                    
+                                                            <td>
+                                                                        <code>[]</code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from &#x27;@angular/core&#x27;;
+import {HttpErrorResponse} from &quot;@angular/common/http&quot;;
+import {AuthService} from &quot;../../../auth/providers/auth/auth.service&quot;;
+import {FormArray, FormBuilder, FormGroup, Validators} from &quot;@angular/forms&quot;;
+import {Attendance, Event, Media} from &quot;../../../interfaces&quot;;
+import {EventService} from &quot;../../../data/providers/event/event.service&quot;;
+import {MediaService} from &quot;../../../native/providers/media/media.service&quot;;
+import {Router} from &quot;@angular/router&quot;;
+import {AlertController} from &quot;@ionic/angular&quot;;
+import {UploadService} from &quot;../../../data/providers/upload/upload.service&quot;;
+
+@Component({
+  selector: &#x27;app-event-form&#x27;,
+  templateUrl: &#x27;./event-form.component.html&#x27;,
+  styleUrls: [&#x27;./event-form.component.scss&#x27;]
+})
+export class EventFormComponent implements OnInit {
+  @Input(&#x27;event&#x27;) event: Event;
+  @Input(&#x27;type&#x27;) type: string; // edit or create
+  @Output(&#x27;edit&#x27;) edit &#x3D; new EventEmitter&lt;Event&gt;();
+  @Output(&#x27;create&#x27;) create &#x3D; new EventEmitter&lt;Event&gt;();
+
+  @ViewChild(&#x27;eventImage&#x27;) eventImage: ElementRef;
+  eventPosted : boolean &#x3D; false;
+  form: FormGroup;
+  isFree &#x3D; true;
+  imageError &#x3D; false;
+  eventMinDate: string;
+
+  formTitle: string &#x3D; &#x27;Create your event&#x27;;
+  submitButtonText: string &#x3D; &#x27;Share your experience&#x27;;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private eventService: EventService,
+    private router: Router,
+    private alertController: AlertController,
+    private authService: AuthService,
+    private mediaService: MediaService,
+    private uploadService: UploadService
+  ) {}
+
+  ngOnInit() {
+    let now &#x3D; new Date();
+    this.eventMinDate &#x3D; now.toISOString();
+
+    this.form &#x3D; this.formBuilder.group({
+      name: [&#x27;&#x27;, [Validators.required]],
+      media: [[], [Validators.required]],
+      date: [&#x27;&#x27;, Validators.required],
+      duration: this.formBuilder.group({
+        length: [&#x27;&#x27;, Validators.required],
+        unit: [&#x27;&#x27;, Validators.required]
+      }),
+      location: [null , Validators.required],
+      isFree: [true, Validators.required],
+      price: this.formBuilder.group({
+        amount: [0],
+        currency: [&#x27;X&#x27;]
+      }),
+      description: [&#x27;&#x27;, [Validators.required,Validators.minLength(20)]],
+      artists: this.formBuilder.array([]),
+      tags: this.formBuilder.array([])
+    });
+
+    if(this.type &#x3D;&#x3D;&#x3D; &#x27;edit&#x27; &amp;&amp; this.event){
+      let formValue &#x3D; {
+        ...this.event,
+        isFree: this.event.price.amount &#x3D;&#x3D;&#x3D; 0
+      };
+      this.media &#x3D; this.event.media;
+      this.form.patchValue(formValue);
+      this.formTitle &#x3D; &#x27;Edit your event&#x27;;
+      this.submitButtonText &#x3D; &#x27;Edit your event&#x27;;
+    }
+  }
+
+  submitForm() {
+
+    let event: Event &#x3D; this.form.value;
+
+    event.creator &#x3D; this.authService.getUserFromToken();
+    event.media &#x3D; this.media;
+
+    if(this.type &#x3D;&#x3D;&#x3D; &#x27;create&#x27;){
+      let attendance: Attendance &#x3D; {
+        user: this.authService.getUserId(),
+        attendanceType: 1
+      };
+      event.attendance &#x3D; [attendance];
+    }
+
+    if(this.type &#x3D;&#x3D;&#x3D; &#x27;edit&#x27;){
+      this.edit.emit(event);
+    } else if(this.type &#x3D;&#x3D;&#x3D; &#x27;create&#x27;){
+      this.create.emit(event);
+    }
+  }
+
+
+  async presentAlert(errMessage ,backendError : boolean) {
+    let alert;
+    if(backendError){
+      alert &#x3D; await this.alertController.create({
+        header: &#x27;Wait..&#x27;,
+        subHeader: &#x27;You could not create the event.&#x27;,
+        message: &#x27;You get a backend error: &#x27; + errMessage,
+        buttons: [&#x27;Close&#x27;]
+      });
+    }else{
+      alert &#x3D; await this.alertController.create({
+        header: &#x27;Wait..&#x27;,
+        subHeader: &#x27;You could not create the event.&#x27;,
+        message: &#x27;You get a client error: &#x27; + errMessage,
+        buttons: [&#x27;Close&#x27;]
+      });
+    }
+    await alert.present();
+  }
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      this.presentAlert(error.error.message,false);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      this.presentAlert(&#x60;${JSON.stringify(error.error)}&#x60;, true);
+    }
+  }
+  onImageError(){
+    this.imageError &#x3D; true;
+    (&lt;HTMLImageElement&gt; this.eventImage.nativeElement).src&#x3D; &#x27;../../../../assets/placeholder.png&#x27;;
+  }
+  onImageLoad(){
+    this.imageError &#x3D; false;
+  }
+  get artists(){
+    return this.form.get(&#x27;artists&#x27;) as FormArray;
+  }
+  addArtist(){
+    this.artists.push(this.formBuilder.control(&#x27;&#x27;));
+  }
+  removeArtist(index: number){
+    this.artists.removeAt(index);
+  }
+  get tags(){
+    return this.form.get(&#x27;tags&#x27;) as FormArray;
+  }
+  addTag(){
+    this.tags.push(this.formBuilder.control(&#x27;&#x27;));
+  }
+  removeTag(index: number){
+    this.tags.removeAt(index);
+  }
+
+  // media getter wrapper for form
+  get media(): Media[] {
+    return this.form.get(&#x27;media&#x27;).value as Media[];
+  }
+
+  // media setter wrapper for form
+  set media(media: Media[]) {
+    this.form.get(&#x27;media&#x27;).setValue(media);
+  }
+
+  /**
+   * Controls interaction with the media component
+   * @param {number }} event
+   */
+  async onEvent(event: { key: string, slide: number }) {
+    if (event.key &#x3D;&#x3D; &#x27;add&#x27;) {
+      let media &#x3D; await this.mediaService.get({ file: true })
+        .catch(error &#x3D;&gt; {});
+
+      if (media) {
+        // add media
+        this.media &#x3D; [ ...this.media.slice(0, event.slide),
+          ...media,
+          ...this.media.slice(event.slide, this.media.length) ];
+
+        // upload files
+        media.forEach(media &#x3D;&gt; {
+          this.uploadService.upload(media.file)
+            .response.subscribe(result &#x3D;&gt; {
+            media.source &#x3D; result.body.file;
+          }, error &#x3D;&gt; {
+            // TODO: Handle upload error
+            console.log(error);
+          });
+        })
+      }
+    } else if (event.key &#x3D;&#x3D; &#x27;remove&#x27;) {
+      // remove media
+      this.media &#x3D; [ ...this.media.slice(0, event.slide),
+        ...this.media.slice(event.slide + 1, this.media.length) ];
+    }
+  }
+
+  /**
+   * Listens the location selection in map component and changes the value of the form
+   * @param {Location} location location selected within the map
+   */
+  async onSelectLocation(location: Location) {
+    this.form.get(&#x27;location&#x27;).setValue(location);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;event-create-container&quot;&gt;
+  &lt;ion-grid&gt;
+    &lt;ion-row&gt;
+      &lt;ion-col size-xs&#x3D;&quot;12&quot; size-md&#x3D;&quot;6&quot;&gt;
+        &lt;ion-card class&#x3D;&quot;event-form-container&quot;&gt;
+          &lt;h1 text-center&gt;
+            {{formTitle}}
+          &lt;/h1&gt;
+          &lt;form [formGroup]&#x3D;&quot;form&quot; (ngSubmit)&#x3D;&quot;submitForm()&quot;&gt;
+            &lt;div class&#x3D;&quot;media-container&quot;&gt;
+              &lt;app-slider [media]&#x3D;&quot;media&quot; (onEvent)&#x3D;&quot;onEvent($event)&quot;&gt;&lt;/app-slider&gt;
+            &lt;/div&gt;
+
+            &lt;ion-list lines&#x3D;&quot;none&quot;&gt;
+              &lt;ion-item&gt;
+                &lt;ion-label position&#x3D;&quot;stacked&quot;&gt;
+                  Name of the event
+                  &lt;span class&#x3D;&quot;input-required&quot;&gt;
+                  *
+                &lt;/span&gt;
+                  &lt;span class&#x3D;&quot;input-error&quot; *ngIf&#x3D;&quot;this.form.get(&#x27;name&#x27;).dirty &amp;&amp; !this.form.get(&#x27;name&#x27;).valid&quot;&gt;
+                  (your event should have a name)
+                &lt;/span&gt;
+                &lt;/ion-label&gt;
+                &lt;ion-input type&#x3D;&quot;text&quot;
+                           max&#x3D;&quot;150&quot;
+                           formControlName&#x3D;&quot;name&quot;
+                           class&#x3D;&quot;form-input&quot;&gt;
+                &lt;/ion-input&gt;
+              &lt;/ion-item&gt;
+
+              &lt;ion-item&gt;
+                &lt;ion-label position&#x3D;&quot;stacked&quot;&gt;
+                  Describe your event
+                  &lt;span class&#x3D;&quot;input-required&quot;&gt;
+                  *
+                &lt;/span&gt;
+                  &lt;span class&#x3D;&quot;input-error&quot; *ngIf&#x3D;&quot;this.form.get(&#x27;description&#x27;).dirty &amp;&amp; !this.form.get(&#x27;description&#x27;).valid&quot;&gt;
+                  (you should describe your event, min: 20 character)
+                &lt;/span&gt;
+                &lt;/ion-label&gt;
+                &lt;ion-textarea type&#x3D;&quot;text&quot;
+                              rows &#x3D; &quot;8&quot;
+                              formControlName&#x3D;&quot;description&quot;
+                              class&#x3D;&quot;form-input&quot;&gt;
+                &lt;/ion-textarea&gt;
+              &lt;/ion-item&gt;
+
+              &lt;ion-item&gt;
+                &lt;ion-label position&#x3D;&quot;stacked&quot;&gt;
+                  When it will start
+                  &lt;span class&#x3D;&quot;input-required&quot;&gt;
+                  *
+                &lt;/span&gt;
+                  &lt;span class&#x3D;&quot;input-error&quot; *ngIf&#x3D;&quot;this.form.get(&#x27;date&#x27;).dirty &amp;&amp; !this.form.get(&#x27;date&#x27;).valid&quot;&gt;
+                  (you should specify start date and time)
+                &lt;/span&gt;
+                &lt;/ion-label&gt;
+                &lt;ion-datetime
+                  display-format&#x3D;&quot;DD MMMM DDDD HH:mm, YYYY&quot;
+                  picker-format&#x3D;&quot;DD MMM HH mm YYYY&quot;
+                  formControlName&#x3D;&quot;date&quot;
+                  placeholder&#x3D;&quot;Choose a date&quot;
+                  class&#x3D;&quot;form-input&quot;&gt;
+                &lt;/ion-datetime&gt;
+              &lt;/ion-item&gt;
+
+              &lt;ion-item-group formGroupName&#x3D;&quot;duration&quot;&gt;
+                &lt;ion-grid&gt;
+                  &lt;ion-row&gt;
+                    &lt;ion-col size&#x3D;&quot;9&quot;&gt;
+                      &lt;ion-item&gt;
+                        &lt;ion-label position&#x3D;&quot;stacked&quot;&gt;
+                          How long it will take
+                          &lt;span class&#x3D;&quot;input-required&quot;&gt;
+                              *
+                            &lt;/span&gt;
+                          &lt;span class&#x3D;&quot;input-error&quot; *ngIf&#x3D;&quot;this.form.get(&#x27;date&#x27;).dirty &amp;&amp; !this.form.get(&#x27;date&#x27;).valid&quot;&gt;
+                              (you should specify the duration)
+                            &lt;/span&gt;
+                        &lt;/ion-label&gt;
+                        &lt;ion-input
+                          type&#x3D;&quot;number&quot;
+                          formControlName&#x3D;&quot;length&quot;
+                          class&#x3D;&quot;form-input&quot;&gt;{{duration.value}}
+                        &lt;/ion-input&gt;
+                      &lt;/ion-item&gt;
+                    &lt;/ion-col&gt;
+                    &lt;ion-col size&#x3D;&quot;3&quot;&gt;
+                      &lt;ion-item&gt;
+                        &lt;ion-label position&#x3D;&quot;stacked&quot;&gt;
+                          Time unit
+                          &lt;span class&#x3D;&quot;input-required&quot;&gt;
+                              *
+                            &lt;/span&gt;
+                          &lt;span class&#x3D;&quot;input-error&quot; *ngIf&#x3D;&quot;this.form.get(&#x27;date&#x27;).dirty &amp;&amp; !this.form.get(&#x27;date&#x27;).valid&quot;&gt;
+                              (you should specify the time unit)
+                            &lt;/span&gt;
+                        &lt;/ion-label&gt;
+                        &lt;ion-select class&#x3D;&quot;form-input&quot; formControlName&#x3D;&quot;unit&quot; mode&#x3D;&quot;md&quot; #duration placeholder&#x3D;&quot;Select time unit&quot;&gt;
+                          &lt;ion-select-option value &#x3D;&#x27;minute&#x27; &gt;Minute&lt;/ion-select-option&gt;
+                          &lt;ion-select-option value &#x3D;&#x27;hour&#x27; &gt;Hour&lt;/ion-select-option&gt;
+                          &lt;ion-select-option value &#x3D;&#x27;day&#x27; &gt;Day&lt;/ion-select-option&gt;
+                        &lt;/ion-select&gt;
+                      &lt;/ion-item&gt;
+                    &lt;/ion-col&gt;
+                  &lt;/ion-row&gt;
+                &lt;/ion-grid&gt;
+              &lt;/ion-item-group&gt;
+
+              &lt;ion-item-group&gt;
+                &lt;ion-item&gt;
+                  &lt;ion-label&gt;
+                    Your event is free
+                  &lt;/ion-label&gt;
+                  &lt;ion-toggle item-content [checked]&#x3D;&quot;this.form.get(&#x27;isFree&#x27;).value&quot; formControlName&#x3D;&quot;isFree&quot;&gt;
+                  &lt;/ion-toggle&gt;
+                &lt;/ion-item&gt;
+
+                &lt;ion-item-group formGroupName&#x3D;&quot;price&quot; *ngIf&#x3D;&quot;!this.form.get(&#x27;isFree&#x27;).value&quot;&gt;
+                  &lt;ion-grid&gt;
+                    &lt;ion-row&gt;
+                      &lt;ion-col size&#x3D;&quot;9&quot;&gt;
+                        &lt;ion-item&gt;
+                          &lt;ion-label position&#x3D;&quot;stacked&quot;&gt;
+                            What is its price
+                            &lt;span class&#x3D;&quot;input-required&quot;&gt;
+                                *
+                              &lt;/span&gt;
+                            &lt;span class&#x3D;&quot;input-error&quot; *ngIf&#x3D;&quot;this.form.get(&#x27;price&#x27;).get(&#x27;amount&#x27;).dirty &amp;&amp; !this.form.get(&#x27;price&#x27;).get(&#x27;amount&#x27;).valid&quot;&gt;
+                                (you should specify price)
+                              &lt;/span&gt;
+                          &lt;/ion-label&gt;
+                          &lt;ion-input
+                            align&#x3D;&quot;right&quot;
+                            type&#x3D;&quot;number&quot;
+                            formControlName&#x3D;&quot;amount&quot;
+                            class&#x3D;&quot;form-input&quot;&gt;{{currency.value}}
+                          &lt;/ion-input&gt;
+                        &lt;/ion-item&gt;
+                      &lt;/ion-col&gt;
+                      &lt;ion-col size&#x3D;&quot;3&quot;&gt;
+                        &lt;ion-item&gt;
+                          &lt;ion-label position&#x3D;&quot;stacked&quot;&gt;
+                            Price unit
+                            &lt;span class&#x3D;&quot;input-required&quot;&gt;
+                                *
+                              &lt;/span&gt;
+                            &lt;span class&#x3D;&quot;input-error&quot; *ngIf&#x3D;&quot;this.form.get(&#x27;price&#x27;).get(&#x27;amount&#x27;).dirty &amp;&amp; !this.form.get(&#x27;price&#x27;).get(&#x27;amount&#x27;).valid&quot;&gt;
+                                (you should specify price unit)
+                              &lt;/span&gt;
+                          &lt;/ion-label&gt;
+                          &lt;ion-select formControlName&#x3D;&quot;currency&quot; mode&#x3D;&quot;md&quot; #currency placeholder&#x3D;&quot;Select currency&quot;&gt;
+                            &lt;ion-select-option value &#x3D;&#x27;₺&#x27; &gt;Turkish Lira&lt;/ion-select-option&gt;
+                            &lt;ion-select-option value &#x3D;&#x27;$&#x27; &gt;Dollars&lt;/ion-select-option&gt;
+                            &lt;ion-select-option value &#x3D;&#x27;€&#x27; &gt;Euro&lt;/ion-select-option&gt;
+                          &lt;/ion-select&gt;
+                        &lt;/ion-item&gt;
+                      &lt;/ion-col&gt;
+                    &lt;/ion-row&gt;
+                  &lt;/ion-grid&gt;
+                &lt;/ion-item-group&gt;
+              &lt;/ion-item-group&gt;
+
+              &lt;ion-item-group formArrayName&#x3D;&quot;artists&quot;&gt;
+                &lt;ion-item&gt;
+                  &lt;ion-label&gt;
+                    Add an artist/artists
+                  &lt;/ion-label&gt;
+                  &lt;ion-button item-content (click)&#x3D;&quot;addArtist()&quot;&gt;
+                    +
+                  &lt;/ion-button&gt;
+                &lt;/ion-item&gt;
+                &lt;ion-item *ngFor&#x3D;&quot;let artist of artists.controls; let i&#x3D;index&quot;&gt;
+                  &lt;ion-grid&gt;
+                    &lt;ion-row&gt;
+                      &lt;ion-col size&#x3D;&quot;11&quot;&gt;
+                        &lt;ion-input
+                          type&#x3D;&quot;text&quot;
+                          [formControlName]&#x3D;&quot;i&quot;
+                          [placeholder]&#x3D;&quot;&#x27;Artist&#x27; + (i+1)&quot;
+                          class&#x3D;&quot;form-input&quot; item-content&gt;
+                        &lt;/ion-input&gt;
+                      &lt;/ion-col&gt;
+                      &lt;ion-col size&#x3D;&quot;1&quot;&gt;
+                        &lt;ion-button item-end (click)&#x3D;&quot;removeArtist(i)&quot;&gt;
+                          -
+                        &lt;/ion-button&gt;
+                      &lt;/ion-col&gt;
+                    &lt;/ion-row&gt;
+                  &lt;/ion-grid&gt;
+                &lt;/ion-item&gt;
+              &lt;/ion-item-group&gt;
+              &lt;ion-item-group formArrayName&#x3D;&quot;tags&quot;&gt;
+                &lt;ion-item&gt;
+                  &lt;ion-label&gt;
+                    Add a tag/tags
+                  &lt;/ion-label&gt;
+                  &lt;ion-button item-content (click)&#x3D;&quot;addTag()&quot;&gt;
+                    +
+                  &lt;/ion-button&gt;
+                &lt;/ion-item&gt;
+                &lt;ion-item *ngFor&#x3D;&quot;let tag of tags.controls; let i&#x3D;index&quot;&gt;
+                  &lt;ion-grid&gt;
+                    &lt;ion-row&gt;
+                      &lt;ion-col size&#x3D;&quot;11&quot;&gt;
+                        &lt;ion-input
+                          type&#x3D;&quot;text&quot;
+                          [formControlName]&#x3D;&quot;i&quot;
+                          [placeholder]&#x3D;&quot;&#x27;Tag&#x27; + (i+1)&quot;
+                          class&#x3D;&quot;form-input&quot; item-content&gt;
+                        &lt;/ion-input&gt;
+                      &lt;/ion-col&gt;
+                      &lt;ion-col size&#x3D;&quot;1&quot;&gt;
+                        &lt;ion-button item-end (click)&#x3D;&quot;removeTag(i)&quot;&gt;
+                          -
+                        &lt;/ion-button&gt;
+                      &lt;/ion-col&gt;
+                    &lt;/ion-row&gt;
+                  &lt;/ion-grid&gt;
+                &lt;/ion-item&gt;
+              &lt;/ion-item-group&gt;
+              &lt;div class&#x3D;&quot;map-container&quot;&gt;
+                &lt;app-map (onSelectLocation)&#x3D;&quot;onSelectLocation($event)&quot;&gt;&lt;/app-map&gt;
+              &lt;/div&gt;
+              &lt;ion-button expand&#x3D;&quot;block&quot; type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;!form.valid&quot;&gt;
+                &lt;ion-icon name&#x3D;&quot;share&quot;&gt;&lt;/ion-icon&gt;
+                {{submitButtonText}}
+              &lt;/ion-button&gt;
+            &lt;/ion-list&gt;
+          &lt;/form&gt;
+        &lt;/ion-card&gt;
+      &lt;/ion-col&gt;
+      &lt;ion-col size-xs&#x3D;&quot;12&quot; size-md&#x3D;&quot;6&quot;&gt;
+        &lt;h2 text-center&gt;Preview of event:&lt;/h2&gt;
+        &lt;app-event-card [event]&#x3D;&quot;form.value&quot; [view]&#x3D;&quot;true&quot;&gt;
+
+        &lt;/app-event-card&gt;
+      &lt;/ion-col&gt;
+    &lt;/ion-row&gt;
+  &lt;/ion-grid&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./event-form.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;../../events.module.scss&#x27;;
+
+.event-form-container{
+  padding: 10px;
+  border: 2px solid gray;
+}
+
+ion-item{
+  margin-bottom: 10px;
+}
+
+.input-error{
+  font-size: 0.6em;
+  color: #f68076;
+}
+
+.input-required{
+  color: #881f19;
+}
+
+.inline-block{
+  display: inline-block;
+}
+
+.flex-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-container ion-input{
+  width: 90%;
+}
+
+@media screen and (min-width: 1200px){
+  .event-create-container{
+    width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+.map-container {
+  height: 300px;
+  max-height: 300px;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="event-create-container">  <ion-grid>    <ion-row>      <ion-col size-xs="12" size-md="6">        <ion-card class="event-form-container">          <h1 text-center>            {{formTitle}}          </h1>          <form [formGroup]="form" (ngSubmit)="submitForm()">            <div class="media-container">              <app-slider [media]="media" (onEvent)="onEvent($event)"></app-slider>            </div>            <ion-list lines="none">              <ion-item>                <ion-label position="stacked">                  Name of the event                  <span class="input-required">                  *                </span>                  <span class="input-error" *ngIf="this.form.get(\'name\').dirty && !this.form.get(\'name\').valid">                  (your event should have a name)                </span>                </ion-label>                <ion-input type="text"                           max="150"                           formControlName="name"                           class="form-input">                </ion-input>              </ion-item>              <ion-item>                <ion-label position="stacked">                  Describe your event                  <span class="input-required">                  *                </span>                  <span class="input-error" *ngIf="this.form.get(\'description\').dirty && !this.form.get(\'description\').valid">                  (you should describe your event, min: 20 character)                </span>                </ion-label>                <ion-textarea type="text"                              rows = "8"                              formControlName="description"                              class="form-input">                </ion-textarea>              </ion-item>              <ion-item>                <ion-label position="stacked">                  When it will start                  <span class="input-required">                  *                </span>                  <span class="input-error" *ngIf="this.form.get(\'date\').dirty && !this.form.get(\'date\').valid">                  (you should specify start date and time)                </span>                </ion-label>                <ion-datetime                  display-format="DD MMMM DDDD HH:mm, YYYY"                  picker-format="DD MMM HH mm YYYY"                  formControlName="date"                  placeholder="Choose a date"                  class="form-input">                </ion-datetime>              </ion-item>              <ion-item-group formGroupName="duration">                <ion-grid>                  <ion-row>                    <ion-col size="9">                      <ion-item>                        <ion-label position="stacked">                          How long it will take                          <span class="input-required">                              *                            </span>                          <span class="input-error" *ngIf="this.form.get(\'date\').dirty && !this.form.get(\'date\').valid">                              (you should specify the duration)                            </span>                        </ion-label>                        <ion-input                          type="number"                          formControlName="length"                          class="form-input">{{duration.value}}                        </ion-input>                      </ion-item>                    </ion-col>                    <ion-col size="3">                      <ion-item>                        <ion-label position="stacked">                          Time unit                          <span class="input-required">                              *                            </span>                          <span class="input-error" *ngIf="this.form.get(\'date\').dirty && !this.form.get(\'date\').valid">                              (you should specify the time unit)                            </span>                        </ion-label>                        <ion-select class="form-input" formControlName="unit" mode="md" #duration placeholder="Select time unit">                          <ion-select-option value =\'minute\' >Minute</ion-select-option>                          <ion-select-option value =\'hour\' >Hour</ion-select-option>                          <ion-select-option value =\'day\' >Day</ion-select-option>                        </ion-select>                      </ion-item>                    </ion-col>                  </ion-row>                </ion-grid>              </ion-item-group>              <ion-item-group>                <ion-item>                  <ion-label>                    Your event is free                  </ion-label>                  <ion-toggle item-content [checked]="this.form.get(\'isFree\').value" formControlName="isFree">                  </ion-toggle>                </ion-item>                <ion-item-group formGroupName="price" *ngIf="!this.form.get(\'isFree\').value">                  <ion-grid>                    <ion-row>                      <ion-col size="9">                        <ion-item>                          <ion-label position="stacked">                            What is its price                            <span class="input-required">                                *                              </span>                            <span class="input-error" *ngIf="this.form.get(\'price\').get(\'amount\').dirty && !this.form.get(\'price\').get(\'amount\').valid">                                (you should specify price)                              </span>                          </ion-label>                          <ion-input                            align="right"                            type="number"                            formControlName="amount"                            class="form-input">{{currency.value}}                          </ion-input>                        </ion-item>                      </ion-col>                      <ion-col size="3">                        <ion-item>                          <ion-label position="stacked">                            Price unit                            <span class="input-required">                                *                              </span>                            <span class="input-error" *ngIf="this.form.get(\'price\').get(\'amount\').dirty && !this.form.get(\'price\').get(\'amount\').valid">                                (you should specify price unit)                              </span>                          </ion-label>                          <ion-select formControlName="currency" mode="md" #currency placeholder="Select currency">                            <ion-select-option value =\'₺\' >Turkish Lira</ion-select-option>                            <ion-select-option value =\'$\' >Dollars</ion-select-option>                            <ion-select-option value =\'€\' >Euro</ion-select-option>                          </ion-select>                        </ion-item>                      </ion-col>                    </ion-row>                  </ion-grid>                </ion-item-group>              </ion-item-group>              <ion-item-group formArrayName="artists">                <ion-item>                  <ion-label>                    Add an artist/artists                  </ion-label>                  <ion-button item-content (click)="addArtist()">                    +                  </ion-button>                </ion-item>                <ion-item *ngFor="let artist of artists.controls; let i=index">                  <ion-grid>                    <ion-row>                      <ion-col size="11">                        <ion-input                          type="text"                          [formControlName]="i"                          [placeholder]="\'Artist\' + (i+1)"                          class="form-input" item-content>                        </ion-input>                      </ion-col>                      <ion-col size="1">                        <ion-button item-end (click)="removeArtist(i)">                          -                        </ion-button>                      </ion-col>                    </ion-row>                  </ion-grid>                </ion-item>              </ion-item-group>              <ion-item-group formArrayName="tags">                <ion-item>                  <ion-label>                    Add a tag/tags                  </ion-label>                  <ion-button item-content (click)="addTag()">                    +                  </ion-button>                </ion-item>                <ion-item *ngFor="let tag of tags.controls; let i=index">                  <ion-grid>                    <ion-row>                      <ion-col size="11">                        <ion-input                          type="text"                          [formControlName]="i"                          [placeholder]="\'Tag\' + (i+1)"                          class="form-input" item-content>                        </ion-input>                      </ion-col>                      <ion-col size="1">                        <ion-button item-end (click)="removeTag(i)">                          -                        </ion-button>                      </ion-col>                    </ion-row>                  </ion-grid>                </ion-item>              </ion-item-group>              <div class="map-container">                <app-map (onSelectLocation)="onSelectLocation($event)"></app-map>              </div>              <ion-button expand="block" type="submit" [disabled]="!form.valid">                <ion-icon name="share"></ion-icon>                {{submitButtonText}}              </ion-button>            </ion-list>          </form>        </ion-card>      </ion-col>      <ion-col size-xs="12" size-md="6">        <h2 text-center>Preview of event:</h2>        <app-event-card [event]="form.value" [view]="true">        </app-event-card>      </ion-col>    </ion-row>  </ion-grid></div></div>'
+    var COMPONENTS = [{'name': 'AnnotatedBodyComponent', 'selector': 'app-annotated-body'},{'name': 'AnnotationComponent', 'selector': 'app-annotation-component'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'CommentBoxComponent', 'selector': 'app-comment-box'},{'name': 'DateSelectorComponent', 'selector': 'app-date-selector'},{'name': 'EventCardComponent', 'selector': 'app-event-card'},{'name': 'EventCreatePage', 'selector': 'app-event-create'},{'name': 'EventEditPage', 'selector': 'app-event-edit'},{'name': 'EventFormComponent', 'selector': 'app-event-form'},{'name': 'EventPage', 'selector': 'app-event'},{'name': 'FeedPage', 'selector': 'app-feed'},{'name': 'ForgotPasswordPage', 'selector': 'app-forgotpassword'},{'name': 'MapComponent', 'selector': 'app-map'},{'name': 'MediaComponent', 'selector': 'app-media'},{'name': 'NotFoundPage', 'selector': 'app-not-found'},{'name': 'PriceSelectorComponent', 'selector': 'app-price-selector'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'PublicPage', 'selector': 'app-public'},{'name': 'SearchComponent', 'selector': 'app-search-form'},{'name': 'SearchPage', 'selector': 'app-search'},{'name': 'SettingsPage', 'selector': 'profile-settings'},{'name': 'ShowAnnotationComponent', 'selector': 'app-show-annotation'},{'name': 'SigninPage', 'selector': 'app-signin'},{'name': 'SignupPage', 'selector': 'app-signup'},{'name': 'SliderComponent', 'selector': 'app-slider'},{'name': 'TagSelectorComponent', 'selector': 'app-tag-selector'},{'name': 'TimelinePage', 'selector': 'app-timeline'},{'name': 'ToolbarComponent', 'selector': 'app-toolbar'}];
+    var DIRECTIVES = [{'name': 'AnnotationDirective', 'selector': '[annotate]'}];
+    var ACTUAL_COMPONENT = {'name': 'EventFormComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'EventFormComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
