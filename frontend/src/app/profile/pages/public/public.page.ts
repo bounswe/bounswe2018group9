@@ -3,6 +3,8 @@ import {User} from '../../../interfaces';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../../auth/providers/auth/auth.service';
 import {UploadService} from '../../../data/providers/upload/upload.service';
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-public',
@@ -24,7 +26,8 @@ export class PublicPage implements OnInit {
   constructor(private route : ActivatedRoute,
               private auth : AuthService,
               private ref: ChangeDetectorRef,
-              public uploadService: UploadService) { }
+              public uploadService: UploadService,
+              public toastController: ToastController) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -61,6 +64,7 @@ export class PublicPage implements OnInit {
           console.log(res);
           this.isFollowing = true;
           this.ref.detectChanges();
+          this.presentToastFollow();
         },
         (err)=>{
           console.log(err);
@@ -77,6 +81,7 @@ export class PublicPage implements OnInit {
           console.log(res);
           this.isFollowing = false;
           this.ref.detectChanges();
+          this.presentToastUnfollow();
         },
         (err)=>{
           console.log(err);
@@ -84,5 +89,23 @@ export class PublicPage implements OnInit {
       );
     }
 
+  }
+
+  async presentToastFollow() {
+    const toast = await this.toastController.create({
+      position: 'top',
+      message: 'User has been followed.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async presentToastUnfollow() {
+    const toast = await this.toastController.create({
+      position: 'top',
+      message: 'User has been unfollowed.',
+      duration: 2000
+    });
+    toast.present();
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 import { AuthService } from '../../providers/auth/auth.service';
 import {AlertController, LoadingController} from "@ionic/angular";
@@ -18,7 +19,8 @@ export class SigninPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    public toastController: ToastController
   ) {
     this.form = this.formBuilder.group(
       {
@@ -41,6 +43,7 @@ export class SigninPage implements OnInit {
           });
       }, error => {
         console.log(error);
+        this.presentToast();
       });
   }
 
@@ -52,4 +55,14 @@ export class SigninPage implements OnInit {
         })
       });
   }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      position: 'top',
+      message: 'Wrong email or password.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
 }
