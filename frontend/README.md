@@ -1,11 +1,10 @@
 
 # Actopus Frontend Project
-Actopus frontend contains the website and cross platform mobile applications. The project is mainly dependent on Ionic and Angular.
+Actopus frontend contains the website and cross platform mobile application. The project is mainly dependent on Ionic and Angular.
 
 ## Quickstart
 
 1. You should have `npm` and `node` installed.
-
 
 2. You should install Ionic CLI which is an extended version of Angular CLI.
 
@@ -14,6 +13,7 @@ npm install -g ionic@latest
 ```
 
 3. Serve/test the application on your local browser with **cloud version** of `Actopus Backend` with:
+
 
 ```
 npm start
