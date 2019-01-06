@@ -6,6 +6,7 @@ function getFeed(req,res,next) {
     const user = req.user;
     const after = req.query.after || 0;
     const before = req.query.before || Date.now();
+    const event = req.query.event;
     const limit = parseInt(req.query.limit);
 
     Event.find({
@@ -14,10 +15,13 @@ function getFeed(req,res,next) {
             { creator: { $in: user.following.concat([ user._id ]) } },
             { tags: { $in: user.interests } }
         ],
-        date: { $gte: after, $lte: before }
+        $or: [
+            { date: { $gte: after, $le: before } },
+            { date: before, _id: { $gte: event} }
+        ]
     })
     .limit(limit)
-    .sort('+date')
+    .sort([['date', 1], ['_id', 1]])
     .exec()
     .then(docs => {
         return res.status(200).send(docs || []);

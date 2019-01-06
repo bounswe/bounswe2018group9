@@ -19,7 +19,7 @@ import { TagSelectorComponent } from '../../components/tag-selector/tag-selector
 })
 export class FeedPage implements OnInit {
   private static count = 3;
-  private skip = 0;
+  private before;
 
   user: User;
   events: Event[] = [];
@@ -47,11 +47,15 @@ export class FeedPage implements OnInit {
 
   /**
    * Loads feed entries and appends entries to the existing loaded events
-   * @param {number} start the start index of will-be-loaded events
+   * @param {number} before the start index of will-be-loaded events
    * @param {number} count the desired count for the load batch
    */
-  load(event: any = null, start: number = this.skip, count: number = FeedPage.count) {
-    this.feedService.get(this.authService.getUserId(), { limit: count, skip: start })
+  load(event: any = null, before: any = this.before, count: number = FeedPage.count) {
+    let query: any = { limit: count };
+    if (before) query.before = before;
+    if (this.events && this.events.length) query.event = this.events[this.events.length-1]._id;
+
+    this.feedService.get(null, query)
       .subscribe((data: Event[]) => {
         if (!data || data.length === 0) {
           this.loaded = false;
@@ -59,7 +63,7 @@ export class FeedPage implements OnInit {
 
         this.events.push(...data);
         this.eventService.cacheEvents(data);
-        this.skip += count;
+        this.before = this.events[this.events.length-1].date;
 
         if (event) { // finalize infinite-scroll animation
           event.target.complete();
@@ -105,7 +109,7 @@ export class FeedPage implements OnInit {
   }
 
   async refresh() {
-    this.skip = 0;
+    this.before = null;
     this.events = [];
     this.loaded = true;
   }
