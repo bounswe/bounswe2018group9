@@ -47,6 +47,15 @@ export class AuthService {
       .post('/' + this.api + '/signup', data);
   }
 
+  deleteUser(): Observable<{deletedUser: User}>{
+    return this.http.delete<{deletedUser: User}>('/users/' + this.getUserId())
+      .pipe(
+        tap(response => {
+          localStorage.removeItem('token');
+        })
+      );
+  }
+
   login(data: { email: string, password: string }): Observable<any> {
     return this.http
       .post('/' + this.api + '/signin', data)
