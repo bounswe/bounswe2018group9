@@ -24,13 +24,8 @@ function getFeed(req,res,next) {
             { tags: { $in: user.interests } }
         ],
         $or: [
-            {
-                $and: [
-                    { date: { $gte: after, $lte: before  } },
-                    { date: { $ne: before } }
-                ]
-            },
-            { date: before, _id: { $gte: event} }
+            { date: { $gte: after, $lte: before, $ne: after  } },
+            { date: before, _id: { $gte: event, $ne: event } }
         ]
     })
     .limit(limit)
