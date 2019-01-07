@@ -76,10 +76,12 @@ export class EventCardComponent implements OnInit {
           console.log(message);
           if(vote == 1 && !this.upVoted){
             this.event.vote.upvoteCount += 1;
+            this.event.vote.positive.push(this.authService.getUserId());
             this.upVoted = true;
           } else if(vote == -1 && !this.downVoted){
             this.event.vote.downvoteCount -= 1;
             this.downVoted = true;
+            this.event.vote.negative.push(this.authService.getUserId());
           }
         },
         error => console.log(error)
