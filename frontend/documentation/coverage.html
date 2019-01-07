@@ -8,25 +8,756 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-	      <link rel="stylesheet" href="./styles/style.css">
+	    <link rel="stylesheet" href="./styles/style.css">
     </head>
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
             <a href="./" class="navbar-brand">frontend documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+            <div id="book-search-input" role="search">
+                <input type="text" placeholder="Type to search">
+            </div>
+            <nav>
+            
+                <ul class="list">
+            
+                    <li class="title">
+                        <a href="./">frontend documentation</a>
+                    </li>
+            
+                    <li class="divider"></li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="./"><span class="fa fa-home"></span>Getting started</a>
+                        <ul class="links">
+                                <li class="link">
+                                    <a href="./" ><span class="fa fa-file-text-o"></span>README</a>
+                                </li>
+                                <li class="link">
+                                    <a 
+                                        
+                                         href="./overview.html" 
+                                         href="./overview.html" 
+                                        >
+                                        <span class="fa fa-th"></span>Overview
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="./modules.html" >
+                            <span class="fa fa-archive"></span>
+                            <span>Modules</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-modules-links"
+                            ></span>
+                        </a>
+                        <ul class="links collapse in"
+                                id="xs-modules-links"
+                            >
+                                <li class="link">
+                                    <a href="modules/AnnotationModule.html" >AnnotationModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="modules/AnnotationRoutingModule.html" >AnnotationRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="modules/AppConfigModule.html" >AppConfigModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="modules/AppModule.html" >AppModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="modules/AppRoutingModule.html" >AppRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="modules/AuthModule.html" >AuthModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="modules/AuthRoutingModule.html" >AuthRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="modules/DataModule.html" >DataModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="modules/EventRoutingModule.html" >EventRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="modules/EventsModule.html" >EventsModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="modules/NativeModule.html" >NativeModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="modules/ProfileModule.html" >ProfileModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="modules/ProfileRoutingModule.html" >ProfileRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="modules/SharedModule.html" >SharedModule</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-cogs"></span>
+                            <span>Components</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-components-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-components-links"
+                            >
+                                <li class="link">
+                                    <a href="components/AnnotatedBodyComponent.html" >AnnotatedBodyComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/AnnotationComponent.html" >AnnotationComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/AppComponent.html" >AppComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/ChangePasswordPage.html" >ChangePasswordPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/CommentBoxComponent.html" >CommentBoxComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/DateSelectorComponent.html" >DateSelectorComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/EventCardComponent.html" >EventCardComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/EventCreatePage.html" >EventCreatePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/EventEditPage.html" >EventEditPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/EventFormComponent.html" >EventFormComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/EventPage.html" >EventPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/FeedPage.html" >FeedPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/ForgotPasswordPage.html" >ForgotPasswordPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/MapComponent.html" >MapComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/MediaComponent.html" >MediaComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/NotFoundPage.html" >NotFoundPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/PriceSelectorComponent.html" >PriceSelectorComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/ProfilePage.html" >ProfilePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/PublicPage.html" >PublicPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/SearchComponent.html" >SearchComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/SearchPage.html" >SearchPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/SettingsPage.html" >SettingsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/ShowAnnotationComponent.html" >ShowAnnotationComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/SigninPage.html" >SigninPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/SignupPage.html" >SignupPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/SliderComponent.html" >SliderComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/TagSelectorComponent.html" >TagSelectorComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/TimelinePage.html" >TimelinePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="components/ToolbarComponent.html" >ToolbarComponent</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-code"></span>
+                            <span>Directives</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-directives-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-directives-links"
+                            >
+                                <li class="link">
+                                    <a href="directives/AnnotationDirective.html" >AnnotationDirective</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-file-code-o"></span>
+                            <span>Classes</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-classes-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-classes-links"
+                            >
+                                <li class="link">
+                                    <a href="classes/DataService.html" >DataService</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="./routes.html" ><span class="fa fa-code-fork"></span>Routes</a>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-injectables-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="injectables/AnnotationService.html" >AnnotationService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/AuthGuard.html" >AuthGuard</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/AuthService.html" >AuthService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/CanEditGuard.html" >CanEditGuard</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/EventService.html" >EventService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/FeedService.html" >FeedService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/FileService.html" >FileService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/InterceptorService.html" >InterceptorService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/MediaService.html" >MediaService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/NoAuthGuard.html" >NoAuthGuard</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/SearchService.html" >SearchService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/TagService.html" >TagService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/UploadService.html" >UploadService</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-info"></span>
+                            <span>Interfaces</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-interfaces-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-interfaces-links"
+                            >
+                                <li class="link">
+                                    <a href="interfaces/Annotation.html" >Annotation</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/Attendance.html" >Attendance</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/Attendances.html" >Attendances</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/Comment.html" >Comment</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/Comments.html" >Comments</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/DataParams.html" >DataParams</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/Event.html" >Event</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/FeedParams.html" >FeedParams</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/ILatLng.html" >ILatLng</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/Location.html" >Location</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/Media.html" >Media</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/Object.html" >Object</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/Post.html" >Post</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/SearchParams.html" >SearchParams</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/SearchResult.html" >SearchResult</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/User.html" >User</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/Vote.html" >Vote</a>
+                                </li>
+                                <li class="link">
+                                    <a href="interfaces/Votes.html" >Votes</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="./miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="./coverage.html"  class="active" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                    </li>
+            
+                    <li class="divider"></li>
+                    <li class="copyright">
+                            Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                        <img src=".//images/compodoc-vectorise.svg" class="img-responsive">
+                            </a>
+                    </li>
+            
+                </ul>
+            
+            </nav>
         </div>
 
         <div class="container-fluid main">
            <div class="row main">
                <div class="hidden-xs menu">
-                   <compodoc-menu mode="normal"></compodoc-menu>
+                   <nav>
+                   
+                       <ul class="list">
+                   
+                           <li class="title">
+                               <a href="./">frontend documentation</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                   
+                               <div id="book-search-input" role="search">
+                                   <input type="text" placeholder="Type to search">
+                               </div>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="./"><span class="fa fa-home"></span>Getting started</a>
+                               <ul class="links">
+                                       <li class="link">
+                                           <a href="./" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                                       <li class="link">
+                                           <a 
+                                               
+                                                href="./overview.html" 
+                                                href="./overview.html" 
+                                               >
+                                               <span class="fa fa-th"></span>Overview
+                                           </a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="./modules.html" >
+                                   <span class="fa fa-archive"></span>
+                                   <span>Modules</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#modules-links"
+                                   ></span>
+                               </a>
+                               <ul class="links collapse in"
+                                       id="modules-links"
+                   >
+                                       <li class="link">
+                                           <a href="modules/AnnotationModule.html" >AnnotationModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="modules/AnnotationRoutingModule.html" >AnnotationRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="modules/AppConfigModule.html" >AppConfigModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="modules/AppModule.html" >AppModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="modules/AppRoutingModule.html" >AppRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="modules/AuthModule.html" >AuthModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="modules/AuthRoutingModule.html" >AuthRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="modules/DataModule.html" >DataModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="modules/EventRoutingModule.html" >EventRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="modules/EventsModule.html" >EventsModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="modules/NativeModule.html" >NativeModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="modules/ProfileModule.html" >ProfileModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="modules/ProfileRoutingModule.html" >ProfileRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="modules/SharedModule.html" >SharedModule</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-cogs"></span>
+                                   <span>Components</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#components-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="components-links"
+                   >
+                                       <li class="link">
+                                           <a href="components/AnnotatedBodyComponent.html" >AnnotatedBodyComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/AnnotationComponent.html" >AnnotationComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/AppComponent.html" >AppComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/ChangePasswordPage.html" >ChangePasswordPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/CommentBoxComponent.html" >CommentBoxComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/DateSelectorComponent.html" >DateSelectorComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/EventCardComponent.html" >EventCardComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/EventCreatePage.html" >EventCreatePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/EventEditPage.html" >EventEditPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/EventFormComponent.html" >EventFormComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/EventPage.html" >EventPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/FeedPage.html" >FeedPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/ForgotPasswordPage.html" >ForgotPasswordPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/MapComponent.html" >MapComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/MediaComponent.html" >MediaComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/NotFoundPage.html" >NotFoundPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/PriceSelectorComponent.html" >PriceSelectorComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/ProfilePage.html" >ProfilePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/PublicPage.html" >PublicPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/SearchComponent.html" >SearchComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/SearchPage.html" >SearchPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/SettingsPage.html" >SettingsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/ShowAnnotationComponent.html" >ShowAnnotationComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/SigninPage.html" >SigninPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/SignupPage.html" >SignupPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/SliderComponent.html" >SliderComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/TagSelectorComponent.html" >TagSelectorComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/TimelinePage.html" >TimelinePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="components/ToolbarComponent.html" >ToolbarComponent</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-code"></span>
+                                   <span>Directives</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#directives-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="directives-links"
+                   >
+                                       <li class="link">
+                                           <a href="directives/AnnotationDirective.html" >AnnotationDirective</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-file-code-o"></span>
+                                   <span>Classes</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#classes-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="classes-links"
+                   >
+                                       <li class="link">
+                                           <a href="classes/DataService.html" >DataService</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="./routes.html" ><span class="fa fa-code-fork"></span>Routes</a>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#injectables-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="injectables/AnnotationService.html" >AnnotationService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="injectables/AuthGuard.html" >AuthGuard</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="injectables/AuthService.html" >AuthService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="injectables/CanEditGuard.html" >CanEditGuard</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="injectables/EventService.html" >EventService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="injectables/FeedService.html" >FeedService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="injectables/FileService.html" >FileService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="injectables/InterceptorService.html" >InterceptorService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="injectables/MediaService.html" >MediaService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="injectables/NoAuthGuard.html" >NoAuthGuard</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="injectables/SearchService.html" >SearchService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="injectables/TagService.html" >TagService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="injectables/UploadService.html" >UploadService</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-info"></span>
+                                   <span>Interfaces</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#interfaces-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="interfaces-links"
+                   >
+                                       <li class="link">
+                                           <a href="interfaces/Annotation.html" >Annotation</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/Attendance.html" >Attendance</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/Attendances.html" >Attendances</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/Comment.html" >Comment</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/Comments.html" >Comments</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/DataParams.html" >DataParams</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/Event.html" >Event</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/FeedParams.html" >FeedParams</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/ILatLng.html" >ILatLng</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/Location.html" >Location</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/Media.html" >Media</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/Object.html" >Object</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/Post.html" >Post</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/SearchParams.html" >SearchParams</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/SearchResult.html" >SearchResult</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/User.html" >User</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/Vote.html" >Vote</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="interfaces/Votes.html" >Votes</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="./miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="./coverage.html"  class="active" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                           <li class="copyright">
+                                   Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                               <img src=".//images/compodoc-vectorise.svg" class="img-responsive">
+                                   </a>
+                           </li>
+                   
+                       </ul>
+                   
+                   </nav>
                </div>
-               <!-- START CONTENT -->
                <div class="content coverage">
                    <div class="content-data">
 
@@ -39,49 +770,27 @@
 
 
 
-
-
-
-
-
-
 <ol class="breadcrumb">
-    <li>Documentation coverage</li>
+  <li>Documentation coverage</li> 
 </ol>
 
-<div>
-    <img src="./images/coverage-badge-documentation.svg">
+<div class="coverage-badge">
+    <span>Project</span>
+    <span class="count low">1%</span>
 </div>
 
-<table class="table table-bordered coverage" id="coverage-table">
+<table class="table table-bordered coverage">
     <thead class="coverage-header">
         <tr>
             <th>File</th>
             <th>Type</th>
             <th>Identifier</th>
-            <th style="text-align:right" class="statements" data-sort-default>Statements</th>
+            <th style="text-align:right">Statements</th>
         </tr>
     </thead>
     <tbody>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
-                <a href="./directives/AnnotationDirective.html">src/app/annotation/annotation-directive/annotation.directive.ts</a>
-            </td>
-            <td>
-                directive
-            </td>
-            <td>
-                AnnotationDirective
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/11)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
                 <a href="./injectables/AnnotationService.html">src/app/annotation/annotation-service/annotation.service.ts</a>
             </td>
             <td>
@@ -90,14 +799,13 @@
             <td>
                 AnnotationService
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/7)</span>
+                <span class="coverage-count">(0/5)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/AnnotatedBodyComponent.html">src/app/annotation/components/annotated-body/annotated-body.component.ts</a>
             </td>
             <td>
@@ -106,14 +814,13 @@
             <td>
                 AnnotatedBodyComponent
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/20)</span>
+                <span class="coverage-count">(0/18)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/AnnotationComponent.html">src/app/annotation/components/annotation/annotation.component.ts</a>
             </td>
             <td>
@@ -122,14 +829,13 @@
             <td>
                 AnnotationComponent
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/17)</span>
+                <span class="coverage-count">(0/15)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/ShowAnnotationComponent.html">src/app/annotation/components/show-annotation/show-annotation.component.ts</a>
             </td>
             <td>
@@ -138,14 +844,13 @@
             <td>
                 ShowAnnotationComponent
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/4)</span>
+                <span class="coverage-count">(0/2)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/AppComponent.html">src/app/app.component.ts</a>
             </td>
             <td>
@@ -154,14 +859,58 @@
             <td>
                 AppComponent
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
+                <span class="coverage-count">(0/2)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
+                <a href="./injectables/AuthGuard.html">src/app/auth/guards/auth/auth.guard.ts</a>
+            </td>
+            <td>
+                injectable
+            </td>
+            <td>
+                AuthGuard
+            </td>
+            <td align="right">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <a href="./injectables/CanEditGuard.html">src/app/auth/guards/can-edit/can-edit.guard.ts</a>
+            </td>
+            <td>
+                injectable
+            </td>
+            <td>
+                CanEditGuard
+            </td>
+            <td align="right">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <a href="./injectables/NoAuthGuard.html">src/app/auth/guards/no-auth/no-auth.guard.ts</a>
+            </td>
+            <td>
+                injectable
+            </td>
+            <td>
+                NoAuthGuard
+            </td>
+            <td align="right">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
                 <a href="./components/ChangePasswordPage.html">src/app/auth/pages/change-password/change-password.page.ts</a>
             </td>
             <td>
@@ -170,14 +919,13 @@
             <td>
                 ChangePasswordPage
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/6)</span>
+                <span class="coverage-count">(0/4)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/ForgotPasswordPage.html">src/app/auth/pages/forgot-password/forgot-password.page.ts</a>
             </td>
             <td>
@@ -186,14 +934,13 @@
             <td>
                 ForgotPasswordPage
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/5)</span>
+                <span class="coverage-count">(0/3)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/NotFoundPage.html">src/app/auth/pages/not-found/not-found.page.ts</a>
             </td>
             <td>
@@ -202,14 +949,13 @@
             <td>
                 NotFoundPage
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
+                <span class="coverage-count">(0/1)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/SigninPage.html">src/app/auth/pages/signin/signin.page.ts</a>
             </td>
             <td>
@@ -218,14 +964,13 @@
             <td>
                 SigninPage
             </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/8)</span>
+            <td align="right">
+                <span class="coverage-percent">16 %</span>
+                <span class="coverage-count">(1/6)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/SignupPage.html">src/app/auth/pages/signup/signup.page.ts</a>
             </td>
             <td>
@@ -234,14 +979,13 @@
             <td>
                 SignupPage
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/7)</span>
+                <span class="coverage-count">(0/5)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./injectables/AuthService.html">src/app/auth/providers/auth/auth.service.ts</a>
             </td>
             <td>
@@ -250,46 +994,43 @@
             <td>
                 AuthService
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/15)</span>
+                <span class="coverage-count">(0/13)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
-                <a href=".//functions.html#tokenGetter">src/app/auth/providers/auth/auth.service.ts</a>
+                <a href="./injectables/InterceptorService.html">src/app/config/interceptor/interceptor.service.ts</a>
             </td>
             <td>
-                function
+                injectable
             </td>
             <td>
-                tokenGetter
+                InterceptorService
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
                 <span class="coverage-count">(0/1)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./classes/DataService.html">src/app/data/providers/data/data.service.ts</a>
             </td>
             <td>
-                class
+                classe
             </td>
             <td>
                 DataService
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/11)</span>
+                <span class="coverage-count">(0/9)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/DataParams.html">src/app/data/providers/data/data.service.ts</a>
             </td>
             <td>
@@ -298,14 +1039,13 @@
             <td>
                 DataParams
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/4)</span>
+                <span class="coverage-count">(0/3)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./injectables/EventService.html">src/app/data/providers/event/event.service.ts</a>
             </td>
             <td>
@@ -314,14 +1054,13 @@
             <td>
                 EventService
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/9)</span>
+                <span class="coverage-count">(0/7)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./injectables/FeedService.html">src/app/data/providers/feed/feed.service.ts</a>
             </td>
             <td>
@@ -330,14 +1069,28 @@
             <td>
                 FeedService
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
+                <span class="coverage-count">(0/2)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
+                <a href="./interfaces/FeedParams.html">src/app/data/providers/feed/feed.service.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                FeedParams
+            </td>
+            <td align="right">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
                 <a href="./injectables/SearchService.html">src/app/data/providers/search/search.service.ts</a>
             </td>
             <td>
@@ -346,14 +1099,13 @@
             <td>
                 SearchService
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/7)</span>
+                <span class="coverage-count">(0/5)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./injectables/TagService.html">src/app/data/providers/tag/tag.service.ts</a>
             </td>
             <td>
@@ -362,14 +1114,13 @@
             <td>
                 TagService
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
+                <span class="coverage-count">(0/1)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./injectables/UploadService.html">src/app/data/providers/upload/upload.service.ts</a>
             </td>
             <td>
@@ -378,14 +1129,13 @@
             <td>
                 UploadService
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/5)</span>
+                <span class="coverage-count">(0/3)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/CommentBoxComponent.html">src/app/events/components/comment-box/comment-box.component.ts</a>
             </td>
             <td>
@@ -394,14 +1144,13 @@
             <td>
                 CommentBoxComponent
             </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/9)</span>
+            <td align="right">
+                <span class="coverage-percent">14 %</span>
+                <span class="coverage-count">(1/7)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/DateSelectorComponent.html">src/app/events/components/date-selector/date-selector.component.ts</a>
             </td>
             <td>
@@ -410,14 +1159,13 @@
             <td>
                 DateSelectorComponent
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/6)</span>
+                <span class="coverage-count">(0/4)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/EventFormComponent.html">src/app/events/components/event-form/event-form.component.ts</a>
             </td>
             <td>
@@ -426,14 +1174,13 @@
             <td>
                 EventFormComponent
             </td>
-            <td align="right" data-sort="7">
+            <td align="right">
                 <span class="coverage-percent">7 %</span>
-                <span class="coverage-count">(2/26)</span>
+                <span class="coverage-count">(2/27)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/PriceSelectorComponent.html">src/app/events/components/price-selector/price-selector.component.ts</a>
             </td>
             <td>
@@ -442,14 +1189,13 @@
             <td>
                 PriceSelectorComponent
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/6)</span>
+                <span class="coverage-count">(0/4)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/SearchComponent.html">src/app/events/components/search/search.component.ts</a>
             </td>
             <td>
@@ -458,14 +1204,13 @@
             <td>
                 SearchComponent
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/22)</span>
+                <span class="coverage-count">(0/20)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/TagSelectorComponent.html">src/app/events/components/tag-selector/tag-selector.component.ts</a>
             </td>
             <td>
@@ -474,14 +1219,13 @@
             <td>
                 TagSelectorComponent
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/7)</span>
+                <span class="coverage-count">(0/6)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/EventCreatePage.html">src/app/events/pages/event-create/event-create.page.ts</a>
             </td>
             <td>
@@ -490,14 +1234,13 @@
             <td>
                 EventCreatePage
             </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/14)</span>
+            <td align="right">
+                <span class="coverage-percent">8 %</span>
+                <span class="coverage-count">(1/12)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/EventEditPage.html">src/app/events/pages/event-edit/event-edit.page.ts</a>
             </td>
             <td>
@@ -506,14 +1249,13 @@
             <td>
                 EventEditPage
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/7)</span>
+                <span class="coverage-count">(0/5)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/EventPage.html">src/app/events/pages/event/event.page.ts</a>
             </td>
             <td>
@@ -522,14 +1264,13 @@
             <td>
                 EventPage
             </td>
-            <td align="right" data-sort="2">
-                <span class="coverage-percent">2 %</span>
-                <span class="coverage-count">(1/46)</span>
+            <td align="right">
+                <span class="coverage-percent">4 %</span>
+                <span class="coverage-count">(2/42)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/FeedPage.html">src/app/events/pages/feed/feed.page.ts</a>
             </td>
             <td>
@@ -538,14 +1279,13 @@
             <td>
                 FeedPage
             </td>
-            <td align="right" data-sort="7">
-                <span class="coverage-percent">7 %</span>
-                <span class="coverage-count">(1/13)</span>
+            <td align="right">
+                <span class="coverage-percent">9 %</span>
+                <span class="coverage-count">(1/11)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/SearchPage.html">src/app/events/pages/search/search.page.ts</a>
             </td>
             <td>
@@ -554,14 +1294,13 @@
             <td>
                 SearchPage
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/20)</span>
+                <span class="coverage-count">(0/18)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/Annotation.html">src/app/interfaces/annotation.interface.ts</a>
             </td>
             <td>
@@ -570,14 +1309,13 @@
             <td>
                 Annotation
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/6)</span>
+                <span class="coverage-count">(0/5)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/Attendance.html">src/app/interfaces/attendance.interface.ts</a>
             </td>
             <td>
@@ -586,14 +1324,13 @@
             <td>
                 Attendance
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
+                <span class="coverage-count">(0/2)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/Attendances.html">src/app/interfaces/attendance.interface.ts</a>
             </td>
             <td>
@@ -602,14 +1339,13 @@
             <td>
                 Attendances
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
+                <span class="coverage-count">(0/2)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/Comment.html">src/app/interfaces/comment.interface.ts</a>
             </td>
             <td>
@@ -618,14 +1354,13 @@
             <td>
                 Comment
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/5)</span>
+                <span class="coverage-count">(0/4)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/Comments.html">src/app/interfaces/comment.interface.ts</a>
             </td>
             <td>
@@ -634,14 +1369,13 @@
             <td>
                 Comments
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
+                <span class="coverage-count">(0/2)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/Event.html">src/app/interfaces/event.interface.ts</a>
             </td>
             <td>
@@ -650,14 +1384,13 @@
             <td>
                 Event
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/15)</span>
+                <span class="coverage-count">(0/14)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/Location.html">src/app/interfaces/location.interface.ts</a>
             </td>
             <td>
@@ -666,14 +1399,13 @@
             <td>
                 Location
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
+                <span class="coverage-count">(0/2)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/Media.html">src/app/interfaces/media.interface.ts</a>
             </td>
             <td>
@@ -682,14 +1414,13 @@
             <td>
                 Media
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/5)</span>
+                <span class="coverage-count">(0/4)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/Object.html">src/app/interfaces/object.interface.ts</a>
             </td>
             <td>
@@ -698,14 +1429,13 @@
             <td>
                 Object
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/2)</span>
+                <span class="coverage-count">(0/1)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/Post.html">src/app/interfaces/post.interface.ts</a>
             </td>
             <td>
@@ -714,14 +1444,13 @@
             <td>
                 Post
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
+                <span class="coverage-count">(0/2)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/SearchParams.html">src/app/interfaces/search-params.interface.ts</a>
             </td>
             <td>
@@ -730,14 +1459,13 @@
             <td>
                 SearchParams
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/12)</span>
+                <span class="coverage-count">(0/11)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/SearchResult.html">src/app/interfaces/search-result.interface.ts</a>
             </td>
             <td>
@@ -746,14 +1474,13 @@
             <td>
                 SearchResult
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
+                <span class="coverage-count">(0/2)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/User.html">src/app/interfaces/user.interface.ts</a>
             </td>
             <td>
@@ -762,14 +1489,13 @@
             <td>
                 User
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/11)</span>
+                <span class="coverage-count">(0/10)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/Vote.html">src/app/interfaces/vote.interface.ts</a>
             </td>
             <td>
@@ -778,14 +1504,13 @@
             <td>
                 Vote
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/6)</span>
+                <span class="coverage-count">(0/5)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/Votes.html">src/app/interfaces/vote.interface.ts</a>
             </td>
             <td>
@@ -794,14 +1519,13 @@
             <td>
                 Votes
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
+                <span class="coverage-count">(0/2)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./injectables/FileService.html">src/app/native/providers/file/file.service.ts</a>
             </td>
             <td>
@@ -810,14 +1534,13 @@
             <td>
                 FileService
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/4)</span>
+                <span class="coverage-count">(0/2)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./injectables/MediaService.html">src/app/native/providers/media/media.service.ts</a>
             </td>
             <td>
@@ -826,14 +1549,13 @@
             <td>
                 MediaService
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/6)</span>
+                <span class="coverage-count">(0/4)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/ProfilePage.html">src/app/profile/pages/profile/profile.page.ts</a>
             </td>
             <td>
@@ -842,14 +1564,13 @@
             <td>
                 ProfilePage
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/16)</span>
+                <span class="coverage-count">(0/13)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/PublicPage.html">src/app/profile/pages/public/public.page.ts</a>
             </td>
             <td>
@@ -858,14 +1579,13 @@
             <td>
                 PublicPage
             </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/20)</span>
+            <td align="right">
+                <span class="coverage-percent">11 %</span>
+                <span class="coverage-count">(2/18)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/SettingsPage.html">src/app/profile/pages/settings/settings.page.ts</a>
             </td>
             <td>
@@ -874,14 +1594,13 @@
             <td>
                 SettingsPage
             </td>
-            <td align="right" data-sort="4">
-                <span class="coverage-percent">4 %</span>
-                <span class="coverage-count">(1/24)</span>
+            <td align="right">
+                <span class="coverage-percent">9 %</span>
+                <span class="coverage-count">(2/21)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/TimelinePage.html">src/app/profile/pages/timeline/timeline.page.ts</a>
             </td>
             <td>
@@ -890,14 +1609,13 @@
             <td>
                 TimelinePage
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/6)</span>
+                <span class="coverage-count">(0/4)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/EventCardComponent.html">src/app/shared/components/event-card/event-card.component.ts</a>
             </td>
             <td>
@@ -906,14 +1624,13 @@
             <td>
                 EventCardComponent
             </td>
-            <td align="right" data-sort="6">
-                <span class="coverage-percent">6 %</span>
-                <span class="coverage-count">(1/16)</span>
+            <td align="right">
+                <span class="coverage-percent">7 %</span>
+                <span class="coverage-count">(1/14)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/MapComponent.html">src/app/shared/components/map/map.component.ts</a>
             </td>
             <td>
@@ -922,14 +1639,13 @@
             <td>
                 MapComponent
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/19)</span>
+                <span class="coverage-count">(0/16)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/ILatLng.html">src/app/shared/components/map/map.component.ts</a>
             </td>
             <td>
@@ -938,14 +1654,13 @@
             <td>
                 ILatLng
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
+                <span class="coverage-count">(0/2)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/MediaComponent.html">src/app/shared/components/media/media.component.ts</a>
             </td>
             <td>
@@ -954,14 +1669,13 @@
             <td>
                 MediaComponent
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/9)</span>
+                <span class="coverage-count">(0/6)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/SliderComponent.html">src/app/shared/components/slider/slider.component.ts</a>
             </td>
             <td>
@@ -970,14 +1684,13 @@
             <td>
                 SliderComponent
             </td>
-            <td align="right" data-sort="0">
+            <td align="right">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/12)</span>
+                <span class="coverage-count">(0/9)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
-                <!-- miscellaneous -->
                 <a href="./components/ToolbarComponent.html">src/app/shared/components/toolbar/toolbar.component.ts</a>
             </td>
             <td>
@@ -986,103 +1699,17 @@
             <td>
                 ToolbarComponent
             </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/11)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./miscellaneous/variables.html#secret">src/environments/environment.private.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                secret
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./miscellaneous/variables.html#environment">src/environments/environment.prod.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                environment
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./miscellaneous/variables.html#environment">src/environments/environment.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                environment
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./miscellaneous/variables.html#context">src/test.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                context
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./miscellaneous/variables.html#require">src/test.ts</a>
-            </td>
-            <td>
-                variable
-            </td>
-            <td>
-                require
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
+            <td align="right">
+                <span class="coverage-percent">11 %</span>
+                <span class="coverage-count">(1/9)</span>
             </td>
         </tr>
     </tbody>
 </table>
 
-<script src="js/libs/tablesort.min.js"></script>
-<script src="js/libs/tablesort.number.min.js"></script>
-<script>
-    new Tablesort(document.getElementById('coverage-table'));
-</script>
-
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -1090,21 +1717,8 @@
     </div>
 </div>
 </div>
-               <!-- END CONTENT -->
            </div>
        </div>
-
-       <script>
-            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'coverage';
-            var COMPODOC_CURRENT_PAGE_URL = 'coverage.html';
-       </script>
-
-       <script src="./js/libs/custom-elements.min.js"></script>
-       <script src="./js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="./js/menu-wc.js" defer></script>
 
        <script src="./js/libs/bootstrap-native.js"></script>
 
@@ -1115,17 +1729,20 @@
 
        <script src="./js/compodoc.js"></script>
 
-       <script src="./js/tabs.js"></script>
-       <script src="./js/menu.js"></script>
-       <script src="./js/libs/clipboard.min.js"></script>
-       <script src="./js/libs/prism.js"></script>
-       <script src="./js/sourceCode.js"></script>
-          <script src="./js/search/search.js"></script>
-          <script src="./js/search/lunr.min.js"></script>
-          <script src="./js/search/search-lunr.js"></script>
-          <script src="./js/search/search_index.js"></script>
-       <script src="./js/lazy-load-graphs.js"></script>
+       <script src="./js/search/search.js"></script>
+       <script src="./js/search/lunr.min.js"></script>
+       <script src="./js/search/search-lunr.js"></script>
 
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/highlight.pack.js"></script>
+       <script src="./js/libs/highlightjs-line-numbers.min.js"></script>
+       <script src="./js/search/search_index.js"></script>
+       <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                hljs.initHighlightingOnLoad();
+                hljs.initLineNumbersOnLoad();
+            });
+       </script>
 
     </body>
 </html>
