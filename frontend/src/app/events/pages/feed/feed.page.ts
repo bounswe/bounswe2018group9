@@ -114,5 +114,6 @@ export class FeedPage implements OnInit {
     this.after = null;
     this.events = [];
     this.loaded = true;
+    this.load();
   }
 }
