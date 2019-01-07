@@ -79,7 +79,8 @@ export class AnnotatedBodyComponent implements OnInit {
     elm.classList.remove('bg-blue-dark');
     elm.classList.remove('bg-pink-dark');
   }
-  enter(){
+
+  enter(event: any){
     this.activated = true;
     this.textareaElement.nativeElement.value = this.originalText;
   }
