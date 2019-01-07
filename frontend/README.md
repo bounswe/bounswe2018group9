@@ -7,28 +7,35 @@ Actopus frontend contains the website and cross platform mobile application. The
 1. You should have `npm` and `node` installed.
 
 2. You should change your directory and install dependencies
+
 ```
 cd frontend
 npm install
-
 ```
+
 3. You should install Ionic CLI which is an extended version of Angular CLI for easy development
 
 ```
 npm install -g ionic@latest
 ```
 
-4. Serve the Ionic application for development
+4. Serve the Ionic application for continuous development
 
 
 ```
 ionic serve
 ```
 
-5. You can build the project running
+4. You can build the development version of the project running
 
 ```
-ionic build --prod --aot
+npm run build
+```
+
+5. You can build the production version of the project running
+
+```
+npm run build:prod
 ```
 
 This will bundle all the code and moves it to `backend/www` folder
