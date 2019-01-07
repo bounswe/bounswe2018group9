@@ -12,27 +12,27 @@ function getFeed(req,res,next) {
     const event = req.query.event || null;
     const limit = parseInt(req.query.limit);
 
-    console.log('AFTER: ' + after);
-    console.log('BEFORE: ' + before);
-    console.log('EVENT: ' + event);
-    console.log('LIMIT: ' + limit);
-
     Event.find({
-        $or: [
-            { _id: { $in: user.willAttendEvents.concat(user.mayAttendEvents) } },
-            { creator: { $in: user.following.concat([ user._id ]) } },
-            { tags: { $in: user.interests } }
-        ],
-        $or: [
-            { date: { $gte: after, $lte: before, $ne: after  } },
-            { date: before, _id: { $gte: event, $ne: event } }
+        $and: [
+            {
+                $or: [
+                    { _id: { $in: user.willAttendEvents.concat(user.mayAttendEvents) } },
+                    { creator: { $in: user.following.concat([ user._id ]) } },
+                    { tags: { $in: user.interests } }
+                ]
+            },
+            {
+                $or: [
+                    { date: { $gte: after, $lte: before, $ne: after  } },
+                    { date: before, _id: { $gte: event, $ne: event } }
+                ]
+            }
         ]
     })
     .limit(limit)
     .sort([['date', 1], ['_id', 1]])
     .exec()
     .then(docs => {
-        console.log(docs);
         return res.status(200).send(docs || []);
     })
     .catch(err => {
