@@ -1,8 +1,8 @@
 {
-  "name": "frontend",
+  "name": "actopus",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "Bounswe Group 9",
+  "homepage": "http://46.101.223.116",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -85,7 +85,7 @@
     "tslint": "~5.11.0",
     "typescript": "~2.9.2"
   },
-  "description": "An Ionic project",
+  "description": "This project aims to create a social platform for people who like to attend cultural activities.",
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
