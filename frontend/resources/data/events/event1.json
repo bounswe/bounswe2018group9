@@ -1,0 +1,45 @@
+{
+  "vote": {
+    "upvoteCount": 0,
+    "downvoteCount": 0,
+    "positive": [
+    ],
+    "negative": [],
+    "votes": []
+  },
+  "artists": [
+    "Richard Feynman"
+  ],
+  "tags": [
+    "Science"
+  ],
+  "name": "Roast Science",
+  "media": [
+    {
+      "type": 0,
+      "source": "549963c4-5d12-40c7-8761-8af8337e45e8.jpg"
+    }
+  ],
+  "date": "2019-01-01T22:49:00.000Z",
+  "duration": {
+    "length": 2,
+    "unit": "hour"
+  },
+  "location": {
+    "coords": {
+      "lat": 41.085587,
+      "lng": 29.044715
+    },
+    "address": "Couldn't geocode location"
+  },
+  "price": {
+    "amount": 0,
+    "currency": "X"
+  },
+  "description": "We will roast non-positive science branches.",
+  "creator": "5c277576b2cb1275701d52a3",
+  "attendance": [
+
+  ],
+  "comments": [],
+}
