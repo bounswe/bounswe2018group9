@@ -19,26 +19,44 @@ npm install
 npm install -g ionic@latest
 ```
 
-4. Serve the Ionic application for continuous development
+4. Serve the web application for continuous development
 
 
 ```
 ionic serve
 ```
 
-4. You can build the development version of the project running
+5. Serve the android application for development
 
 ```
-npm run build
+ionic cordova run android
 ```
 
-5. You can build the production version of the project running
+## Building
+
+1. You can build the web development version of the project running
 
 ```
-npm run build:prod
+ionic build
 ```
 
-This will bundle all the code and moves it to `backend/www` folder
+2. You can build the web production version of the project running
+
+```
+ionic build --prod --aot
+```
+
+3. You can build the android development version of the project running
+
+```
+ionic cordova build android
+```
+
+4. You can build the android production version of the project running
+
+```
+ionic cordova build android --prod --release
+```
 
 ## Coding Style
 We will be writing good code with commments when needed and structured properly.
