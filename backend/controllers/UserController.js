@@ -133,8 +133,16 @@ function follow(req,res,next){
         .populate('following')
         .exec()
         .then((user)=>{
-            res.status(200);
-            res.send({following: user.following});
+            User.findOneAndUpdate({_id: req.body.id}, {$push: {followers: req.params.id}}, {new: true})
+            .exec()
+            .then(()=>{
+                res.status(200);
+                res.send({following: user.following});
+            })
+            .catch((err)=>{
+                res.status(500);
+                res.send({err});
+        });
         })
         .catch((err)=>{
             res.status(500);
@@ -147,11 +155,45 @@ function unfollow(req,res,next) {
         .populate('following')
         .exec()
         .then((user)=>{
-            res.status(200);
-            res.send({following: user.following});
+            User.update({_id:req.body.id}, {$pull: {followers: req.params.id}}, {new: true})
+            .exec()
+            .then(()=>{
+                res.status(200);
+                res.send({following: user.following});
+            })
+            .catch((err)=>{
+                res.status(500);
+                res.send({err});
+        });
         })
         .catch((err)=>{
             res.status(500);
+            res.send({err});
+        });
+}
+
+function getFollowers(req,res,next){
+    User.findById(req.params.id)
+        .exec()
+        .then((user) => {
+            res.status(200);
+            res.send({following: user.followers});
+        })
+        .catch((err) => {
+            res.status(404);
+            res.send({err});
+        });
+}
+
+function getFollowing(req,res,next){
+    User.findById(req.params.id)
+        .exec()
+        .then((user) => {
+            res.status(200);
+            res.send({following: user.following});
+        })
+        .catch((err) => {
+            res.status(404);
             res.send({err});
         });
 }
@@ -338,6 +380,8 @@ module.exports = {
     unfollow,
     deleteUser,
     updateUser,
+    getFollowers,
+    getFollowing,
     getAvatar,
     getCover,
     addAvatar,
@@ -347,3 +391,4 @@ module.exports = {
     deleteAvatar,
     deleteCover
 }
+

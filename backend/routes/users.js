@@ -15,6 +15,8 @@ router.get('/', UserController.getAllUsers);
 
 // Get a specific user by an id.
 router.get('/:id', UserController.getUserById);//this should be last in code
+router.get('/:id/followers', UserController.getFollowers);
+router.get('/:id/following', UserController.getFollowing);
 
 
 // MEDIA ENDPOINTS
